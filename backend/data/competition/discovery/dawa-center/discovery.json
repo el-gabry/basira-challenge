@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "discovery_id": "dawa-center-general-content-live-characterization-v1",
+  "source_family": "DAWA_CENTER",
+  "domain": "dawah_general_content",
+  "official_locator": "https://dawa.center/",
+  "observed_at": "2026-10-04",
+  "surface": {
+    "canonical_entity_identity": [
+      "entity_type",
+      "entity_key"
+    ],
+    "canonical_route_templates": {
+      "file": "https://dawa.center/file/{numeric_id}",
+      "book": "https://dawa.center/book/{numeric_id}",
+      "category": "https://dawa.center/category/{numeric_id}",
+      "language": "https://dawa.center/language/{language_code}",
+      "country": "https://dawa.center/country/{country_code}",
+      "people_group": "https://dawa.center/people-group/{numeric_id}",
+      "religion": "https://dawa.center/religion/{numeric_id}",
+      "islamic_centre": "https://dawa.center/islamic_centre/{entity_key}"
+    },
+    "content_entity_types": [
+      "file",
+      "book"
+    ],
+    "context_entity_types": [
+      "category",
+      "language",
+      "country",
+      "people_group",
+      "religion",
+      "islamic_centre"
+    ],
+    "listing_surfaces": [
+      "https://dawa.center/articles",
+      "https://dawa.center/books",
+      "https://dawa.center/categories",
+      "https://dawa.center/languages",
+      "https://dawa.center/people-groups",
+      "https://dawa.center/religions"
+    ],
+    "articles_listing_is_canonical_unit": false,
+    "articles_listing_detail_identity": "file",
+    "route_characterization": "STRUCTURALLY_STABLE_ON_OBSERVED_CANONICAL_ROUTES"
+  },
+  "sitemap_observation": {
+    "locator": "https://dawa.center/sitemap.xml",
+    "observed_url_count": 37563,
+    "route_family_counts": {
+      "islamic_centre": 11568,
+      "book": 9953,
+      "file": 9516,
+      "author": 5207,
+      "website": 663,
+      "country": 250,
+      "language": 205,
+      "translation": 100,
+      "category": 84
+    },
+    "people_group_detail_routes": "OBSERVED_FROM_LISTING_NOT_COUNTED_IN_SITEMAP_CENSUS",
+    "religion_detail_routes": "OBSERVED_FROM_LISTING_NOT_COUNTED_IN_SITEMAP_CENSUS"
+  },
+  "sample_observations": [
+    {
+      "entity_type": "file",
+      "entity_key": "3",
+      "status": 200,
+      "canonical_url": "https://dawa.center/file/3",
+      "json_ld_type": "WebPage",
+      "json_ld_name_observed": true,
+      "json_ld_description_observed": true
+    },
+    {
+      "entity_type": "book",
+      "entity_key": "840",
+      "status": 200,
+      "canonical_url": "https://dawa.center/book/840",
+      "json_ld_type": "WebPage",
+      "json_ld_name_observed": true,
+      "json_ld_description_observed": true
+    },
+    {
+      "entity_type": "category",
+      "entity_key": "1",
+      "status": 200,
+      "canonical_url": "https://dawa.center/category/1",
+      "json_ld_type": "WebPage"
+    },
+    {
+      "entity_type": "language",
+      "entity_key": "aa",
+      "status": 200,
+      "canonical_url": "https://dawa.center/language/aa",
+      "json_ld_type": "WebPage"
+    },
+    {
+      "entity_type": "country",
+      "entity_key": "AX",
+      "status": 200,
+      "canonical_url": "https://dawa.center/country/AX",
+      "json_ld_type": "WebPage"
+    },
+    {
+      "entity_type": "people_group",
+      "entity_key": "1",
+      "status": 200,
+      "canonical_url": "https://dawa.center/people-group/1",
+      "json_ld_type": "WebPage",
+      "related_file_links_observed": true
+    },
+    {
+      "entity_type": "religion",
+      "entity_key": "1",
+      "status": 200,
+      "canonical_url": "https://dawa.center/religion/1",
+      "json_ld_type": "WebPage",
+      "related_file_links_observed": true
+    },
+    {
+      "entity_type": "islamic_centre",
+      "entity_key": "1",
+      "status": 200,
+      "canonical_url": "https://dawa.center/islamic_centre/1",
+      "json_ld_type": "WebPage"
+    }
+  ],
+  "machine_readable_findings": {
+    "json_ld_observed": true,
+    "next_data_observed": false,
+    "livewire_observed": false,
+    "content_api_observed": false,
+    "observed_api_literals_are_not_content_api": [
+      "/api/like",
+      "/api/subscribe",
+      "https://dawa.center/api/v1/chat"
+    ],
+    "html_is_current_extraction_surface": true
+  },
+  "retrieval_boundaries": {
+    "public_page_retrieval_allowed": true,
+    "robots_sensitive_routes_not_used": [
+      "/search",
+      "/search/",
+      "*/download",
+      "*/preview",
+      "/storage/files/"
+    ],
+    "download_artifact_body_characterized": false,
+    "preview_surface_characterized": false,
+    "search_endpoint_characterized": false
+  },
+  "source_role_findings": {
+    "primary_dawah_general_content_source": true,
+    "universal_primary_evidence": false,
+    "cross_domain_claims_require_primary_domain_routing": true,
+    "religion_facet_grants_comparative_religion_authority": false,
+    "dawah_content_grants_aqeedah_primary_authority": false,
+    "dawah_content_grants_fiqh_primary_authority": false,
+    "dawah_content_grants_hadith_authentication_authority": false,
+    "dawah_content_grants_tafsir_primary_authority": false,
+    "jamhara_terminology_runtime_remains_separate": true,
+    "generic_shamela_fallback_allowed": false
+  },
+  "runtime_admission": "PENDING_AUDIT",
+  "adapter": "NOT_IMPLEMENTED",
+  "source_trust_passport": "NOT_ISSUED"
+}

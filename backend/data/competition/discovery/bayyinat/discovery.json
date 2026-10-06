@@ -1,0 +1,141 @@
+{
+  "adapter": "NOT_IMPLEMENTED",
+  "artifact": {
+    "bytes": 17109952,
+    "content_type": "application/pdf",
+    "effective_url": "https://dawa.center/storage/files/AMYj6DfmHlSnZ766Zz0VlBNwmYtdwhAl31XMETlT.pdf",
+    "extractor": "pypdf",
+    "http_code": 200,
+    "kind": "pdf",
+    "page_count": 1259,
+    "sha256": "619b7201833419b8fbf86c463208462b9a2a7f02ad2306a2667490f3b410ad4e",
+    "size_download": 17109952,
+    "text_chars": 1687550,
+    "url_count": 0
+  },
+  "cross_domain_signals": {
+    "aqeedah": 526,
+    "fiqh": 307,
+    "hadith": 1094,
+    "history": 605,
+    "quran": 5318
+  },
+  "discovery_id": "bayyinat-official-artifact-characterization-v1",
+  "discovery_version": 1,
+  "locator": {
+    "content_type": "text/html; charset=UTF-8",
+    "effective_url": "https://dawa.center/file/7937",
+    "http_code": 200,
+    "sha256": "f47dcb0679b3e9cabe0423b2d3bd7b60a3aa72b274a84a3859ed4ba61a000007",
+    "size_download": 98165
+  },
+  "official_domain": "shubuhat_faq",
+  "official_locator": "dawa.center/file/7937",
+  "official_requested_url": "https://dawa.center/file/7937",
+  "resolution": {
+    "candidate_count": 5,
+    "candidates": [
+      {
+        "download": false,
+        "reasons": [
+          "document_extension"
+        ],
+        "score": 10,
+        "tag": "a",
+        "text": "فتح في نافذة جديدة",
+        "url": "https://dawa.center/storage/files/AMYj6DfmHlSnZ766Zz0VlBNwmYtdwhAl31XMETlT.pdf"
+      },
+      {
+        "download": false,
+        "reasons": [
+          "download_or_document_label"
+        ],
+        "score": 5,
+        "tag": "a",
+        "text": "PDF",
+        "url": "https://dawa.center/file/2833"
+      },
+      {
+        "download": false,
+        "reasons": [
+          "download_or_document_label"
+        ],
+        "score": 5,
+        "tag": "a",
+        "text": "PDF",
+        "url": "https://dawa.center/file/403"
+      },
+      {
+        "download": false,
+        "reasons": [
+          "download_or_document_label"
+        ],
+        "score": 5,
+        "tag": "a",
+        "text": "PDF",
+        "url": "https://dawa.center/file/8557"
+      },
+      {
+        "download": false,
+        "reasons": [
+          "embedded_document_surface"
+        ],
+        "score": 4,
+        "tag": "iframe",
+        "text": "",
+        "url": "https://dawa.center/pdf-viewer/web/viewer.html?file=%2Fstorage%2Ffiles%2FAMYj6DfmHlSnZ766Zz0VlBNwmYtdwhAl31XMETlT.pdf"
+      }
+    ],
+    "content_type": "text/html; charset=utf-8",
+    "effective_url": "https://dawa.center/file/7937",
+    "html_title": "بينات: أسئلة وأجوبة عن الإسلام",
+    "http_code": 200,
+    "locator_kind": "html",
+    "official_requested_url": "https://dawa.center/file/7937",
+    "resolution": "UNIQUE_OFFICIAL_PAGE_DOCUMENT_LINK",
+    "resolved_artifact_url": "https://dawa.center/storage/files/AMYj6DfmHlSnZ766Zz0VlBNwmYtdwhAl31XMETlT.pdf",
+    "reuse_locator_body": false,
+    "size_download": 98165,
+    "visible_chars": 45915
+  },
+  "result": "PASS",
+  "runtime_admission": "PENDING_AUDIT",
+  "source_family": "BAYYINAT",
+  "source_role_findings": {
+    "answer_label_structure_observed": true,
+    "bayyinat_wording_equals_consensus": false,
+    "citation_channel_contract_frozen": false,
+    "cross_domain_claims_require_primary_domain_routing": true,
+    "cross_domain_lexical_signals_require_normalized_arabic": true,
+    "explicit_answer_label_contract_observed": true,
+    "explicit_question_label_contract_observed": true,
+    "generic_shamela_fallback_allowed": false,
+    "lexical_citation_equals_verified_primary_evidence": false,
+    "numbered_question_boundary_contract_frozen": false,
+    "numbered_question_structure_observed": true,
+    "primary_conversational_source": true,
+    "question_boundary_contract_frozen": false,
+    "universal_primary_evidence": false
+  },
+  "source_trust_passport": "NOT_ISSUED",
+  "structure": {
+    "answer_heading_count": 263,
+    "citation_lexical_count": 392,
+    "citation_reference_contract": "LEXICAL_SIGNALS_OBSERVED_ONLY",
+    "explicit_qa_heading_contract": "STRUCTURALLY_STABLE",
+    "footnote_like_count": 0,
+    "qa_pair_count": 263,
+    "qa_pair_failure_count": 0,
+    "qa_pairing_ratio": 1.0,
+    "qa_transition_counts": {
+      "A_TO_A": 0,
+      "A_TO_Q": 262,
+      "Q_TO_A": 263,
+      "Q_TO_Q": 0
+    },
+    "question_boundary_contract": "NOT_YET_FROZEN",
+    "question_heading_count": 263,
+    "question_mark_line_count": 1188,
+    "shubhah_signal_count": 797
+  }
+}

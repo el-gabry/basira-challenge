@@ -1,0 +1,32 @@
+{
+  "registry_version": 1,
+  "purpose": "Govern historical entity aliases for retrieval expansion without converting alias matches into factual identity claims",
+  "entity_types": [
+    "place",
+    "region",
+    "polity",
+    "tribe",
+    "person",
+    "institution",
+    "other"
+  ],
+  "alias_relations": [
+    "canonical_label",
+    "historical_name",
+    "modern_name",
+    "alternate_name",
+    "transliteration",
+    "administrative_successor",
+    "geographic_overlap"
+  ],
+  "hard_invariants": {
+    "alias_match_equals_identity_proof": false,
+    "entity_resolution_may_rewrite_final_answer_as_equivalence": false,
+    "administrative_successor_equals_historical_identity": false,
+    "geographic_overlap_equals_identity": false,
+    "time_sensitive_alias_may_ignore_time_context": false,
+    "ambiguous_alias_may_select_silent_winner": false,
+    "entity_resolution_is_retrieval_aid_only": true
+  },
+  "entities": []
+}

@@ -1,0 +1,65 @@
+{
+  "adapter_contract": "dorar-history-canonical-event-v1",
+  "admission_parent_commit": "f970ba0b4002921c1cde14c4bd7fb96c4f19b799",
+  "admission_scope": "canonical_event_only",
+  "allowed_route_families": [
+    "/history/{positive_integer_id}",
+    "/history/event/{positive_integer_id}"
+  ],
+  "canonical_origin": "https://dorar.net",
+  "first_three_centuries_path": {
+    "authority_registry_state": "EMPTY_PENDING_SOURCE_AUDIT",
+    "runtime_admitted": false
+  },
+  "governed_artifact_sha256": {
+    "data/competition/audits/history/dorar-history-adversarial-v1.json": "ecd623df193cdff08dab7e2df2f8d2b646c2afaeb141b4216df584cdea7de67a",
+    "data/competition/discovery/dorar-history/discovery.json": "76b5c253ab699b18fb371202ffc031e82f956de22164144c93713f0853ee1f45",
+    "data/competition/manifests/history/dorar-history-dom-contract-v1.json": "bf9213983bd147b3e74879d3677bc8334428ec85b7acdc75a77ad312cab331b6",
+    "data/competition/manifests/history/dorar-history-runtime-v1.json": "ef9ea8a25940d7fb8dbcc39d0d3108ebc99fc0dde31f75af69b61ba5fe568c84",
+    "data/competition/manifests/history/official-history-policy-v1.json": "067069144afcc656c323567d0390b81d33c4cc5e6805929609d2948280a31fb0",
+    "data/competition/sources/history/historical_entity_registry.json": "ead65b9c17b137f5ca051b6be362b612c2ab9bc518f887c8f6c0fb3a1dfe6dbd",
+    "data/competition/sources/history/history_source_registry.json": "542cd2ab92dae92a80d0bf95f5906146a272ac1de56538b514910bd6125c917f",
+    "src/basira/competition/dorar_history.py": "658ca1b7cb112be81c568507a22d6b60f61736987c3ca1666712f7b0d0a0342b",
+    "src/basira/competition/dorar_history_admission.py": "3c83b7966a3717d8beac96c6d1c39873f676191998b3fa1d21f96fc6f75349b5",
+    "src/basira/competition/history_entities.py": "d342ecf97ebf253accdec85fdb5c66297360c467ae711721cc8b26e935c17235",
+    "src/basira/competition/history_policy.py": "8894cc0558a9170a90a7c7d5f16b07f751c16bf05b662c41fb6a2b2ec3eeecfc",
+    "src/basira/competition/history_retrieval.py": "9d7c1118624dcd462c9829e325baddf11d151170bcac328c5a40d8e956fd8230"
+  },
+  "historical_entity_registry": {
+    "entity_resolution_role": "retrieval_only",
+    "production_entity_count": 0
+  },
+  "passport_id": "dorar-history-source-trust-v1",
+  "passport_version": 1,
+  "provider": "Dorar al-Sunniyyah",
+  "runtime_eligibility": "eligible",
+  "runtime_guarantees": {
+    "audited_baseline_drift_blocked": true,
+    "canonical_self_link_required": true,
+    "canonical_structure_fail_closed": true,
+    "exact_response_sha256_recorded": true,
+    "nested_event_container_ambiguity_blocked": true,
+    "provenance_routing_fail_closed": true
+  },
+  "semantic_guarantees": {
+    "categorical_claim_requires_governed_report_assessment": true,
+    "default_historical_report_status": "unassessed",
+    "event_reference_channel_established": false,
+    "generic_shamela_fallback": false,
+    "hadith_matn_inference_from_plain_history_prose": false,
+    "history_quran_candidate_is_canonical_quran_witness": false,
+    "independent_hadith_authentication": false,
+    "lexical_disagreement_is_truth_grade": false,
+    "may_state_as_established_fact": false,
+    "runtime_admission_equals_established_fact": false
+  },
+  "source_family": "dorar_history",
+  "source_id": "dorar-history-v1",
+  "verification_evidence": {
+    "adapter": "AUDITED",
+    "adversarial_audit": "PASS",
+    "audited_baseline_count": 6,
+    "dom_route_probe": "PASS",
+    "live_characterization": "PASS"
+  }
+}

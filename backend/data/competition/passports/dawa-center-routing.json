@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "source_id": "dawa-center-routing-v1",
+  "provider": "Dawa Center",
+  "official_locator": "https://dawa.center/",
+  "status": "ROUTING_ONLY_ADMITTED",
+  "admission_scope": {
+    "official_domain": "dawah_general_content",
+    "material_role": "routing_context",
+    "routing_display_allowed": true,
+    "source_native_answer_content_admitted": false
+  },
+  "authority_boundary": {
+    "answer_bearing_evidence": false,
+    "universal_primary_evidence": false,
+    "cross_domain_primary_evidence": false,
+    "aqeedah_primary_authority": false,
+    "fiqh_primary_authority": false,
+    "hadith_authentication_authority": false,
+    "tafsir_primary_authority": false,
+    "terminology_authority": false
+  },
+  "runtime_constraints": {
+    "evidence_node_creation_allowed": false,
+    "routing_context_may_be_displayed": true,
+    "user_question_may_be_republished_as_source_text": false,
+    "cross_domain_claims_require_primary_domain_routing": true,
+    "content_api_required_for_answer_content": true,
+    "content_api_currently_observed": false,
+    "download_artifact_body_characterized": false
+  },
+  "frozen_discovery": {
+    "data/competition/discovery/dawa-center/content-contract.json": "74a24fc2898248b4f501bddac36c404880e100d317000f23ce9b0a5a03fe4a8e",
+    "data/competition/discovery/dawa-center/unit-structure.json": "83695d53c4b60c61e31ff89bacfe5e4dcf4e39f42d3779a5a2a559d34e127021",
+    "data/competition/discovery/dawa-center/field-census.json": "56c5f1bac3a7e2594d33038fccbbb025d20d27f91f4943191423fa3f56b07903",
+    "data/competition/discovery/dawa-center/discovery.json": "cf0099989eab3aea68b75fa7325d94a36ecf990f2593dde1b7a1e7aedd27f37a"
+  },
+  "notes": [
+    "This passport admits Dawa Center only as governed routing/display material.",
+    "It does not admit Dawa Center content as answer-bearing religious evidence.",
+    "A separate future admission is required before source-native answer content may be returned."
+  ]
+}

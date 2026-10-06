@@ -1,0 +1,23 @@
+{
+  "source_id": "hadeethenc-official",
+  "repository": "hadeethenc.com",
+  "revision": "ar-v1.7.0+en-v1.25.0",
+  "integrity_status": "verified_local_copy",
+  "snapshot_manifest_sha256": null,
+  "artifacts": [
+    {
+      "config": "ar-v1.7.0",
+      "path": "HadeethEnc.com_ar-v1.7.0.xlsx",
+      "sha256": "d5d397cb9fc8ddd54c4c6ee88357c2217721db0bd0759c6ec26d8b3fc36f1ec1",
+      "size_bytes": 2767594,
+      "row_count": 3582
+    },
+    {
+      "config": "en-v1.25.0",
+      "path": "HadeethEnc.com_en-v1.25.0.xlsx",
+      "sha256": "339d148eb7425b7f2d48dd7521a969e4aa4a35b5d35a7c4a1c1b67043b5ee218",
+      "size_bytes": 3232481,
+      "row_count": 2328
+    }
+  ]
+}

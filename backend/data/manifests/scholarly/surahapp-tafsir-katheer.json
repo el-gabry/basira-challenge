@@ -1,0 +1,29 @@
+{
+  "source_id": "surahapp-tafsir-katheer",
+  "source_name": "تفسير ابن كثير - طبعة دار ابن الجوزي",
+  "domain": "tafsir",
+  "role": "secondary_reference",
+  "usage_policy": null,
+  "narration": null,
+  "language_codes": [
+    "ar"
+  ],
+  "version": "v1",
+  "edition": null,
+  "publisher": "Surah App / Tafsir Center",
+  "homepage_url": "https://surahapp.com/",
+  "download_url": null,
+  "downloaded_at": null,
+  "official_hash": null,
+  "local_sha256": "ff85ea926d0643166fa596a4455004b52730d2a26cf468e247663f8643ab919a",
+  "integrity_status": "verified",
+  "status": "approved",
+  "license_name": null,
+  "license_url": null,
+  "local_storage_allowed": false,
+  "redistribution_allowed": false,
+  "attribution_required": true,
+  "raw_file_name": "tafsir-katheer/corpus.json",
+  "raw_file_size_bytes": 26844618,
+  "notes": "Pinned Surah App / Tafsir Center scholarly snapshot. Quran-anchor alignment PASS with zero unresolved references. Approved for attributed runtime retrieval only. This approval does not assert redistribution rights. The Surah App Ibn Kathir project is an abridged edition and must remain labeled as such."
+}

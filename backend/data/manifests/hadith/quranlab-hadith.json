@@ -1,0 +1,29 @@
+{
+  "source_id": "quranlab-hadith",
+  "source_name": "QuranLab Hadith Dataset",
+  "domain": "hadith",
+  "role": "secondary_reference",
+  "narration": null,
+  "language_codes": [
+    "ar",
+    "en"
+  ],
+  "version": null,
+  "edition": null,
+  "publisher": "QuranLab",
+  "homepage_url": "https://huggingface.co/datasets/quranlab/hadith",
+  "download_url": null,
+  "downloaded_at": null,
+  "official_hash": null,
+  "local_sha256": null,
+  "integrity_status": "not_checked",
+  "status": "pending",
+  "license_name": null,
+  "license_url": null,
+  "local_storage_allowed": false,
+  "redistribution_allowed": false,
+  "attribution_required": true,
+  "raw_file_name": null,
+  "raw_file_size_bytes": null,
+  "notes": "QuranLab is registered as a structured Hadith ingestion and research corpus. Basira has inspected live sample rows but has not yet pinned, downloaded, hashed, licensed, or independently verified a full dataset snapshot. Runtime religious authority remains denied."
+}

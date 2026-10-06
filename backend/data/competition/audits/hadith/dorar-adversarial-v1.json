@@ -1,0 +1,363 @@
+{
+  "aggregation_policy": "PRESERVE_EACH_ATTESTATION",
+  "audit_id": "dorar-adversarial-v1",
+  "cases": [
+    {
+      "artifact": {
+        "bytes": 13348,
+        "path": "data/competition/discovery/dorar/api-smoke.json",
+        "sha256": "c7d9aded1751c2150296e30023f11ae18cf4011e038ac457c996b918064847c6"
+      },
+      "case_id": "mixed_known_phrase",
+      "distinct_muhaddith_count": 10,
+      "distinct_narrator_count": 6,
+      "distinct_verdict_count": 14,
+      "incomplete_records": [],
+      "record_count": 15,
+      "records": [
+        {
+          "extra_fields": {},
+          "hadith_text": "إنَّما الأعمالُ بالنياتِ . . . .",
+          "muhaddith": "ابن عبدالبر",
+          "narrator": "أبو سعيد الخدري",
+          "page_or_number": "21/270",
+          "rank": 1,
+          "source": "التمهيد",
+          "verdict": "خطأ [يعني في إسناده] لا شك فيه عند أحد من أهل العلم بالحديث"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "إنَّما الأعمالُ بالنِّيَّاتِ .",
+          "muhaddith": "النووي",
+          "narrator": "[عمر بن الخطاب]",
+          "page_or_number": "40",
+          "rank": 2,
+          "source": "الإيضاح في مناسك الحج",
+          "verdict": "ثبت في الحديث المجمع على صحته"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "إنَّما الأعمالُ بالنِّيَّاتِ .",
+          "muhaddith": "ابن تيمية",
+          "narrator": "عمر بن الخطاب",
+          "page_or_number": "18/24",
+          "rank": 3,
+          "source": "مجموع الفتاوى",
+          "verdict": "صحيح غريب"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "إنَّما الأعمالُ بالنِّياتِ .",
+          "muhaddith": "ابن تيمية",
+          "narrator": "[عمر بن الخطاب]",
+          "page_or_number": "27/208",
+          "rank": 4,
+          "source": "مجموع الفتاوى",
+          "verdict": "مشهور بالصحة"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "إنَّما الأعمالُ بالنِّيَّاتِ ... الحَديث. .",
+          "muhaddith": "العراقي",
+          "narrator": "أنس بن مالك‏",
+          "page_or_number": "2/ 4",
+          "rank": 5,
+          "source": "طرح التثريب",
+          "verdict": "المعروف من حديث أنس: لا عمل لمن لا نية له... الحديث"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "[ إنَّما الأعمالُ بالنِّيَّاتِ ... الحَديث] .",
+          "muhaddith": "العراقي",
+          "narrator": "علي بن أبي طالب",
+          "page_or_number": "2/ 4",
+          "rank": 6,
+          "source": "طرح التثريب",
+          "verdict": "إسناده ضعيف"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "حَديثُ: إنَّما الأعمالُ بالنِّيَّاتِ . .",
+          "muhaddith": "ابن باز",
+          "narrator": "-",
+          "page_or_number": "4/459",
+          "rank": 7,
+          "source": "مجموع تفسير الشيخ عبد العزيز بن باز",
+          "verdict": "غريب صحيح"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "إنَّما الأعمالُ بالنِّيَّاتِ وإنَّما لكلِّ امرئٍ ما نوى .",
+          "muhaddith": "أبو نعيم",
+          "narrator": "عمر بن الخطاب",
+          "page_or_number": "8/43",
+          "rank": 8,
+          "source": "حلية الأولياء",
+          "verdict": "من صحاح الأحاديث وعيونها تفرد به الحسن بن سهل عن قطن"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "إنَّما الأعمالُ بالنِّيَّاتِ ، وإنَّما لكلِّ امرئٍ ما نوَى .",
+          "muhaddith": "ابن حجر العسقلاني",
+          "narrator": "أبو سعيد الخدري",
+          "page_or_number": "2/247",
+          "rank": 9,
+          "source": "موافقة الخبر الخبر",
+          "verdict": "غريب من هذا الوجه"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "إنما الأعمالُ بالنياتِ وإنما لكلِّ امرئٍ ما نَوَى .",
+          "muhaddith": "الألباني",
+          "narrator": "عمر بن الخطاب",
+          "page_or_number": "14",
+          "rank": 10,
+          "source": "غاية المرام",
+          "verdict": "صحيح"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "إِنَّما الأعمالُ بالنياتِ وإِنَّما لِكلِّ امرئٍ ما نَوَى .",
+          "muhaddith": "الألباني",
+          "narrator": "عمر بن الخطاب",
+          "page_or_number": "401",
+          "rank": 11,
+          "source": "غاية المرام",
+          "verdict": "صحيح"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "الأعمالُ بالنيَّاتِ [يعني حديث: إنَّما الأعمالُ بالنِّيَّاتِ ، ولِكلِّ امرئٍ ما نوَى، فمن كانت هجرتُه إلى دنيا يصيبُها، أوِ امرأةٍ ينكحُها، فَهجرتُه إلى ما هاجرَ إليه] .",
+          "muhaddith": "الساجي",
+          "narrator": "أبو سعيد الخدري",
+          "page_or_number": "6/382",
+          "rank": 12,
+          "source": "تهذيب التهذيب",
+          "verdict": "منكر"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "الأعمالُ بالنيَّاتِ [يعني حديث: إنَّما الأعمالُ بالنِّيَّاتِ ، ولِكلِّ امرئٍ ما نوَى، فمن كانت هجرتُه إلى دنيا يصيبُها، أوِ امرأةٍ ينكحُها، فَهجرتُه إلى ما هاجرَ إليه] .",
+          "muhaddith": "ابن عبدالبر",
+          "narrator": "أبو سعيد الخدري",
+          "page_or_number": "6/382",
+          "rank": 13,
+          "source": "تهذيب التهذيب",
+          "verdict": "روى عبد المجيد عن مالك أحاديث أخطأ فيها، هذا أشهرها"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "الأعْمالُ بالنِّيّاتِ [يعني حديث: إنَّما الأعْمالُ بالنِّيّاتِ ، وإنَّما لِكُلِّ امْرِئٍ ما نَوَى، فمَن كانَتْ هِجْرَتُهُ إلى دُنْيا يُصِيبُها ، أوْ إلى امْرَأَةٍ يَنْكِحُها، فَهِجْرَتُهُ إلى ما هاجَرَ إلَيْهِ.] .",
+          "muhaddith": "ابن الملقن",
+          "narrator": "عمر بن الخطاب",
+          "page_or_number": "2/134",
+          "rank": 14,
+          "source": "شرح البخاري لابن الملقن",
+          "verdict": "رواية صحيحة"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "الأعْمالُ بالنِّيّاتِ [يعني حديث: إنَّما الأعْمالُ بالنِّيّاتِ ، وإنَّما لِكُلِّ امْرِئٍ ما نَوَى، فمَن كانَتْ هِجْرَتُهُ إلى دُنْيا يُصِيبُها ، أوْ إلى امْرَأَةٍ يَنْكِحُها، فَهِجْرَتُهُ إلى ما هاجَرَ إلَيْهِ.] .",
+          "muhaddith": "العراقي",
+          "narrator": "[عمر بن الخطاب]",
+          "page_or_number": "2/6",
+          "rank": 15,
+          "source": "طرح التثريب",
+          "verdict": "إسنادها جيد"
+        }
+      ]
+    },
+    {
+      "artifact": {
+        "bytes": 13026,
+        "path": "data/competition/discovery/dorar/adversarial/weak_variant_phrase.json",
+        "sha256": "04f5f0881861ddce17bf98b9b06fcf5a8d2c1b1fe8a8be3007492c8a04f76ced"
+      },
+      "case_id": "weak_variant_phrase",
+      "distinct_muhaddith_count": 13,
+      "distinct_narrator_count": 6,
+      "distinct_verdict_count": 14,
+      "incomplete_records": [],
+      "record_count": 15,
+      "records": [
+        {
+          "extra_fields": {},
+          "hadith_text": "اطلُبوا العِلْمَ ولو بالصِّينِ .",
+          "muhaddith": "البزار",
+          "narrator": "طريف بن سلمان أبو عاتكة",
+          "page_or_number": "1/175",
+          "rank": 1,
+          "source": "البحر الزخار",
+          "verdict": "[فيه] أبو العاتكة لا يعرف، وليس لهذا الحديث أصل"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "اطلُبوا العِلمَ ولو بالصِّينِ .",
+          "muhaddith": "ابن حبان",
+          "narrator": "أنس بن مالك",
+          "page_or_number": "1/489",
+          "rank": 2,
+          "source": "المجروحين",
+          "verdict": "باطل لا أصل له"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "اطْلُبُوا العلمَ ولَوْ بِالصِّينِ .",
+          "muhaddith": "ابن القيسراني",
+          "narrator": "أنس بن مالك",
+          "page_or_number": "61",
+          "rank": 3,
+          "source": "تذكرة الحفاظ",
+          "verdict": "[فيه] أبو عاتكة طريف بن سلمان منكر الحديث جدا"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "اطلُبوا العِلمَ ولو بالصِّينِ .",
+          "muhaddith": "ابن القيسراني",
+          "narrator": "-",
+          "page_or_number": "101",
+          "rank": 4,
+          "source": "معرفة التذكرة",
+          "verdict": "فيه أبو عاتكة طريف بن سلمان هو منكر الحديث"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "اطلُبوا العِلمَ ولو بِالصِّينِ .",
+          "muhaddith": "الذهبي",
+          "narrator": "أبو هريرة",
+          "page_or_number": "2/335",
+          "rank": 5,
+          "source": "ميزان الاعتدال",
+          "verdict": "[فيه طريف بن سلمان أبو عاتكة ذكر من جرحه]"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "اطلُبوا العِلْمَ ولو بالصِّينِ .",
+          "muhaddith": "الذهبي",
+          "narrator": "أبو هريرة",
+          "page_or_number": "1/107",
+          "rank": 6,
+          "source": "ميزان الاعتدال",
+          "verdict": "[فيه] أحمد بن عبد الله الجويباري ممن يضرب المثل بكذبه"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "اطلبوا العلمَ ولَو بالصِّينِ .",
+          "muhaddith": "الزرقاني",
+          "narrator": "[أنس بن مالك]",
+          "page_or_number": "109",
+          "rank": 7,
+          "source": "مختصر المقاصد",
+          "verdict": "ضعيف"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "اطلبوا العلمَ ولوْ بالصينِ .",
+          "muhaddith": "ابن همات الدمشقي",
+          "narrator": "أنس بن مالك",
+          "page_or_number": "29",
+          "rank": 8,
+          "source": "التنكيت والإفادة",
+          "verdict": "ضعيف"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "اطلُبوا العلمَ ولو بالصِّينِ .",
+          "muhaddith": "ابن باز",
+          "narrator": "-",
+          "page_or_number": "6/114",
+          "rank": 9,
+          "source": "الفوائد العلمية من الدروس البازية",
+          "verdict": "ضعيف وبعضهم جعله في الموضوعات"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "اطلُبُوا العِلْمَ ولو بالصِّينِ .",
+          "muhaddith": "الألباني",
+          "narrator": "أنس بن مالك",
+          "page_or_number": "416",
+          "rank": 10,
+          "source": "السلسلة الضعيفة",
+          "verdict": "باطل"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "اطْلُبوا العِلمَ ولو بالصِّينِ ؛ فإنَّه فَريضةٌ على كلِّ مُسلمٍ. .",
+          "muhaddith": "يحيى بن معين",
+          "narrator": "أنس",
+          "page_or_number": "108",
+          "rank": 11,
+          "source": "المنتخب من العلل للخلال",
+          "verdict": "[فيه] أبو عاتكة هذا، لم أعرفه"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "اطْلُبوا العِلمَ ولو بالصِّينِ ؛ فإنَّه فَريضةٌ على كلِّ مُسلمٍ. .",
+          "muhaddith": "الإمام أحمد",
+          "narrator": "أنس",
+          "page_or_number": "109",
+          "rank": 12,
+          "source": "المنتخب من العلل للخلال",
+          "verdict": "[منكر]"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "اطلُبوا العِلْمَ ولو بالصِّينِ ؛ فإنَّ طلبَ العِلمِ فريضةٌ على كلِّ مُسلِمٍ. .",
+          "muhaddith": "العقيلي",
+          "narrator": "أنس بن مالك",
+          "page_or_number": "2/230",
+          "rank": 13,
+          "source": "الضعفاء الكبير",
+          "verdict": "لا يحفظ (ولو بالصين) إلا عن أبي عاتكة وهو متروك الحديث وفريضة على كل مسلم الرواية فيها لين أيضا متقاربة في الضعف"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "اطلُبوا العِلمَ ولو بالصِّينِ فإنَّ طلبَ العِلمِ فريضةٌ على كلِّ مسلمٍ .",
+          "muhaddith": "ابن عدي",
+          "narrator": "أنس بن مالك",
+          "page_or_number": "5/188",
+          "rank": 14,
+          "source": "الكامل في الضعفاء",
+          "verdict": "[فيه] أبو عاتكة عن أنس عامة ما يرويه عن أنس لا يتابعه عليه أحد من الثقات"
+        },
+        {
+          "extra_fields": {},
+          "hadith_text": "اطلبوا العلمَ ولو بالصِّينِ فإنَّ طلبَ العلمِ فريضةٌ على كلِّ مسلمٍ .",
+          "muhaddith": "البيهقي",
+          "narrator": "أنس بن مالك",
+          "page_or_number": "1/292",
+          "rank": 15,
+          "source": "المدخل إلى السنن الكبرى",
+          "verdict": "متنه مشهور وأسانيده ضعيفة لا أعرف له إسنادا يثبت بمثله الحديث"
+        }
+      ]
+    },
+    {
+      "artifact": {
+        "bytes": 255,
+        "path": "data/competition/discovery/dorar/adversarial/nonce_no_hit.json",
+        "sha256": "210a68efbf27942af8708f2065987237a488d91f12898d404e64391c778c4ca5"
+      },
+      "case_id": "nonce_no_hit",
+      "distinct_muhaddith_count": 0,
+      "distinct_narrator_count": 0,
+      "distinct_verdict_count": 0,
+      "incomplete_records": [],
+      "record_count": 0,
+      "records": []
+    }
+  ],
+  "checks": {
+    "consensus_inference_from_search": "PROHIBITED",
+    "mixed_result_preservation": "PASS",
+    "no_result_fail_closed": "PASS",
+    "variant_attribution": "PASS",
+    "zero_result_semantics": "NO_HITS_FOR_QUERY"
+  },
+  "failures": [],
+  "majority_vote": "PROHIBITED",
+  "provider": "Dorar al-Sunniyyah",
+  "result": "PASS",
+  "runtime_admission": "PENDING_SOURCE_PASSPORT",
+  "source_id": "dorar:hadith-api"
+}

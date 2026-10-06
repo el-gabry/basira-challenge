@@ -1,0 +1,107 @@
+{
+  "source_id": "quranlab-hadith",
+  "repository": "quranlab/hadith",
+  "revision": "cc6972dae1f46f5f5e2b65e877d24c4539bc4391",
+  "integrity_status": "verified_local_copy",
+  "snapshot_manifest_sha256": "8e21de797e688cfa6566e5c05c31908ba5bb9f1ff901b3d8edb6aca96a42e42a",
+  "artifacts": [
+    {
+      "config": "ahmad-ar",
+      "path": "ahmad-ar/train-00000-of-00001.parquet",
+      "sha256": "192b49fe98969c742795581eb4858b2c71d83cf3d7cd0bce4eafb7583d24ded7",
+      "size_bytes": 6136980,
+      "row_count": 26363
+    },
+    {
+      "config": "darimi-ar",
+      "path": "darimi-ar/train-00000-of-00001.parquet",
+      "sha256": "3a3566ee650b0719a72250aad7839dbc35e8c6b360ff98fa88524e9c6715a276",
+      "size_bytes": 672864,
+      "row_count": 3367
+    },
+    {
+      "config": "bukhari-ar",
+      "path": "bukhari-ar/train-00000-of-00001.parquet",
+      "sha256": "11a0269164bc3da053068772d755221d2a0768cf05bd2feaeb0500a3d9d647d4",
+      "size_bytes": 3346477,
+      "row_count": 7580
+    },
+    {
+      "config": "muslim-ar",
+      "path": "muslim-ar/train-00000-of-00001.parquet",
+      "sha256": "25f638e1e759ca246a1235fe296ab803599173ca0660c078ac29f40c7f3c0c3b",
+      "size_bytes": 2836120,
+      "row_count": 7360
+    },
+    {
+      "config": "abudawud-ar",
+      "path": "abudawud-ar/train-00000-of-00001.parquet",
+      "sha256": "bfa4723b34bd395fe4782ca066e19398942ccfce3a9c0aedfa6da05a92c78f8a",
+      "size_bytes": 2185408,
+      "row_count": 5272
+    },
+    {
+      "config": "tirmidhi-ar",
+      "path": "tirmidhi-ar/train-00000-of-00001.parquet",
+      "sha256": "8eacd7c3288e21706f3bf987694ba83a7cb7030453582f029131908d0917fab1",
+      "size_bytes": 2123288,
+      "row_count": 3924
+    },
+    {
+      "config": "nasai-ar",
+      "path": "nasai-ar/train-00000-of-00001.parquet",
+      "sha256": "5b41a56ad3126425eea07c11cff569ad5dd5a3a734a92a876836966c38997d46",
+      "size_bytes": 1927981,
+      "row_count": 5679
+    },
+    {
+      "config": "ibnmajah-ar",
+      "path": "ibnmajah-ar/train-00000-of-00001.parquet",
+      "sha256": "f01d56cc77701a0780c3517d74d8d28dff6ff108007746d555cc4fac26401e24",
+      "size_bytes": 1533248,
+      "row_count": 4338
+    },
+    {
+      "config": "malik-ar",
+      "path": "malik-ar/train-00000-of-00001.parquet",
+      "sha256": "bf2ad8cb96d26d8f67393a9e34ddee42d020e388262a6d456825a096156a79fd",
+      "size_bytes": 691671,
+      "row_count": 1829
+    },
+    {
+      "config": "nawawi-ar",
+      "path": "nawawi-ar/train-00000-of-00001.parquet",
+      "sha256": "600e22ad061e4551e3919e0aab820b69597bcf462dcb47c7cfadef13d218bd13",
+      "size_bytes": 33592,
+      "row_count": 42
+    },
+    {
+      "config": "qudsi-ar",
+      "path": "qudsi-ar/train-00000-of-00001.parquet",
+      "sha256": "4dbe2767c2bf7291010f7dba4c46694d2a0f587d2078cbcc73c5ee7bd71e9f63",
+      "size_bytes": 34113,
+      "row_count": 40
+    },
+    {
+      "config": "dehlawi-ar",
+      "path": "dehlawi-ar/train-00000-of-00001.parquet",
+      "sha256": "02d5159e4e9ac7f322aa2fa6a37049960582479da6cab598f6a5029224e1fc22",
+      "size_bytes": 11921,
+      "row_count": 40
+    },
+    {
+      "config": "hadeethenc-ar",
+      "path": "hadeethenc-ar/train-00000-of-00001.parquet",
+      "sha256": "ffdd3c580b2144d3a1eec01d8e9628ae7b3f5c4dd2853cfe57d5ec3ac68510a4",
+      "size_bytes": 3292579,
+      "row_count": 3574
+    },
+    {
+      "config": "hadeethenc-en",
+      "path": "hadeethenc-en/train-00000-of-00001.parquet",
+      "sha256": "6bc0867841250f9b4cdbd968b3aeab3bff200ee26f31eecf3eee0c7603ad070d",
+      "size_bytes": 1994971,
+      "row_count": 2328
+    }
+  ]
+}

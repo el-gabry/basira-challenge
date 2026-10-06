@@ -1,0 +1,88 @@
+{
+  "adapter_contract": "dorar-history-canonical-event-v1",
+  "admission_scope": "canonical_event_only",
+  "allowed_route_families": [
+    {
+      "name": "direct_history_id",
+      "regex": "^/history/[1-9][0-9]*$"
+    },
+    {
+      "name": "history_event_id",
+      "regex": "^/history/event/[1-9][0-9]*$"
+    }
+  ],
+  "audited_baselines": [
+    {
+      "canonical_url": "https://dorar.net/history/1",
+      "case": "seerah_disagreement",
+      "purpose": "audited canonical History event sentinel",
+      "sha256": "65a855418d93e8de67cb2145395f53300f3ac546b91e5129a67d81214695c812"
+    },
+    {
+      "canonical_url": "https://dorar.net/history/event/2",
+      "case": "seerah_prophetic_report",
+      "purpose": "audited canonical History event sentinel",
+      "sha256": "d0a491b27c60040fdc0bb5bf7e9a3ac540f9e6fe88123da402a223212ecfb140"
+    },
+    {
+      "canonical_url": "https://dorar.net/history/event/80",
+      "case": "seerah_event",
+      "purpose": "audited canonical History event sentinel",
+      "sha256": "04b4d6a546934cad2f22bcfdcc63d9e53657dd769a1fe86e092838dd080ff390"
+    },
+    {
+      "canonical_url": "https://dorar.net/history/event/1571",
+      "case": "medieval_event",
+      "purpose": "audited canonical History event sentinel",
+      "sha256": "1a24116a21a6149fa8388c53eae29b6a7bb83c2c442797aebf5b1f5ba4b698ab"
+    },
+    {
+      "canonical_url": "https://dorar.net/history/event/3846",
+      "case": "early_modern_event",
+      "purpose": "audited canonical History event sentinel",
+      "sha256": "4279100c0283faca8c7276372dedb41084675352091c92e7af9886b4befc2f70"
+    },
+    {
+      "canonical_url": "https://dorar.net/history/event/6230",
+      "case": "contemporary_event",
+      "purpose": "audited canonical History event sentinel",
+      "sha256": "8cdf765c667895971c8df518558b8d1c2a66f0ae8f80d47fb6dbdbb5454919a3"
+    }
+  ],
+  "canonical_origin": "https://dorar.net",
+  "manifest_id": "dorar-history-runtime-v1",
+  "manifest_version": 1,
+  "provider": "Dorar al-Sunniyyah",
+  "runtime_eligibility": "eligible",
+  "runtime_requirements": {
+    "audited_baseline_hash_drift_blocked": true,
+    "canonical_root_exactly_one": true,
+    "canonical_self_link_required": true,
+    "event_container_exactly_one_in_accordion_subtree": true,
+    "event_container_must_be_direct": true,
+    "exact_host_required": "dorar.net",
+    "exact_response_sha256_recorded": true,
+    "fragment_allowed": false,
+    "gregorian_year_required": true,
+    "hijri_year_required": true,
+    "https_required": true,
+    "lunar_month_optional": true,
+    "provenance_violation_count_must_be_zero": true,
+    "query_allowed": false,
+    "url_event_id_must_equal_dom_event_id": true
+  },
+  "semantic_boundaries": {
+    "categorical_claim_requires_separate_governed_report_assessment": true,
+    "default_historical_report_status": "unassessed",
+    "event_reference_channel_established": false,
+    "generic_shamela_fallback_allowed": false,
+    "history_quran_candidate_is_canonical_quran_witness": false,
+    "lexical_disagreement_is_truth_grade": false,
+    "plain_history_prose_is_structured_hadith_matn": false,
+    "prophetic_wording_is_hadith_authentication": false,
+    "runtime_admission_equals_established_fact": false,
+    "runtime_evidence_may_state_established_fact": false
+  },
+  "source_family": "dorar_history",
+  "source_id": "dorar-history-v1"
+}

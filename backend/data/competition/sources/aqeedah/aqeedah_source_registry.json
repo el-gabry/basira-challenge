@@ -1,0 +1,44 @@
+{
+  "first_three_centuries_primary_use_requires": [
+    "verified_source_period",
+    "period_evidence",
+    "verified_source_identity",
+    "governed_exact_artifact",
+    "runtime_eligible_source"
+  ],
+  "invariants": {
+    "author_death_year_alone_proves_source_period": false,
+    "discovered_equals_authorized": false,
+    "famous_equals_first_three_centuries_verified": false,
+    "prophetic_report_inside_aqeedah_source_equals_authenticated_hadith": false,
+    "quran_inside_aqeedah_source_equals_canonical_quran": false,
+    "shamela_hit_equals_authorized": false,
+    "source_count_equals_consensus": false
+  },
+  "official_source_families": [
+    "first_three_centuries_islamic_source",
+    "dorar_aqeeda"
+  ],
+  "purpose": "Govern Aqeedah and introduction-to-Islam sources for Basira retrieval",
+  "registry_version": 1,
+  "sources": [
+    {
+      "adapter_contract": "dorar-aqeedah-canonical-article-v1",
+      "admission_scope": "canonical_article_only",
+      "canonical_origin": "https://dorar.net",
+      "canonical_path": "/aqeeda/{positive_integer_id}",
+      "notes": [
+        "Official Dorar Aqeedah path; does not require early-period proof",
+        "Quran context does not become canonical Quran evidence",
+        "Hadith authentication remains owned by Hadith foundation",
+        "Bibliographic citation does not promote authority"
+      ],
+      "passport": "data/competition/passports/dorar-aqeeda.json",
+      "provider": "Dorar al-Sunniyyah",
+      "runtime_eligibility": "eligible",
+      "runtime_manifest": "data/competition/manifests/aqeedah/dorar-aqeedah-runtime-v1.json",
+      "source_family": "dorar_aqeeda",
+      "source_id": "dorar-aqeeda-v1"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "source_id": "tanzil-quran-v1.1-uthmani",
+  "source_name": "Tanzil Quran Text v1.1 - Uthmani",
+  "domain": "quran",
+  "role": "independent_verifier",
+  "narration": "hafs",
+  "language_codes": [
+    "ar"
+  ],
+  "version": "1.1",
+  "edition": null,
+  "publisher": "Tanzil Project",
+  "homepage_url": "https://tanzil.net/",
+  "download_url": null,
+  "downloaded_at": "2026-09-24T05:40:36.874159Z",
+  "official_hash": null,
+  "local_sha256": "6933e133dd56db778c801bf738848454e43648105a151e8d84d86a7cae39ec5f",
+  "integrity_status": "verified",
+  "status": "approved",
+  "license_name": "CC BY 3.0",
+  "license_url": "https://tanzil.net/docs/Text_License",
+  "local_storage_allowed": true,
+  "redistribution_allowed": true,
+  "attribution_required": true,
+  "raw_file_name": "quran-uthmani.txt",
+  "raw_file_size_bytes": 1396087,
+  "notes": "Official Tanzil Uthmani Quran text downloaded directly from Tanzil. Structurally validated as 6,236 verses. Cross-source segment-level Uthmani orthography audit against the pinned KFGQPC Hafs mirror accounted for all 6,236 references with zero missing and zero unresolved references. Runtime use remains subject to the explicit SourceUsagePolicy."
+}

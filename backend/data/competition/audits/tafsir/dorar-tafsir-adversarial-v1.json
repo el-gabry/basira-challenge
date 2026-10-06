@@ -1,0 +1,180 @@
+{
+  "audit_id": "dorar-tafsir-adversarial-v1",
+  "canonical_url": "https://dorar.net/tafseer/1/1",
+  "checks": {
+    "authenticity_from_frequency": "PROHIBITED",
+    "canonical_article_ids": "PASS",
+    "canonical_sections": "PASS",
+    "citation_preservation": "PASS",
+    "direct_fiqh_ruling_from_tafsir": "PROHIBITED",
+    "independent_isnad_grading": "PROHIBITED",
+    "narration_source_preservation": "PASS",
+    "quran_reference_preservation": "PASS",
+    "quran_tafsir_boundary": "PASS",
+    "reported_grading_provenance": "PASS",
+    "tafsir_as_canonical_quran": "PROHIBITED"
+  },
+  "failures": [],
+  "metrics": {
+    "citation_count": 63,
+    "narration_citation_count": 2,
+    "quran_context_count": 69,
+    "quran_context_source_text_node_count": 75,
+    "quran_provenance_violation_count": 0,
+    "quran_reference_count": 14,
+    "quran_string_overlap_count": 4,
+    "reported_grade_citation_count": 2,
+    "section_count": 7
+  },
+  "provider": "Dorar al-Sunniyyah",
+  "quran_string_overlap_examples": [
+    {
+      "article_id": "tt4",
+      "interpretation": "lexical_overlap_not_provenance_leak",
+      "quran_text": "مالِك",
+      "section": "tafsir_ayat"
+    },
+    {
+      "article_id": "tt4",
+      "interpretation": "lexical_overlap_not_provenance_leak",
+      "quran_text": "مَلِك",
+      "section": "tafsir_ayat"
+    },
+    {
+      "article_id": "tt18",
+      "interpretation": "lexical_overlap_not_provenance_leak",
+      "quran_text": "لله",
+      "section": "rhetoric"
+    },
+    {
+      "article_id": "tt18",
+      "interpretation": "lexical_overlap_not_provenance_leak",
+      "quran_text": "إِيَّاكَ",
+      "section": "rhetoric"
+    }
+  ],
+  "response_sha256": "ea8fe89d30a0b4c59de8361bb1c1d35d3800b1d2256ed2658649788163eaa852",
+  "result": "PASS",
+  "runtime_admission": "PENDING_AUDIT",
+  "sections": [
+    {
+      "article_id": "tt9",
+      "citation_count": 0,
+      "explanation_chars": 384,
+      "heading": "المعنى الإجمالي:",
+      "kind": "general_meaning",
+      "narration_citation_count": 0,
+      "quran_context_count": 0,
+      "quran_context_text_node_count": 0,
+      "quran_context_text_nodes_routed_to_explanation": 0,
+      "quran_reference_count": 0,
+      "reported_grade_citation_count": 0,
+      "reported_grade_previews": []
+    },
+    {
+      "article_id": "tt7",
+      "citation_count": 2,
+      "explanation_chars": 127,
+      "heading": "غريب الكلمات:",
+      "kind": "word_meaning",
+      "narration_citation_count": 0,
+      "quran_context_count": 2,
+      "quran_context_text_node_count": 2,
+      "quran_context_text_nodes_routed_to_explanation": 0,
+      "quran_reference_count": 0,
+      "reported_grade_citation_count": 0,
+      "reported_grade_previews": []
+    },
+    {
+      "article_id": "tt8",
+      "citation_count": 2,
+      "explanation_chars": 459,
+      "heading": "مشكل الإعراب:",
+      "kind": "grammar",
+      "narration_citation_count": 0,
+      "quran_context_count": 2,
+      "quran_context_text_node_count": 2,
+      "quran_context_text_nodes_routed_to_explanation": 0,
+      "quran_reference_count": 0,
+      "reported_grade_citation_count": 0,
+      "reported_grade_previews": []
+    },
+    {
+      "article_id": "tt4",
+      "citation_count": 25,
+      "explanation_chars": 3345,
+      "heading": "تفسير الآيات:",
+      "kind": "tafsir_ayat",
+      "narration_citation_count": 2,
+      "quran_context_count": 26,
+      "quran_context_text_node_count": 30,
+      "quran_context_text_nodes_routed_to_explanation": 0,
+      "quran_reference_count": 10,
+      "reported_grade_citation_count": 2,
+      "reported_grade_previews": [
+        {
+          "language": [
+            "authenticated",
+            "graded_hasan",
+            "isnad_language",
+            "rijal_sahih"
+          ],
+          "text": "[48] رواه أحمد (4/378) (19400)، وابن حبان (16/183) (7206)، والطبراني (17/100) (237). قال الهيثميُّ في ((مجمع الزوائد)) (6/210): رجاله رجال الصَّحيح، غير عبَّاد بن حُبَيش، وهو ثِقة، وحسَّن إسنادَه ابن حجر في ((فتح الباري)) (8/9)، وصحَّحه بمجموع طرقه الألبانيُّ في ((سلسلة الأحاديث الصحيحة)) (3263)."
+        },
+        {
+          "language": [
+            "authenticated",
+            "graded_hasan",
+            "isnad_language",
+            "rijal_sahih"
+          ],
+          "text": "[50] رواه أحمد (4/378) (19400)، وابن حبان (16/183) (7206)، والطبراني (17/100) (237). قال الهيثميُّ في ((مجمع الزوائد)) (6/210): رجاله رجالُ الصَّحيح غير عبَّاد بن حُبَيش وهو ثِقة، وحسَّن إسنادَه ابن حجر في ((فتح الباري)) (8/9)، وصحَّحه بمجموع طُرقه الألباني في ((سلسلة الأحاديث الصحيحة)) (3263)."
+        }
+      ]
+    },
+    {
+      "article_id": "tt16",
+      "citation_count": 6,
+      "explanation_chars": 1083,
+      "heading": "الفوائد التربويَّة:",
+      "kind": "educational_benefits",
+      "narration_citation_count": 0,
+      "quran_context_count": 9,
+      "quran_context_text_node_count": 9,
+      "quran_context_text_nodes_routed_to_explanation": 0,
+      "quran_reference_count": 3,
+      "reported_grade_citation_count": 0,
+      "reported_grade_previews": []
+    },
+    {
+      "article_id": "tt17",
+      "citation_count": 7,
+      "explanation_chars": 1136,
+      "heading": "الفوائد العلميَّة واللَّطائف:",
+      "kind": "scholarly_benefits",
+      "narration_citation_count": 0,
+      "quran_context_count": 7,
+      "quran_context_text_node_count": 7,
+      "quran_context_text_nodes_routed_to_explanation": 0,
+      "quran_reference_count": 1,
+      "reported_grade_citation_count": 0,
+      "reported_grade_previews": []
+    },
+    {
+      "article_id": "tt18",
+      "citation_count": 21,
+      "explanation_chars": 4031,
+      "heading": "بلاغة الآيات:",
+      "kind": "rhetoric",
+      "narration_citation_count": 0,
+      "quran_context_count": 23,
+      "quran_context_text_node_count": 25,
+      "quran_context_text_nodes_routed_to_explanation": 0,
+      "quran_reference_count": 0,
+      "reported_grade_citation_count": 0,
+      "reported_grade_previews": []
+    }
+  ],
+  "source_id": "dorar:tafseer:1:1",
+  "source_trust_passport": "NOT_ISSUED"
+}

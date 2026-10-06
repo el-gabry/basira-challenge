@@ -1,0 +1,43 @@
+{
+  "schema_version": "1",
+  "principle": "Basira does not learn beliefs; it learns constraints.",
+  "religious_evidence_authority": 0,
+  "constraints": [
+    {
+      "constraint_id": "constraint:failure:typed-role-spoofing:v1",
+      "source_certificate_id": "failure:typed-role-spoofing:v1",
+      "rule": "Reject deterministic claim_type/domain mismatches before semantic evaluation.",
+      "replay_test_ids": [
+        "tests/scenarios/test_public_trust_shield_attacks.py::test_quran_text_cannot_impersonate_tafsir_support"
+      ],
+      "religious_evidence_authority": 0
+    },
+    {
+      "constraint_id": "constraint:failure:role-laundering:v1",
+      "source_certificate_id": "failure:role-laundering:v1",
+      "rule": "Projection must preserve claim_type; publication identity must not permit None-to-role promotion.",
+      "replay_test_ids": [
+        "tests/scenarios/test_public_trust_shield_attacks.py::test_untyped_quran_source_cannot_impersonate_tafsir_support"
+      ],
+      "religious_evidence_authority": 0
+    },
+    {
+      "constraint_id": "constraint:failure:publication-authority-forgery:v1",
+      "source_certificate_id": "failure:publication-authority-forgery:v1",
+      "rule": "Publication authority must be injected independently by the trusted composition root.",
+      "replay_test_ids": [
+        "tests/scenarios/test_public_trust_shield_attacks.py::test_retriever_cannot_mint_its_own_publication_authority"
+      ],
+      "religious_evidence_authority": 0
+    },
+    {
+      "constraint_id": "constraint:failure:source-domain-identity-spoofing:v1",
+      "source_certificate_id": "failure:source-domain-identity-spoofing:v1",
+      "rule": "Bind deterministic governed source namespaces to their corresponding domains before evidence acceptance.",
+      "replay_test_ids": [
+        "tests/scenarios/test_public_trust_shield_attacks.py::test_untyped_quran_source_cannot_impersonate_tafsir_support"
+      ],
+      "religious_evidence_authority": 0
+    }
+  ]
+}

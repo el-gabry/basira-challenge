@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "snapshot_contract_id": "jamhara-terminology-snapshot-v1",
+  "source_family": "AL_JAMHARA_ISLAMIC_TERMINOLOGY",
+  "domain": "translation_terminology",
+  "snapshot_path": "data/competition/sources/terminology/jamhara_units_v1.json",
+  "extractor": "src/basira/competition/jamhara.py",
+  "unit_identity": [
+    "word_id",
+    "language"
+  ],
+  "canonical_order": [
+    "word_id ASC",
+    "language ASC"
+  ],
+  "required_identity_fields": [
+    "word_id",
+    "language",
+    "source_url"
+  ],
+  "semantic_content_fields": [
+    "canonical_arabic_term",
+    "localized_term",
+    "category",
+    "definition",
+    "linguistic_definition",
+    "terminological_meaning",
+    "short_explanation",
+    "cross_reference"
+  ],
+  "missing_content_policy": "PRESERVE_AS_NULL_OR_MISSING_NEVER_SYNTHESIZE",
+  "localized_view_acceptance": "REQUIRES_NONEMPTY_LOCALIZED_LEXICAL_OR_EXPLANATORY_PAYLOAD",
+  "http_200_alone_establishes_usable_view": false,
+  "duplicate_identity_policy": "REJECT",
+  "candidate_word_id_evidence": {
+    "artifact": "data/competition/discovery/jamhara/field-census.json",
+    "candidate_count": 4382,
+    "corpus_completeness_proven": false,
+    "candidate_construction": "SEED_DISCOVERED_UNION_CHARACTERIZED_WORD_IDS",
+    "seed_discovered_word_id_count_at_freeze": 4381,
+    "characterized_word_ids": [
+      1197,
+      2704,
+      4892
+    ],
+    "characterized_word_ids_missing_from_seed_at_freeze": [
+      4892
+    ]
+  },
+  "language_strategy": {
+    "advertised_routes_are_evidence_of_available_localizations": true,
+    "missing_language_view_is_synthesized": false,
+    "corpus_wide_arabic_or_english_availability_proven": false
+  },
+  "authority_boundary": {
+    "terminology_authority": true,
+    "universal_primary_evidence": false,
+    "cross_domain_primary_evidence": false
+  },
+  "build_state": "NOT_BUILT",
+  "snapshot_hash_state": "NOT_FROZEN",
+  "runtime_admission": "PENDING_AUDIT",
+  "builder": "src/basira/competition/jamhara_snapshot.py",
+  "build_contract": {
+    "candidate_order": "WORD_ID_ASCENDING",
+    "localized_view_order": "LANGUAGE_ASCENDING",
+    "canonical_json": {
+      "ensure_ascii": false,
+      "indent": 2,
+      "sort_keys": true,
+      "terminal_newline": true
+    },
+    "response_hash_algorithm": "sha256",
+    "snapshot_hash_algorithm": "sha256",
+    "network_cache": "CONTENT_REUSED_BY_URL_FOR_RESUMABLE_BUILD",
+    "freeze_requires": [
+      "ZERO_FETCH_FAILURES",
+      "UNIQUE_WORD_ID_LANGUAGE_IDENTITY",
+      "CANONICAL_UNIT_ORDER",
+      "SNAPSHOT_SHA256_RECORDED",
+      "SECOND_BUILD_FROM_FROZEN_CACHE_MATCHES_SHA256",
+      "INDEPENDENT_HTTP_CAPTURES_WITH_EQUIVALENT_EXTRACTED_CONTENT_MATCH_SNAPSHOT_SHA256"
+    ]
+  },
+  "provenance_hash_contract": {
+    "canonical_unit_hash": "SHA256_OF_CANONICAL_EXTRACTED_UNIT_BEFORE_CONTENT_SHA256_FIELD",
+    "canonical_unit_hash_field": "content_sha256",
+    "raw_response_sha256_location": "BUILD_REPORT_ONLY",
+    "raw_response_sha256_part_of_snapshot": false,
+    "dynamic_html_must_not_change_snapshot_sha256_when_extracted_content_is_unchanged": true
+  }
+}

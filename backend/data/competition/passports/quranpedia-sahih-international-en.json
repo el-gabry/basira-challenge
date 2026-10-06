@@ -1,0 +1,25 @@
+{
+  "provider": "Quranpedia",
+  "role": "quran_translation",
+  "source_id": "quranpedia:translation:en:13638",
+  "name": "Sahih International - English translation",
+  "language": "English",
+  "locale_code": "en",
+  "direction": "ltr",
+  "runtime": {
+    "adapter": "QuranpediaTranslationEvidenceAdapter",
+    "canonical_quran_source_id": "quranpedia:mushaf:1",
+    "publication_role": "localized_quran_translation"
+  },
+  "witness": {
+    "translation_book_id": 13638,
+    "translation_name": "Sahih International - English translation",
+    "source_url": "https://quranpedia.net/translation-books/13638.json",
+    "reference_identity": "surah_number:ayah_number"
+  },
+  "snapshot": {
+    "path": "data/competition/normalized/quranpedia/2026-10-06/translation-13638.json",
+    "sha256": "3e90569f2cf2ca8ed9f1699f9339bdc08d0e32ba0977885dc55a2fa15bed0f2a",
+    "record_count": 6236
+  }
+}

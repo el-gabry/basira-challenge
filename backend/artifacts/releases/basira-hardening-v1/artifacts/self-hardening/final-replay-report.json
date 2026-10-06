@@ -1,0 +1,34 @@
+{
+  "schema_version": "1",
+  "religious_evidence_authority": 0,
+  "results": [
+    {
+      "certificate_id": "failure:typed-role-spoofing:v1",
+      "attack_blocked": true,
+      "valid_controls_passed": true,
+      "regression_passed": true,
+      "safe_to_promote": true
+    },
+    {
+      "certificate_id": "failure:role-laundering:v1",
+      "attack_blocked": true,
+      "valid_controls_passed": true,
+      "regression_passed": true,
+      "safe_to_promote": true
+    },
+    {
+      "certificate_id": "failure:publication-authority-forgery:v1",
+      "attack_blocked": true,
+      "valid_controls_passed": true,
+      "regression_passed": true,
+      "safe_to_promote": true
+    },
+    {
+      "certificate_id": "failure:source-domain-identity-spoofing:v1",
+      "attack_blocked": true,
+      "valid_controls_passed": true,
+      "regression_passed": true,
+      "safe_to_promote": true
+    }
+  ]
+}

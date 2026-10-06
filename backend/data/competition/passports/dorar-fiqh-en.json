@@ -1,0 +1,30 @@
+{
+  "passport_version": 1,
+  "source_id": "dorar:fiqh:en",
+  "provider": "Dorar al-Sunniyyah",
+  "source_family": "DORAR_FIQH",
+  "role": "FIQH_EVIDENCE_SOURCE",
+  "language": "en",
+  "official_eligibility": "VERIFIED",
+  "runtime": {
+    "admission": "ELIGIBLE_LIVE_CANONICAL_ARTICLE",
+    "canonical_article_required": true,
+    "source_native_language_required": true,
+    "machine_translation_as_evidence": false,
+    "automated_tarjih": false,
+    "majority_vote": false,
+    "independent_personal_fatwa": false
+  },
+  "trust": {
+    "canonical_route_isolation": "VERIFIED",
+    "response_sha256_required": true,
+    "source_authored_position_boundaries": true,
+    "madhhab_attribution_required": true,
+    "whole_page_promotion": false
+  },
+  "evidence": {
+    "runtime_manifest": "data/competition/manifests/fiqh/dorar-fiqh-en-live-v1.json",
+    "adversarial_audit": "data/competition/audits/fiqh/dorar-fiqh-en-adversarial-v1.json",
+    "official_policy": "data/competition/manifests/fiqh/official-fiqh-policy-v1.json"
+  }
+}

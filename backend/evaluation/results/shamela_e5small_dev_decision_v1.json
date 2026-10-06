@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "shamela-retrieval-v1",
+  "benchmark_sha256": "e199b37de6983c8cdad713a7382e96bda522f4a81a830c138a7cd3c3748f2791",
+  "holdout_used": false,
+  "candidate": "fts5+multilingual-e5-small+rrf",
+  "criteria": {
+    "overall_parent_gain_ge_0.03": true,
+    "comparative_parent_gain_ge_0.04": true,
+    "paraphrase_parent_gain_ge_0.10": true,
+    "ndcg_not_materially_worse": true,
+    "mrr_not_materially_worse": true,
+    "exact_phrase_guard": true,
+    "single_madhhab_guard": true
+  },
+  "decision": "PROMOTE_RRF_FOR_INTEGRATION",
+  "important_deltas": {
+    "overall_parent_at_10": 0.15625,
+    "comparative_parent_at_10": 0.20833333333333326,
+    "paraphrase_parent_at_10": 0.20000000000000007,
+    "ndcg_at_10": 0.1377628390326453,
+    "mrr": 0.09067841880341876
+  },
+  "note": "Dense similarity is a retrieval signal only. These metrics do not establish claim entailment, religious truth, or source authority."
+}

@@ -1,0 +1,28 @@
+{
+  "artifact": "mushafs-1.json.gz",
+  "attempts": [
+    {
+      "actual_bytes": 403040,
+      "actual_sha256": "b857c58206d219d1af333fc3eb8359c30e8b07c7386f88692efcb0744dd98fe8",
+      "built_at": "2026-10-03T06:00:02+00:00",
+      "declared_bytes": 403040,
+      "expected_sha256": "4bd77b139076b487136e7deffda10edb1f4478b553511ddb14e0c9311c5802d3",
+      "folder": "2026-10-03",
+      "manifest_version": "2026-10-03",
+      "sha_match": false,
+      "status": "QUARANTINED"
+    },
+    {
+      "actual_bytes": 403040,
+      "actual_sha256": "0430591e3e445b3e3b2af44b03cd3d2fb7c958c00e961d2a69ed1bfa7c88c7b7",
+      "built_at": "2026-10-04T03:31:26+00:00",
+      "declared_bytes": 403040,
+      "expected_sha256": "0430591e3e445b3e3b2af44b03cd3d2fb7c958c00e961d2a69ed1bfa7c88c7b7",
+      "folder": "2026-10-04",
+      "manifest_version": "2026-10-04",
+      "sha_match": true,
+      "status": "VERIFIED"
+    }
+  ],
+  "source": "Quranpedia"
+}

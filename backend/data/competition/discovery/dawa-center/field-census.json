@@ -1,0 +1,292 @@
+{
+  "schema_version": 1,
+  "source": "DAWA_CENTER",
+  "domain": "dawah_general_content",
+  "observed_at": "2026-10-04",
+  "sampling": {
+    "method": "DETERMINISTIC_SPREAD_OVER_SORTED_SITEMAP_OR_LISTING_CANDIDATES",
+    "sample_per_entity_type": 5,
+    "entity_type_count": 8,
+    "sample_size": 40,
+    "samples": {
+      "book": [
+        "https://dawa.center/book/1000",
+        "https://dawa.center/book/2674",
+        "https://dawa.center/book/5177",
+        "https://dawa.center/book/7665",
+        "https://dawa.center/book/9999"
+      ],
+      "category": [
+        "https://dawa.center/category/1",
+        "https://dawa.center/category/139",
+        "https://dawa.center/category/16",
+        "https://dawa.center/category/7",
+        "https://dawa.center/category/90"
+      ],
+      "country": [
+        "https://dawa.center/country/AD",
+        "https://dawa.center/country/EC",
+        "https://dawa.center/country/KZ",
+        "https://dawa.center/country/RE",
+        "https://dawa.center/country/ZW"
+      ],
+      "file": [
+        "https://dawa.center/file/10",
+        "https://dawa.center/file/3083",
+        "https://dawa.center/file/549",
+        "https://dawa.center/file/778",
+        "https://dawa.center/file/9999"
+      ],
+      "islamic_centre": [
+        "https://dawa.center/islamic_centre/1",
+        "https://dawa.center/islamic_centre/2078",
+        "https://dawa.center/islamic_centre/4742",
+        "https://dawa.center/islamic_centre/7385",
+        "https://dawa.center/islamic_centre/9999"
+      ],
+      "language": [
+        "https://dawa.center/language/aa",
+        "https://dawa.center/language/fi",
+        "https://dawa.center/language/la",
+        "https://dawa.center/language/ru",
+        "https://dawa.center/language/zu"
+      ],
+      "people_group": [
+        "https://dawa.center/people-group/1",
+        "https://dawa.center/people-group/3",
+        "https://dawa.center/people-group/5",
+        "https://dawa.center/people-group/7",
+        "https://dawa.center/people-group/9"
+      ],
+      "religion": [
+        "https://dawa.center/religion/1",
+        "https://dawa.center/religion/3",
+        "https://dawa.center/religion/44",
+        "https://dawa.center/religion/51",
+        "https://dawa.center/religion/8"
+      ]
+    }
+  },
+  "route_results": {
+    "book": {
+      "http_200": "5/5",
+      "official_https_origin": "5/5"
+    },
+    "category": {
+      "http_200": "5/5",
+      "official_https_origin": "5/5"
+    },
+    "country": {
+      "http_200": "5/5",
+      "official_https_origin": "5/5"
+    },
+    "file": {
+      "http_200": "5/5",
+      "official_https_origin": "5/5"
+    },
+    "islamic_centre": {
+      "http_200": "5/5",
+      "official_https_origin": "5/5"
+    },
+    "language": {
+      "http_200": "5/5",
+      "official_https_origin": "5/5"
+    },
+    "people_group": {
+      "http_200": "5/5",
+      "official_https_origin": "5/5"
+    },
+    "religion": {
+      "http_200": "5/5",
+      "official_https_origin": "5/5"
+    }
+  },
+  "field_prevalence": {
+    "book": {
+      "canonical_url": "5/5",
+      "title": "5/5",
+      "meta_description": "5/5",
+      "json_ld": "5/5",
+      "json_ld_type": "5/5",
+      "json_ld_name": "5/5",
+      "json_ld_description": "5/5",
+      "h2": "5/5",
+      "h1": "0/5"
+    },
+    "category": {
+      "canonical_url": "5/5",
+      "title": "5/5",
+      "meta_description": "5/5",
+      "json_ld": "5/5",
+      "json_ld_type": "5/5",
+      "json_ld_name": "5/5",
+      "json_ld_description": "5/5",
+      "h2": "5/5",
+      "h1": "0/5"
+    },
+    "country": {
+      "canonical_url": "5/5",
+      "title": "5/5",
+      "meta_description": "5/5",
+      "json_ld": "5/5",
+      "json_ld_type": "5/5",
+      "json_ld_name": "5/5",
+      "json_ld_description": "5/5",
+      "h2": "5/5",
+      "h1": "5/5"
+    },
+    "file": {
+      "canonical_url": "5/5",
+      "title": "5/5",
+      "meta_description": "5/5",
+      "json_ld": "5/5",
+      "json_ld_type": "5/5",
+      "json_ld_name": "5/5",
+      "json_ld_description": "5/5",
+      "h2": "5/5",
+      "h1": "0/5"
+    },
+    "islamic_centre": {
+      "canonical_url": "5/5",
+      "title": "5/5",
+      "meta_description": "5/5",
+      "json_ld": "5/5",
+      "json_ld_type": "5/5",
+      "json_ld_name": "5/5",
+      "json_ld_description": "5/5",
+      "h2": "5/5",
+      "h1": "0/5"
+    },
+    "language": {
+      "canonical_url": "5/5",
+      "title": "5/5",
+      "meta_description": "5/5",
+      "json_ld": "5/5",
+      "json_ld_type": "5/5",
+      "json_ld_name": "5/5",
+      "json_ld_description": "5/5",
+      "h2": "5/5",
+      "h1": "0/5"
+    },
+    "people_group": {
+      "canonical_url": "5/5",
+      "title": "5/5",
+      "meta_description": "5/5",
+      "json_ld": "5/5",
+      "json_ld_type": "5/5",
+      "json_ld_name": "5/5",
+      "json_ld_description": "5/5",
+      "h2": "5/5",
+      "h1": "0/5"
+    },
+    "religion": {
+      "canonical_url": "5/5",
+      "title": "5/5",
+      "meta_description": "5/5",
+      "json_ld": "5/5",
+      "json_ld_type": "5/5",
+      "json_ld_name": "5/5",
+      "json_ld_description": "5/5",
+      "h2": "5/5",
+      "h1": "5/5"
+    }
+  },
+  "relationship_prevalence": {
+    "book": {
+      "related_file_links": "0/5",
+      "related_book_links": "5/5"
+    },
+    "category": {
+      "related_file_links": "4/5",
+      "related_book_links": "0/5"
+    },
+    "country": {
+      "related_file_links": "0/5",
+      "related_book_links": "0/5"
+    },
+    "file": {
+      "related_file_links": "5/5",
+      "related_book_links": "0/5"
+    },
+    "islamic_centre": {
+      "related_file_links": "0/5",
+      "related_book_links": "0/5"
+    },
+    "language": {
+      "related_file_links": "0/5",
+      "related_book_links": "0/5"
+    },
+    "people_group": {
+      "related_file_links": "5/5",
+      "related_book_links": "0/5"
+    },
+    "religion": {
+      "related_file_links": "5/5",
+      "related_book_links": "0/5"
+    }
+  },
+  "cross_family_findings": {
+    "sampled_stable_fields": [
+      "canonical_url",
+      "title",
+      "meta_description",
+      "json_ld",
+      "json_ld_type",
+      "json_ld_name",
+      "json_ld_description",
+      "h2"
+    ],
+    "sampled_stable_fields_count": "40/40",
+    "h1_presence": "10/40",
+    "h1_is_runtime_requirement": false,
+    "json_ld_type_observed_value": "WebPage",
+    "corpus_wide_field_guarantee_proven": false
+  },
+  "hybrid_agent_roles": {
+    "content_evidence_candidates": [
+      "file",
+      "book"
+    ],
+    "routing_context": [
+      "category",
+      "language",
+      "country",
+      "people_group",
+      "religion",
+      "islamic_centre"
+    ],
+    "routing_context_is_primary_answer_evidence": false
+  },
+  "field_semantics": {
+    "identity": [
+      "canonical_url"
+    ],
+    "primary_label_candidates": [
+      "json_ld_name",
+      "title"
+    ],
+    "description_candidates": [
+      "json_ld_description",
+      "meta_description"
+    ],
+    "supplemental_label": [
+      "h2"
+    ],
+    "unstable_optional_fields": [
+      "h1"
+    ],
+    "relationship_links_are": "OPTIONAL_RETRIEVAL_EXPANSION_NOT_EVIDENTIARY_AUTHORITY"
+  },
+  "conclusions": {
+    "field_contract_can_be_frozen": true,
+    "freeze_means_runtime_behavior_not_corpus_wide_presence_claim": true,
+    "runtime_payload_requires_identity": true,
+    "runtime_payload_requires_nonempty_label": true,
+    "runtime_payload_requires_nonempty_description": true,
+    "missing_required_runtime_payload_fails_closed": true,
+    "context_entities_may_filter_or_expand_retrieval": true,
+    "context_entities_may_answer_cross_domain_claims_directly": false,
+    "census_grants_runtime_admission": false
+  },
+  "runtime_admission": "PENDING_AUDIT"
+}

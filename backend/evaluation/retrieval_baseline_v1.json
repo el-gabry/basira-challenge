@@ -1,0 +1,108 @@
+{
+  "version": "1.1",
+  "description": "Seed retrieval evaluation set for Basira Baseline RAG v1. Exact-anchor cases are strict regression gold. Conceptual cases use curated acceptable-reference sets and remain diagnostic until expanded before the baseline freeze.",
+  "cases": [
+    {
+      "id": "anchor-2-255-quran-and-tafsir",
+      "question": "ما معنى الآية 2:255؟",
+      "tags": ["exact_anchor", "arabic", "quran", "tafsir"],
+      "expectations": [
+        {"domain": "quran", "reference": "2:255"},
+        {
+          "domain": "tafsir",
+          "reference": "2:255",
+          "source_id": "surahapp-tafsir-katheer"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "2:255",
+          "source_id": "surahapp-tafsir-saadi"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "2:255",
+          "source_id": "surahapp-tafsir-mokhtasar"
+        }
+      ]
+    },
+    {
+      "id": "anchor-58-1-quran-and-tafsir",
+      "question": "ما معنى الآية 58:1؟",
+      "tags": ["exact_anchor", "arabic", "quran", "tafsir"],
+      "expectations": [
+        {"domain": "quran", "reference": "58:1"},
+        {
+          "domain": "tafsir",
+          "reference": "58:1",
+          "source_id": "surahapp-tafsir-katheer"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "58:1",
+          "source_id": "surahapp-tafsir-saadi"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "58:1",
+          "source_id": "surahapp-tafsir-mokhtasar"
+        }
+      ]
+    },
+    {
+      "id": "anchor-112-1-quran",
+      "question": "ما معنى الآية 112:1؟",
+      "tags": ["exact_anchor", "arabic", "quran"],
+      "expectations": [
+        {"domain": "quran", "reference": "112:1"}
+      ]
+    },
+    {
+      "id": "conceptual-patience-arabic",
+      "question": "ماذا يقول الإسلام عن الصبر؟",
+      "relevance_mode": "any",
+      "tags": ["conceptual", "arabic", "tafsir"],
+      "expectations": [
+        {"domain": "tafsir", "reference": "2:153"},
+        {"domain": "tafsir", "reference": "2:155"},
+        {"domain": "tafsir", "reference": "2:156"},
+        {"domain": "tafsir", "reference": "2:157"},
+        {"domain": "tafsir", "reference": "3:200"},
+        {"domain": "tafsir", "reference": "16:127"},
+        {"domain": "tafsir", "reference": "39:10"}
+      ],
+      "notes": "Any curated patience-related Tafsir reference counts as relevant. The set is intentionally small and should be manually expanded during evaluation curation."
+    },
+    {
+      "id": "conceptual-patience-arabic-paraphrase",
+      "question": "كيف يتحدث القرآن والتفسير عن الثبات عند الشدائد؟",
+      "relevance_mode": "any",
+      "tags": ["conceptual", "arabic_paraphrase", "tafsir", "diagnostic"],
+      "expectations": [
+        {"domain": "tafsir", "reference": "2:153"},
+        {"domain": "tafsir", "reference": "2:155"},
+        {"domain": "tafsir", "reference": "2:156"},
+        {"domain": "tafsir", "reference": "2:157"},
+        {"domain": "tafsir", "reference": "3:200"},
+        {"domain": "tafsir", "reference": "16:127"},
+        {"domain": "tafsir", "reference": "39:10"}
+      ],
+      "notes": "Diagnostic Arabic paraphrase case using the same curated acceptable-reference set."
+    },
+    {
+      "id": "conceptual-patience-english",
+      "question": "What does Islam teach about patience during hardship?",
+      "relevance_mode": "any",
+      "tags": ["conceptual", "english", "cross_lingual", "tafsir", "diagnostic"],
+      "expectations": [
+        {"domain": "tafsir", "reference": "2:153"},
+        {"domain": "tafsir", "reference": "2:155"},
+        {"domain": "tafsir", "reference": "2:156"},
+        {"domain": "tafsir", "reference": "2:157"},
+        {"domain": "tafsir", "reference": "3:200"},
+        {"domain": "tafsir", "reference": "16:127"},
+        {"domain": "tafsir", "reference": "39:10"}
+      ],
+      "notes": "Diagnostic cross-lingual case. Failure should inform the M26 hybrid-retrieval decision rather than be hidden."
+    }
+  ]
+}

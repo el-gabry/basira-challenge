@@ -1,0 +1,2164 @@
+{
+  "cases_file": "/mnt/c/Users/_/basira-verify/evaluation/retrieval_rescue_holdout_v1.json",
+  "candidate_k_per_domain": 100,
+  "summary": {
+    "case_count": 18,
+    "mean_reciprocal_rank": 0.18779900903556818,
+    "hit_rate_at_k": {
+      "1": 0.16666666666666666,
+      "3": 0.16666666666666666,
+      "5": 0.16666666666666666,
+      "10": 0.2777777777777778,
+      "50": 0.4444444444444444,
+      "100": 0.4444444444444444
+    },
+    "mean_recall_at_k": {
+      "1": 0.16666666666666666,
+      "3": 0.16666666666666666,
+      "5": 0.16666666666666666,
+      "10": 0.2777777777777778,
+      "50": 0.4444444444444444,
+      "100": 0.4444444444444444
+    },
+    "mean_source_coverage_at_k": {
+      "1": null,
+      "3": null,
+      "5": null,
+      "10": null,
+      "50": null,
+      "100": null
+    },
+    "mean_unique_sources_at_k": {
+      "1": 0.6111111111111112,
+      "3": 1.8333333333333333,
+      "5": 1.9444444444444444,
+      "10": 1.9444444444444444,
+      "50": 1.9444444444444444,
+      "100": 1.9444444444444444
+    },
+    "exact_anchor_top1_accuracy": 1.0
+  },
+  "role_filtered_summary": {
+    "case_count": 18,
+    "mean_reciprocal_rank": 0.18779900903556818,
+    "hit_rate_at_k": {
+      "1": 0.16666666666666666,
+      "3": 0.16666666666666666,
+      "5": 0.16666666666666666,
+      "10": 0.2777777777777778,
+      "50": 0.4444444444444444,
+      "100": 0.4444444444444444
+    },
+    "mean_recall_at_k": {
+      "1": 0.16666666666666666,
+      "3": 0.16666666666666666,
+      "5": 0.16666666666666666,
+      "10": 0.2777777777777778,
+      "50": 0.4444444444444444,
+      "100": 0.4444444444444444
+    },
+    "mean_source_coverage_at_k": {
+      "1": null,
+      "3": null,
+      "5": null,
+      "10": null,
+      "50": null,
+      "100": null
+    },
+    "mean_unique_sources_at_k": {
+      "1": 0.6111111111111112,
+      "3": 1.6111111111111112,
+      "5": 1.6111111111111112,
+      "10": 1.6111111111111112,
+      "50": 1.6111111111111112,
+      "100": 1.6111111111111112
+    },
+    "exact_anchor_top1_accuracy": 1.0
+  },
+  "query_type_summaries": {
+    "arabic_direct": {
+      "case_count": 2,
+      "mean_reciprocal_rank": 0.5555555555555556,
+      "hit_rate_at_k": {
+        "1": 0.5,
+        "3": 0.5,
+        "5": 0.5,
+        "10": 1.0,
+        "50": 1.0,
+        "100": 1.0
+      },
+      "mean_recall_at_k": {
+        "1": 0.5,
+        "3": 0.5,
+        "5": 0.5,
+        "10": 1.0,
+        "50": 1.0,
+        "100": 1.0
+      },
+      "mean_source_coverage_at_k": {
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "50": null,
+        "100": null
+      },
+      "mean_unique_sources_at_k": {
+        "1": 1.0,
+        "3": 3.0,
+        "5": 3.0,
+        "10": 3.0,
+        "50": 3.0,
+        "100": 3.0
+      },
+      "exact_anchor_top1_accuracy": null
+    },
+    "arabic_paraphrase": {
+      "case_count": 7,
+      "mean_reciprocal_rank": 0.038467293075588,
+      "hit_rate_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.14285714285714285,
+        "50": 0.5714285714285714,
+        "100": 0.5714285714285714
+      },
+      "mean_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.14285714285714285,
+        "50": 0.5714285714285714,
+        "100": 0.5714285714285714
+      },
+      "mean_source_coverage_at_k": {
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "50": null,
+        "100": null
+      },
+      "mean_unique_sources_at_k": {
+        "1": 1.0,
+        "3": 3.0,
+        "5": 3.0,
+        "10": 3.0,
+        "50": 3.0,
+        "100": 3.0
+      },
+      "exact_anchor_top1_accuracy": null
+    },
+    "english_cross_lingual": {
+      "case_count": 7,
+      "mean_reciprocal_rank": 0.0,
+      "hit_rate_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0,
+        "50": 0.0,
+        "100": 0.0
+      },
+      "mean_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0,
+        "50": 0.0,
+        "100": 0.0
+      },
+      "mean_source_coverage_at_k": {
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "50": null,
+        "100": null
+      },
+      "mean_unique_sources_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0,
+        "50": 0.0,
+        "100": 0.0
+      },
+      "exact_anchor_top1_accuracy": null
+    },
+    "exact_anchor": {
+      "case_count": 2,
+      "mean_reciprocal_rank": 1.0,
+      "hit_rate_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0,
+        "100": 1.0
+      },
+      "mean_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0,
+        "100": 1.0
+      },
+      "mean_source_coverage_at_k": {
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "50": null,
+        "100": null
+      },
+      "mean_unique_sources_at_k": {
+        "1": 1.0,
+        "3": 3.0,
+        "5": 4.0,
+        "10": 4.0,
+        "50": 4.0,
+        "100": 4.0
+      },
+      "exact_anchor_top1_accuracy": 1.0
+    }
+  },
+  "role_filtered_query_type_summaries": {
+    "arabic_direct": {
+      "case_count": 2,
+      "mean_reciprocal_rank": 0.5555555555555556,
+      "hit_rate_at_k": {
+        "1": 0.5,
+        "3": 0.5,
+        "5": 0.5,
+        "10": 1.0,
+        "50": 1.0,
+        "100": 1.0
+      },
+      "mean_recall_at_k": {
+        "1": 0.5,
+        "3": 0.5,
+        "5": 0.5,
+        "10": 1.0,
+        "50": 1.0,
+        "100": 1.0
+      },
+      "mean_source_coverage_at_k": {
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "50": null,
+        "100": null
+      },
+      "mean_unique_sources_at_k": {
+        "1": 1.0,
+        "3": 3.0,
+        "5": 3.0,
+        "10": 3.0,
+        "50": 3.0,
+        "100": 3.0
+      },
+      "exact_anchor_top1_accuracy": null
+    },
+    "arabic_paraphrase": {
+      "case_count": 7,
+      "mean_reciprocal_rank": 0.038467293075588,
+      "hit_rate_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.14285714285714285,
+        "50": 0.5714285714285714,
+        "100": 0.5714285714285714
+      },
+      "mean_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.14285714285714285,
+        "50": 0.5714285714285714,
+        "100": 0.5714285714285714
+      },
+      "mean_source_coverage_at_k": {
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "50": null,
+        "100": null
+      },
+      "mean_unique_sources_at_k": {
+        "1": 1.0,
+        "3": 3.0,
+        "5": 3.0,
+        "10": 3.0,
+        "50": 3.0,
+        "100": 3.0
+      },
+      "exact_anchor_top1_accuracy": null
+    },
+    "english_cross_lingual": {
+      "case_count": 7,
+      "mean_reciprocal_rank": 0.0,
+      "hit_rate_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0,
+        "50": 0.0,
+        "100": 0.0
+      },
+      "mean_recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0,
+        "50": 0.0,
+        "100": 0.0
+      },
+      "mean_source_coverage_at_k": {
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "50": null,
+        "100": null
+      },
+      "mean_unique_sources_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0,
+        "50": 0.0,
+        "100": 0.0
+      },
+      "exact_anchor_top1_accuracy": null
+    },
+    "exact_anchor": {
+      "case_count": 2,
+      "mean_reciprocal_rank": 1.0,
+      "hit_rate_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0,
+        "100": 1.0
+      },
+      "mean_recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0,
+        "100": 1.0
+      },
+      "mean_source_coverage_at_k": {
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "50": null,
+        "100": null
+      },
+      "mean_unique_sources_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0,
+        "100": 1.0
+      },
+      "exact_anchor_top1_accuracy": 1.0
+    }
+  },
+  "cases": [
+    {
+      "case_id": "holdout-anchor-24-35",
+      "question": "ما معنى الآية 24:35؟",
+      "tags": [
+        "exact_anchor",
+        "arabic",
+        "holdout"
+      ],
+      "retrieved_count": 4,
+      "expected_count": 1,
+      "matched_count": 1,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "hit_at_k": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true,
+        "50": true,
+        "100": true
+      },
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0,
+        "100": 1.0
+      },
+      "source_coverage_at_k": {
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "50": null,
+        "100": null
+      },
+      "unique_sources_at_k": {
+        "1": 1,
+        "3": 3,
+        "5": 4,
+        "10": 4,
+        "50": 4,
+        "100": 4
+      },
+      "query_type": "exact_anchor",
+      "role_filtered": {
+        "case_id": "holdout-anchor-24-35",
+        "question": "ما معنى الآية 24:35؟",
+        "tags": [
+          "exact_anchor",
+          "arabic",
+          "holdout"
+        ],
+        "retrieved_count": 1,
+        "expected_count": 1,
+        "matched_count": 1,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "hit_at_k": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true,
+          "50": true,
+          "100": true
+        },
+        "recall_at_k": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "50": 1.0,
+          "100": 1.0
+        },
+        "source_coverage_at_k": {
+          "1": null,
+          "3": null,
+          "5": null,
+          "10": null,
+          "50": null,
+          "100": null
+        },
+        "unique_sources_at_k": {
+          "1": 1,
+          "3": 1,
+          "5": 1,
+          "10": 1,
+          "50": 1,
+          "100": 1
+        }
+      }
+    },
+    {
+      "case_id": "holdout-anchor-49-10",
+      "question": "ما معنى الآية 49:10؟",
+      "tags": [
+        "exact_anchor",
+        "arabic",
+        "holdout"
+      ],
+      "retrieved_count": 4,
+      "expected_count": 1,
+      "matched_count": 1,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "hit_at_k": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true,
+        "50": true,
+        "100": true
+      },
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0,
+        "100": 1.0
+      },
+      "source_coverage_at_k": {
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "50": null,
+        "100": null
+      },
+      "unique_sources_at_k": {
+        "1": 1,
+        "3": 3,
+        "5": 4,
+        "10": 4,
+        "50": 4,
+        "100": 4
+      },
+      "query_type": "exact_anchor",
+      "role_filtered": {
+        "case_id": "holdout-anchor-49-10",
+        "question": "ما معنى الآية 49:10؟",
+        "tags": [
+          "exact_anchor",
+          "arabic",
+          "holdout"
+        ],
+        "retrieved_count": 1,
+        "expected_count": 1,
+        "matched_count": 1,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "hit_at_k": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true,
+          "50": true,
+          "100": true
+        },
+        "recall_at_k": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "50": 1.0,
+          "100": 1.0
+        },
+        "source_coverage_at_k": {
+          "1": null,
+          "3": null,
+          "5": null,
+          "10": null,
+          "50": null,
+          "100": null
+        },
+        "unique_sources_at_k": {
+          "1": 1,
+          "3": 1,
+          "5": 1,
+          "10": 1,
+          "50": 1,
+          "100": 1
+        }
+      }
+    },
+    {
+      "case_id": "holdout-direct-truth-ar",
+      "question": "ماذا يقول القرآن والتفسير عن الصدق؟",
+      "tags": [
+        "conceptual",
+        "arabic_direct",
+        "oov_concept",
+        "holdout",
+        "tafsir",
+        "arabic"
+      ],
+      "retrieved_count": 100,
+      "expected_count": 1,
+      "matched_count": 1,
+      "first_relevant_rank": 9,
+      "reciprocal_rank": 0.1111111111111111,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": true,
+        "50": true,
+        "100": true
+      },
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 1.0,
+        "50": 1.0,
+        "100": 1.0
+      },
+      "source_coverage_at_k": {
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "50": null,
+        "100": null
+      },
+      "unique_sources_at_k": {
+        "1": 1,
+        "3": 3,
+        "5": 3,
+        "10": 3,
+        "50": 3,
+        "100": 3
+      },
+      "query_type": "arabic_direct",
+      "role_filtered": {
+        "case_id": "holdout-direct-truth-ar",
+        "question": "ماذا يقول القرآن والتفسير عن الصدق؟",
+        "tags": [
+          "conceptual",
+          "arabic_direct",
+          "oov_concept",
+          "holdout",
+          "tafsir",
+          "arabic"
+        ],
+        "retrieved_count": 100,
+        "expected_count": 1,
+        "matched_count": 1,
+        "first_relevant_rank": 9,
+        "reciprocal_rank": 0.1111111111111111,
+        "hit_at_k": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": true,
+          "50": true,
+          "100": true
+        },
+        "recall_at_k": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 1.0,
+          "50": 1.0,
+          "100": 1.0
+        },
+        "source_coverage_at_k": {
+          "1": null,
+          "3": null,
+          "5": null,
+          "10": null,
+          "50": null,
+          "100": null
+        },
+        "unique_sources_at_k": {
+          "1": 1,
+          "3": 3,
+          "5": 3,
+          "10": 3,
+          "50": 3,
+          "100": 3
+        }
+      }
+    },
+    {
+      "case_id": "holdout-direct-extravagance-ar",
+      "question": "ماذا يقول القرآن والتفسير عن الإسراف والتبذير؟",
+      "tags": [
+        "conceptual",
+        "arabic_direct",
+        "oov_concept",
+        "holdout",
+        "tafsir",
+        "arabic"
+      ],
+      "retrieved_count": 100,
+      "expected_count": 1,
+      "matched_count": 1,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "hit_at_k": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true,
+        "50": true,
+        "100": true
+      },
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0,
+        "100": 1.0
+      },
+      "source_coverage_at_k": {
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "50": null,
+        "100": null
+      },
+      "unique_sources_at_k": {
+        "1": 1,
+        "3": 3,
+        "5": 3,
+        "10": 3,
+        "50": 3,
+        "100": 3
+      },
+      "query_type": "arabic_direct",
+      "role_filtered": {
+        "case_id": "holdout-direct-extravagance-ar",
+        "question": "ماذا يقول القرآن والتفسير عن الإسراف والتبذير؟",
+        "tags": [
+          "conceptual",
+          "arabic_direct",
+          "oov_concept",
+          "holdout",
+          "tafsir",
+          "arabic"
+        ],
+        "retrieved_count": 100,
+        "expected_count": 1,
+        "matched_count": 1,
+        "first_relevant_rank": 1,
+        "reciprocal_rank": 1.0,
+        "hit_at_k": {
+          "1": true,
+          "3": true,
+          "5": true,
+          "10": true,
+          "50": true,
+          "100": true
+        },
+        "recall_at_k": {
+          "1": 1.0,
+          "3": 1.0,
+          "5": 1.0,
+          "10": 1.0,
+          "50": 1.0,
+          "100": 1.0
+        },
+        "source_coverage_at_k": {
+          "1": null,
+          "3": null,
+          "5": null,
+          "10": null,
+          "50": null,
+          "100": null
+        },
+        "unique_sources_at_k": {
+          "1": 1,
+          "3": 3,
+          "5": 3,
+          "10": 3,
+          "50": 3,
+          "100": 3
+        }
+      }
+    },
+    {
+      "case_id": "holdout-iv-patience-ar",
+      "question": "ماذا يفعل المؤمن عندما تتتابع عليه المصائب ولا يريد أن يجزع؟",
+      "tags": [
+        "conceptual",
+        "arabic_paraphrase",
+        "iv_unseen_wording",
+        "holdout",
+        "tafsir",
+        "arabic"
+      ],
+      "retrieved_count": 100,
+      "expected_count": 1,
+      "matched_count": 1,
+      "first_relevant_rank": 14,
+      "reciprocal_rank": 0.07142857142857142,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false,
+        "50": true,
+        "100": true
+      },
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0,
+        "50": 1.0,
+        "100": 1.0
+      },
+      "source_coverage_at_k": {
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "50": null,
+        "100": null
+      },
+      "unique_sources_at_k": {
+        "1": 1,
+        "3": 3,
+        "5": 3,
+        "10": 3,
+        "50": 3,
+        "100": 3
+      },
+      "query_type": "arabic_paraphrase",
+      "role_filtered": {
+        "case_id": "holdout-iv-patience-ar",
+        "question": "ماذا يفعل المؤمن عندما تتتابع عليه المصائب ولا يريد أن يجزع؟",
+        "tags": [
+          "conceptual",
+          "arabic_paraphrase",
+          "iv_unseen_wording",
+          "holdout",
+          "tafsir",
+          "arabic"
+        ],
+        "retrieved_count": 100,
+        "expected_count": 1,
+        "matched_count": 1,
+        "first_relevant_rank": 14,
+        "reciprocal_rank": 0.07142857142857142,
+        "hit_at_k": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false,
+          "50": true,
+          "100": true
+        },
+        "recall_at_k": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "50": 1.0,
+          "100": 1.0
+        },
+        "source_coverage_at_k": {
+          "1": null,
+          "3": null,
+          "5": null,
+          "10": null,
+          "50": null,
+          "100": null
+        },
+        "unique_sources_at_k": {
+          "1": 1,
+          "3": 3,
+          "5": 3,
+          "10": 3,
+          "50": 3,
+          "100": 3
+        }
+      }
+    },
+    {
+      "case_id": "holdout-iv-parents-ar",
+      "question": "ما التوجيه لمن أصبح أبواه كبيرين ويحتاجان إلى رعايته؟",
+      "tags": [
+        "conceptual",
+        "arabic_paraphrase",
+        "iv_unseen_wording",
+        "holdout",
+        "tafsir",
+        "arabic"
+      ],
+      "retrieved_count": 100,
+      "expected_count": 1,
+      "matched_count": 1,
+      "first_relevant_rank": 7,
+      "reciprocal_rank": 0.14285714285714285,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": true,
+        "50": true,
+        "100": true
+      },
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 1.0,
+        "50": 1.0,
+        "100": 1.0
+      },
+      "source_coverage_at_k": {
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "50": null,
+        "100": null
+      },
+      "unique_sources_at_k": {
+        "1": 1,
+        "3": 3,
+        "5": 3,
+        "10": 3,
+        "50": 3,
+        "100": 3
+      },
+      "query_type": "arabic_paraphrase",
+      "role_filtered": {
+        "case_id": "holdout-iv-parents-ar",
+        "question": "ما التوجيه لمن أصبح أبواه كبيرين ويحتاجان إلى رعايته؟",
+        "tags": [
+          "conceptual",
+          "arabic_paraphrase",
+          "iv_unseen_wording",
+          "holdout",
+          "tafsir",
+          "arabic"
+        ],
+        "retrieved_count": 100,
+        "expected_count": 1,
+        "matched_count": 1,
+        "first_relevant_rank": 7,
+        "reciprocal_rank": 0.14285714285714285,
+        "hit_at_k": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": true,
+          "50": true,
+          "100": true
+        },
+        "recall_at_k": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 1.0,
+          "50": 1.0,
+          "100": 1.0
+        },
+        "source_coverage_at_k": {
+          "1": null,
+          "3": null,
+          "5": null,
+          "10": null,
+          "50": null,
+          "100": null
+        },
+        "unique_sources_at_k": {
+          "1": 1,
+          "3": 3,
+          "5": 3,
+          "10": 3,
+          "50": 3,
+          "100": 3
+        }
+      }
+    },
+    {
+      "case_id": "holdout-iv-justice-ar",
+      "question": "كيف يتصرف الإنسان إذا كان الإنصاف سيجعله يشهد ضد نفسه؟",
+      "tags": [
+        "conceptual",
+        "arabic_paraphrase",
+        "iv_unseen_wording",
+        "holdout",
+        "tafsir",
+        "arabic"
+      ],
+      "retrieved_count": 100,
+      "expected_count": 1,
+      "matched_count": 0,
+      "first_relevant_rank": null,
+      "reciprocal_rank": 0.0,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false,
+        "50": false,
+        "100": false
+      },
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0,
+        "50": 0.0,
+        "100": 0.0
+      },
+      "source_coverage_at_k": {
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "50": null,
+        "100": null
+      },
+      "unique_sources_at_k": {
+        "1": 1,
+        "3": 3,
+        "5": 3,
+        "10": 3,
+        "50": 3,
+        "100": 3
+      },
+      "query_type": "arabic_paraphrase",
+      "role_filtered": {
+        "case_id": "holdout-iv-justice-ar",
+        "question": "كيف يتصرف الإنسان إذا كان الإنصاف سيجعله يشهد ضد نفسه؟",
+        "tags": [
+          "conceptual",
+          "arabic_paraphrase",
+          "iv_unseen_wording",
+          "holdout",
+          "tafsir",
+          "arabic"
+        ],
+        "retrieved_count": 100,
+        "expected_count": 1,
+        "matched_count": 0,
+        "first_relevant_rank": null,
+        "reciprocal_rank": 0.0,
+        "hit_at_k": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false,
+          "50": false,
+          "100": false
+        },
+        "recall_at_k": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "50": 0.0,
+          "100": 0.0
+        },
+        "source_coverage_at_k": {
+          "1": null,
+          "3": null,
+          "5": null,
+          "10": null,
+          "50": null,
+          "100": null
+        },
+        "unique_sources_at_k": {
+          "1": 1,
+          "3": 3,
+          "5": 3,
+          "10": 3,
+          "50": 3,
+          "100": 3
+        }
+      }
+    },
+    {
+      "case_id": "holdout-iv-forgiveness-ar",
+      "question": "ما الأمل لمن ندم على ذنوبه ويريد أن يبدأ من جديد مع الله؟",
+      "tags": [
+        "conceptual",
+        "arabic_paraphrase",
+        "iv_unseen_wording",
+        "holdout",
+        "tafsir",
+        "arabic"
+      ],
+      "retrieved_count": 100,
+      "expected_count": 1,
+      "matched_count": 1,
+      "first_relevant_rank": 44,
+      "reciprocal_rank": 0.022727272727272728,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false,
+        "50": true,
+        "100": true
+      },
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0,
+        "50": 1.0,
+        "100": 1.0
+      },
+      "source_coverage_at_k": {
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "50": null,
+        "100": null
+      },
+      "unique_sources_at_k": {
+        "1": 1,
+        "3": 3,
+        "5": 3,
+        "10": 3,
+        "50": 3,
+        "100": 3
+      },
+      "query_type": "arabic_paraphrase",
+      "role_filtered": {
+        "case_id": "holdout-iv-forgiveness-ar",
+        "question": "ما الأمل لمن ندم على ذنوبه ويريد أن يبدأ من جديد مع الله؟",
+        "tags": [
+          "conceptual",
+          "arabic_paraphrase",
+          "iv_unseen_wording",
+          "holdout",
+          "tafsir",
+          "arabic"
+        ],
+        "retrieved_count": 100,
+        "expected_count": 1,
+        "matched_count": 1,
+        "first_relevant_rank": 44,
+        "reciprocal_rank": 0.022727272727272728,
+        "hit_at_k": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false,
+          "50": true,
+          "100": true
+        },
+        "recall_at_k": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "50": 1.0,
+          "100": 1.0
+        },
+        "source_coverage_at_k": {
+          "1": null,
+          "3": null,
+          "5": null,
+          "10": null,
+          "50": null,
+          "100": null
+        },
+        "unique_sources_at_k": {
+          "1": 1,
+          "3": 3,
+          "5": 3,
+          "10": 3,
+          "50": 3,
+          "100": 3
+        }
+      }
+    },
+    {
+      "case_id": "holdout-iv-tawakkul-en",
+      "question": "How should a believer deal with uncertainty while relying on God?",
+      "tags": [
+        "conceptual",
+        "english_cross_lingual",
+        "iv_unseen_wording",
+        "holdout",
+        "tafsir",
+        "english",
+        "cross_lingual"
+      ],
+      "retrieved_count": 0,
+      "expected_count": 1,
+      "matched_count": 0,
+      "first_relevant_rank": null,
+      "reciprocal_rank": 0.0,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false,
+        "50": false,
+        "100": false
+      },
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0,
+        "50": 0.0,
+        "100": 0.0
+      },
+      "source_coverage_at_k": {
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "50": null,
+        "100": null
+      },
+      "unique_sources_at_k": {
+        "1": 0,
+        "3": 0,
+        "5": 0,
+        "10": 0,
+        "50": 0,
+        "100": 0
+      },
+      "query_type": "english_cross_lingual",
+      "role_filtered": {
+        "case_id": "holdout-iv-tawakkul-en",
+        "question": "How should a believer deal with uncertainty while relying on God?",
+        "tags": [
+          "conceptual",
+          "english_cross_lingual",
+          "iv_unseen_wording",
+          "holdout",
+          "tafsir",
+          "english",
+          "cross_lingual"
+        ],
+        "retrieved_count": 0,
+        "expected_count": 1,
+        "matched_count": 0,
+        "first_relevant_rank": null,
+        "reciprocal_rank": 0.0,
+        "hit_at_k": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false,
+          "50": false,
+          "100": false
+        },
+        "recall_at_k": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "50": 0.0,
+          "100": 0.0
+        },
+        "source_coverage_at_k": {
+          "1": null,
+          "3": null,
+          "5": null,
+          "10": null,
+          "50": null,
+          "100": null
+        },
+        "unique_sources_at_k": {
+          "1": 0,
+          "3": 0,
+          "5": 0,
+          "10": 0,
+          "50": 0,
+          "100": 0
+        }
+      }
+    },
+    {
+      "case_id": "holdout-iv-gratitude-en",
+      "question": "How should someone respond to the blessings God has given them?",
+      "tags": [
+        "conceptual",
+        "english_cross_lingual",
+        "iv_unseen_wording",
+        "holdout",
+        "tafsir",
+        "english",
+        "cross_lingual"
+      ],
+      "retrieved_count": 0,
+      "expected_count": 1,
+      "matched_count": 0,
+      "first_relevant_rank": null,
+      "reciprocal_rank": 0.0,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false,
+        "50": false,
+        "100": false
+      },
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0,
+        "50": 0.0,
+        "100": 0.0
+      },
+      "source_coverage_at_k": {
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "50": null,
+        "100": null
+      },
+      "unique_sources_at_k": {
+        "1": 0,
+        "3": 0,
+        "5": 0,
+        "10": 0,
+        "50": 0,
+        "100": 0
+      },
+      "query_type": "english_cross_lingual",
+      "role_filtered": {
+        "case_id": "holdout-iv-gratitude-en",
+        "question": "How should someone respond to the blessings God has given them?",
+        "tags": [
+          "conceptual",
+          "english_cross_lingual",
+          "iv_unseen_wording",
+          "holdout",
+          "tafsir",
+          "english",
+          "cross_lingual"
+        ],
+        "retrieved_count": 0,
+        "expected_count": 1,
+        "matched_count": 0,
+        "first_relevant_rank": null,
+        "reciprocal_rank": 0.0,
+        "hit_at_k": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false,
+          "50": false,
+          "100": false
+        },
+        "recall_at_k": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "50": 0.0,
+          "100": 0.0
+        },
+        "source_coverage_at_k": {
+          "1": null,
+          "3": null,
+          "5": null,
+          "10": null,
+          "50": null,
+          "100": null
+        },
+        "unique_sources_at_k": {
+          "1": 0,
+          "3": 0,
+          "5": 0,
+          "10": 0,
+          "50": 0,
+          "100": 0
+        }
+      }
+    },
+    {
+      "case_id": "holdout-iv-parents-en",
+      "question": "What guidance applies when caring for an aging mother and father?",
+      "tags": [
+        "conceptual",
+        "english_cross_lingual",
+        "iv_unseen_wording",
+        "holdout",
+        "tafsir",
+        "english",
+        "cross_lingual"
+      ],
+      "retrieved_count": 0,
+      "expected_count": 1,
+      "matched_count": 0,
+      "first_relevant_rank": null,
+      "reciprocal_rank": 0.0,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false,
+        "50": false,
+        "100": false
+      },
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0,
+        "50": 0.0,
+        "100": 0.0
+      },
+      "source_coverage_at_k": {
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "50": null,
+        "100": null
+      },
+      "unique_sources_at_k": {
+        "1": 0,
+        "3": 0,
+        "5": 0,
+        "10": 0,
+        "50": 0,
+        "100": 0
+      },
+      "query_type": "english_cross_lingual",
+      "role_filtered": {
+        "case_id": "holdout-iv-parents-en",
+        "question": "What guidance applies when caring for an aging mother and father?",
+        "tags": [
+          "conceptual",
+          "english_cross_lingual",
+          "iv_unseen_wording",
+          "holdout",
+          "tafsir",
+          "english",
+          "cross_lingual"
+        ],
+        "retrieved_count": 0,
+        "expected_count": 1,
+        "matched_count": 0,
+        "first_relevant_rank": null,
+        "reciprocal_rank": 0.0,
+        "hit_at_k": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false,
+          "50": false,
+          "100": false
+        },
+        "recall_at_k": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "50": 0.0,
+          "100": 0.0
+        },
+        "source_coverage_at_k": {
+          "1": null,
+          "3": null,
+          "5": null,
+          "10": null,
+          "50": null,
+          "100": null
+        },
+        "unique_sources_at_k": {
+          "1": 0,
+          "3": 0,
+          "5": 0,
+          "10": 0,
+          "50": 0,
+          "100": 0
+        }
+      }
+    },
+    {
+      "case_id": "holdout-iv-forgiveness-en",
+      "question": "Is repentance still open after a person has committed repeated sins?",
+      "tags": [
+        "conceptual",
+        "english_cross_lingual",
+        "iv_unseen_wording",
+        "holdout",
+        "tafsir",
+        "english",
+        "cross_lingual"
+      ],
+      "retrieved_count": 0,
+      "expected_count": 1,
+      "matched_count": 0,
+      "first_relevant_rank": null,
+      "reciprocal_rank": 0.0,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false,
+        "50": false,
+        "100": false
+      },
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0,
+        "50": 0.0,
+        "100": 0.0
+      },
+      "source_coverage_at_k": {
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "50": null,
+        "100": null
+      },
+      "unique_sources_at_k": {
+        "1": 0,
+        "3": 0,
+        "5": 0,
+        "10": 0,
+        "50": 0,
+        "100": 0
+      },
+      "query_type": "english_cross_lingual",
+      "role_filtered": {
+        "case_id": "holdout-iv-forgiveness-en",
+        "question": "Is repentance still open after a person has committed repeated sins?",
+        "tags": [
+          "conceptual",
+          "english_cross_lingual",
+          "iv_unseen_wording",
+          "holdout",
+          "tafsir",
+          "english",
+          "cross_lingual"
+        ],
+        "retrieved_count": 0,
+        "expected_count": 1,
+        "matched_count": 0,
+        "first_relevant_rank": null,
+        "reciprocal_rank": 0.0,
+        "hit_at_k": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false,
+          "50": false,
+          "100": false
+        },
+        "recall_at_k": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "50": 0.0,
+          "100": 0.0
+        },
+        "source_coverage_at_k": {
+          "1": null,
+          "3": null,
+          "5": null,
+          "10": null,
+          "50": null,
+          "100": null
+        },
+        "unique_sources_at_k": {
+          "1": 0,
+          "3": 0,
+          "5": 0,
+          "10": 0,
+          "50": 0,
+          "100": 0
+        }
+      }
+    },
+    {
+      "case_id": "holdout-oov-reconciliation-ar",
+      "question": "كيف يتصرف المؤمنون عندما يقع نزاع بين مجموعتين منهم؟",
+      "tags": [
+        "conceptual",
+        "arabic_paraphrase",
+        "oov_concept",
+        "holdout",
+        "tafsir",
+        "arabic"
+      ],
+      "retrieved_count": 100,
+      "expected_count": 1,
+      "matched_count": 1,
+      "first_relevant_rank": 31,
+      "reciprocal_rank": 0.03225806451612903,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false,
+        "50": true,
+        "100": true
+      },
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0,
+        "50": 1.0,
+        "100": 1.0
+      },
+      "source_coverage_at_k": {
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "50": null,
+        "100": null
+      },
+      "unique_sources_at_k": {
+        "1": 1,
+        "3": 3,
+        "5": 3,
+        "10": 3,
+        "50": 3,
+        "100": 3
+      },
+      "query_type": "arabic_paraphrase",
+      "role_filtered": {
+        "case_id": "holdout-oov-reconciliation-ar",
+        "question": "كيف يتصرف المؤمنون عندما يقع نزاع بين مجموعتين منهم؟",
+        "tags": [
+          "conceptual",
+          "arabic_paraphrase",
+          "oov_concept",
+          "holdout",
+          "tafsir",
+          "arabic"
+        ],
+        "retrieved_count": 100,
+        "expected_count": 1,
+        "matched_count": 1,
+        "first_relevant_rank": 31,
+        "reciprocal_rank": 0.03225806451612903,
+        "hit_at_k": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false,
+          "50": true,
+          "100": true
+        },
+        "recall_at_k": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "50": 1.0,
+          "100": 1.0
+        },
+        "source_coverage_at_k": {
+          "1": null,
+          "3": null,
+          "5": null,
+          "10": null,
+          "50": null,
+          "100": null
+        },
+        "unique_sources_at_k": {
+          "1": 1,
+          "3": 3,
+          "5": 3,
+          "10": 3,
+          "50": 3,
+          "100": 3
+        }
+      }
+    },
+    {
+      "case_id": "holdout-oov-humility-ar",
+      "question": "كيف يمشي الإنسان ويتعامل مع الناس دون تكبر أو تعال؟",
+      "tags": [
+        "conceptual",
+        "arabic_paraphrase",
+        "oov_concept",
+        "holdout",
+        "tafsir",
+        "arabic"
+      ],
+      "retrieved_count": 100,
+      "expected_count": 1,
+      "matched_count": 0,
+      "first_relevant_rank": null,
+      "reciprocal_rank": 0.0,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false,
+        "50": false,
+        "100": false
+      },
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0,
+        "50": 0.0,
+        "100": 0.0
+      },
+      "source_coverage_at_k": {
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "50": null,
+        "100": null
+      },
+      "unique_sources_at_k": {
+        "1": 1,
+        "3": 3,
+        "5": 3,
+        "10": 3,
+        "50": 3,
+        "100": 3
+      },
+      "query_type": "arabic_paraphrase",
+      "role_filtered": {
+        "case_id": "holdout-oov-humility-ar",
+        "question": "كيف يمشي الإنسان ويتعامل مع الناس دون تكبر أو تعال؟",
+        "tags": [
+          "conceptual",
+          "arabic_paraphrase",
+          "oov_concept",
+          "holdout",
+          "tafsir",
+          "arabic"
+        ],
+        "retrieved_count": 100,
+        "expected_count": 1,
+        "matched_count": 0,
+        "first_relevant_rank": null,
+        "reciprocal_rank": 0.0,
+        "hit_at_k": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false,
+          "50": false,
+          "100": false
+        },
+        "recall_at_k": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "50": 0.0,
+          "100": 0.0
+        },
+        "source_coverage_at_k": {
+          "1": null,
+          "3": null,
+          "5": null,
+          "10": null,
+          "50": null,
+          "100": null
+        },
+        "unique_sources_at_k": {
+          "1": 1,
+          "3": 3,
+          "5": 3,
+          "10": 3,
+          "50": 3,
+          "100": 3
+        }
+      }
+    },
+    {
+      "case_id": "holdout-oov-extravagance-ar",
+      "question": "ما التوجيه لمن ينفق ماله بلا اعتدال ويضيعه فيما لا يحتاج؟",
+      "tags": [
+        "conceptual",
+        "arabic_paraphrase",
+        "oov_concept",
+        "holdout",
+        "tafsir",
+        "arabic"
+      ],
+      "retrieved_count": 100,
+      "expected_count": 1,
+      "matched_count": 0,
+      "first_relevant_rank": null,
+      "reciprocal_rank": 0.0,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false,
+        "50": false,
+        "100": false
+      },
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0,
+        "50": 0.0,
+        "100": 0.0
+      },
+      "source_coverage_at_k": {
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "50": null,
+        "100": null
+      },
+      "unique_sources_at_k": {
+        "1": 1,
+        "3": 3,
+        "5": 3,
+        "10": 3,
+        "50": 3,
+        "100": 3
+      },
+      "query_type": "arabic_paraphrase",
+      "role_filtered": {
+        "case_id": "holdout-oov-extravagance-ar",
+        "question": "ما التوجيه لمن ينفق ماله بلا اعتدال ويضيعه فيما لا يحتاج؟",
+        "tags": [
+          "conceptual",
+          "arabic_paraphrase",
+          "oov_concept",
+          "holdout",
+          "tafsir",
+          "arabic"
+        ],
+        "retrieved_count": 100,
+        "expected_count": 1,
+        "matched_count": 0,
+        "first_relevant_rank": null,
+        "reciprocal_rank": 0.0,
+        "hit_at_k": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false,
+          "50": false,
+          "100": false
+        },
+        "recall_at_k": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "50": 0.0,
+          "100": 0.0
+        },
+        "source_coverage_at_k": {
+          "1": null,
+          "3": null,
+          "5": null,
+          "10": null,
+          "50": null,
+          "100": null
+        },
+        "unique_sources_at_k": {
+          "1": 1,
+          "3": 3,
+          "5": 3,
+          "10": 3,
+          "50": 3,
+          "100": 3
+        }
+      }
+    },
+    {
+      "case_id": "holdout-oov-orphans-en",
+      "question": "How should a child who has lost their parents be treated?",
+      "tags": [
+        "conceptual",
+        "english_cross_lingual",
+        "oov_concept",
+        "holdout",
+        "tafsir",
+        "english",
+        "cross_lingual"
+      ],
+      "retrieved_count": 0,
+      "expected_count": 1,
+      "matched_count": 0,
+      "first_relevant_rank": null,
+      "reciprocal_rank": 0.0,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false,
+        "50": false,
+        "100": false
+      },
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0,
+        "50": 0.0,
+        "100": 0.0
+      },
+      "source_coverage_at_k": {
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "50": null,
+        "100": null
+      },
+      "unique_sources_at_k": {
+        "1": 0,
+        "3": 0,
+        "5": 0,
+        "10": 0,
+        "50": 0,
+        "100": 0
+      },
+      "query_type": "english_cross_lingual",
+      "role_filtered": {
+        "case_id": "holdout-oov-orphans-en",
+        "question": "How should a child who has lost their parents be treated?",
+        "tags": [
+          "conceptual",
+          "english_cross_lingual",
+          "oov_concept",
+          "holdout",
+          "tafsir",
+          "english",
+          "cross_lingual"
+        ],
+        "retrieved_count": 0,
+        "expected_count": 1,
+        "matched_count": 0,
+        "first_relevant_rank": null,
+        "reciprocal_rank": 0.0,
+        "hit_at_k": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false,
+          "50": false,
+          "100": false
+        },
+        "recall_at_k": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "50": 0.0,
+          "100": 0.0
+        },
+        "source_coverage_at_k": {
+          "1": null,
+          "3": null,
+          "5": null,
+          "10": null,
+          "50": null,
+          "100": null
+        },
+        "unique_sources_at_k": {
+          "1": 0,
+          "3": 0,
+          "5": 0,
+          "10": 0,
+          "50": 0,
+          "100": 0
+        }
+      }
+    },
+    {
+      "case_id": "holdout-oov-truth-en",
+      "question": "What guidance does the Quran give about being truthful and speaking honestly?",
+      "tags": [
+        "conceptual",
+        "english_cross_lingual",
+        "oov_concept",
+        "holdout",
+        "tafsir",
+        "english",
+        "cross_lingual"
+      ],
+      "retrieved_count": 0,
+      "expected_count": 1,
+      "matched_count": 0,
+      "first_relevant_rank": null,
+      "reciprocal_rank": 0.0,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false,
+        "50": false,
+        "100": false
+      },
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0,
+        "50": 0.0,
+        "100": 0.0
+      },
+      "source_coverage_at_k": {
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "50": null,
+        "100": null
+      },
+      "unique_sources_at_k": {
+        "1": 0,
+        "3": 0,
+        "5": 0,
+        "10": 0,
+        "50": 0,
+        "100": 0
+      },
+      "query_type": "english_cross_lingual",
+      "role_filtered": {
+        "case_id": "holdout-oov-truth-en",
+        "question": "What guidance does the Quran give about being truthful and speaking honestly?",
+        "tags": [
+          "conceptual",
+          "english_cross_lingual",
+          "oov_concept",
+          "holdout",
+          "tafsir",
+          "english",
+          "cross_lingual"
+        ],
+        "retrieved_count": 0,
+        "expected_count": 1,
+        "matched_count": 0,
+        "first_relevant_rank": null,
+        "reciprocal_rank": 0.0,
+        "hit_at_k": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false,
+          "50": false,
+          "100": false
+        },
+        "recall_at_k": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "50": 0.0,
+          "100": 0.0
+        },
+        "source_coverage_at_k": {
+          "1": null,
+          "3": null,
+          "5": null,
+          "10": null,
+          "50": null,
+          "100": null
+        },
+        "unique_sources_at_k": {
+          "1": 0,
+          "3": 0,
+          "5": 0,
+          "10": 0,
+          "50": 0,
+          "100": 0
+        }
+      }
+    },
+    {
+      "case_id": "holdout-oov-envy-en",
+      "question": "What guidance addresses envy when someone wishes another person's blessing would disappear?",
+      "tags": [
+        "conceptual",
+        "english_cross_lingual",
+        "oov_concept",
+        "holdout",
+        "tafsir",
+        "english",
+        "cross_lingual"
+      ],
+      "retrieved_count": 0,
+      "expected_count": 1,
+      "matched_count": 0,
+      "first_relevant_rank": null,
+      "reciprocal_rank": 0.0,
+      "hit_at_k": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false,
+        "50": false,
+        "100": false
+      },
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0,
+        "10": 0.0,
+        "50": 0.0,
+        "100": 0.0
+      },
+      "source_coverage_at_k": {
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "50": null,
+        "100": null
+      },
+      "unique_sources_at_k": {
+        "1": 0,
+        "3": 0,
+        "5": 0,
+        "10": 0,
+        "50": 0,
+        "100": 0
+      },
+      "query_type": "english_cross_lingual",
+      "role_filtered": {
+        "case_id": "holdout-oov-envy-en",
+        "question": "What guidance addresses envy when someone wishes another person's blessing would disappear?",
+        "tags": [
+          "conceptual",
+          "english_cross_lingual",
+          "oov_concept",
+          "holdout",
+          "tafsir",
+          "english",
+          "cross_lingual"
+        ],
+        "retrieved_count": 0,
+        "expected_count": 1,
+        "matched_count": 0,
+        "first_relevant_rank": null,
+        "reciprocal_rank": 0.0,
+        "hit_at_k": {
+          "1": false,
+          "3": false,
+          "5": false,
+          "10": false,
+          "50": false,
+          "100": false
+        },
+        "recall_at_k": {
+          "1": 0.0,
+          "3": 0.0,
+          "5": 0.0,
+          "10": 0.0,
+          "50": 0.0,
+          "100": 0.0
+        },
+        "source_coverage_at_k": {
+          "1": null,
+          "3": null,
+          "5": null,
+          "10": null,
+          "50": null,
+          "100": null
+        },
+        "unique_sources_at_k": {
+          "1": 0,
+          "3": 0,
+          "5": 0,
+          "10": 0,
+          "50": 0,
+          "100": 0
+        }
+      }
+    }
+  ]
+}

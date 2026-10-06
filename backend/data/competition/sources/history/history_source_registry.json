@@ -1,0 +1,74 @@
+{
+  "categorical_historical_claim_requires": [
+    "governed_report_assessment"
+  ],
+  "entity_registry": "data/competition/sources/history/historical_entity_registry.json",
+  "first_three_centuries_primary_use_requires": [
+    "verified_source_period",
+    "period_evidence",
+    "verified_source_identity",
+    "governed_exact_artifact",
+    "runtime_eligible_source"
+  ],
+  "hard_invariants": {
+    "attribution_may_be_dropped_during_chunking": false,
+    "author_death_year_alone_proves_source_period": false,
+    "early_source_equals_verified_event": false,
+    "numeric_model_confidence_equals_historical_status": false,
+    "prophetic_report_inside_history_source_equals_authenticated_hadith": false,
+    "quran_inside_history_source_equals_canonical_quran": false,
+    "raw_chunk_equals_established_fact": false,
+    "raw_report_collection_equals_curated_history": false,
+    "report_equals_established_fact": false,
+    "retrieval_alias_equals_historical_identity": false,
+    "shamela_hit_equals_governed_history_evidence": false,
+    "source_count_equals_consensus": false,
+    "source_count_equals_corroboration": false,
+    "source_use_mode_equals_event_truth": false
+  },
+  "official_source_families": [
+    "first_three_centuries_islamic_source",
+    "dorar_history"
+  ],
+  "purpose": "Govern Seerah and History evidence sources",
+  "raw_report_collection_default": {
+    "categorical_fact_requires_external_governed_report_assessment": true,
+    "independently_establishes_event": false,
+    "usage": "report_only"
+  },
+  "registry_version": 1,
+  "source_use_modes": [
+    "curated_history_reference",
+    "raw_report_collection",
+    "primary_historical_narrative",
+    "biographical_source",
+    "chronicle"
+  ],
+  "sources": [
+    {
+      "adapter_contract": "dorar-history-canonical-event-v1",
+      "admission_scope": "canonical_event_only",
+      "allowed_route_families": [
+        "/history/{positive_integer_id}",
+        "/history/event/{positive_integer_id}"
+      ],
+      "canonical_origin": "https://dorar.net",
+      "categorical_fact_requires_separate_governed_report_assessment": true,
+      "historical_report_default": "unassessed",
+      "independently_establishes_event": false,
+      "notes": [
+        "Official Dorar History source-family runtime path",
+        "Runtime eligibility governs retrieval but does not establish event truth",
+        "Prophetic reports remain subject to Hadith foundation authentication",
+        "No canonical per-event bibliographic reference channel has been established"
+      ],
+      "passport": "data/competition/passports/dorar-history.json",
+      "provider": "Dorar al-Sunniyyah",
+      "runtime_eligibility": "eligible",
+      "runtime_manifest": "data/competition/manifests/history/dorar-history-runtime-v1.json",
+      "source_family": "dorar_history",
+      "source_id": "dorar-history-v1",
+      "source_use_mode": "curated_history_reference"
+    }
+  ]
+}

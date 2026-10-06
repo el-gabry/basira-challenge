@@ -1,0 +1,47 @@
+{
+  "artifact": {
+    "compressed_sha256": "0430591e3e445b3e3b2af44b03cd3d2fb7c958c00e961d2a69ed1bfa7c88c7b7",
+    "snapshot_sha256": "c492bc7b23affd6a268d76e09f445c4cbb68cac9fc72e4381cf35b5a6091c17c"
+  },
+  "current_governed_release": "2026-10-04",
+  "evidence": {
+    "audit": "data/competition/audits/quran/quranpedia-hafs-2026-10-04.json",
+    "governance_manifest": "data/competition/manifests/quran/quranpedia-hafs-2026-10-04.json"
+  },
+  "lineage": {
+    "independence_status": "NOT_YET_ASSESSED",
+    "independent_source_count": 0,
+    "provider": "Quranpedia",
+    "provider_description": "مصحف حفص"
+  },
+  "passport_version": 1,
+  "provider": "Quranpedia",
+  "role": "quran",
+  "runtime": {
+    "auto_replace_on_update": false,
+    "eligible": true,
+    "promotion_policy": "candidate_verify_then_promote"
+  },
+  "source_id": "quranpedia:mushaf:1",
+  "trust": {
+    "artifact_integrity": "VERIFIED",
+    "cross_source_attestation": "PENDING",
+    "dabt_identity": "UNRESOLVED",
+    "freshness": "CURRENT_AT_VERIFICATION_TIME",
+    "official_eligibility": "VERIFIED",
+    "rasm_identity": "UNRESOLVED",
+    "structural_integrity": "VERIFIED",
+    "witness_identity": "VERIFIED"
+  },
+  "witness": {
+    "dabt_standard": null,
+    "edition": null,
+    "mushaf_id": 1,
+    "name": "مصحف حفص",
+    "qiraa": "عاصم",
+    "rasm_standard": null,
+    "rawi_full_name": "بن سليمان بن المغيرة، أبو عمر الأسدي الكوفي الغاضري البزاز",
+    "rawi_name": "حفص",
+    "riwaya": "حفص عن عاصم"
+  }
+}

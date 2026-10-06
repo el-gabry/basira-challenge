@@ -1,0 +1,51 @@
+{
+  "schema_version": "1",
+  "principle": "Basira does not learn beliefs; it learns constraints.",
+  "religious_evidence_authority": 0,
+  "certificates": [
+    {
+      "certificate_id": "failure:typed-role-spoofing:v1",
+      "failure_kind": "typed_role_spoofing",
+      "disposition": "repairable_system_failure",
+      "observed_failure": "Quran text declared a Tafsir domain while retaining an explicit Quran evidence role.",
+      "violated_invariant": "Typed evidence role must agree with the declared evidence domain.",
+      "repair_constraint": "Reject deterministic claim_type/domain mismatches before semantic evaluation.",
+      "replay_test_ids": [
+        "tests/scenarios/test_public_trust_shield_attacks.py::test_quran_text_cannot_impersonate_tafsir_support"
+      ]
+    },
+    {
+      "certificate_id": "failure:role-laundering:v1",
+      "failure_kind": "role_laundering",
+      "disposition": "repairable_system_failure",
+      "observed_failure": "An untyped retrieved node was projected into a stronger Tafsir semantic role.",
+      "violated_invariant": "Derived evidence may narrow presentation but may never increase semantic authority.",
+      "repair_constraint": "Projection must preserve claim_type; publication identity must not permit None-to-role promotion.",
+      "replay_test_ids": [
+        "tests/scenarios/test_public_trust_shield_attacks.py::test_untyped_quran_source_cannot_impersonate_tafsir_support"
+      ]
+    },
+    {
+      "certificate_id": "failure:publication-authority-forgery:v1",
+      "failure_kind": "publication_authority_forgery",
+      "disposition": "repairable_system_failure",
+      "observed_failure": "A retriever supplied evidence and also supplied the capability authorizing that same evidence for publication.",
+      "violated_invariant": "The component supplying evidence must not grant publication authority to itself.",
+      "repair_constraint": "Publication authority must be injected independently by the trusted composition root.",
+      "replay_test_ids": [
+        "tests/scenarios/test_public_trust_shield_attacks.py::test_retriever_cannot_mint_its_own_publication_authority"
+      ]
+    },
+    {
+      "certificate_id": "failure:source-domain-identity-spoofing:v1",
+      "failure_kind": "source_domain_identity_spoofing",
+      "disposition": "repairable_system_failure",
+      "observed_failure": "A Quran source identity declared itself as Tafsir evidence.",
+      "violated_invariant": "Governed source identity and evidence domain must not contradict each other.",
+      "repair_constraint": "Bind deterministic governed source namespaces to their corresponding domains before evidence acceptance.",
+      "replay_test_ids": [
+        "tests/scenarios/test_public_trust_shield_attacks.py::test_untyped_quran_source_cannot_impersonate_tafsir_support"
+      ]
+    }
+  ]
+}

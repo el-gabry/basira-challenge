@@ -1,0 +1,21 @@
+{
+  "audit_version": 1,
+  "source_id": "dorar:fiqh:en",
+  "provider": "Dorar al-Sunniyyah",
+  "language": "en",
+  "status": "PASSED",
+  "scope": [
+    "canonical_https_dorar_only",
+    "english_fiqh_route_only",
+    "response_body_sha256",
+    "no_whole_page_evidence_promotion",
+    "source_authored_first_second_boundaries",
+    "madhhab_attribution_required",
+    "candidate_local_failure",
+    "no_machine_translation"
+  ],
+  "known_live_case": {
+    "canonical_url": "https://dorar.net/en/feqhia/44",
+    "source_native_english": true
+  }
+}

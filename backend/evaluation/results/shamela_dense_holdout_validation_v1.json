@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "holdout_opened": true,
+  "holdout_sha256": "3675d10602e315d39438d0c8f2837bbe8c30ebe510fabe285ad89871d8fa6acd",
+  "pre_holdout_tag": "shamela-dense-v1-pre-holdout",
+  "pre_holdout_commit": "ffb7ae0",
+  "selected_candidate_before_holdout": "DENSE_ONLY",
+  "artifact_sha256": "b2cd375e2e8f21022118348a0a066f16083e163b66e0a9f501a3383e5574f7fd",
+  "criteria_predeclared": true,
+  "comparison": {
+    "overall_parent_at_10": {
+      "fts": 0.875,
+      "dense": 0.875,
+      "delta": 0.0
+    },
+    "ndcg_at_10": {
+      "fts": 0.7521811035547392,
+      "dense": 0.7968018559179417,
+      "delta": 0.04462075236320251
+    },
+    "mrr": {
+      "fts": 0.8229166666666666,
+      "dense": 0.8928571428571429,
+      "delta": 0.06994047619047628
+    },
+    "comparative_parent_at_10": {
+      "fts": 0.875,
+      "dense": 0.875,
+      "delta": 0.0
+    },
+    "paraphrase_parent_at_10": {
+      "fts": 0.75,
+      "dense": 0.875,
+      "delta": 0.125
+    },
+    "direct_parent_at_10": {
+      "fts": 1.0,
+      "dense": 0.875,
+      "delta": -0.125
+    }
+  },
+  "criteria": {
+    "overall_parent_not_worse": true,
+    "ndcg_regression_within_0_05": true,
+    "mrr_regression_within_0_10": true,
+    "comparative_parent_not_worse": true
+  },
+  "validation": "PASS",
+  "post_holdout_tuning_allowed": false,
+  "note": "This is frozen retrieval evaluation. Metrics measure structural retrieval relevance/coverage, not semantic entailment, religious truth, or source authority."
+}

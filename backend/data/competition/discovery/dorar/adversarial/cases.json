@@ -1,0 +1,18 @@
+[
+  {
+    "bytes": 13026,
+    "case_id": "weak_variant_phrase",
+    "expected_behavior": "preserve returned attribution and verdicts",
+    "file": "data/competition/discovery/dorar/adversarial/weak_variant_phrase.json",
+    "query": "اطلبوا العلم ولو بالصين",
+    "sha256": "04f5f0881861ddce17bf98b9b06fcf5a8d2c1b1fe8a8be3007492c8a04f76ced"
+  },
+  {
+    "bytes": 255,
+    "case_id": "nonce_no_hit",
+    "expected_behavior": "zero hits must not become a fabricated hadith",
+    "file": "data/competition/discovery/dorar/adversarial/nonce_no_hit.json",
+    "query": "بصيرةاختبارعدموجودحديث987654321",
+    "sha256": "210a68efbf27942af8708f2065987237a488d91f12898d404e64391c778c4ca5"
+  }
+]

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "admission_id": "dorar-tafsir-runtime-v1",
+  "provider": "Dorar al-Sunniyyah",
+  "source_family": "dorar_tafsir",
+  "runtime_eligibility": "eligible",
+  "scope": "canonical_passage_only",
+  "canonical_origin": "https://dorar.net",
+  "canonical_path_contract": "/tafseer/{surah}/{passage}",
+  "adapter_contract": "dorar-tafsir-canonical-passages-v1",
+  "discovery_surfaces_are_runtime_evidence": false,
+  "runtime_requirements": {
+    "https_required": true,
+    "exact_host_required": true,
+    "query_parameters_allowed": false,
+    "fragment_allowed": false,
+    "surah_range": [1, 114],
+    "passage_id_must_be_positive_integer": true,
+    "characterization_result_required": "PASS",
+    "adversarial_audit_result_required": "PASS",
+    "exact_response_sha256_required": true,
+    "canonical_section_required": true
+  },
+  "guardrails": {
+    "quran_text_as_canonical_quran_witness": false,
+    "independent_isnad_grading": false,
+    "authenticity_from_frequency": false,
+    "direct_fiqh_ruling_from_tafsir": false,
+    "search_result_as_evidence": false,
+    "surah_page_as_admitted_passage_evidence": false
+  },
+  "limitations": [
+    "Admission covers canonical Dorar Tafsir passage pages only.",
+    "Surah-level pages remain discovery-only until separately adapted and audited.",
+    "A Dorar citation does not independently authenticate an underlying narration.",
+    "Reported grading is preserved as attributed provenance, not recomputed by Basira.",
+    "Quran text appearing in Tafsir remains context and never replaces the governed Quran source.",
+    "The live response used for evidence must be hashed and attached to runtime provenance."
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "schema_version": "1",
+  "principle": "Repairs earn promotion eligibility through counterfactual replay, never by assertion.",
+  "plans": [
+    {
+      "plan_id": "replay:typed-role-spoofing:v1",
+      "certificate_id": "failure:typed-role-spoofing:v1",
+      "attack_selectors": [
+        "tests/scenarios/test_public_trust_shield_attacks.py::test_quran_text_cannot_impersonate_tafsir_support"
+      ],
+      "valid_control_selectors": [
+        "tests/scenarios/test_public_trust_shield_attacks.py::test_valid_tafsir_control_still_passes"
+      ],
+      "regression_selectors": [
+        "tests/scenarios/test_adversarial_claim_pipeline.py",
+        "tests/scenarios/test_public_trust_shield_attacks.py",
+        "tests/unit/answer/test_final_output_verifier.py",
+        "tests/unit/api/test_governed_public_runtime.py",
+        "tests/unit/orchestration/test_evidence_acceptance.py"
+      ]
+    },
+    {
+      "plan_id": "replay:role-laundering:v1",
+      "certificate_id": "failure:role-laundering:v1",
+      "attack_selectors": [
+        "tests/scenarios/test_public_trust_shield_attacks.py::test_untyped_quran_source_cannot_impersonate_tafsir_support"
+      ],
+      "valid_control_selectors": [
+        "tests/scenarios/test_public_trust_shield_attacks.py::test_valid_tafsir_control_still_passes"
+      ],
+      "regression_selectors": [
+        "tests/scenarios/test_adversarial_claim_pipeline.py",
+        "tests/scenarios/test_public_trust_shield_attacks.py",
+        "tests/unit/answer/test_final_output_verifier.py",
+        "tests/unit/api/test_governed_public_runtime.py",
+        "tests/unit/orchestration/test_evidence_acceptance.py"
+      ]
+    },
+    {
+      "plan_id": "replay:publication-authority-forgery:v1",
+      "certificate_id": "failure:publication-authority-forgery:v1",
+      "attack_selectors": [
+        "tests/scenarios/test_public_trust_shield_attacks.py::test_retriever_cannot_mint_its_own_publication_authority"
+      ],
+      "valid_control_selectors": [
+        "tests/scenarios/test_public_trust_shield_attacks.py::test_valid_tafsir_control_still_passes"
+      ],
+      "regression_selectors": [
+        "tests/scenarios/test_adversarial_claim_pipeline.py",
+        "tests/scenarios/test_public_trust_shield_attacks.py",
+        "tests/unit/answer/test_final_output_verifier.py",
+        "tests/unit/api/test_governed_public_runtime.py",
+        "tests/unit/orchestration/test_evidence_acceptance.py"
+      ]
+    },
+    {
+      "plan_id": "replay:source-domain-identity-spoofing:v1",
+      "certificate_id": "failure:source-domain-identity-spoofing:v1",
+      "attack_selectors": [
+        "tests/scenarios/test_public_trust_shield_attacks.py::test_untyped_quran_source_cannot_impersonate_tafsir_support"
+      ],
+      "valid_control_selectors": [
+        "tests/scenarios/test_public_trust_shield_attacks.py::test_valid_tafsir_control_still_passes"
+      ],
+      "regression_selectors": [
+        "tests/scenarios/test_adversarial_claim_pipeline.py",
+        "tests/scenarios/test_public_trust_shield_attacks.py",
+        "tests/unit/answer/test_final_output_verifier.py",
+        "tests/unit/api/test_governed_public_runtime.py",
+        "tests/unit/orchestration/test_evidence_acceptance.py"
+      ]
+    },
+    {
+      "plan_id": "replay:quran-verification-intent-fallthrough:v1",
+      "certificate_id": "failure:quran-verification-intent-fallthrough:v1",
+      "attack_selectors": [
+        "tests/unit/trust/test_runtime_learned_quran_verification.py::test_promoted_constraint_routes_quran_correctness_to_quote_verification"
+      ],
+      "valid_control_selectors": [
+        "tests/unit/trust/test_runtime_learned_quran_verification.py::test_memory_does_not_route_quran_meaning_question_to_quote_verification"
+      ],
+      "regression_selectors": [
+        "tests/unit/trust/test_runtime_learned_quran_verification.py",
+        "tests/unit/trust/test_self_hardening.py",
+        "tests/scenarios/test_public_trust_shield_attacks.py"
+      ]
+    }
+  ]
+}

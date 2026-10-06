@@ -1,0 +1,57 @@
+{
+  "policy_version": 1,
+  "role": "tafsir",
+  "official_source_families": [
+    {
+      "class": "FIRST_THREE_CENTURIES_ISLAMIC_SOURCE",
+      "period_verification_required": true,
+      "exact_source_identity_required": true,
+      "exact_artifact_governance_required": true
+    },
+    {
+      "class": "DORAR_TAFSIR",
+      "provider": "Dorar al-Sunniyyah",
+      "exact_source_governance_required": true
+    }
+  ],
+  "first_three_centuries": {
+    "upper_bound_ah": 300,
+    "author_death_year_alone_is_sufficient": false,
+    "source_or_work_period_evidence_required": true,
+    "period_evidence_required": true
+  },
+  "material_types": [
+    "QURAN_TEXT",
+    "PROPHETIC_TAFSIR",
+    "COMPANION_ATHAR",
+    "TABII_ATHAR",
+    "EARLY_SCHOLAR_EXPLANATION",
+    "LINGUISTIC_EXPLANATION",
+    "SCHOLARLY_REASONING",
+    "ASBAB_AL_NUZUL"
+  ],
+  "narration_quality": {
+    "basira_independently_grades_chains": false,
+    "supported_states": [
+      "ACCEPTED_BY_AUTHORITY",
+      "WEAK_BY_AUTHORITY",
+      "REJECTED_BY_AUTHORITY",
+      "CONFLICTING_AUTHORITY_GRADES",
+      "UNGRADED",
+      "NOT_APPLICABLE"
+    ],
+    "weak_as_primary_evidence": false,
+    "rejected_as_evidence": false,
+    "conflicting_grades_are_collapsed": false,
+    "ungraded_equals_weak": false
+  },
+  "hard_boundaries": {
+    "quran_text_inside_tafsir_is_canonical_quran_witness": false,
+    "companion_athar_equals_prophetic_hadith": false,
+    "scholarly_explanation_equals_prophetic_report": false,
+    "tafsir_directly_establishes_fiqh_ruling": false,
+    "asbab_al_nuzul_remains_distinct": true,
+    "source_attribution_required": true,
+    "claim_evidence_check_required": true
+  }
+}

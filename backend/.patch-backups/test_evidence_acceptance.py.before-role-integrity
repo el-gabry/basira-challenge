@@ -1,0 +1,409 @@
+from __future__ import annotations
+
+import pytest
+
+from basira.evidence.models import (
+    EvidenceDomain,
+    EvidenceNode,
+)
+from basira.orchestration.evidence_acceptance import (
+    AnchorKind,
+    AnchorOrigin,
+    AnchorStrength,
+    ClaimEvidencePolicySet,
+    EvidenceAcceptanceReason,
+    EvidenceAnchor,
+    RetrievalShape,
+    SourceDiversityRequirement,
+    TaskEvidenceAcceptanceContract,
+    TaskEvidenceAcceptanceGate,
+    TaskEvidenceAcceptanceService,
+)
+
+
+def node(
+    *,
+    evidence_id: str,
+    domain: EvidenceDomain,
+    reference: str | None,
+    source_id: str = "source-1",
+) -> EvidenceNode:
+    return EvidenceNode(
+        evidence_id=evidence_id,
+        domain=domain,
+        text=f"text:{evidence_id}",
+        source_id=source_id,
+        reference=reference,
+    )
+
+
+def chair_hybrid_contract() -> TaskEvidenceAcceptanceContract:
+    anchor = EvidenceAnchor(
+        reference="2:255",
+        domains=frozenset(
+            {
+                EvidenceDomain.QURAN,
+                EvidenceDomain.TAFSIR,
+            }
+        ),
+        kind=AnchorKind.QURAN_AYAH,
+        origin=(AnchorOrigin.CANONICAL_TEXT_MATCH),
+    )
+
+    return TaskEvidenceAcceptanceContract(
+        task_id="claim:chair",
+        retrieval_shape=(RetrievalShape.HYBRID),
+        allowed_domains=frozenset(
+            {
+                EvidenceDomain.QURAN,
+                EvidenceDomain.TAFSIR,
+            }
+        ),
+        required_domains=frozenset(
+            {
+                EvidenceDomain.QURAN,
+                EvidenceDomain.TAFSIR,
+            }
+        ),
+        anchors=(anchor,),
+    )
+
+
+def test_wrong_tafsir_verse_is_rejected_even_if_source_is_valid() -> None:
+    result = TaskEvidenceAcceptanceGate().evaluate(
+        contract=chair_hybrid_contract(),
+        evidence=(
+            node(
+                evidence_id="quran:2:255",
+                domain=EvidenceDomain.QURAN,
+                reference="2:255",
+            ),
+            node(
+                evidence_id="tafsir:2:43",
+                domain=EvidenceDomain.TAFSIR,
+                reference="2:43",
+            ),
+            node(
+                evidence_id="tafsir:2:255",
+                domain=EvidenceDomain.TAFSIR,
+                reference="2:255",
+            ),
+        ),
+    )
+
+    assert tuple(item.evidence_id for item in result.accepted_evidence) == (
+        "quran:2:255",
+        "tafsir:2:255",
+    )
+
+    wrong = next(
+        record for record in result.records if (record.evidence_id == "tafsir:2:43")
+    )
+
+    assert wrong.reason is EvidenceAcceptanceReason.HARD_ANCHOR_MISMATCH
+
+    assert result.structural_contract_satisfied
+
+
+def test_missing_required_domain_is_not_structurally_complete() -> None:
+    result = TaskEvidenceAcceptanceGate().evaluate(
+        contract=chair_hybrid_contract(),
+        evidence=(
+            node(
+                evidence_id="quran:2:255",
+                domain=EvidenceDomain.QURAN,
+                reference="2:255",
+            ),
+        ),
+    )
+
+    assert result.missing_required_domains == frozenset(
+        {
+            EvidenceDomain.TAFSIR,
+        }
+    )
+
+    assert "tafsir:2:255" in result.missing_hard_anchor_coverage
+
+    assert not (result.structural_contract_satisfied)
+
+
+def test_quran_range_can_cover_exact_ayah_anchor() -> None:
+    result = TaskEvidenceAcceptanceGate().evaluate(
+        contract=chair_hybrid_contract(),
+        evidence=(
+            node(
+                evidence_id="quran:2:255",
+                domain=EvidenceDomain.QURAN,
+                reference="2:255",
+            ),
+            node(
+                evidence_id="tafsir:2:250-260",
+                domain=EvidenceDomain.TAFSIR,
+                reference="2:250-260",
+            ),
+        ),
+    )
+
+    assert result.structural_contract_satisfied
+
+
+def test_arabic_digits_and_separator_are_normalized() -> None:
+    result = TaskEvidenceAcceptanceGate().evaluate(
+        contract=chair_hybrid_contract(),
+        evidence=(
+            node(
+                evidence_id="quran:arabic-digits",
+                domain=EvidenceDomain.QURAN,
+                reference="٢:٢٥٥",
+            ),
+            node(
+                evidence_id="tafsir:slash",
+                domain=EvidenceDomain.TAFSIR,
+                reference="٢/٢٥٥",
+            ),
+        ),
+    )
+
+    assert result.structural_contract_satisfied
+
+
+def test_conceptual_mode_does_not_invent_or_require_anchor() -> None:
+    contract = TaskEvidenceAcceptanceContract(
+        task_id="claim:concept",
+        retrieval_shape=(RetrievalShape.CONCEPTUAL),
+        allowed_domains=frozenset(
+            {
+                EvidenceDomain.TAFSIR,
+            }
+        ),
+        required_domains=frozenset(
+            {
+                EvidenceDomain.TAFSIR,
+            }
+        ),
+    )
+
+    result = TaskEvidenceAcceptanceGate().evaluate(
+        contract=contract,
+        evidence=(
+            node(
+                evidence_id="tafsir:any",
+                domain=EvidenceDomain.TAFSIR,
+                reference="2:43",
+            ),
+        ),
+    )
+
+    assert result.structural_contract_satisfied
+
+
+def test_conceptual_mode_rejects_hard_anchor_contract() -> None:
+    anchor = EvidenceAnchor(
+        reference="2:255",
+        domains=frozenset(
+            {
+                EvidenceDomain.TAFSIR,
+            }
+        ),
+    )
+
+    with pytest.raises(
+        ValueError,
+        match="use hybrid",
+    ):
+        TaskEvidenceAcceptanceContract(
+            task_id="claim:bad-concept",
+            retrieval_shape=(RetrievalShape.CONCEPTUAL),
+            allowed_domains=frozenset(
+                {
+                    EvidenceDomain.TAFSIR,
+                }
+            ),
+            required_domains=frozenset(
+                {
+                    EvidenceDomain.TAFSIR,
+                }
+            ),
+            anchors=(anchor,),
+        )
+
+
+def test_planner_inference_cannot_silently_become_hard_anchor() -> None:
+    with pytest.raises(
+        ValueError,
+        match="planner inference",
+    ):
+        EvidenceAnchor(
+            reference="2:255",
+            domains=frozenset(
+                {
+                    EvidenceDomain.TAFSIR,
+                }
+            ),
+            origin=(AnchorOrigin.PLANNER_INFERENCE),
+            strength=(AnchorStrength.HARD),
+        )
+
+
+def test_missing_reference_is_rejected_for_hard_anchor_domain() -> None:
+    result = TaskEvidenceAcceptanceGate().evaluate(
+        contract=chair_hybrid_contract(),
+        evidence=(
+            node(
+                evidence_id="quran:2:255",
+                domain=EvidenceDomain.QURAN,
+                reference="2:255",
+            ),
+            node(
+                evidence_id="tafsir:no-ref",
+                domain=EvidenceDomain.TAFSIR,
+                reference=None,
+            ),
+        ),
+    )
+
+    missing_ref = next(
+        record for record in result.records if (record.evidence_id == "tafsir:no-ref")
+    )
+
+    assert missing_ref.reason is EvidenceAcceptanceReason.MISSING_REQUIRED_REFERENCE
+
+    assert not (result.structural_contract_satisfied)
+
+
+def test_source_diversity_is_claim_scoped_and_explicit() -> None:
+    anchor = EvidenceAnchor(
+        reference="2:255",
+        domains=frozenset(
+            {
+                EvidenceDomain.TAFSIR,
+            }
+        ),
+        kind=AnchorKind.QURAN_AYAH,
+    )
+
+    contract = TaskEvidenceAcceptanceContract(
+        task_id="claim:two-tafsirs",
+        retrieval_shape=(RetrievalShape.EXACT_ANCHOR),
+        allowed_domains=frozenset(
+            {
+                EvidenceDomain.TAFSIR,
+            }
+        ),
+        required_domains=frozenset(
+            {
+                EvidenceDomain.TAFSIR,
+            }
+        ),
+        anchors=(anchor,),
+        source_diversity=(
+            SourceDiversityRequirement(
+                domain=EvidenceDomain.TAFSIR,
+                min_distinct_sources=2,
+            ),
+        ),
+    )
+
+    result = TaskEvidenceAcceptanceGate().evaluate(
+        contract=contract,
+        evidence=(
+            node(
+                evidence_id="tafsir:a",
+                domain=EvidenceDomain.TAFSIR,
+                reference="2:255",
+                source_id="same-source",
+            ),
+            node(
+                evidence_id="tafsir:b",
+                domain=EvidenceDomain.TAFSIR,
+                reference="2:255",
+                source_id="same-source",
+            ),
+        ),
+    )
+
+    assert result.missing_source_diversity == ("tafsir:1/2",)
+
+    assert not (result.structural_contract_satisfied)
+
+
+def test_policy_lookup_fails_closed_for_unknown_task() -> None:
+    service = TaskEvidenceAcceptanceService(
+        ClaimEvidencePolicySet(contracts=(chair_hybrid_contract(),))
+    )
+
+    with pytest.raises(KeyError):
+        service.evaluate(
+            task_id="claim:unknown",
+            evidence=(),
+        )
+
+
+def test_duplicate_evidence_id_is_not_counted_twice() -> None:
+    contract = TaskEvidenceAcceptanceContract(
+        task_id="claim:dup",
+        retrieval_shape=(RetrievalShape.CONCEPTUAL),
+        allowed_domains=frozenset(
+            {
+                EvidenceDomain.FIQH,
+            }
+        ),
+        required_domains=frozenset(
+            {
+                EvidenceDomain.FIQH,
+            }
+        ),
+    )
+
+    result = TaskEvidenceAcceptanceGate().evaluate(
+        contract=contract,
+        evidence=(
+            node(
+                evidence_id="same",
+                domain=EvidenceDomain.FIQH,
+                reference="chapter-1",
+            ),
+            node(
+                evidence_id="same",
+                domain=EvidenceDomain.FIQH,
+                reference="chapter-2",
+            ),
+        ),
+    )
+
+    assert len(result.accepted_evidence) == 1
+    assert len(result.rejected_evidence) == 1
+
+    assert result.records[1].reason is EvidenceAcceptanceReason.DUPLICATE_EVIDENCE_ID
+
+
+def test_result_does_not_claim_semantic_support_or_answerability() -> None:
+    result = TaskEvidenceAcceptanceGate().evaluate(
+        contract=chair_hybrid_contract(),
+        evidence=(
+            node(
+                evidence_id="quran:2:255",
+                domain=EvidenceDomain.QURAN,
+                reference="2:255",
+            ),
+            node(
+                evidence_id="tafsir:2:255",
+                domain=EvidenceDomain.TAFSIR,
+                reference="2:255",
+            ),
+        ),
+    )
+
+    assert not hasattr(
+        result,
+        "answerable",
+    )
+    assert not hasattr(
+        result,
+        "supported",
+    )
+    assert not hasattr(
+        result,
+        "semantic_score",
+    )

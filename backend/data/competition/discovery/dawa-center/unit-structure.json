@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "source": "DAWA_CENTER",
+  "domain": "dawah_general_content",
+  "canonical_entity_contract": {
+    "status": "FROZEN",
+    "identity_fields": [
+      "entity_type",
+      "entity_key"
+    ],
+    "identity_semantics": "ONE_OFFICIAL_ENTITY_PER_TYPE_AND_CANONICAL_ROUTE_KEY",
+    "route_templates": {
+      "file": "https://dawa.center/file/{numeric_id}",
+      "book": "https://dawa.center/book/{numeric_id}",
+      "category": "https://dawa.center/category/{numeric_id}",
+      "language": "https://dawa.center/language/{language_code}",
+      "country": "https://dawa.center/country/{country_code}",
+      "people_group": "https://dawa.center/people-group/{numeric_id}",
+      "religion": "https://dawa.center/religion/{numeric_id}",
+      "islamic_centre": "https://dawa.center/islamic_centre/{entity_key}"
+    },
+    "query_parameters_are_not_part_of_canonical_identity": true
+  },
+  "entity_type_contract": {
+    "status": "FROZEN",
+    "content_entities": {
+      "file": {
+        "key_shape": "OBSERVED_NUMERIC_ID",
+        "content_role": "DAWAH_RESOURCE_PAGE"
+      },
+      "book": {
+        "key_shape": "OBSERVED_NUMERIC_ID",
+        "content_role": "DAWAH_BOOK_RESOURCE_PAGE"
+      }
+    },
+    "context_entities": {
+      "category": {
+        "key_shape": "OBSERVED_NUMERIC_ID",
+        "context_role": "TOPIC_CLASSIFICATION"
+      },
+      "language": {
+        "key_shape": "OBSERVED_LANGUAGE_CODE",
+        "context_role": "DAWAH_LANGUAGE_CONTEXT"
+      },
+      "country": {
+        "key_shape": "OBSERVED_UPPERCASE_COUNTRY_CODE",
+        "context_role": "GEOGRAPHIC_DAWAH_CONTEXT"
+      },
+      "people_group": {
+        "key_shape": "OBSERVED_NUMERIC_ID",
+        "context_role": "TARGET_AUDIENCE_CONTEXT"
+      },
+      "religion": {
+        "key_shape": "OBSERVED_NUMERIC_ID",
+        "context_role": "TARGET_RELIGION_CONTEXT"
+      },
+      "islamic_centre": {
+        "key_shape": "OPAQUE_CANONICAL_PATH_SEGMENT",
+        "context_role": "DAWAH_ORGANIZATION_CONTEXT"
+      }
+    }
+  },
+  "listing_contract": {
+    "articles": {
+      "route": "https://dawa.center/articles",
+      "canonical_unit": false,
+      "observed_detail_entity_type": "file",
+      "sample_article_detail_links": 0,
+      "sample_file_detail_links": 9
+    },
+    "listing_membership_does_not_create_new_entity_identity": true
+  },
+  "localized_view_contract": {
+    "status": "NOT_YET_FROZEN",
+    "lang_query_links_observed": true,
+    "language_view_is_separate_entity": false,
+    "corpus_wide_localized_view_guarantee": false
+  },
+  "content_field_contract": {
+    "status": "FROZEN_FROM_CENSUS",
+    "evidence": "data/competition/discovery/dawa-center/field-census.json",
+    "sample_size": 40,
+    "mandatory_identity_fields": [
+      "entity_type",
+      "entity_key",
+      "source_url"
+    ],
+    "sampled_stable_extraction_fields": [
+      "canonical_url",
+      "title",
+      "meta_description",
+      "json_ld_type",
+      "json_ld_name",
+      "json_ld_description",
+      "h2"
+    ],
+    "primary_label_candidates": [
+      "json_ld_name",
+      "title"
+    ],
+    "description_candidates": [
+      "json_ld_description",
+      "meta_description"
+    ],
+    "supplemental_fields": [
+      "h2"
+    ],
+    "unstable_optional_fields": [
+      "h1"
+    ],
+    "universally_mandatory_semantic_field": null,
+    "corpus_wide_presence_guarantee": false,
+    "runtime_payload_contract_frozen": true,
+    "runtime_payload_rule": "OFFICIAL_IDENTITY_PLUS_NONEMPTY_GOVERNED_LABEL_PLUS_NONEMPTY_GOVERNED_DESCRIPTION",
+    "missing_required_runtime_payload_policy": "FAIL_CLOSED",
+    "missing_optional_field_policy": "PRESERVE_AS_MISSING",
+    "fabricate_missing_content": false
+  },
+  "authority_boundary": {
+    "dawah_general_content_use": "ALLOWED_AFTER_RUNTIME_ADMISSION",
+    "universal_primary_evidence": false,
+    "cross_domain_primary_evidence": false,
+    "religions_sects_comparative_authority": false,
+    "terminology_authority": false,
+    "generic_shamela_fallback_allowed": false
+  },
+  "runtime_state": {
+    "runtime_admission": "PENDING_AUDIT",
+    "adapter": "NOT_IMPLEMENTED",
+    "source_trust_passport": "NOT_ISSUED"
+  },
+  "hybrid_agent_role_contract": {
+    "status": "FROZEN",
+    "content_evidence_candidates": [
+      "file",
+      "book"
+    ],
+    "routing_context_entities": [
+      "category",
+      "language",
+      "country",
+      "people_group",
+      "religion",
+      "islamic_centre"
+    ],
+    "routing_context_is_answer_evidence": false,
+    "relationship_links": "OPTIONAL_RETRIEVAL_EXPANSION_ONLY",
+    "cross_domain_claims_require_primary_domain_routing": true
+  }
+}

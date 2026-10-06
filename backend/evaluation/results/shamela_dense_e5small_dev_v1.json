@@ -1,0 +1,1872 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "shamela-retrieval-v1",
+  "split": "dev",
+  "benchmark_sha256": "e199b37de6983c8cdad713a7382e96bda522f4a81a830c138a7cd3c3748f2791",
+  "corpus_fingerprint": "00edc4a799087fcc7fa0b83e2582604ffbc11f75dc4cfe2b90a424589a4a5a8f",
+  "retriever": "multilingual-e5-small",
+  "retriever_metadata": {
+    "model_id": "intfloat/multilingual-e5-small",
+    "model_revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "device": "cuda",
+    "gpu_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "sentence_transformers": "5.7.0",
+    "transformers": "5.18.0",
+    "torch": "2.14.1",
+    "numpy": "2.5.3",
+    "max_sequence_length": 512,
+    "body_window_tokens": 320,
+    "body_window_overlap": 64,
+    "canonical_passages": 1561,
+    "dense_windows": 2594,
+    "embedding_dimension": 384,
+    "embedding_build_seconds": 15.421829955000248,
+    "artifact_sha256": "b2cd375e2e8f21022118348a0a066f16083e163b66e0a9f501a3383e5574f7fd",
+    "corpus_fingerprint": "00edc4a799087fcc7fa0b83e2582604ffbc11f75dc4cfe2b90a424589a4a5a8f",
+    "representation": "E5 passage prefix + governed structural title context + model-token window over canonical raw_text; retrieval artifact only"
+  },
+  "summary": {
+    "case_count": 16,
+    "mean_reciprocal_rank": 0.9583333333333334,
+    "hit_rate_at_k": {
+      "1": 0.9375,
+      "5": 1.0,
+      "10": 1.0,
+      "50": 1.0
+    },
+    "mean_parent_recall_at_k": {
+      "1": 0.59375,
+      "5": 0.96875,
+      "10": 1.0,
+      "50": 1.0
+    },
+    "mean_book_recall_at_k": {
+      "1": 0.625,
+      "5": 0.96875,
+      "10": 1.0,
+      "50": 1.0
+    },
+    "mean_madhhab_coverage_at_k": {
+      "1": 0.625,
+      "5": 0.96875,
+      "10": 1.0,
+      "50": 1.0
+    },
+    "mean_passage_recall_at_k": {
+      "1": 1.0,
+      "5": 1.0,
+      "10": 1.0,
+      "50": 1.0
+    },
+    "mean_ndcg_at_k": {
+      "1": 0.9375,
+      "5": 0.9365910470609675,
+      "10": 0.9481270281096905,
+      "50": 0.9481270281096905
+    },
+    "mean_context_recovery_at_k": {
+      "1": 0.59375,
+      "5": 0.96875,
+      "10": 1.0,
+      "50": 1.0
+    },
+    "mean_latency_ms": 17.852309875,
+    "p95_latency_ms": 29.157444
+  },
+  "tag_summaries": {
+    "agency": {
+      "case_count": 1,
+      "mean_reciprocal_rank": 1.0,
+      "hit_rate_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_parent_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_book_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_madhhab_coverage_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_passage_recall_at_k": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "50": null
+      },
+      "mean_ndcg_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_context_recovery_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_latency_ms": 11.79613,
+      "p95_latency_ms": 11.79613
+    },
+    "arabic": {
+      "case_count": 16,
+      "mean_reciprocal_rank": 0.9583333333333334,
+      "hit_rate_at_k": {
+        "1": 0.9375,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_parent_recall_at_k": {
+        "1": 0.59375,
+        "5": 0.96875,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_book_recall_at_k": {
+        "1": 0.625,
+        "5": 0.96875,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_madhhab_coverage_at_k": {
+        "1": 0.625,
+        "5": 0.96875,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_passage_recall_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_ndcg_at_k": {
+        "1": 0.9375,
+        "5": 0.9365910470609675,
+        "10": 0.9481270281096905,
+        "50": 0.9481270281096905
+      },
+      "mean_context_recovery_at_k": {
+        "1": 0.59375,
+        "5": 0.96875,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_latency_ms": 17.852309875,
+      "p95_latency_ms": 29.157444
+    },
+    "comparative": {
+      "case_count": 12,
+      "mean_reciprocal_rank": 0.9444444444444445,
+      "hit_rate_at_k": {
+        "1": 0.9166666666666666,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_parent_recall_at_k": {
+        "1": 0.4583333333333333,
+        "5": 0.9583333333333334,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_book_recall_at_k": {
+        "1": 0.5,
+        "5": 0.9583333333333334,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_madhhab_coverage_at_k": {
+        "1": 0.5,
+        "5": 0.9583333333333334,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_passage_recall_at_k": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "50": null
+      },
+      "mean_ndcg_at_k": {
+        "1": 0.9166666666666666,
+        "5": 0.9154547294146234,
+        "10": 0.9308360374795873,
+        "50": 0.9308360374795873
+      },
+      "mean_context_recovery_at_k": {
+        "1": 0.4583333333333333,
+        "5": 0.9583333333333334,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_latency_ms": 17.864850999999998,
+      "p95_latency_ms": 29.157444
+    },
+    "direct": {
+      "case_count": 9,
+      "mean_reciprocal_rank": 1.0,
+      "hit_rate_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_parent_recall_at_k": {
+        "1": 0.6111111111111112,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_book_recall_at_k": {
+        "1": 0.6111111111111112,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_madhhab_coverage_at_k": {
+        "1": 0.6111111111111112,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_passage_recall_at_k": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "50": null
+      },
+      "mean_ndcg_at_k": {
+        "1": 1.0,
+        "5": 0.9821601753662639,
+        "10": 0.9821601753662639,
+        "50": 0.9821601753662639
+      },
+      "mean_context_recovery_at_k": {
+        "1": 0.6111111111111112,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_latency_ms": 20.90760311111111,
+      "p95_latency_ms": 29.157444
+    },
+    "divorce": {
+      "case_count": 1,
+      "mean_reciprocal_rank": 1.0,
+      "hit_rate_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_parent_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_book_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_madhhab_coverage_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_passage_recall_at_k": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "50": null
+      },
+      "mean_ndcg_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_context_recovery_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_latency_ms": 23.909345,
+      "p95_latency_ms": 23.909345
+    },
+    "exact_phrase": {
+      "case_count": 2,
+      "mean_reciprocal_rank": 1.0,
+      "hit_rate_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_parent_recall_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_book_recall_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_madhhab_coverage_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_passage_recall_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_ndcg_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_context_recovery_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_latency_ms": 14.2877485,
+      "p95_latency_ms": 15.161086
+    },
+    "ijara": {
+      "case_count": 1,
+      "mean_reciprocal_rank": 1.0,
+      "hit_rate_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_parent_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_book_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_madhhab_coverage_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_passage_recall_at_k": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "50": null
+      },
+      "mean_ndcg_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_context_recovery_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_latency_ms": 16.298384,
+      "p95_latency_ms": 16.298384
+    },
+    "khuff": {
+      "case_count": 1,
+      "mean_reciprocal_rank": 1.0,
+      "hit_rate_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_parent_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_book_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_madhhab_coverage_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_passage_recall_at_k": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "50": null
+      },
+      "mean_ndcg_at_k": {
+        "1": 1.0,
+        "5": 0.9197207891481876,
+        "10": 0.9197207891481876,
+        "50": 0.9197207891481876
+      },
+      "mean_context_recovery_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_latency_ms": 16.960446,
+      "p95_latency_ms": 16.960446
+    },
+    "murabaha": {
+      "case_count": 1,
+      "mean_reciprocal_rank": 1.0,
+      "hit_rate_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_parent_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_book_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_madhhab_coverage_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_passage_recall_at_k": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "50": null
+      },
+      "mean_ndcg_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_context_recovery_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_latency_ms": 19.026043,
+      "p95_latency_ms": 19.026043
+    },
+    "paraphrase": {
+      "case_count": 5,
+      "mean_reciprocal_rank": 0.8666666666666666,
+      "hit_rate_at_k": {
+        "1": 0.8,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_parent_recall_at_k": {
+        "1": 0.4,
+        "5": 0.9,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_book_recall_at_k": {
+        "1": 0.5,
+        "5": 0.9,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_madhhab_coverage_at_k": {
+        "1": 0.5,
+        "5": 0.9,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_passage_recall_at_k": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "50": null
+      },
+      "mean_ndcg_at_k": {
+        "1": 0.8,
+        "5": 0.8292030349358208,
+        "10": 0.8661181742917344,
+        "50": 0.8661181742917344
+      },
+      "mean_context_recovery_at_k": {
+        "1": 0.4,
+        "5": 0.9,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_latency_ms": 13.7786066,
+      "p95_latency_ms": 16.960446
+    },
+    "rahn": {
+      "case_count": 1,
+      "mean_reciprocal_rank": 1.0,
+      "hit_rate_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_parent_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_book_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_madhhab_coverage_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_passage_recall_at_k": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "50": null
+      },
+      "mean_ndcg_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_context_recovery_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_latency_ms": 29.157444,
+      "p95_latency_ms": 29.157444
+    },
+    "riba": {
+      "case_count": 2,
+      "mean_reciprocal_rank": 1.0,
+      "hit_rate_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_parent_recall_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_book_recall_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_madhhab_coverage_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_passage_recall_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_ndcg_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_context_recovery_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_latency_ms": 17.8163485,
+      "p95_latency_ms": 22.218286
+    },
+    "sale_option": {
+      "case_count": 2,
+      "mean_reciprocal_rank": 1.0,
+      "hit_rate_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_parent_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_book_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_madhhab_coverage_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_passage_recall_at_k": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "50": null
+      },
+      "mean_ndcg_at_k": {
+        "1": 1.0,
+        "5": 0.9197207891481876,
+        "10": 0.9197207891481876,
+        "50": 0.9197207891481876
+      },
+      "mean_context_recovery_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_latency_ms": 19.6653665,
+      "p95_latency_ms": 26.706928
+    },
+    "shufaa": {
+      "case_count": 2,
+      "mean_reciprocal_rank": 0.6666666666666666,
+      "hit_rate_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_parent_recall_at_k": {
+        "1": 0.25,
+        "5": 0.75,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_book_recall_at_k": {
+        "1": 0.5,
+        "5": 0.75,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_madhhab_coverage_at_k": {
+        "1": 0.5,
+        "5": 0.75,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_passage_recall_at_k": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "50": null
+      },
+      "mean_ndcg_at_k": {
+        "1": 0.5,
+        "5": 0.6532867981913646,
+        "10": 0.7455746465811487,
+        "50": 0.7455746465811487
+      },
+      "mean_context_recovery_at_k": {
+        "1": 0.25,
+        "5": 0.75,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_latency_ms": 16.299522,
+      "p95_latency_ms": 20.472614
+    },
+    "single_madhhab": {
+      "case_count": 4,
+      "mean_reciprocal_rank": 1.0,
+      "hit_rate_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_parent_recall_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_book_recall_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_madhhab_coverage_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_passage_recall_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_ndcg_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_context_recovery_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_latency_ms": 17.8146865,
+      "p95_latency_ms": 22.218286
+    },
+    "tayammum": {
+      "case_count": 1,
+      "mean_reciprocal_rank": 1.0,
+      "hit_rate_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_parent_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_book_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_madhhab_coverage_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_passage_recall_at_k": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "50": null
+      },
+      "mean_ndcg_at_k": {
+        "1": 1.0,
+        "5": 0.9197207891481876,
+        "10": 0.9197207891481876,
+        "50": 0.9197207891481876
+      },
+      "mean_context_recovery_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_latency_ms": 14.416675,
+      "p95_latency_ms": 14.416675
+    },
+    "wudu": {
+      "case_count": 2,
+      "mean_reciprocal_rank": 1.0,
+      "hit_rate_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_parent_recall_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_book_recall_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_madhhab_coverage_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_passage_recall_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_ndcg_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_context_recovery_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_latency_ms": 17.8130245,
+      "p95_latency_ms": 20.464963
+    },
+    "zakat": {
+      "case_count": 1,
+      "mean_reciprocal_rank": 1.0,
+      "hit_rate_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_parent_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_book_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_madhhab_coverage_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_passage_recall_at_k": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "50": null
+      },
+      "mean_ndcg_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_context_recovery_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "mean_latency_ms": 10.883968,
+      "p95_latency_ms": 10.883968
+    }
+  },
+  "cases": [
+    {
+      "case_id": "dev-hanafi-riba-direct",
+      "question": "ما أحكام الربا؟",
+      "tags": [
+        "arabic",
+        "direct",
+        "single_madhhab",
+        "riba"
+      ],
+      "retrieved_count": 50,
+      "gold_unit_count": 1,
+      "gold_passage_count": 0,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "hit_at_k": {
+        "1": true,
+        "5": true,
+        "10": true,
+        "50": true
+      },
+      "parent_recall_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "book_recall_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "madhhab_coverage_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "passage_recall_at_k": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "50": null
+      },
+      "ndcg_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "context_recovery_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "latency_ms": 22.218286
+    },
+    {
+      "case_id": "dev-maliki-wudu-direct",
+      "question": "ما فرائض الوضوء وسننه؟",
+      "tags": [
+        "arabic",
+        "direct",
+        "single_madhhab",
+        "wudu"
+      ],
+      "retrieved_count": 50,
+      "gold_unit_count": 1,
+      "gold_passage_count": 0,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "hit_at_k": {
+        "1": true,
+        "5": true,
+        "10": true,
+        "50": true
+      },
+      "parent_recall_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "book_recall_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "madhhab_coverage_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "passage_recall_at_k": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "50": null
+      },
+      "ndcg_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "context_recovery_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "latency_ms": 20.464963
+    },
+    {
+      "case_id": "dev-comparative-shufaa",
+      "question": "ما أحكام الشفعة عند الحنفية والمالكية؟",
+      "tags": [
+        "arabic",
+        "direct",
+        "comparative",
+        "shufaa"
+      ],
+      "retrieved_count": 50,
+      "gold_unit_count": 2,
+      "gold_passage_count": 0,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "hit_at_k": {
+        "1": true,
+        "5": true,
+        "10": true,
+        "50": true
+      },
+      "parent_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "book_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "madhhab_coverage_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "passage_recall_at_k": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "50": null
+      },
+      "ndcg_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "context_recovery_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "latency_ms": 20.472614
+    },
+    {
+      "case_id": "dev-comparative-murabaha",
+      "question": "ما أحكام المرابحة في المذهب الحنفي والمالكي؟",
+      "tags": [
+        "arabic",
+        "direct",
+        "comparative",
+        "murabaha"
+      ],
+      "retrieved_count": 50,
+      "gold_unit_count": 2,
+      "gold_passage_count": 0,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "hit_at_k": {
+        "1": true,
+        "5": true,
+        "10": true,
+        "50": true
+      },
+      "parent_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "book_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "madhhab_coverage_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "passage_recall_at_k": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "50": null
+      },
+      "ndcg_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "context_recovery_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "latency_ms": 19.026043
+    },
+    {
+      "case_id": "dev-comparative-defect-option",
+      "question": "ما أحكام خيار العيب ورد المبيع؟",
+      "tags": [
+        "arabic",
+        "direct",
+        "comparative",
+        "sale_option"
+      ],
+      "retrieved_count": 50,
+      "gold_unit_count": 2,
+      "gold_passage_count": 0,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "hit_at_k": {
+        "1": true,
+        "5": true,
+        "10": true,
+        "50": true
+      },
+      "parent_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "book_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "madhhab_coverage_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "passage_recall_at_k": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "50": null
+      },
+      "ndcg_at_k": {
+        "1": 1.0,
+        "5": 0.9197207891481876,
+        "10": 0.9197207891481876,
+        "50": 0.9197207891481876
+      },
+      "context_recovery_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "latency_ms": 26.706928
+    },
+    {
+      "case_id": "dev-comparative-rahn",
+      "question": "ما أحكام الرهن عند الحنفية والمالكية؟",
+      "tags": [
+        "arabic",
+        "direct",
+        "comparative",
+        "rahn"
+      ],
+      "retrieved_count": 50,
+      "gold_unit_count": 2,
+      "gold_passage_count": 0,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "hit_at_k": {
+        "1": true,
+        "5": true,
+        "10": true,
+        "50": true
+      },
+      "parent_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "book_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "madhhab_coverage_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "passage_recall_at_k": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "50": null
+      },
+      "ndcg_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "context_recovery_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "latency_ms": 29.157444
+    },
+    {
+      "case_id": "dev-comparative-divorce",
+      "question": "ما أحكام الطلاق عند الحنفية والمالكية؟",
+      "tags": [
+        "arabic",
+        "direct",
+        "comparative",
+        "divorce"
+      ],
+      "retrieved_count": 50,
+      "gold_unit_count": 2,
+      "gold_passage_count": 0,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "hit_at_k": {
+        "1": true,
+        "5": true,
+        "10": true,
+        "50": true
+      },
+      "parent_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "book_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "madhhab_coverage_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "passage_recall_at_k": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "50": null
+      },
+      "ndcg_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "context_recovery_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "latency_ms": 23.909345
+    },
+    {
+      "case_id": "dev-comparative-agency",
+      "question": "ما أحكام الوكالة في المذهب الحنفي والمالكي؟",
+      "tags": [
+        "arabic",
+        "direct",
+        "comparative",
+        "agency"
+      ],
+      "retrieved_count": 50,
+      "gold_unit_count": 2,
+      "gold_passage_count": 0,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "hit_at_k": {
+        "1": true,
+        "5": true,
+        "10": true,
+        "50": true
+      },
+      "parent_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "book_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "madhhab_coverage_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "passage_recall_at_k": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "50": null
+      },
+      "ndcg_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "context_recovery_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "latency_ms": 11.79613
+    },
+    {
+      "case_id": "dev-paraphrase-shufaa",
+      "question": "حق الشريك في أخذ الحصة المبيعة: ما الباب الفقهي الذي يعالج هذه المسألة؟",
+      "tags": [
+        "arabic",
+        "paraphrase",
+        "comparative",
+        "shufaa"
+      ],
+      "retrieved_count": 50,
+      "gold_unit_count": 2,
+      "gold_passage_count": 0,
+      "first_relevant_rank": 3,
+      "reciprocal_rank": 0.3333333333333333,
+      "hit_at_k": {
+        "1": false,
+        "5": true,
+        "10": true,
+        "50": true
+      },
+      "parent_recall_at_k": {
+        "1": 0.0,
+        "5": 0.5,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "book_recall_at_k": {
+        "1": 0.5,
+        "5": 0.5,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "madhhab_coverage_at_k": {
+        "1": 0.5,
+        "5": 0.5,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "passage_recall_at_k": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "50": null
+      },
+      "ndcg_at_k": {
+        "1": 0.0,
+        "5": 0.3065735963827292,
+        "10": 0.4911492931622974,
+        "50": 0.4911492931622974
+      },
+      "context_recovery_at_k": {
+        "1": 0.0,
+        "5": 0.5,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "latency_ms": 12.12643
+    },
+    {
+      "case_id": "dev-paraphrase-defect-return",
+      "question": "متى يرد المشتري المبيع بسبب عيب؟",
+      "tags": [
+        "arabic",
+        "paraphrase",
+        "comparative",
+        "sale_option"
+      ],
+      "retrieved_count": 50,
+      "gold_unit_count": 2,
+      "gold_passage_count": 0,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "hit_at_k": {
+        "1": true,
+        "5": true,
+        "10": true,
+        "50": true
+      },
+      "parent_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "book_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "madhhab_coverage_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "passage_recall_at_k": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "50": null
+      },
+      "ndcg_at_k": {
+        "1": 1.0,
+        "5": 0.9197207891481876,
+        "10": 0.9197207891481876,
+        "50": 0.9197207891481876
+      },
+      "context_recovery_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "latency_ms": 12.623805
+    },
+    {
+      "case_id": "dev-paraphrase-rental",
+      "question": "أحكام استئجار الدار والأرض والكراء",
+      "tags": [
+        "arabic",
+        "paraphrase",
+        "comparative",
+        "ijara"
+      ],
+      "retrieved_count": 50,
+      "gold_unit_count": 2,
+      "gold_passage_count": 0,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "hit_at_k": {
+        "1": true,
+        "5": true,
+        "10": true,
+        "50": true
+      },
+      "parent_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "book_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "madhhab_coverage_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "passage_recall_at_k": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "50": null
+      },
+      "ndcg_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "context_recovery_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "latency_ms": 16.298384
+    },
+    {
+      "case_id": "dev-comparative-tayammum",
+      "question": "ما أحكام التيمم عند الحنفية والمالكية؟",
+      "tags": [
+        "arabic",
+        "direct",
+        "comparative",
+        "tayammum"
+      ],
+      "retrieved_count": 50,
+      "gold_unit_count": 2,
+      "gold_passage_count": 0,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "hit_at_k": {
+        "1": true,
+        "5": true,
+        "10": true,
+        "50": true
+      },
+      "parent_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "book_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "madhhab_coverage_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "passage_recall_at_k": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "50": null
+      },
+      "ndcg_at_k": {
+        "1": 1.0,
+        "5": 0.9197207891481876,
+        "10": 0.9197207891481876,
+        "50": 0.9197207891481876
+      },
+      "context_recovery_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "latency_ms": 14.416675
+    },
+    {
+      "case_id": "dev-comparative-khuff",
+      "question": "المسح على الخفين عند الحنفية والمالكية",
+      "tags": [
+        "arabic",
+        "paraphrase",
+        "comparative",
+        "khuff"
+      ],
+      "retrieved_count": 50,
+      "gold_unit_count": 2,
+      "gold_passage_count": 0,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "hit_at_k": {
+        "1": true,
+        "5": true,
+        "10": true,
+        "50": true
+      },
+      "parent_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "book_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "madhhab_coverage_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "passage_recall_at_k": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "50": null
+      },
+      "ndcg_at_k": {
+        "1": 1.0,
+        "5": 0.9197207891481876,
+        "10": 0.9197207891481876,
+        "50": 0.9197207891481876
+      },
+      "context_recovery_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "latency_ms": 16.960446
+    },
+    {
+      "case_id": "dev-zakat-gold-money",
+      "question": "زكاة الذهب والنقود",
+      "tags": [
+        "arabic",
+        "paraphrase",
+        "comparative",
+        "zakat"
+      ],
+      "retrieved_count": 50,
+      "gold_unit_count": 2,
+      "gold_passage_count": 0,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "hit_at_k": {
+        "1": true,
+        "5": true,
+        "10": true,
+        "50": true
+      },
+      "parent_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "book_recall_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "madhhab_coverage_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "passage_recall_at_k": {
+        "1": null,
+        "5": null,
+        "10": null,
+        "50": null
+      },
+      "ndcg_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "context_recovery_at_k": {
+        "1": 0.5,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "latency_ms": 10.883968
+    },
+    {
+      "case_id": "dev-exact-hanafi-riba",
+      "question": "الربا عبارة عن الفضل المستحق من جهة البيع الخالي عن العوض",
+      "tags": [
+        "arabic",
+        "exact_phrase",
+        "single_madhhab",
+        "riba"
+      ],
+      "retrieved_count": 50,
+      "gold_unit_count": 1,
+      "gold_passage_count": 1,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "hit_at_k": {
+        "1": true,
+        "5": true,
+        "10": true,
+        "50": true
+      },
+      "parent_recall_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "book_recall_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "madhhab_coverage_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "passage_recall_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "ndcg_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "context_recovery_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "latency_ms": 13.414411
+    },
+    {
+      "case_id": "dev-exact-maliki-wudu",
+      "question": "فرائض الوضوء غسل ما بين الأذنين ومنابت شعر الرأس المعتاد",
+      "tags": [
+        "arabic",
+        "exact_phrase",
+        "single_madhhab",
+        "wudu"
+      ],
+      "retrieved_count": 50,
+      "gold_unit_count": 1,
+      "gold_passage_count": 1,
+      "first_relevant_rank": 1,
+      "reciprocal_rank": 1.0,
+      "hit_at_k": {
+        "1": true,
+        "5": true,
+        "10": true,
+        "50": true
+      },
+      "parent_recall_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "book_recall_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "madhhab_coverage_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "passage_recall_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "ndcg_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "context_recovery_at_k": {
+        "1": 1.0,
+        "5": 1.0,
+        "10": 1.0,
+        "50": 1.0
+      },
+      "latency_ms": 15.161086
+    }
+  ]
+}

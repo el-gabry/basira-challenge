@@ -1,0 +1,92 @@
+{
+  "chunking_provenance": {
+    "attribution_preserved": true,
+    "chunk_itself_may_establish_historical_fact": false,
+    "material_type_preserved": true,
+    "report_status_preserved": true,
+    "source_reference_preserved": true,
+    "source_title_preserved": true,
+    "source_use_mode_preserved": true
+  },
+  "cross_domain_boundaries": {
+    "companion_report_equals_prophetic_hadith": false,
+    "prophetic_report_is_authenticated_by_history_layer": false,
+    "quran_context_becomes_canonical_quran_witness": false
+  },
+  "dorar_history_adapter": {
+    "artifact": "src/basira/competition/dorar_history.py",
+    "audit": "data/competition/audits/history/dorar-history-adversarial-v1.json",
+    "contract": "dorar-history-canonical-event-v1",
+    "runtime_admission": "ADMITTED",
+    "source_trust_passport": "data/competition/passports/dorar-history.json",
+    "status": "AUDITED"
+  },
+  "dorar_history_dom_contract": "data/competition/manifests/history/dorar-history-dom-contract-v1.json",
+  "dorar_history_runtime_manifest": "data/competition/manifests/history/dorar-history-runtime-v1.json",
+  "first_three_centuries": {
+    "author_death_year_alone_is_sufficient": false,
+    "source_or_work_period_evidence_required": true,
+    "upper_bound_ah": 300
+  },
+  "historical_confidence_model": {
+    "governed_enumerated_report_status_required": true,
+    "llm_probability_allowed_as_report_grade": false,
+    "numeric_model_confidence_allowed_as_historical_truth_status": false
+  },
+  "historical_entity_resolution": {
+    "alias_match_equals_identity_proof": false,
+    "ambiguity_must_be_preserved": true,
+    "may_rewrite_final_answer_as_equivalent": false,
+    "purpose": "retrieval_expansion_only",
+    "registry": "data/competition/sources/history/historical_entity_registry.json",
+    "time_aware": true
+  },
+  "historical_report_policy": {
+    "attribution_may_be_lost_during_chunking": false,
+    "categorical_event_claim_requires_governed_report_assessment": true,
+    "disputed_or_cautionary_report_must_preserve_status": true,
+    "early_source_equals_verified_event": false,
+    "raw_report_collection_equals_established_history": false,
+    "repeated_wording_equals_consensus": false,
+    "report_equals_established_fact": false,
+    "retrieval_alias_equals_entity_identity": false,
+    "retrieval_count_equals_corroboration": false
+  },
+  "official_source_families": [
+    {
+      "class": "FIRST_THREE_CENTURIES_ISLAMIC_SOURCE",
+      "exact_artifact_governance_required": true,
+      "period_verification_required": true,
+      "source_identity_verification_required": true
+    },
+    {
+      "class": "DORAR_HISTORY",
+      "exact_source_governance_required": true,
+      "provider": "Dorar al-Sunniyyah",
+      "runtime_admission": "PENDING_AUDIT"
+    }
+  ],
+  "policy_version": 1,
+  "role": "seerah_history",
+  "runtime_state": {
+    "dorar_history": "ELIGIBLE",
+    "first_three_centuries_registry": "EMPTY_PENDING_SOURCE_AUDIT"
+  },
+  "shamela": {
+    "exact_governed_artifact_required": true,
+    "exact_governed_source_required": true,
+    "generic_fallback_allowed": false
+  },
+  "source_use_policy": {
+    "allowed_modes": [
+      "curated_history_reference",
+      "raw_report_collection",
+      "primary_historical_narrative",
+      "biographical_source",
+      "chronicle"
+    ],
+    "raw_report_collection_independently_establishes_event": false,
+    "required": true,
+    "source_use_mode_independently_establishes_event": false
+  }
+}

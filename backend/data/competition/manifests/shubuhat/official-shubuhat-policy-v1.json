@@ -1,0 +1,48 @@
+{
+  "claim_decomposition": {
+    "primary_domain_routes": {
+      "aqeedah_intro_to_islam": "aqeedah_intro_to_islam",
+      "dawah_general_content": "dawah_general_content",
+      "general_fiqh": "general_fiqh",
+      "hadith": "hadith",
+      "quran": "quran",
+      "seerah_history": "seerah_history",
+      "tafsir": "tafsir",
+      "translation_terminology": "translation_terminology"
+    },
+    "required": true
+  },
+  "hard_boundaries": {
+    "bayyinat_claim_equals_primary_domain_evidence": false,
+    "bayyinat_wording_equals_consensus": false,
+    "cross_domain_evidence_laundering_allowed": false,
+    "generic_shamela_fallback_allowed": false,
+    "generic_web_fallback_may_replace_primary_domain": false,
+    "hostile_question_authorizes_hostile_response": false,
+    "personal_fatwa_allowed": false,
+    "retrieval_count_equals_consensus": false
+  },
+  "official_primary_conversational_source": {
+    "official_locator": "dawa.center/file/7937",
+    "official_url": "https://dawa.center/file/7937",
+    "runtime_admission": "ELIGIBLE",
+    "source_family": "BAYYINAT",
+    "title": "Questions and Answers about Islam"
+  },
+  "policy_version": 1,
+  "role": "shubuhat_faq",
+  "runtime_state": {
+    "adapter": "IMPLEMENTED",
+    "bayyinat": "GOVERNED_CONVERSATIONAL_RUNTIME",
+    "source_trust_passport": "ISSUED",
+    "runtime_source_id": "bayyinat-v1",
+    "runtime_eligibility": "ELIGIBLE",
+    "runtime_manifest": "data/competition/manifests/shubuhat/bayyinat-runtime-v1.json"
+  },
+  "source_role_contract": {
+    "answer_wording_may_infer_source_role": false,
+    "bayyinat_is_primary_conversational_source": true,
+    "bayyinat_is_universal_primary_evidence": false,
+    "conversational_framing_equals_evidentiary_authority": false
+  }
+}

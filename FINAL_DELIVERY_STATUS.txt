@@ -1,0 +1,35 @@
+BASIRA COMPETITION — FINAL DELIVERY
+
+FRONTEND
+========
+✅ npm run build: GREEN
+✅ Vite production build completed
+✅ Light hero: basira-hero-light-final.png
+✅ Dark hero: basira-hero-dark-final.png
+✅ Frontend live on :5173
+
+BACKEND LIVE SMOKE
+==================
+✅ Quran EN: answer
+✅ Quran EN: governed localized evidence
+✅ Quran EN: Sahih International provenance
+✅ Quran AR: answer
+✅ Tafsir EN: answer + Tafsir evidence
+✅ Fiqh EN: answer + dorar:fiqh:en source
+✅ Hadith AR: answer + Hadith evidence
+⚠️ Hadith EN: intentionally SAFE FAIL-CLOSED
+
+PORTS
+=====
+✅ Backend :8001
+✅ Frontend :5173
+
+TRANSLATION GOVERNANCE
+======================
+Basira does not translate evidence.
+Basira displays a translation whose provenance is governed.
+
+GUIDING PRINCIPLE
+=================
+We are not trying to build more Basira.
+We are making the Basira we already built impossible to bypass.

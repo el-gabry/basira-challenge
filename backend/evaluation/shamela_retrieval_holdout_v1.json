@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "shamela-retrieval-v1",
+  "split": "holdout",
+  "description": "Frozen structural retrieval benchmark for the governed two-book Shamela corpus. Gold identifies acceptable book/chapter locations. Chapter relevance is not semantic claim verification.",
+  "corpus_fingerprint": "00edc4a799087fcc7fa0b83e2582604ffbc11f75dc4cfe2b90a424589a4a5a8f",
+  "index_fingerprint": "08db016154199e022fad28101fda5ed51f242d1fa6828521b6386bad3cabf94b",
+  "k_values": [
+    1,
+    5,
+    10,
+    50
+  ],
+  "cases": [
+    {
+      "id": "holdout-comparative-wadia",
+      "question": "حفظ مال الغير عند أمين ثم رده: ما أحكام الوديعة؟",
+      "gold": [
+        {
+          "book_id": "1045",
+          "parent_text": "كتاب الوديعة",
+          "madhhab": "hanafi",
+          "structural_parent_id": "shamela-node:400b8262306bfc09bf276134ac0a43f6217c37d8ca7474744b89ddebe7e19d7f"
+        },
+        {
+          "book_id": "4226",
+          "parent_text": "باب في بيان أحكام الوديعة ومتعلقاتها",
+          "madhhab": "maliki",
+          "structural_parent_id": "shamela-node:b068c8e58525b5d2dce0507fc4cb8da99f05ddf419289d51642d49933c4e5743"
+        }
+      ],
+      "tags": [
+        "arabic",
+        "paraphrase",
+        "comparative",
+        "wadia",
+        "holdout"
+      ]
+    },
+    {
+      "id": "holdout-comparative-ariya",
+      "question": "الانتفاع بمال الغير دون تملكه: أحكام العارية",
+      "gold": [
+        {
+          "book_id": "1045",
+          "parent_text": "كتاب العارية",
+          "madhhab": "hanafi",
+          "structural_parent_id": "shamela-node:aa7f415886a1fbbf0adf2d37d87dd478140b8d0298269ccc9c897aff0f3cba9e"
+        },
+        {
+          "book_id": "4226",
+          "parent_text": "باب في بيان أحكام العارية",
+          "madhhab": "maliki",
+          "structural_parent_id": "shamela-node:980b9ac2213277532e377474edd496c25a6465d9384e39be67d933de13a7d654"
+        }
+      ],
+      "tags": [
+        "arabic",
+        "paraphrase",
+        "comparative",
+        "ariya",
+        "holdout"
+      ]
+    },
+    {
+      "id": "holdout-comparative-sulh",
+      "question": "إنهاء النزاع باتفاق بين الخصمين: أحكام الصلح",
+      "gold": [
+        {
+          "book_id": "1045",
+          "parent_text": "كتاب الصلح",
+          "madhhab": "hanafi",
+          "structural_parent_id": "shamela-node:75896cd16bc99458e20bb782d312e94b530d3fc8d9fe5285cbcc7f88e6d694ee"
+        },
+        {
+          "book_id": "4226",
+          "parent_text": "باب في بيان أحكام أقسام الصلح",
+          "madhhab": "maliki",
+          "structural_parent_id": "shamela-node:db0ba4362063c216587b41aad5dd53b33e3999711e0dbf8187c3427e08680d2e"
+        }
+      ],
+      "tags": [
+        "arabic",
+        "paraphrase",
+        "comparative",
+        "sulh",
+        "holdout"
+      ]
+    },
+    {
+      "id": "holdout-comparative-ila",
+      "question": "أحكام الإيلاء",
+      "gold": [
+        {
+          "book_id": "1045",
+          "parent_text": "باب الإيلاء",
+          "madhhab": "hanafi",
+          "structural_parent_id": "shamela-node:8d7a960076189d57bd3992e0d54c00ff6ace8a29fca343b1ff4172b24f67d773"
+        },
+        {
+          "book_id": "4226",
+          "parent_text": "باب في الإيلاء وما يتعلق به",
+          "madhhab": "maliki",
+          "structural_parent_id": "shamela-node:8646dccac20688c837ea106f533cd3a5a868fd4826b1eb63ee036947f5ce9594"
+        }
+      ],
+      "tags": [
+        "arabic",
+        "direct",
+        "comparative",
+        "ila",
+        "holdout"
+      ]
+    },
+    {
+      "id": "holdout-comparative-zihar",
+      "question": "أحكام الظهار",
+      "gold": [
+        {
+          "book_id": "1045",
+          "parent_text": "كتاب الظهار",
+          "madhhab": "hanafi",
+          "structural_parent_id": "shamela-node:3071dbcd04b4c738b2af1afc3f2402f4e4eef095d00bc4f5d2a2f170519c32d8"
+        },
+        {
+          "book_id": "4226",
+          "parent_text": "باب في الظهار وأحكامه وما يتعلق به",
+          "madhhab": "maliki",
+          "structural_parent_id": "shamela-node:58549e7d10e44ce1830c8f7e28d28dc0e6a6c346fa52c47bc62df48fd4dfd103"
+        }
+      ],
+      "tags": [
+        "arabic",
+        "direct",
+        "comparative",
+        "zihar",
+        "holdout"
+      ]
+    },
+    {
+      "id": "holdout-comparative-lian",
+      "question": "أحكام اللعان",
+      "gold": [
+        {
+          "book_id": "1045",
+          "parent_text": "كتاب اللعان",
+          "madhhab": "hanafi",
+          "structural_parent_id": "shamela-node:7d11d6b03d6592f62bcfafd3d3aefef8ad3ddc6a1d4f947c38f1798f5730a533"
+        },
+        {
+          "book_id": "4226",
+          "parent_text": "باب في أحكام اللعان وما يتعلق به",
+          "madhhab": "maliki",
+          "structural_parent_id": "shamela-node:0a13888ccf812e3365c8cc238bc9f194e89d141919b3567cb5e1bf014a266ffe"
+        }
+      ],
+      "tags": [
+        "arabic",
+        "direct",
+        "comparative",
+        "lian",
+        "holdout"
+      ]
+    },
+    {
+      "id": "holdout-comparative-inheritance",
+      "question": "تقسيم التركة وأنصبة الورثة",
+      "gold": [
+        {
+          "book_id": "1045",
+          "parent_text": "كتاب الفرائض",
+          "madhhab": "hanafi",
+          "structural_parent_id": "shamela-node:ec00189dcc2ae230573a6aa0d7a06150721a77e9be59b4299424a2a2c9e32a52"
+        },
+        {
+          "book_id": "4226",
+          "parent_text": "باب في بيان الفرائض",
+          "madhhab": "maliki",
+          "structural_parent_id": "shamela-node:8ca98fd89289403007eb3d979593653cd885907b22a73531b71f800ef5a9c22f"
+        }
+      ],
+      "tags": [
+        "arabic",
+        "paraphrase",
+        "comparative",
+        "inheritance",
+        "holdout"
+      ]
+    },
+    {
+      "id": "holdout-comparative-recitation-prostration",
+      "question": "أحكام سجود التلاوة",
+      "gold": [
+        {
+          "book_id": "1045",
+          "parent_text": "باب سجود التلاوة",
+          "madhhab": "hanafi",
+          "structural_parent_id": "shamela-node:96d606a679e268998380c822eefcdd640692d67340bd25f4c8d4a5148adb3e07"
+        },
+        {
+          "book_id": "4226",
+          "parent_text": "فصل في سجود التلاوة",
+          "madhhab": "maliki",
+          "structural_parent_id": "shamela-node:bfdf244693c1041e46b748d08e0942771770ab964ee4fca8f61f416f68e9ba06"
+        }
+      ],
+      "tags": [
+        "arabic",
+        "direct",
+        "comparative",
+        "sujud_tilawa",
+        "holdout"
+      ]
+    }
+  ]
+}

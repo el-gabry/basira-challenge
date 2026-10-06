@@ -1,0 +1,113 @@
+{
+  "policy": "fail_closed",
+  "registry_id": "basira-competition-official-sources-v1",
+  "sources": [
+    {
+      "audit_requirements": [
+        "source_identity",
+        "edition_or_release",
+        "riwaya",
+        "rasm_standard",
+        "dabt_standard",
+        "artifact_hash",
+        "ayah_count",
+        "reference_alignment"
+      ],
+      "name": "King Fahd Complex Quran",
+      "role": "quran",
+      "source_id": "kfgqpc_quran",
+      "status": "pending_audit"
+    },
+    {
+      "admitted_artifact": "data/competition/manifests/quran/quranpedia-hafs-2026-10-04.json",
+      "admitted_release": "2026-10-04",
+      "audit_requirements": [
+        "source_identity",
+        "artifact_hash",
+        "ayah_alignment",
+        "declared_text_standard"
+      ],
+      "name": "Quranpedia",
+      "role": "quran",
+      "source_id": "quranpedia",
+      "status": "eligible",
+      "update_policy": "candidate_verify_then_promote",
+      "verification": {
+        "artifact_integrity": "verified",
+        "cross_source_attestation": "pending",
+        "dabt_identity": "unresolved",
+        "official_eligibility": "verified",
+        "rasm_identity": "unresolved",
+        "structural_integrity": "verified",
+        "witness_identity": "verified"
+      }
+    },
+    {
+      "audit_requirements": [
+        "source_identity",
+        "snapshot_identity",
+        "artifact_hash",
+        "hadith_locator_integrity",
+        "grade_provenance"
+      ],
+      "name": "Dorar Hadith Encyclopedia",
+      "role": "hadith",
+      "source_id": "dorar_hadith",
+      "status": "pending_audit"
+    },
+    {
+      "audit_requirements": [
+        "source_identity",
+        "artifact_hash",
+        "passage_locator_integrity",
+        "quote_attribution"
+      ],
+      "name": "Dorar Tafsir Encyclopedia",
+      "role": "tafsir",
+      "source_id": "dorar_tafsir",
+      "status": "pending_audit"
+    },
+    {
+      "audit_requirements": [
+        "source_identity",
+        "artifact_hash",
+        "madhhab_attribution",
+        "issue_locator_integrity"
+      ],
+      "name": "Dorar Fiqh Encyclopedia",
+      "role": "fiqh",
+      "source_id": "dorar_fiqh",
+      "status": "pending_audit"
+    },
+    {
+      "audit_requirements": [
+        "work_identity",
+        "edition_identity",
+        "volume_identity",
+        "artifact_hash",
+        "four_madhhab_attribution"
+      ],
+      "name": "Kuwaiti Fiqh Encyclopedia",
+      "role": "fiqh",
+      "source_id": "kuwaiti_fiqh_encyclopedia",
+      "status": "pending_audit"
+    },
+    {
+      "audit_requirements": [
+        "book_level_identity",
+        "author_identity",
+        "edition_or_copy_identity",
+        "artifact_hash",
+        "competition_eligibility_per_book"
+      ],
+      "name": "Governed Shamela Books",
+      "notes": [
+        "Shamela container presence does not establish book eligibility.",
+        "Admission must occur at book/artifact level."
+      ],
+      "role": "general_scholarly",
+      "source_id": "shamela_governed_books",
+      "status": "pending_audit"
+    }
+  ]
+}

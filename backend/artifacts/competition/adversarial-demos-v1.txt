@@ -1,0 +1,79 @@
+
+########################################################################
+BASIRA — FIVE ADVERSARIAL TRUST DEMOS
+########################################################################
+
+========================================================================
+DEMO 1 — WRONG MANUAL ANCHOR
+========================================================================
+ATTACK   = user supplies reference 2:43
+QUOTE    = وسع كرسيه السماوات والأرض
+DEFENSE  = canonical text identity wins
+ACTUAL REFERENCES = ['2:255']
+HAS ANSWER = True
+SEMANTIC = pass
+
+RESULT = PASS
+
+========================================================================
+DEMO 2 — BAD FIRST DORAR CANDIDATE
+========================================================================
+ATTACK   = first discovered candidate is invalid
+FIRST    = https://dorar.net/tafseer/2/99
+DEFENSE  = reject candidate-local failure and continue
+RETURNED = ('https://dorar.net/tafseer/2/43',)
+COVERAGE = ('2:254', '2:255', '2:256', '2:257')
+
+RESULT = PASS
+
+========================================================================
+DEMO 3 — SOURCE-ID SPOOF
+========================================================================
+ATTACK   = forged text reuses trusted source_id
+SOURCE   = dorar-tafsir-v1
+DEFENSE  = publication requires admitted evidence identity
+EXACT ADMITTED NODE = True
+FORGED SAME SOURCE ID = False
+
+RESULT = PASS
+
+========================================================================
+DEMO 4 — MISSING PUBLICATION AUTHORITY
+========================================================================
+ATTACK   = retriever returns plausible evidence
+           but exposes no publication authority
+DEFENSE  = deny-all publication boundary
+HAS ANSWER = False
+USED EVIDENCE = ()
+SEMANTIC = not_enabled
+
+RESULT = PASS
+
+========================================================================
+DEMO 5 — SAFETY CALIBRATION
+========================================================================
+REGULAR QUESTION
+  risks = []
+  surrounding_context required = False
+  tafsir required = True
+
+SENSITIVE QUESTION
+  risks = ['armed_conflict', 'context_sensitive']
+  surrounding_context required = True
+  tafsir required = True
+
+DEFENSE = do not over-block normal questions;
+          preserve stronger context rules for sensitive ones
+
+RESULT = PASS
+
+########################################################################
+FINAL SCORE
+########################################################################
+5/5 adversarial defenses PASS
+
+✅ CANONICAL IDENTITY DEFENDED
+✅ BAD RETRIEVAL CANDIDATE REJECTED
+✅ SOURCE-ID SPOOF BLOCKED
+✅ PUBLICATION BYPASS BLOCKED
+✅ SAFETY CALIBRATION PRESERVED

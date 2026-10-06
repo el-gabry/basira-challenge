@@ -1,0 +1,30 @@
+{
+  "policy_version": 1,
+  "role": "hadith",
+  "priority_order": [
+    {
+      "class": "SAHIHAIN_PRIMARY",
+      "sources": [
+        "Sahih al-Bukhari",
+        "Sahih Muslim"
+      ],
+      "verification_requirement": "governed canonical source"
+    },
+    {
+      "class": "OTHER_SUNNAH_REQUIRES_VERIFICATION",
+      "verification_sources": [
+        "Dorar Hadith",
+        "approved Shamela editions"
+      ]
+    }
+  ],
+  "hard_rules": {
+    "source_attribution_required": true,
+    "reference_required": true,
+    "other_sunnah_verification_required": true,
+    "majority_vote_on_gradings": false,
+    "infer_consensus_from_result_frequency": false,
+    "zero_hits_means_no_hadith_exists": false,
+    "authenticity_equals_semantic_entailment": false
+  }
+}

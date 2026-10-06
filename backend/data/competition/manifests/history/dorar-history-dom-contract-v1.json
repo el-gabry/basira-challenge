@@ -1,0 +1,46 @@
+{
+  "contract_version": 1,
+  "contract_id": "dorar-history-canonical-event-v1",
+  "provider": "Dorar al-Sunniyyah",
+  "source_family": "DORAR_HISTORY",
+  "canonical_origin": "https://dorar.net",
+  "allowed_route_families": [
+    {
+      "name": "direct_history_id",
+      "regex": "^/history/[1-9][0-9]*$"
+    },
+    {
+      "name": "history_event_id",
+      "regex": "^/history/event/[1-9][0-9]*$"
+    }
+  ],
+  "canonical_link_must_equal_requested_url": true,
+  "dom": {
+    "root": "div#cntnt.card-body",
+    "root_count": 1,
+    "event_accordion": "direct div#accordionEx.accordion.md-accordion.dorar_custom_accordion.amiri_custom_content",
+    "event_container": "direct div.event-container",
+    "event_card": "direct div.card.scroll-pos.z-depth-0.mb-0",
+    "title_header_id": "headingTwo{event_id}",
+    "title": "header descendant h6",
+    "details_collapse_id": "collapseTwo{event_id}",
+    "details_body": "direct div.card-body",
+    "hijri_year": "direct strong labeled العام الهجري",
+    "gregorian_year": "direct strong labeled العام الميلادي",
+    "lunar_month": "optional direct strong labeled الشهر القمري",
+    "details_heading": "direct h6 labeled تفاصيل الحدث"
+  },
+  "hard_boundaries": {
+    "search_form_is_event_evidence": false,
+    "global_modal_is_event_evidence": false,
+    "global_reference_link_is_event_citation": false,
+    "lexical_disagreement_is_truth_grade": false,
+    "prophetic_wording_is_hadith_authentication": false,
+    "plain_narrative_is_structured_hadith_matn": false,
+    "quran_candidate_is_canonical_quran_witness": false,
+    "source_reference_channel_established": false,
+    "per_event_machine_truth_grade_established": false
+  },
+  "runtime_admission": "NOT_ADMITTED",
+  "source_trust_passport": "NOT_ISSUED"
+}

@@ -1,0 +1,46 @@
+{
+  "artifact_sha256": "619b7201833419b8fbf86c463208462b9a2a7f02ad2306a2667490f3b410ad4e",
+  "citation_contract": "NOT_FROZEN",
+  "mandatory_fields": {
+    "DETAILED": "263/263",
+    "SHORT": "263/263"
+  },
+  "metadata_model": {
+    "independent": true,
+    "keywords_optional": true,
+    "neither_units": [
+      95,
+      227
+    ],
+    "related_questions_optional": true,
+    "xor": false
+  },
+  "optional_fields": {
+    "CONCLUSION": "119/263",
+    "GIST": "178/263",
+    "KEYWORDS": "243/263",
+    "RELATED": "74/263",
+    "SIMILAR": "253/263"
+  },
+  "resolved_extraction_anomalies": {
+    "detailed_body_false_positive_units": [
+      160,
+      260
+    ],
+    "reversed_detailed_header_unit": [
+      100
+    ],
+    "short_alternate_header_units": [
+      173,
+      182
+    ],
+    "short_body_false_positive_unit": [
+      50
+    ]
+  },
+  "runtime_admission": "DEFERRED_TO_TRUST_SHIELD",
+  "schema_version": 1,
+  "source": "BAYYINAT",
+  "status": "FROZEN",
+  "unit_count": 263
+}

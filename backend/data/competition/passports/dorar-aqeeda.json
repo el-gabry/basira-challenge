@@ -1,0 +1,47 @@
+{
+  "adapter_contract": "dorar-aqeedah-canonical-article-v1",
+  "admission_parent_commit": "4f7e879414babe27985c7e1ef61ccfe8ad4fbcb1",
+  "admission_scope": "canonical_article_only",
+  "canonical_origin": "https://dorar.net",
+  "canonical_path": "/aqeeda/{positive_integer_id}",
+  "governed_artifact_sha256": {
+    "data/competition/audits/aqeedah/dorar-aqeedah-adversarial-v1.json": "9764357dbebf90d36887ac53e9c935dc05ae30b2ba1fc74fbae98d28715176f7",
+    "data/competition/discovery/dorar-aqeedah/discovery.json": "24b607b01a279e51a0f25b8dd20392a58f745b86db0e3c1ae23da99012c06015",
+    "data/competition/manifests/aqeedah/dorar-aqeedah-runtime-v1.json": "ac616ca14ab1899ddbd1c7d87df6d126bf607add7a080af3ef864717f7450147",
+    "data/competition/manifests/aqeedah/official-aqeedah-policy-v1.json": "a9d04f37766ff9c9b013eacbe2efd6a3c95a0930e65460edea9a378f1295a433",
+    "data/competition/sources/aqeedah/aqeedah_authority_registry.json": "83fdb202d03e7af317b1d47db60e2acd2c85766e5a1faf9c3b1567722006701f",
+    "data/competition/sources/aqeedah/aqeedah_source_registry.json": "0efa1c012e75620cf14087f4ec1ed29dfd9d79887c2ac58e0bc72c6e0c6fb0c0",
+    "src/basira/competition/aqeedah_authority.py": "20e8bc9afd4b6e13f4460bbc8521f0f27218c7bdcdc6178f9c29bad707643d5e",
+    "src/basira/competition/aqeedah_policy.py": "da7fbe9311b00effe9b89d46406d1cabb6a7e8b5352789e797392b90dd2fa1f9",
+    "src/basira/competition/dorar_aqeedah.py": "08a8edfd2ebde7f3db7fec953ff101e2e16a1009819ea4c47c8a8d0c5eeec772",
+    "src/basira/competition/dorar_aqeedah_admission.py": "efcdf87ef23d1cf9fc374dc5c5ae5766c10dbb5b84a0039de0e999eff253bf80"
+  },
+  "hard_boundaries": {
+    "bibliographic_citation_promotes_aqeedah_authority": false,
+    "early_period_equals_aqeedah_authority": false,
+    "generic_shamela_fallback": false,
+    "hadith_matn_inference_from_plain_prose": false,
+    "independent_hadith_authentication": false,
+    "quran_context_is_canonical_quran_witness": false,
+    "quran_context_reference_force_pairing": false
+  },
+  "passport_id": "dorar-aqeeda-source-trust-v1",
+  "passport_version": 1,
+  "provider": "Dorar al-Sunniyyah",
+  "runtime_eligibility": "eligible",
+  "runtime_guarantees": {
+    "baseline_artifact_drift_blocked": true,
+    "canonical_structure_fail_closed": true,
+    "exact_response_sha256_recorded": true,
+    "provenance_routing_fail_closed": true
+  },
+  "source_family": "dorar_aqeeda",
+  "source_id": "dorar-aqeeda-v1",
+  "verification_evidence": {
+    "adapter": "AUDITED",
+    "adversarial_audit": "PASS",
+    "baseline_response_sha256": "0900e3c21b2e2858207847a4faf442a5974b048fe345c39616bda401d8ef5805",
+    "baseline_url": "https://dorar.net/aqeeda/420",
+    "live_characterization": "PASS"
+  }
+}

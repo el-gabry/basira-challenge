@@ -1,0 +1,744 @@
+from __future__ import annotations
+
+import re
+from collections.abc import Iterable
+from dataclasses import dataclass
+from enum import StrEnum
+
+from basira.evidence.models import (
+    EvidenceDomain,
+    EvidenceNode,
+)
+
+
+class RetrievalShape(StrEnum):
+    """How candidates may be retrieved for one claim task."""
+
+    EXACT_ANCHOR = "exact_anchor"
+    CONCEPTUAL = "conceptual"
+    HYBRID = "hybrid"
+
+
+class AnchorKind(StrEnum):
+    EXACT = "exact"
+    QURAN_AYAH = "quran_ayah"
+
+
+class AnchorOrigin(StrEnum):
+    """Where an anchor came from before canonical validation."""
+
+    EXPLICIT_REFERENCE = "explicit_reference"
+    CANONICAL_TEXT_MATCH = "canonical_text_match"
+    PLANNER_INFERENCE = "planner_inference"
+
+
+class AnchorStrength(StrEnum):
+    HARD = "hard"
+    SOFT = "soft"
+
+
+@dataclass(
+    frozen=True,
+    slots=True,
+)
+class EvidenceAnchor:
+    """
+    One claim-scoped anchor constraint.
+
+    HARD anchors may reject retrieved evidence. A planner-only inference is
+    deliberately forbidden from becoming HARD until another component has
+    canonically validated it.
+    """
+
+    reference: str
+    domains: frozenset[EvidenceDomain]
+    kind: AnchorKind = AnchorKind.EXACT
+    origin: AnchorOrigin = AnchorOrigin.EXPLICIT_REFERENCE
+    strength: AnchorStrength = AnchorStrength.HARD
+
+    def __post_init__(self) -> None:
+        if not self.reference.strip():
+            raise ValueError("anchor reference must not be blank")
+
+        if not self.domains:
+            raise ValueError("anchor domains must not be empty")
+
+        if (
+            self.strength is AnchorStrength.HARD
+            and self.origin is AnchorOrigin.PLANNER_INFERENCE
+        ):
+            raise ValueError(
+                "planner inference cannot become a "
+                "hard anchor before canonical validation"
+            )
+
+
+@dataclass(
+    frozen=True,
+    slots=True,
+)
+class SourceDiversityRequirement:
+    domain: EvidenceDomain
+    min_distinct_sources: int = 1
+
+    def __post_init__(self) -> None:
+        if self.min_distinct_sources < 1:
+            raise ValueError("min_distinct_sources must be >= 1")
+
+
+@dataclass(
+    frozen=True,
+    slots=True,
+)
+class TaskEvidenceAcceptanceContract:
+    """
+    Structural evidence policy for exactly one ClaimTask.
+
+    This contract is intentionally separate from ClaimTask so the semantic
+    task stays semantic-only. It also does not make a religious truth or
+    answerability decision.
+    """
+
+    task_id: str
+    retrieval_shape: RetrievalShape
+    allowed_domains: frozenset[EvidenceDomain]
+    required_domains: frozenset[EvidenceDomain]
+    anchors: tuple[EvidenceAnchor, ...] = ()
+    source_diversity: tuple[
+        SourceDiversityRequirement,
+        ...,
+    ] = ()
+    require_provenance: bool = True
+
+    def __post_init__(self) -> None:
+        if not self.task_id.strip():
+            raise ValueError("task_id must not be blank")
+
+        if not self.allowed_domains:
+            raise ValueError("allowed_domains must not be empty")
+
+        if not self.required_domains:
+            raise ValueError("required_domains must not be empty")
+
+        if not self.required_domains.issubset(self.allowed_domains):
+            raise ValueError("required_domains must be a subset of allowed_domains")
+
+        for anchor in self.anchors:
+            if not anchor.domains.issubset(self.allowed_domains):
+                raise ValueError("anchor domains must be allowed by the contract")
+
+        for requirement in self.source_diversity:
+            if requirement.domain not in self.allowed_domains:
+                raise ValueError(
+                    "source-diversity domain must be allowed by the contract"
+                )
+
+        hard_anchors = tuple(
+            anchor
+            for anchor in self.anchors
+            if (anchor.strength is AnchorStrength.HARD)
+        )
+
+        if self.retrieval_shape is RetrievalShape.CONCEPTUAL and hard_anchors:
+            raise ValueError(
+                "conceptual retrieval must not carry hard anchors; use hybrid"
+            )
+
+        if (
+            self.retrieval_shape
+            in {
+                RetrievalShape.EXACT_ANCHOR,
+                RetrievalShape.HYBRID,
+            }
+            and not hard_anchors
+        ):
+            raise ValueError(
+                f"{self.retrieval_shape.value} requires at least one hard anchor"
+            )
+
+
+@dataclass(
+    frozen=True,
+    slots=True,
+)
+class ClaimEvidencePolicySet:
+    """
+    Task-id keyed evidence contracts living beside the claim graph.
+    """
+
+    contracts: tuple[
+        TaskEvidenceAcceptanceContract,
+        ...,
+    ]
+
+    def __post_init__(self) -> None:
+        task_ids = tuple(contract.task_id for contract in self.contracts)
+
+        if len(task_ids) != len(set(task_ids)):
+            raise ValueError("claim evidence contracts must have unique task_ids")
+
+    def for_task(
+        self,
+        task_id: str,
+    ) -> TaskEvidenceAcceptanceContract:
+        for contract in self.contracts:
+            if contract.task_id == task_id:
+                return contract
+
+        raise KeyError(f"no evidence contract for task: {task_id}")
+
+
+class EvidenceAcceptanceReason(StrEnum):
+    ACCEPTED = "accepted"
+    DUPLICATE_EVIDENCE_ID = "duplicate_evidence_id"
+    DOMAIN_NOT_ALLOWED = "domain_not_allowed"
+    MISSING_PROVENANCE = "missing_provenance"
+    MISSING_REQUIRED_REFERENCE = "missing_required_reference"
+    HARD_ANCHOR_MISMATCH = "hard_anchor_mismatch"
+
+
+    ROLE_DOMAIN_MISMATCH = "role_domain_mismatch"
+
+@dataclass(
+    frozen=True,
+    slots=True,
+)
+class EvidenceAcceptanceRecord:
+    evidence_id: str
+    domain: EvidenceDomain
+    accepted: bool
+    reason: EvidenceAcceptanceReason
+
+
+@dataclass(
+    frozen=True,
+    slots=True,
+)
+class TaskEvidenceAcceptanceResult:
+    """
+    Structural acceptance result only.
+
+    structural_contract_satisfied means evidence cleared deterministic task
+    constraints. It MUST NOT be interpreted as semantic support or as
+    permission to answer.
+    """
+
+    task_id: str
+    accepted_evidence: tuple[
+        EvidenceNode,
+        ...,
+    ]
+    rejected_evidence: tuple[
+        EvidenceNode,
+        ...,
+    ]
+    records: tuple[
+        EvidenceAcceptanceRecord,
+        ...,
+    ]
+    covered_required_domains: frozenset[EvidenceDomain]
+    missing_required_domains: frozenset[EvidenceDomain]
+    missing_hard_anchor_coverage: tuple[
+        str,
+        ...,
+    ]
+    missing_source_diversity: tuple[
+        str,
+        ...,
+    ]
+    structural_contract_satisfied: bool
+
+
+_ARABIC_DIGITS = str.maketrans(
+    "٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹",
+    "01234567890123456789",
+)
+
+_QURAN_REFERENCE = re.compile(
+    r"^(?:quran:)?"
+    r"(?P<start_surah>\d{1,3}):"
+    r"(?P<start_ayah>\d{1,3})"
+    r"(?:-(?:(?P<end_surah>\d{1,3}):)?"
+    r"(?P<end_ayah>\d{1,3}))?$"
+)
+
+
+def _normalize_reference(
+    value: str,
+) -> str:
+    value = value.translate(_ARABIC_DIGITS).strip().lower()
+    value = re.sub(
+        r"\s+",
+        " ",
+        value,
+    )
+    value = re.sub(
+        r"\s*[/：:]\s*",
+        ":",
+        value,
+    )
+    value = re.sub(
+        r"\s*[-–—]\s*",
+        "-",
+        value,
+    )
+    return value
+
+
+def _parse_quran_range(
+    value: str,
+) -> (
+    tuple[
+        tuple[int, int],
+        tuple[int, int],
+    ]
+    | None
+):
+    normalized = _normalize_reference(value)
+    match = _QURAN_REFERENCE.fullmatch(normalized)
+
+    if match is None:
+        return None
+
+    start_surah = int(match.group("start_surah"))
+    start_ayah = int(match.group("start_ayah"))
+
+    end_ayah_text = match.group("end_ayah")
+
+    if end_ayah_text is None:
+        end_surah = start_surah
+        end_ayah = start_ayah
+    else:
+        end_surah = int(match.group("end_surah") or start_surah)
+        end_ayah = int(end_ayah_text)
+
+    start = (
+        start_surah,
+        start_ayah,
+    )
+    end = (
+        end_surah,
+        end_ayah,
+    )
+
+    if end < start:
+        return None
+
+    return start, end
+
+
+def _reference_matches(
+    *,
+    anchor: EvidenceAnchor,
+    candidate_reference: str,
+) -> bool:
+    if anchor.kind is AnchorKind.EXACT:
+        return _normalize_reference(anchor.reference) == _normalize_reference(
+            candidate_reference
+        )
+
+    if anchor.kind is AnchorKind.QURAN_AYAH:
+        anchor_range = _parse_quran_range(anchor.reference)
+        candidate_range = _parse_quran_range(candidate_reference)
+
+        if anchor_range is None or candidate_range is None:
+            return False
+
+        anchor_start, anchor_end = anchor_range
+        candidate_start, candidate_end = candidate_range
+
+        return candidate_start <= anchor_start and candidate_end >= anchor_end
+
+    raise RuntimeError(f"unsupported anchor kind: {anchor.kind.value}")
+
+
+def _candidate_references_for_anchor(
+    *,
+    node: EvidenceNode,
+    anchor: EvidenceAnchor,
+) -> tuple[str, ...]:
+    """
+    Return structural identity references relevant
+    to one anchor.
+
+    EvidenceNode.reference is source-specific and
+    must not automatically be interpreted as Quran
+    identity.
+
+    Quran-linked evidence uses related_quran when
+    available. Quran-shaped legacy references remain
+    supported for existing local retrievers.
+    """
+
+    if anchor.kind is AnchorKind.QURAN_AYAH:
+        if node.related_quran:
+            return tuple(value for value in node.related_quran if value.strip())
+
+        if node.reference and _parse_quran_range(node.reference) is not None:
+            return (node.reference,)
+
+        return ()
+
+    if node.reference and node.reference.strip():
+        return (node.reference,)
+
+    return ()
+
+
+def _hard_anchors_for_domain(
+    contract: TaskEvidenceAcceptanceContract,
+    domain: EvidenceDomain,
+) -> tuple[
+    EvidenceAnchor,
+    ...,
+]:
+    return tuple(
+        anchor
+        for anchor in contract.anchors
+        if (anchor.strength is AnchorStrength.HARD and domain in anchor.domains)
+    )
+
+
+
+_TYPED_EVIDENCE_ROLE_DOMAINS: dict[
+    str,
+    EvidenceDomain,
+] = {
+    "quran_text": EvidenceDomain.QURAN,
+    "hadith_text": EvidenceDomain.HADITH,
+    "hadith_grade": EvidenceDomain.HADITH,
+    "tafsir_focus": EvidenceDomain.TAFSIR,
+}
+
+
+def _typed_evidence_role_matches_domain_only(
+    node: EvidenceNode,
+) -> bool:
+    """
+    Enforce an evidence identity invariant.
+
+    A typed evidence role may not impersonate another
+    religious evidence domain merely by changing the
+    EvidenceNode.domain label.
+
+    Untyped evidence is intentionally unchanged.
+    """
+
+    if node.claim_type is None:
+        return True
+
+    expected_domain = _TYPED_EVIDENCE_ROLE_DOMAINS.get(
+        node.claim_type
+    )
+
+    if expected_domain is None:
+        return True
+
+    return node.domain is expected_domain
+
+
+
+def _source_namespace_matches_domain(
+    node: EvidenceNode,
+) -> bool:
+    """
+    Enforce deterministic source/domain identity.
+
+    Self-declaring religious namespaces cannot claim
+    a different evidence domain.
+
+    Provider-specific source IDs remain governed by
+    their official retrieval/admission lanes.
+    """
+
+    namespace = (
+        node.source_id.strip()
+        .split(":", 1)[0]
+        .lower()
+    )
+
+    expected_domains = {
+        "quran": EvidenceDomain.QURAN,
+        "tafsir": EvidenceDomain.TAFSIR,
+        "hadith": EvidenceDomain.HADITH,
+        "fiqh": EvidenceDomain.FIQH,
+    }
+
+    expected = expected_domains.get(namespace)
+
+    if expected is None:
+        return True
+
+    return node.domain is expected
+
+
+def _typed_evidence_role_matches_domain(
+    node: EvidenceNode,
+) -> bool:
+    """
+    Deterministic evidence-identity boundary.
+
+    Both the declared semantic role and any governed
+    self-declaring source namespace must agree with
+    the evidence domain.
+    """
+
+    if not _source_namespace_matches_domain(node):
+        return False
+
+    return _typed_evidence_role_matches_domain_only(
+        node
+    )
+
+
+class TaskEvidenceAcceptanceGate:
+    """
+    Reject structurally invalid evidence before EvidenceBundle construction.
+
+    Checks only identity-like facts: domain, provenance, hard references,
+    per-domain presence, and source diversity. It deliberately does NOT judge
+    semantic entailment, religious truth, grading correctness, or which opinion
+    should win.
+    """
+
+    def evaluate(
+        self,
+        *,
+        contract: TaskEvidenceAcceptanceContract,
+        evidence: Iterable[EvidenceNode],
+    ) -> TaskEvidenceAcceptanceResult:
+        accepted: list[EvidenceNode] = []
+        rejected: list[EvidenceNode] = []
+        records: list[EvidenceAcceptanceRecord] = []
+        seen_ids: set[str] = set()
+
+        for node in evidence:
+            reason = self._rejection_reason(
+                contract=contract,
+                node=node,
+                seen_ids=seen_ids,
+            )
+
+            duplicate = node.evidence_id in seen_ids
+
+            if not duplicate:
+                seen_ids.add(node.evidence_id)
+
+            if reason is None:
+                accepted.append(node)
+                records.append(
+                    EvidenceAcceptanceRecord(
+                        evidence_id=(node.evidence_id),
+                        domain=node.domain,
+                        accepted=True,
+                        reason=(EvidenceAcceptanceReason.ACCEPTED),
+                    )
+                )
+                continue
+
+            rejected.append(node)
+            records.append(
+                EvidenceAcceptanceRecord(
+                    evidence_id=(node.evidence_id),
+                    domain=node.domain,
+                    accepted=False,
+                    reason=(
+                        EvidenceAcceptanceReason.DUPLICATE_EVIDENCE_ID
+                        if duplicate
+                        else reason
+                    ),
+                )
+            )
+
+        covered_required_domains = frozenset(
+            node.domain
+            for node in accepted
+            if (node.domain in contract.required_domains)
+        )
+
+        missing_required_domains = contract.required_domains - covered_required_domains
+
+        missing_anchor_coverage = self._missing_anchor_coverage(
+            contract=contract,
+            accepted=tuple(accepted),
+        )
+
+        missing_source_diversity = self._missing_source_diversity(
+            contract=contract,
+            accepted=tuple(accepted),
+        )
+
+        structural_contract_satisfied = not (
+            missing_required_domains
+            or missing_anchor_coverage
+            or missing_source_diversity
+        )
+
+        return TaskEvidenceAcceptanceResult(
+            task_id=contract.task_id,
+            accepted_evidence=(tuple(accepted)),
+            rejected_evidence=(tuple(rejected)),
+            records=tuple(records),
+            covered_required_domains=(covered_required_domains),
+            missing_required_domains=(missing_required_domains),
+            missing_hard_anchor_coverage=(missing_anchor_coverage),
+            missing_source_diversity=(missing_source_diversity),
+            structural_contract_satisfied=(structural_contract_satisfied),
+        )
+
+    @staticmethod
+    def _rejection_reason(
+        *,
+        contract: TaskEvidenceAcceptanceContract,
+        node: EvidenceNode,
+        seen_ids: set[str],
+    ) -> EvidenceAcceptanceReason | None:
+        if node.evidence_id in seen_ids:
+            return EvidenceAcceptanceReason.DUPLICATE_EVIDENCE_ID
+
+        if node.domain not in contract.allowed_domains:
+            return EvidenceAcceptanceReason.DOMAIN_NOT_ALLOWED
+
+        if not _typed_evidence_role_matches_domain(node):
+            return EvidenceAcceptanceReason.ROLE_DOMAIN_MISMATCH
+
+        if contract.require_provenance and not node.source_id.strip():
+            return EvidenceAcceptanceReason.MISSING_PROVENANCE
+
+        hard_anchors = _hard_anchors_for_domain(
+            contract,
+            node.domain,
+        )
+
+        if not hard_anchors:
+            return None
+
+        candidate_pairs = tuple(
+            (
+                anchor,
+                _candidate_references_for_anchor(
+                    node=node,
+                    anchor=anchor,
+                ),
+            )
+            for anchor in hard_anchors
+        )
+
+        if not any(references for _, references in candidate_pairs):
+            return EvidenceAcceptanceReason.MISSING_REQUIRED_REFERENCE
+
+        if not any(
+            _reference_matches(
+                anchor=anchor,
+                candidate_reference=(candidate_reference),
+            )
+            for anchor, references in candidate_pairs
+            for candidate_reference in references
+        ):
+            return EvidenceAcceptanceReason.HARD_ANCHOR_MISMATCH
+
+        return None
+
+    @staticmethod
+    def _missing_anchor_coverage(
+        *,
+        contract: TaskEvidenceAcceptanceContract,
+        accepted: tuple[
+            EvidenceNode,
+            ...,
+        ],
+    ) -> tuple[
+        str,
+        ...,
+    ]:
+        missing: list[str] = []
+
+        for anchor in contract.anchors:
+            if anchor.strength is not AnchorStrength.HARD:
+                continue
+
+            required_anchor_domains = anchor.domains & contract.required_domains
+
+            for domain in sorted(
+                required_anchor_domains,
+                key=lambda item: item.value,
+            ):
+                covered = any(
+                    node.domain is domain
+                    and any(
+                        _reference_matches(
+                            anchor=anchor,
+                            candidate_reference=(candidate_reference),
+                        )
+                        for candidate_reference in (
+                            _candidate_references_for_anchor(
+                                node=node,
+                                anchor=anchor,
+                            )
+                        )
+                    )
+                    for node in accepted
+                )
+
+                if not covered:
+                    missing.append(f"{domain.value}:{anchor.reference}")
+
+        return tuple(missing)
+
+    @staticmethod
+    def _missing_source_diversity(
+        *,
+        contract: TaskEvidenceAcceptanceContract,
+        accepted: tuple[
+            EvidenceNode,
+            ...,
+        ],
+    ) -> tuple[
+        str,
+        ...,
+    ]:
+        missing: list[str] = []
+
+        for requirement in contract.source_diversity:
+            sources = {
+                node.source_id
+                for node in accepted
+                if (node.domain is requirement.domain and node.source_id.strip())
+            }
+
+            if len(sources) < requirement.min_distinct_sources:
+                missing.append(
+                    f"{requirement.domain.value}:"
+                    f"{len(sources)}/"
+                    f"{requirement.min_distinct_sources}"
+                )
+
+        return tuple(missing)
+
+
+class TaskEvidenceAcceptanceService:
+    """
+    Fail-closed task-id lookup plus structural evidence gate.
+    """
+
+    def __init__(
+        self,
+        policies: ClaimEvidencePolicySet,
+        *,
+        gate: (TaskEvidenceAcceptanceGate | None) = None,
+    ) -> None:
+        self._policies = policies
+        self._gate = gate or TaskEvidenceAcceptanceGate()
+
+    def evaluate(
+        self,
+        *,
+        task_id: str,
+        evidence: Iterable[EvidenceNode],
+    ) -> TaskEvidenceAcceptanceResult:
+        contract = self._policies.for_task(task_id)
+
+        return self._gate.evaluate(
+            contract=contract,
+            evidence=evidence,
+        )

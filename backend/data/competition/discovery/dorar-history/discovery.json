@@ -1,0 +1,2878 @@
+{
+  "adapter": "NOT_IMPLEMENTED",
+  "cases": {
+    "contemporary_event": {
+      "bytes": 140621,
+      "canonical_href": "https://dorar.net/history/event/6230",
+      "effective_path": "/history/event/6230",
+      "effective_url": "https://dorar.net/history/event/6230",
+      "headings": [
+        {
+          "tag": "h5",
+          "text": "منهج العمل في الموسوعات"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة التفسير"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة الحديثية"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة العقدية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأديان"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الفرق"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة الفقهية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة أصول الفقه"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة القواعد الفقهية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأخلاق والسلوك"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأدب"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة اللغة العربية"
+        },
+        {
+          "tag": "h1",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "tag": "h6",
+          "text": "اعتراف إسبانيا والنرويج وإيرلندا وأرمينيا وسلوفينيا رسمياً بدولة فلسطين ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h5",
+          "text": "روابط هامة"
+        },
+        {
+          "tag": "h5",
+          "text": "خدمات تقنية"
+        },
+        {
+          "tag": "h5",
+          "text": "تابعنا"
+        },
+        {
+          "tag": "h5",
+          "text": "الاشتراك في القائمة البريدية"
+        },
+        {
+          "tag": "h5",
+          "text": "انشر المادة"
+        },
+        {
+          "tag": "h4",
+          "text": "لجنة الإشراف العلمي"
+        }
+      ],
+      "history_links": [
+        {
+          "href": "/history",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/event/6230",
+          "text": ""
+        },
+        {
+          "href": "/history/refs",
+          "text": "المراجع المعتمدة"
+        },
+        {
+          "href": "/history/refs",
+          "text": "المراجع المعتمدة"
+        },
+        {
+          "href": "/history",
+          "text": "تصفح الكل"
+        },
+        {
+          "href": "/history?era=1",
+          "text": "عصر النبوة"
+        },
+        {
+          "href": "/history?era=3",
+          "text": "العصر الأموي"
+        },
+        {
+          "href": "/history?era=4",
+          "text": "العصر العباسي"
+        },
+        {
+          "href": "/history?era=5",
+          "text": "عصر المماليك"
+        },
+        {
+          "href": "/history?era=6",
+          "text": "العصر العثماني"
+        },
+        {
+          "href": "/history?era=7",
+          "text": "التاريخ المعاصر"
+        },
+        {
+          "href": "https://dorar.net/history/event/6230",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/event/6230",
+          "text": ""
+        },
+        {
+          "href": "/history/event/6230",
+          "text": ""
+        },
+        {
+          "href": "https://www.facebook.com/sharer/sharer.php?u=https://dorar.net/history/event/6230",
+          "text": ""
+        },
+        {
+          "href": "http://twitter.com/share?url=https://dorar.net/history/event/6230",
+          "text": ""
+        },
+        {
+          "href": "https://api.whatsapp.com/send?text=https://dorar.net/history/event/6230",
+          "text": ""
+        },
+        {
+          "href": "https://t.me/share/url?url=https://dorar.net/history/event/6230",
+          "text": ""
+        }
+      ],
+      "html_title": "الدرر السنية - الموسوعة التاريخية - اعتراف إسبانيا والنرويج وإيرلندا وأرمينيا وسلوفينيا رسمياً بدولة فلسطين",
+      "http_code": 200,
+      "markers": {
+        "agreement": false,
+        "brief_narrative": true,
+        "disagreement": true,
+        "event_details": true,
+        "gregorian_year": true,
+        "hadith_attribution": false,
+        "hijri_year": true,
+        "history_encyclopedia": true,
+        "lunar_month": true,
+        "no_commentary_analysis": true,
+        "prophet": false,
+        "reported_saying": false
+      },
+      "requested_url": "https://dorar.net/history/event/6230",
+      "sha256": "8cdf765c667895971c8df518558b8d1c2a66f0ae8f80d47fb6dbdbb5454919a3",
+      "text_chars": 5420
+    },
+    "early_modern_event": {
+      "bytes": 140552,
+      "canonical_href": "https://dorar.net/history/event/3846",
+      "effective_path": "/history/event/3846",
+      "effective_url": "https://dorar.net/history/event/3846",
+      "headings": [
+        {
+          "tag": "h5",
+          "text": "منهج العمل في الموسوعات"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة التفسير"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة الحديثية"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة العقدية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأديان"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الفرق"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة الفقهية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة أصول الفقه"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة القواعد الفقهية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأخلاق والسلوك"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأدب"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة اللغة العربية"
+        },
+        {
+          "tag": "h1",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "tag": "h6",
+          "text": "احتلال الصفويين جزيرة أوال (البحرين) ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h5",
+          "text": "روابط هامة"
+        },
+        {
+          "tag": "h5",
+          "text": "خدمات تقنية"
+        },
+        {
+          "tag": "h5",
+          "text": "تابعنا"
+        },
+        {
+          "tag": "h5",
+          "text": "الاشتراك في القائمة البريدية"
+        },
+        {
+          "tag": "h5",
+          "text": "انشر المادة"
+        },
+        {
+          "tag": "h4",
+          "text": "لجنة الإشراف العلمي"
+        }
+      ],
+      "history_links": [
+        {
+          "href": "/history",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/event/3846",
+          "text": ""
+        },
+        {
+          "href": "/history/refs",
+          "text": "المراجع المعتمدة"
+        },
+        {
+          "href": "/history/refs",
+          "text": "المراجع المعتمدة"
+        },
+        {
+          "href": "/history",
+          "text": "تصفح الكل"
+        },
+        {
+          "href": "/history?era=1",
+          "text": "عصر النبوة"
+        },
+        {
+          "href": "/history?era=3",
+          "text": "العصر الأموي"
+        },
+        {
+          "href": "/history?era=4",
+          "text": "العصر العباسي"
+        },
+        {
+          "href": "/history?era=5",
+          "text": "عصر المماليك"
+        },
+        {
+          "href": "/history?era=6",
+          "text": "العصر العثماني"
+        },
+        {
+          "href": "/history?era=7",
+          "text": "التاريخ المعاصر"
+        },
+        {
+          "href": "https://dorar.net/history/event/3846",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/event/3846",
+          "text": ""
+        },
+        {
+          "href": "/history/event/3846",
+          "text": ""
+        },
+        {
+          "href": "https://www.facebook.com/sharer/sharer.php?u=https://dorar.net/history/event/3846",
+          "text": ""
+        },
+        {
+          "href": "http://twitter.com/share?url=https://dorar.net/history/event/3846",
+          "text": ""
+        },
+        {
+          "href": "https://api.whatsapp.com/send?text=https://dorar.net/history/event/3846",
+          "text": ""
+        },
+        {
+          "href": "https://t.me/share/url?url=https://dorar.net/history/event/3846",
+          "text": ""
+        }
+      ],
+      "html_title": "الدرر السنية - الموسوعة التاريخية - احتلال الصفويين جزيرة أوال (البحرين)",
+      "http_code": 200,
+      "markers": {
+        "agreement": false,
+        "brief_narrative": true,
+        "disagreement": true,
+        "event_details": true,
+        "gregorian_year": true,
+        "hadith_attribution": false,
+        "hijri_year": true,
+        "history_encyclopedia": true,
+        "lunar_month": false,
+        "no_commentary_analysis": true,
+        "prophet": false,
+        "reported_saying": false
+      },
+      "requested_url": "https://dorar.net/history/event/3846",
+      "sha256": "4279100c0283faca8c7276372dedb41084675352091c92e7af9886b4befc2f70",
+      "text_chars": 5513
+    },
+    "home": {
+      "bytes": 228447,
+      "canonical_href": "https://dorar.net/history",
+      "effective_path": "/history",
+      "effective_url": "https://dorar.net/history",
+      "headings": [
+        {
+          "tag": "h5",
+          "text": "منهج العمل في الموسوعات"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة التفسير"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة الحديثية"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة العقدية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأديان"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الفرق"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة الفقهية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة أصول الفقه"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة القواعد الفقهية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأخلاق والسلوك"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأدب"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة اللغة العربية"
+        },
+        {
+          "tag": "h1",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "tag": "h6",
+          "text": "ولادة النبي محمد بن عبدالله صلى الله عليه وسلم ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "حادِثةُ شَقِّ صدرِ النَّبيِّ صلَّى الله عَليهِ وسلَّم الأُولى ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "وفاة أم النبي آمنة بنت وهب وحضانة أم أيمن له صلى الله عليه وسلم ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "كفالة عبد المطلب رسول الله صلَّى اللهُ عليه وسلَّم ومعرفته بشأنه ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "وفاة عبد المطلب ووصيته لأبي طالب برسول الله صلَّى اللهُ عليه وسلَّم ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "سفر النبي صلَّى اللهُ عليه وسلَّم مع عمه أبي طالب إلى الشام ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "حرب الفِجَار، وشهود النبي صلَّى اللهُ عليه وسلَّم لها ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "حِلْفُ الفُضولِ بين قبائل قريش ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "زَواجُ النَّبيِّ صلَّى الله عَليهِ وسلَّم من خَديجةَ بنتِ خُويلدٍ رضِي الله عنها ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "سفر النبي صلَّى اللهُ عليه وسلَّم للمرة الثانية إلى الشام ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "النَّبيُّ صلَّى الله عَليهِ وسلَّم يضعُ الحَجَرَ الأَسودَ في مكانِه في الكعبةِ ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "أوَّلُ نُزولِ الوَحيِ ونُبوءةُ النَّبيِّ صلَّى الله عَليهِ وسلَّم ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "فُتورُ الوحيِ عن رسولِ الله صلَّى الله عَليهِ وسلَّم ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "أوَّلُ النَّاسِ إيمانًا بالله ورسولِه ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "ما لقِي الصَّحابةُ من إيذاءِ قُريشٍ ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "طلب قريش من أبي طالب أن يكف عنهم رسول الله صلى الله عليه وسلم ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "الهِجرةُ الأُولى إلى الحَبشةِ ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "إسلام حمزة بن عبد المطلب رَضي اللهُ عنه ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "الهِجرةُ الثَّانيةُ إلى الحَبشةِ ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "إِسلامُ عُمَرَ رضِي الله عنهُ ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h5",
+          "text": "روابط هامة"
+        },
+        {
+          "tag": "h5",
+          "text": "خدمات تقنية"
+        },
+        {
+          "tag": "h5",
+          "text": "تابعنا"
+        },
+        {
+          "tag": "h5",
+          "text": "الاشتراك في القائمة البريدية"
+        },
+        {
+          "tag": "h5",
+          "text": "انشر المادة"
+        },
+        {
+          "tag": "h4",
+          "text": "لجنة الإشراف العلمي"
+        }
+      ],
+      "history_links": [
+        {
+          "href": "/history",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history",
+          "text": ""
+        },
+        {
+          "href": "/history/refs",
+          "text": "المراجع المعتمدة"
+        },
+        {
+          "href": "/history/refs",
+          "text": "المراجع المعتمدة"
+        },
+        {
+          "href": "/history",
+          "text": "تصفح الكل"
+        },
+        {
+          "href": "/history?era=1",
+          "text": "عصر النبوة"
+        },
+        {
+          "href": "/history?era=3",
+          "text": "العصر الأموي"
+        },
+        {
+          "href": "/history?era=4",
+          "text": "العصر العباسي"
+        },
+        {
+          "href": "/history?era=5",
+          "text": "عصر المماليك"
+        },
+        {
+          "href": "/history?era=6",
+          "text": "العصر العثماني"
+        },
+        {
+          "href": "/history?era=7",
+          "text": "التاريخ المعاصر"
+        },
+        {
+          "href": "https://dorar.net/history/event/1",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history",
+          "text": ""
+        },
+        {
+          "href": "/history/event/1",
+          "text": ""
+        },
+        {
+          "href": "https://dorar.net/history/event/2",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history",
+          "text": ""
+        },
+        {
+          "href": "/history/event/2",
+          "text": ""
+        },
+        {
+          "href": "https://dorar.net/history/event/3",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history",
+          "text": ""
+        },
+        {
+          "href": "/history/event/3",
+          "text": ""
+        },
+        {
+          "href": "https://dorar.net/history/event/4",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history",
+          "text": ""
+        },
+        {
+          "href": "/history/event/4",
+          "text": ""
+        },
+        {
+          "href": "https://dorar.net/history/event/5",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history",
+          "text": ""
+        },
+        {
+          "href": "/history/event/5",
+          "text": ""
+        },
+        {
+          "href": "https://dorar.net/history/event/6",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history",
+          "text": ""
+        },
+        {
+          "href": "/history/event/6",
+          "text": ""
+        },
+        {
+          "href": "https://dorar.net/history/event/7",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history",
+          "text": ""
+        },
+        {
+          "href": "/history/event/7",
+          "text": ""
+        },
+        {
+          "href": "https://dorar.net/history/event/8",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history",
+          "text": ""
+        },
+        {
+          "href": "/history/event/8",
+          "text": ""
+        },
+        {
+          "href": "https://dorar.net/history/event/9",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history",
+          "text": ""
+        },
+        {
+          "href": "/history/event/9",
+          "text": ""
+        },
+        {
+          "href": "https://dorar.net/history/event/10",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history",
+          "text": ""
+        },
+        {
+          "href": "/history/event/10",
+          "text": ""
+        },
+        {
+          "href": "https://dorar.net/history/event/11",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history",
+          "text": ""
+        },
+        {
+          "href": "/history/event/11",
+          "text": ""
+        },
+        {
+          "href": "https://dorar.net/history/event/12",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history",
+          "text": ""
+        },
+        {
+          "href": "/history/event/12",
+          "text": ""
+        },
+        {
+          "href": "https://dorar.net/history/event/13",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history",
+          "text": ""
+        },
+        {
+          "href": "/history/event/13",
+          "text": ""
+        },
+        {
+          "href": "https://dorar.net/history/event/14",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history",
+          "text": ""
+        },
+        {
+          "href": "/history/event/14",
+          "text": ""
+        },
+        {
+          "href": "https://dorar.net/history/event/15",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history",
+          "text": ""
+        },
+        {
+          "href": "/history/event/15",
+          "text": ""
+        },
+        {
+          "href": "https://dorar.net/history/event/16",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history",
+          "text": ""
+        },
+        {
+          "href": "/history/event/16",
+          "text": ""
+        },
+        {
+          "href": "https://dorar.net/history/event/17",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history",
+          "text": ""
+        },
+        {
+          "href": "/history/event/17",
+          "text": ""
+        },
+        {
+          "href": "https://dorar.net/history/event/18",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history",
+          "text": ""
+        },
+        {
+          "href": "/history/event/18",
+          "text": ""
+        },
+        {
+          "href": "https://dorar.net/history/event/19",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history",
+          "text": ""
+        },
+        {
+          "href": "/history/event/19",
+          "text": ""
+        },
+        {
+          "href": "https://dorar.net/history/event/20",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history",
+          "text": ""
+        },
+        {
+          "href": "/history/event/20",
+          "text": ""
+        },
+        {
+          "href": "https://www.facebook.com/sharer/sharer.php?u=https://dorar.net/history",
+          "text": ""
+        },
+        {
+          "href": "http://twitter.com/share?url=https://dorar.net/history",
+          "text": ""
+        },
+        {
+          "href": "https://api.whatsapp.com/send?text=https://dorar.net/history",
+          "text": ""
+        },
+        {
+          "href": "https://t.me/share/url?url=https://dorar.net/history",
+          "text": ""
+        }
+      ],
+      "html_title": "موسوعة التاريخية",
+      "http_code": 200,
+      "markers": {
+        "agreement": true,
+        "brief_narrative": true,
+        "disagreement": true,
+        "event_details": true,
+        "gregorian_year": true,
+        "hadith_attribution": true,
+        "hijri_year": true,
+        "history_encyclopedia": true,
+        "lunar_month": true,
+        "no_commentary_analysis": true,
+        "prophet": true,
+        "reported_saying": true
+      },
+      "requested_url": "https://dorar.net/history",
+      "sha256": "ed8f231b244875465eb57f9dd2515573bd2bfc0c82554eb6eb91fc05a9ae8da0",
+      "text_chars": 31325
+    },
+    "medieval_event": {
+      "bytes": 141784,
+      "canonical_href": "https://dorar.net/history/event/1571",
+      "effective_path": "/history/event/1571",
+      "effective_url": "https://dorar.net/history/event/1571",
+      "headings": [
+        {
+          "tag": "h5",
+          "text": "منهج العمل في الموسوعات"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة التفسير"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة الحديثية"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة العقدية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأديان"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الفرق"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة الفقهية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة أصول الفقه"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة القواعد الفقهية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأخلاق والسلوك"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأدب"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة اللغة العربية"
+        },
+        {
+          "tag": "h1",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "tag": "h6",
+          "text": "قِيامُ وَقعةٍ بين البساسيري وقُريشٍ بن بدران ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h5",
+          "text": "روابط هامة"
+        },
+        {
+          "tag": "h5",
+          "text": "خدمات تقنية"
+        },
+        {
+          "tag": "h5",
+          "text": "تابعنا"
+        },
+        {
+          "tag": "h5",
+          "text": "الاشتراك في القائمة البريدية"
+        },
+        {
+          "tag": "h5",
+          "text": "انشر المادة"
+        },
+        {
+          "tag": "h4",
+          "text": "لجنة الإشراف العلمي"
+        }
+      ],
+      "history_links": [
+        {
+          "href": "/history",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/event/1571",
+          "text": ""
+        },
+        {
+          "href": "/history/refs",
+          "text": "المراجع المعتمدة"
+        },
+        {
+          "href": "/history/refs",
+          "text": "المراجع المعتمدة"
+        },
+        {
+          "href": "/history",
+          "text": "تصفح الكل"
+        },
+        {
+          "href": "/history?era=1",
+          "text": "عصر النبوة"
+        },
+        {
+          "href": "/history?era=3",
+          "text": "العصر الأموي"
+        },
+        {
+          "href": "/history?era=4",
+          "text": "العصر العباسي"
+        },
+        {
+          "href": "/history?era=5",
+          "text": "عصر المماليك"
+        },
+        {
+          "href": "/history?era=6",
+          "text": "العصر العثماني"
+        },
+        {
+          "href": "/history?era=7",
+          "text": "التاريخ المعاصر"
+        },
+        {
+          "href": "https://dorar.net/history/event/1571",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/event/1571",
+          "text": ""
+        },
+        {
+          "href": "/history/event/1571",
+          "text": ""
+        },
+        {
+          "href": "https://www.facebook.com/sharer/sharer.php?u=https://dorar.net/history/event/1571",
+          "text": ""
+        },
+        {
+          "href": "http://twitter.com/share?url=https://dorar.net/history/event/1571",
+          "text": ""
+        },
+        {
+          "href": "https://api.whatsapp.com/send?text=https://dorar.net/history/event/1571",
+          "text": ""
+        },
+        {
+          "href": "https://t.me/share/url?url=https://dorar.net/history/event/1571",
+          "text": ""
+        }
+      ],
+      "html_title": "الدرر السنية - الموسوعة التاريخية - قِيامُ وَقعةٍ بين البساسيري وقُريشٍ بن بدران",
+      "http_code": 200,
+      "markers": {
+        "agreement": false,
+        "brief_narrative": true,
+        "disagreement": true,
+        "event_details": true,
+        "gregorian_year": true,
+        "hadith_attribution": false,
+        "hijri_year": true,
+        "history_encyclopedia": true,
+        "lunar_month": true,
+        "no_commentary_analysis": true,
+        "prophet": false,
+        "reported_saying": false
+      },
+      "requested_url": "https://dorar.net/history/event/1571",
+      "sha256": "1a24116a21a6149fa8388c53eae29b6a7bb83c2c442797aebf5b1f5ba4b698ab",
+      "text_chars": 5934
+    },
+    "methodology": {
+      "bytes": 129917,
+      "canonical_href": "https://dorar.net/article/1986/%D8%A7%D9%84%D9%85%D9%88%D8%B3%D9%88%D8%B9%D8%A9-%D8%A7%D9%84%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE%D9%8A%D8%A9-%D8%B9%D9%85%D9%84%D9%86%D8%A7-%D9%81%D9%8A-%D8%A7%D9%84%D9%85%D9%88%D8%B3%D9%88%D8%B9%D8%A9",
+      "effective_path": "/article/1986/%D8%A7%D9%84%D9%85%D9%88%D8%B3%D9%88%D8%B9%D8%A9-%D8%A7%D9%84%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE%D9%8A%D8%A9-%D8%B9%D9%85%D9%84%D9%86%D8%A7-%D9%81%D9%8A-%D8%A7%D9%84%D9%85%D9%88%D8%B3%D9%88%D8%B9%D8%A9",
+      "effective_url": "https://dorar.net/article/1986/%D8%A7%D9%84%D9%85%D9%88%D8%B3%D9%88%D8%B9%D8%A9-%D8%A7%D9%84%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE%D9%8A%D8%A9-%D8%B9%D9%85%D9%84%D9%86%D8%A7-%D9%81%D9%8A-%D8%A7%D9%84%D9%85%D9%88%D8%B3%D9%88%D8%B9%D8%A9",
+      "headings": [
+        {
+          "tag": "h5",
+          "text": "منهج العمل في الموسوعات"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة التفسير"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة الحديثية"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة العقدية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأديان"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الفرق"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة الفقهية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة أصول الفقه"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة القواعد الفقهية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأخلاق والسلوك"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأدب"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة اللغة العربية"
+        },
+        {
+          "tag": "h5",
+          "text": "روابط هامة"
+        },
+        {
+          "tag": "h5",
+          "text": "خدمات تقنية"
+        },
+        {
+          "tag": "h5",
+          "text": "تابعنا"
+        },
+        {
+          "tag": "h5",
+          "text": "الاشتراك في القائمة البريدية"
+        },
+        {
+          "tag": "h5",
+          "text": "انشر المادة"
+        },
+        {
+          "tag": "h4",
+          "text": "لجنة الإشراف العلمي"
+        }
+      ],
+      "history_links": [
+        {
+          "href": "/history",
+          "text": "الموسوعة التاريخية"
+        }
+      ],
+      "html_title": "الموسوعة التاريخية - عملنا في الموسوعة",
+      "http_code": 200,
+      "markers": {
+        "agreement": false,
+        "brief_narrative": false,
+        "disagreement": false,
+        "event_details": false,
+        "gregorian_year": false,
+        "hadith_attribution": false,
+        "hijri_year": false,
+        "history_encyclopedia": true,
+        "lunar_month": false,
+        "no_commentary_analysis": false,
+        "prophet": false,
+        "reported_saying": false
+      },
+      "requested_url": "https://dorar.net/article/1986",
+      "sha256": "c414b1d2fbedfb1ff5eb3e0dc9b750b1cae1f7f0b5d243bcaa23aaa2d5aa897d",
+      "text_chars": 4370
+    },
+    "methodology_review": {
+      "bytes": 129928,
+      "canonical_href": "https://dorar.net/article/2106/%D9%85%D9%86%D9%87%D8%AC%D9%8A%D8%A9-%D9%85%D9%88%D8%B3%D9%88%D8%B9%D8%A9-%D8%A7%D9%84%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE%D9%8A%D8%A9",
+      "effective_path": "/article/2106/%D9%85%D9%86%D9%87%D8%AC%D9%8A%D8%A9-%D9%85%D9%88%D8%B3%D9%88%D8%B9%D8%A9-%D8%A7%D9%84%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE%D9%8A%D8%A9",
+      "effective_url": "https://dorar.net/article/2106/%D9%85%D9%86%D9%87%D8%AC%D9%8A%D8%A9-%D9%85%D9%88%D8%B3%D9%88%D8%B9%D8%A9-%D8%A7%D9%84%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE%D9%8A%D8%A9",
+      "headings": [
+        {
+          "tag": "h5",
+          "text": "منهج العمل في الموسوعات"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة التفسير"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة الحديثية"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة العقدية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأديان"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الفرق"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة الفقهية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة أصول الفقه"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة القواعد الفقهية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأخلاق والسلوك"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأدب"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة اللغة العربية"
+        },
+        {
+          "tag": "h5",
+          "text": "روابط هامة"
+        },
+        {
+          "tag": "h5",
+          "text": "خدمات تقنية"
+        },
+        {
+          "tag": "h5",
+          "text": "تابعنا"
+        },
+        {
+          "tag": "h5",
+          "text": "الاشتراك في القائمة البريدية"
+        },
+        {
+          "tag": "h5",
+          "text": "انشر المادة"
+        },
+        {
+          "tag": "h4",
+          "text": "لجنة الإشراف العلمي"
+        }
+      ],
+      "history_links": [
+        {
+          "href": "/history",
+          "text": "الموسوعة التاريخية"
+        }
+      ],
+      "html_title": "منهجية موسوعة التاريخية",
+      "http_code": 200,
+      "markers": {
+        "agreement": false,
+        "brief_narrative": false,
+        "disagreement": false,
+        "event_details": false,
+        "gregorian_year": false,
+        "hadith_attribution": false,
+        "hijri_year": false,
+        "history_encyclopedia": true,
+        "lunar_month": false,
+        "no_commentary_analysis": false,
+        "prophet": false,
+        "reported_saying": false
+      },
+      "requested_url": "https://dorar.net/article/2106",
+      "sha256": "2d8ec21ea5fba32bf23ba6bf2079ee12930cbd1d6fdfb35fe0edf52a06f0b2ff",
+      "text_chars": 4423
+    },
+    "refs": {
+      "bytes": 274290,
+      "canonical_href": "https://dorar.net/history/refs",
+      "effective_path": "/history/refs",
+      "effective_url": "https://dorar.net/history/refs",
+      "headings": [
+        {
+          "tag": "h5",
+          "text": "منهج العمل في الموسوعات"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة التفسير"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة الحديثية"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة العقدية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأديان"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الفرق"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة الفقهية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة أصول الفقه"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة القواعد الفقهية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأخلاق والسلوك"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأدب"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة اللغة العربية"
+        },
+        {
+          "tag": "h1",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "tag": "h5",
+          "text": "1- أحداث التاريخ الإسلامي بترتيب السنين."
+        },
+        {
+          "tag": "h5",
+          "text": "2- أخبار مكة في قديم الدهر وحديثه."
+        },
+        {
+          "tag": "h5",
+          "text": "3- أخبار مكة وما جاء فيها من الآثار."
+        },
+        {
+          "tag": "h5",
+          "text": "4- أمارة شرقي الأردن نشأتها وتطورها في ربع قرن."
+        },
+        {
+          "tag": "h5",
+          "text": "5- اتعاظ الحنفا بأخبار الأئمة الفاطميين الخلفا."
+        },
+        {
+          "tag": "h5",
+          "text": "6- الأحزاب والحركات القومية العربية."
+        },
+        {
+          "tag": "h5",
+          "text": "7- الأحزاب والحركات اليسارية."
+        },
+        {
+          "tag": "h5",
+          "text": "8- الأزهر في ألف عام."
+        },
+        {
+          "tag": "h5",
+          "text": "9- الإنجاز في ترجمة الإمام عبدالعزيز بن باز."
+        },
+        {
+          "tag": "h5",
+          "text": "10- البداية والنهاية."
+        },
+        {
+          "tag": "h5",
+          "text": "11- التاريخ المعاصر إيران وأفغانستان (التاريخ الإسلامي 18)."
+        },
+        {
+          "tag": "h5",
+          "text": "12- التاريخ المعاصر بلاد المغرب (التاريخ الإسلامي 14)."
+        },
+        {
+          "tag": "h5",
+          "text": "13- التاريخ المعاصر تركيا (التاريخ الإسلامي 17)."
+        },
+        {
+          "tag": "h5",
+          "text": "14- التاريخ المعاصر شرقي أفريقية (التاريخ الإسلامي 16)."
+        },
+        {
+          "tag": "h5",
+          "text": "15- التاريخ المعاصر غربي أفريقية (التاريخ الإسلامي 15)."
+        },
+        {
+          "tag": "h5",
+          "text": "16- الجامع لحياة العلامة محمد بن صالح العثيمين."
+        },
+        {
+          "tag": "h5",
+          "text": "17- الجمعيات القومية العربية وموقفها من الإسلام في القرن الرابع عشر الهجري."
+        },
+        {
+          "tag": "h5",
+          "text": "18- الحكم الإسلامي (التاريخ الإسلامي 9)."
+        },
+        {
+          "tag": "h5",
+          "text": "19- الخلفاء الراشدون (التاريخ الإسلامي 3)."
+        },
+        {
+          "tag": "h5",
+          "text": "20- الدولة العباسية (التاريخ الإسلامي 5-6)."
+        },
+        {
+          "tag": "h5",
+          "text": "21- الدولة العثمانية دولة إسلامية مفترى عليها."
+        },
+        {
+          "tag": "h5",
+          "text": "22- الدولة العثمانية عوامل النهوض وأسباب السقوط."
+        },
+        {
+          "tag": "h5",
+          "text": "23- السلوك لمعرفة دول الملوك."
+        },
+        {
+          "tag": "h5",
+          "text": "24- السيرة (التاريخ الإسلامي 2)."
+        },
+        {
+          "tag": "h5",
+          "text": "25- الشيخ حافظ الحكمي حياته وجهوده العلمية والعملية."
+        },
+        {
+          "tag": "h5",
+          "text": "26- الشيخ عبدالرحمن المعلمي وجهوده في السنة ورجالها."
+        },
+        {
+          "tag": "h5",
+          "text": "27- العثمانيون في أوربا."
+        },
+        {
+          "tag": "h5",
+          "text": "28- العقد الثمين في تاريخ البلد الأمين."
+        },
+        {
+          "tag": "h5",
+          "text": "29- العهد الأموي (التاريخ الإسلامي 4)."
+        },
+        {
+          "tag": "h5",
+          "text": "30- العهد العثماني (التاريخ الإسلامي 8)."
+        },
+        {
+          "tag": "h5",
+          "text": "31- العهد المملوكي (التاريخ الإسلامي 7)."
+        },
+        {
+          "tag": "h5",
+          "text": "32- القضية الفلسطينة في نصف قرن."
+        },
+        {
+          "tag": "h5",
+          "text": "33- المختار المصون من أعلام القرون."
+        },
+        {
+          "tag": "h5",
+          "text": "34- المعرفة والتاريخ."
+        },
+        {
+          "tag": "h5",
+          "text": "35- المغرب وبريطانيا العظمى في القرن التاسع عشر (1856 - 1886)."
+        },
+        {
+          "tag": "h5",
+          "text": "36- المقتبس من أنباء أهل الأندلس."
+        },
+        {
+          "tag": "h5",
+          "text": "37- المنتظم في تاريخ الأمم والملوك."
+        },
+        {
+          "tag": "h5",
+          "text": "38- المواعظ والاعتبار بذكر الخطط والآثار."
+        },
+        {
+          "tag": "h5",
+          "text": "39- النهضة الإسلامية في سير أعلامها المعاصرين."
+        },
+        {
+          "tag": "h5",
+          "text": "40- اليمن شماله وجنوبه تاريخه وعلاقاته الدولية."
+        },
+        {
+          "tag": "h5",
+          "text": "41- بغية الطلب في تاريخ حلب."
+        },
+        {
+          "tag": "h5",
+          "text": "42- تاريخ إيران."
+        },
+        {
+          "tag": "h5",
+          "text": "43- تاريخ الأندلس وحضارتها التجزؤ- السيادة المغربية- السقوط والتأثير الحضاري."
+        },
+        {
+          "tag": "h5",
+          "text": "44- تاريخ الإسلام ووفيات المشاهير والأعلام."
+        },
+        {
+          "tag": "h5",
+          "text": "45- تاريخ البيهقي."
+        },
+        {
+          "tag": "h5",
+          "text": "46- تاريخ الجبرتي."
+        },
+        {
+          "tag": "h5",
+          "text": "47- تاريخ الدولة العثمانية."
+        },
+        {
+          "tag": "h5",
+          "text": "48- تاريخ الدولة العثمانية."
+        },
+        {
+          "tag": "h5",
+          "text": "49- تاريخ الطبري (تاريخ الرسل والملوك)."
+        },
+        {
+          "tag": "h5",
+          "text": "50- تاريخ العراق في عصور الخلافة العربية - الإسلامية."
+        },
+        {
+          "tag": "h5",
+          "text": "51- تاريخ المماليك في مصر وبلاد الشام."
+        },
+        {
+          "tag": "h5",
+          "text": "52- تاريخ المملكة العربية السعودية - الجزء الثاني - عهد الملك عبدالعزيز."
+        },
+        {
+          "tag": "h5",
+          "text": "53- تاريخ المملكة العربية السعودية في دليل الخليج."
+        },
+        {
+          "tag": "h5",
+          "text": "54- تاريخ الموصل."
+        },
+        {
+          "tag": "h5",
+          "text": "55- تاريخ حضرموت المسمى بالعدة المفيدة الجامعة لتواريخ قديمة وحديثة."
+        },
+        {
+          "tag": "h5",
+          "text": "56- تاريخ سورية (حكم فيصل بن الحسين)."
+        },
+        {
+          "tag": "h5",
+          "text": "57- تاريخ سورية (نهاية الحكم التركي)."
+        },
+        {
+          "tag": "h5",
+          "text": "58- تاريخ فلسطين الحديث والمعاصر."
+        },
+        {
+          "tag": "h5",
+          "text": "59- ترجمة الشيخ محمد الأمين الشنقيطي صاحب أضواء البيان."
+        },
+        {
+          "tag": "h5",
+          "text": "60- تلفيق الأخبار وتلقيح الآثار في وقائع قزان وبلغار وملوك التتار."
+        },
+        {
+          "tag": "h5",
+          "text": "61- حروب البلقان والحركة العربية في المشرق العربي العثماني 1330 - 1332هـ / 1912 - 1913م."
+        },
+        {
+          "tag": "h5",
+          "text": "62- عنوان المجد في تاريخ نجد."
+        },
+        {
+          "tag": "h5",
+          "text": "63- محمد رشيد رضا إصلاحاته الاجتماعية والدينية."
+        },
+        {
+          "tag": "h5",
+          "text": "64- محمد ناصر الدين الألباني محدث العصر وناصر السنة."
+        },
+        {
+          "tag": "h5",
+          "text": "65- مصلح اليمن محمد بن إسماعيل الأمير الصنعاني."
+        },
+        {
+          "tag": "h5",
+          "text": "66- موجز التاريخ الإسلامي منذ ظهور الرسول صلى الله عليه وسلم إلى العصر الحاضر 1420هـ /99 - 2000م."
+        },
+        {
+          "tag": "h5",
+          "text": "67- موسوعة أعلام القرن الرابع عشر والخامس عشر الهجري في العالم العربي والإسلامي من 1301 - 1417هـ."
+        },
+        {
+          "tag": "h5",
+          "text": "68- موسوعة التاريخ الإسلامي لبلاد السند والبنجاب (باكستان الحالية) في عهد العرب."
+        },
+        {
+          "tag": "h5",
+          "text": "69- موسوعة تاريخ الخليج العربي."
+        },
+        {
+          "tag": "h5",
+          "text": "70- موسوعة دول العالم الإسلامي ورجالها."
+        },
+        {
+          "tag": "h5",
+          "text": "71- نبذة مختصرة من نصائح والدي العلامة مقبل بن هادي الوادعي وسيرته العطرة."
+        },
+        {
+          "tag": "h5",
+          "text": "72- ندوة اتجاهات الفكر الإسلامي المعاصر."
+        },
+        {
+          "tag": "h5",
+          "text": "روابط هامة"
+        },
+        {
+          "tag": "h5",
+          "text": "خدمات تقنية"
+        },
+        {
+          "tag": "h5",
+          "text": "تابعنا"
+        },
+        {
+          "tag": "h5",
+          "text": "الاشتراك في القائمة البريدية"
+        },
+        {
+          "tag": "h5",
+          "text": "انشر المادة"
+        },
+        {
+          "tag": "h4",
+          "text": "لجنة الإشراف العلمي"
+        }
+      ],
+      "history_links": [
+        {
+          "href": "/history",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/refs",
+          "text": ""
+        },
+        {
+          "href": "/history",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "href": "https://www.facebook.com/sharer/sharer.php?u=https://dorar.net/history/refs",
+          "text": ""
+        },
+        {
+          "href": "http://twitter.com/share?url=https://dorar.net/history/refs",
+          "text": ""
+        },
+        {
+          "href": "https://api.whatsapp.com/send?text=https://dorar.net/history/refs",
+          "text": ""
+        },
+        {
+          "href": "https://t.me/share/url?url=https://dorar.net/history/refs",
+          "text": ""
+        }
+      ],
+      "html_title": "الدرر السنية",
+      "http_code": 200,
+      "markers": {
+        "agreement": false,
+        "brief_narrative": false,
+        "disagreement": true,
+        "event_details": false,
+        "gregorian_year": false,
+        "hadith_attribution": false,
+        "hijri_year": false,
+        "history_encyclopedia": true,
+        "lunar_month": false,
+        "no_commentary_analysis": false,
+        "prophet": false,
+        "reported_saying": true
+      },
+      "requested_url": "https://dorar.net/history/refs",
+      "sha256": "657af37a3783217c8c58c3948afbf841f59f6943078901d05e1cfce6c48e0743",
+      "text_chars": 15005
+    },
+    "search": {
+      "bytes": 217326,
+      "canonical_href": "https://dorar.net/history/search",
+      "effective_path": "/history/search",
+      "effective_url": "https://dorar.net/history/search",
+      "headings": [
+        {
+          "tag": "h5",
+          "text": "منهج العمل في الموسوعات"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة التفسير"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة الحديثية"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة العقدية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأديان"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الفرق"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة الفقهية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة أصول الفقه"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة القواعد الفقهية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأخلاق والسلوك"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأدب"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة اللغة العربية"
+        },
+        {
+          "tag": "h1",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "tag": "h6",
+          "text": "ولادة النبي محمد بن عبدالله صلى الله عليه وسلم ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "حادِثةُ شَقِّ صدرِ النَّبيِّ صلَّى الله عَليهِ وسلَّم الأُولى ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "وفاة أم النبي آمنة بنت وهب وحضانة أم أيمن له صلى الله عليه وسلم ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "كفالة عبد المطلب رسول الله صلَّى اللهُ عليه وسلَّم ومعرفته بشأنه ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "وفاة عبد المطلب ووصيته لأبي طالب برسول الله صلَّى اللهُ عليه وسلَّم ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "سفر النبي صلَّى اللهُ عليه وسلَّم مع عمه أبي طالب إلى الشام ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "حرب الفِجَار، وشهود النبي صلَّى اللهُ عليه وسلَّم لها ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "زَواجُ النَّبيِّ صلَّى الله عَليهِ وسلَّم من خَديجةَ بنتِ خُويلدٍ رضِي الله عنها ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "النَّبيُّ صلَّى الله عَليهِ وسلَّم يضعُ الحَجَرَ الأَسودَ في مكانِه في الكعبةِ ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "ما لقِي الصَّحابةُ من إيذاءِ قُريشٍ ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "طلب قريش من أبي طالب أن يكف عنهم رسول الله صلى الله عليه وسلم ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "إسلام حمزة بن عبد المطلب رَضي اللهُ عنه ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "الهِجرةُ الثَّانيةُ إلى الحَبشةِ ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "إِسلامُ عُمَرَ رضِي الله عنهُ ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h6",
+          "text": "إسلام الطّفيل بن عمرو الدوسي رَضي اللهُ عنه ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h5",
+          "text": "روابط هامة"
+        },
+        {
+          "tag": "h5",
+          "text": "خدمات تقنية"
+        },
+        {
+          "tag": "h5",
+          "text": "تابعنا"
+        },
+        {
+          "tag": "h5",
+          "text": "الاشتراك في القائمة البريدية"
+        },
+        {
+          "tag": "h5",
+          "text": "انشر المادة"
+        },
+        {
+          "tag": "h4",
+          "text": "لجنة الإشراف العلمي"
+        }
+      ],
+      "history_links": [
+        {
+          "href": "/history",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/search",
+          "text": ""
+        },
+        {
+          "href": "/history",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "href": "/history/refs",
+          "text": "المراجع المعتمدة"
+        },
+        {
+          "href": "/history/refs",
+          "text": "المراجع المعتمدة"
+        },
+        {
+          "href": "/history",
+          "text": "تصفح الكل"
+        },
+        {
+          "href": "/history?era=1",
+          "text": "عصر النبوة"
+        },
+        {
+          "href": "/history?era=3",
+          "text": "العصر الأموي"
+        },
+        {
+          "href": "/history?era=4",
+          "text": "العصر العباسي"
+        },
+        {
+          "href": "/history?era=5",
+          "text": "عصر المماليك"
+        },
+        {
+          "href": "/history?era=6",
+          "text": "العصر العثماني"
+        },
+        {
+          "href": "/history?era=7",
+          "text": "التاريخ المعاصر"
+        },
+        {
+          "href": "https://api.whatsapp.com/send?text=من الموسوعة التاريخية - الدرر السنية - https://dorar.net/history/event/1",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/event/1",
+          "text": ""
+        },
+        {
+          "href": "/history/event/1",
+          "text": ""
+        },
+        {
+          "href": "https://api.whatsapp.com/send?text=من الموسوعة التاريخية - الدرر السنية - https://dorar.net/history/event/2",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/event/2",
+          "text": ""
+        },
+        {
+          "href": "/history/event/2",
+          "text": ""
+        },
+        {
+          "href": "https://api.whatsapp.com/send?text=من الموسوعة التاريخية - الدرر السنية - https://dorar.net/history/event/3",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/event/3",
+          "text": ""
+        },
+        {
+          "href": "/history/event/3",
+          "text": ""
+        },
+        {
+          "href": "https://api.whatsapp.com/send?text=من الموسوعة التاريخية - الدرر السنية - https://dorar.net/history/event/4",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/event/4",
+          "text": ""
+        },
+        {
+          "href": "/history/event/4",
+          "text": ""
+        },
+        {
+          "href": "https://api.whatsapp.com/send?text=من الموسوعة التاريخية - الدرر السنية - https://dorar.net/history/event/5",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/event/5",
+          "text": ""
+        },
+        {
+          "href": "/history/event/5",
+          "text": ""
+        },
+        {
+          "href": "https://api.whatsapp.com/send?text=من الموسوعة التاريخية - الدرر السنية - https://dorar.net/history/event/6",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/event/6",
+          "text": ""
+        },
+        {
+          "href": "/history/event/6",
+          "text": ""
+        },
+        {
+          "href": "https://api.whatsapp.com/send?text=من الموسوعة التاريخية - الدرر السنية - https://dorar.net/history/event/7",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/event/7",
+          "text": ""
+        },
+        {
+          "href": "/history/event/7",
+          "text": ""
+        },
+        {
+          "href": "https://api.whatsapp.com/send?text=من الموسوعة التاريخية - الدرر السنية - https://dorar.net/history/event/9",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/event/9",
+          "text": ""
+        },
+        {
+          "href": "/history/event/9",
+          "text": ""
+        },
+        {
+          "href": "https://api.whatsapp.com/send?text=من الموسوعة التاريخية - الدرر السنية - https://dorar.net/history/event/11",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/event/11",
+          "text": ""
+        },
+        {
+          "href": "/history/event/11",
+          "text": ""
+        },
+        {
+          "href": "https://api.whatsapp.com/send?text=من الموسوعة التاريخية - الدرر السنية - https://dorar.net/history/event/15",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/event/15",
+          "text": ""
+        },
+        {
+          "href": "/history/event/15",
+          "text": ""
+        },
+        {
+          "href": "https://api.whatsapp.com/send?text=من الموسوعة التاريخية - الدرر السنية - https://dorar.net/history/event/16",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/event/16",
+          "text": ""
+        },
+        {
+          "href": "/history/event/16",
+          "text": ""
+        },
+        {
+          "href": "https://api.whatsapp.com/send?text=من الموسوعة التاريخية - الدرر السنية - https://dorar.net/history/event/18",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/event/18",
+          "text": ""
+        },
+        {
+          "href": "/history/event/18",
+          "text": ""
+        },
+        {
+          "href": "https://api.whatsapp.com/send?text=من الموسوعة التاريخية - الدرر السنية - https://dorar.net/history/event/19",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/event/19",
+          "text": ""
+        },
+        {
+          "href": "/history/event/19",
+          "text": ""
+        },
+        {
+          "href": "https://api.whatsapp.com/send?text=من الموسوعة التاريخية - الدرر السنية - https://dorar.net/history/event/20",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/event/20",
+          "text": ""
+        },
+        {
+          "href": "/history/event/20",
+          "text": ""
+        },
+        {
+          "href": "https://api.whatsapp.com/send?text=من الموسوعة التاريخية - الدرر السنية - https://dorar.net/history/event/21",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/event/21",
+          "text": ""
+        },
+        {
+          "href": "/history/event/21",
+          "text": ""
+        },
+        {
+          "href": "https://www.facebook.com/sharer/sharer.php?u=https://dorar.net/history/search",
+          "text": ""
+        },
+        {
+          "href": "http://twitter.com/share?url=https://dorar.net/history/search",
+          "text": ""
+        },
+        {
+          "href": "https://api.whatsapp.com/send?text=https://dorar.net/history/search",
+          "text": ""
+        },
+        {
+          "href": "https://t.me/share/url?url=https://dorar.net/history/search",
+          "text": ""
+        }
+      ],
+      "html_title": "موسوعة التاريخية نتائج البحث",
+      "http_code": 200,
+      "markers": {
+        "agreement": true,
+        "brief_narrative": true,
+        "disagreement": true,
+        "event_details": true,
+        "gregorian_year": true,
+        "hadith_attribution": true,
+        "hijri_year": true,
+        "history_encyclopedia": true,
+        "lunar_month": true,
+        "no_commentary_analysis": true,
+        "prophet": true,
+        "reported_saying": true
+      },
+      "requested_url": "https://dorar.net/history/search",
+      "sha256": "611f9f4545f62aa276de209b2e5bd391a86dedb3355addaae4b8ecb9b259887e",
+      "text_chars": 28263
+    },
+    "seerah_disagreement": {
+      "bytes": 142415,
+      "canonical_href": "https://dorar.net/history/1",
+      "effective_path": "/history/1",
+      "effective_url": "https://dorar.net/history/1",
+      "headings": [
+        {
+          "tag": "h5",
+          "text": "منهج العمل في الموسوعات"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة التفسير"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة الحديثية"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة العقدية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأديان"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الفرق"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة الفقهية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة أصول الفقه"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة القواعد الفقهية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأخلاق والسلوك"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأدب"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة اللغة العربية"
+        },
+        {
+          "tag": "h1",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "tag": "h6",
+          "text": "ولادة النبي محمد بن عبدالله صلى الله عليه وسلم ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h5",
+          "text": "روابط هامة"
+        },
+        {
+          "tag": "h5",
+          "text": "خدمات تقنية"
+        },
+        {
+          "tag": "h5",
+          "text": "تابعنا"
+        },
+        {
+          "tag": "h5",
+          "text": "الاشتراك في القائمة البريدية"
+        },
+        {
+          "tag": "h5",
+          "text": "انشر المادة"
+        },
+        {
+          "tag": "h4",
+          "text": "لجنة الإشراف العلمي"
+        }
+      ],
+      "history_links": [
+        {
+          "href": "/history",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/1",
+          "text": ""
+        },
+        {
+          "href": "/history/refs",
+          "text": "المراجع المعتمدة"
+        },
+        {
+          "href": "/history/refs",
+          "text": "المراجع المعتمدة"
+        },
+        {
+          "href": "/history",
+          "text": "تصفح الكل"
+        },
+        {
+          "href": "/history?era=1",
+          "text": "عصر النبوة"
+        },
+        {
+          "href": "/history?era=3",
+          "text": "العصر الأموي"
+        },
+        {
+          "href": "/history?era=4",
+          "text": "العصر العباسي"
+        },
+        {
+          "href": "/history?era=5",
+          "text": "عصر المماليك"
+        },
+        {
+          "href": "/history?era=6",
+          "text": "العصر العثماني"
+        },
+        {
+          "href": "/history?era=7",
+          "text": "التاريخ المعاصر"
+        },
+        {
+          "href": "https://dorar.net/history/event/1",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/1",
+          "text": ""
+        },
+        {
+          "href": "/history/event/1",
+          "text": ""
+        },
+        {
+          "href": "https://www.facebook.com/sharer/sharer.php?u=https://dorar.net/history/1",
+          "text": ""
+        },
+        {
+          "href": "http://twitter.com/share?url=https://dorar.net/history/1",
+          "text": ""
+        },
+        {
+          "href": "https://api.whatsapp.com/send?text=https://dorar.net/history/1",
+          "text": ""
+        },
+        {
+          "href": "https://t.me/share/url?url=https://dorar.net/history/1",
+          "text": ""
+        }
+      ],
+      "html_title": "الدرر السنية - الموسوعة التاريخية - ولادة النبي محمد بن عبدالله صلى الله عليه وسلم",
+      "http_code": 200,
+      "markers": {
+        "agreement": true,
+        "brief_narrative": true,
+        "disagreement": true,
+        "event_details": true,
+        "gregorian_year": true,
+        "hadith_attribution": true,
+        "hijri_year": true,
+        "history_encyclopedia": true,
+        "lunar_month": false,
+        "no_commentary_analysis": true,
+        "prophet": true,
+        "reported_saying": false
+      },
+      "requested_url": "https://dorar.net/history/1",
+      "sha256": "65a855418d93e8de67cb2145395f53300f3ac546b91e5129a67d81214695c812",
+      "text_chars": 6254
+    },
+    "seerah_event": {
+      "bytes": 142152,
+      "canonical_href": "https://dorar.net/history/event/80",
+      "effective_path": "/history/event/80",
+      "effective_url": "https://dorar.net/history/event/80",
+      "headings": [
+        {
+          "tag": "h5",
+          "text": "منهج العمل في الموسوعات"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة التفسير"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة الحديثية"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة العقدية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأديان"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الفرق"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة الفقهية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة أصول الفقه"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة القواعد الفقهية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأخلاق والسلوك"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأدب"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة اللغة العربية"
+        },
+        {
+          "tag": "h1",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "tag": "h6",
+          "text": "غزوة دومة الجندل ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h5",
+          "text": "روابط هامة"
+        },
+        {
+          "tag": "h5",
+          "text": "خدمات تقنية"
+        },
+        {
+          "tag": "h5",
+          "text": "تابعنا"
+        },
+        {
+          "tag": "h5",
+          "text": "الاشتراك في القائمة البريدية"
+        },
+        {
+          "tag": "h5",
+          "text": "انشر المادة"
+        },
+        {
+          "tag": "h4",
+          "text": "لجنة الإشراف العلمي"
+        }
+      ],
+      "history_links": [
+        {
+          "href": "/history",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/event/80",
+          "text": ""
+        },
+        {
+          "href": "/history/refs",
+          "text": "المراجع المعتمدة"
+        },
+        {
+          "href": "/history/refs",
+          "text": "المراجع المعتمدة"
+        },
+        {
+          "href": "/history",
+          "text": "تصفح الكل"
+        },
+        {
+          "href": "/history?era=1",
+          "text": "عصر النبوة"
+        },
+        {
+          "href": "/history?era=3",
+          "text": "العصر الأموي"
+        },
+        {
+          "href": "/history?era=4",
+          "text": "العصر العباسي"
+        },
+        {
+          "href": "/history?era=5",
+          "text": "عصر المماليك"
+        },
+        {
+          "href": "/history?era=6",
+          "text": "العصر العثماني"
+        },
+        {
+          "href": "/history?era=7",
+          "text": "التاريخ المعاصر"
+        },
+        {
+          "href": "https://dorar.net/history/event/80",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/event/80",
+          "text": ""
+        },
+        {
+          "href": "/history/event/80",
+          "text": ""
+        },
+        {
+          "href": "https://www.facebook.com/sharer/sharer.php?u=https://dorar.net/history/event/80",
+          "text": ""
+        },
+        {
+          "href": "http://twitter.com/share?url=https://dorar.net/history/event/80",
+          "text": ""
+        },
+        {
+          "href": "https://api.whatsapp.com/send?text=https://dorar.net/history/event/80",
+          "text": ""
+        },
+        {
+          "href": "https://t.me/share/url?url=https://dorar.net/history/event/80",
+          "text": ""
+        }
+      ],
+      "html_title": "الدرر السنية - الموسوعة التاريخية - غزوة دومة الجندل",
+      "http_code": 200,
+      "markers": {
+        "agreement": false,
+        "brief_narrative": true,
+        "disagreement": true,
+        "event_details": true,
+        "gregorian_year": true,
+        "hadith_attribution": false,
+        "hijri_year": true,
+        "history_encyclopedia": true,
+        "lunar_month": true,
+        "no_commentary_analysis": true,
+        "prophet": true,
+        "reported_saying": false
+      },
+      "requested_url": "https://dorar.net/history/event/80",
+      "sha256": "04b4d6a546934cad2f22bcfdcc63d9e53657dd769a1fe86e092838dd080ff390",
+      "text_chars": 6118
+    },
+    "seerah_prophetic_report": {
+      "bytes": 140859,
+      "canonical_href": "https://dorar.net/history/event/2",
+      "effective_path": "/history/event/2",
+      "effective_url": "https://dorar.net/history/event/2",
+      "headings": [
+        {
+          "tag": "h5",
+          "text": "منهج العمل في الموسوعات"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة التفسير"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة الحديثية"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة العقدية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأديان"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الفرق"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة الفقهية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة أصول الفقه"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة القواعد الفقهية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأخلاق والسلوك"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة الأدب"
+        },
+        {
+          "tag": "h6",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "tag": "h6",
+          "text": "موسوعة اللغة العربية"
+        },
+        {
+          "tag": "h1",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "tag": "h6",
+          "text": "حادِثةُ شَقِّ صدرِ النَّبيِّ صلَّى الله عَليهِ وسلَّم الأُولى ."
+        },
+        {
+          "tag": "h6",
+          "text": "تفاصيل الحدث:"
+        },
+        {
+          "tag": "h5",
+          "text": "روابط هامة"
+        },
+        {
+          "tag": "h5",
+          "text": "خدمات تقنية"
+        },
+        {
+          "tag": "h5",
+          "text": "تابعنا"
+        },
+        {
+          "tag": "h5",
+          "text": "الاشتراك في القائمة البريدية"
+        },
+        {
+          "tag": "h5",
+          "text": "انشر المادة"
+        },
+        {
+          "tag": "h4",
+          "text": "لجنة الإشراف العلمي"
+        }
+      ],
+      "history_links": [
+        {
+          "href": "/history",
+          "text": "الموسوعة التاريخية"
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/event/2",
+          "text": ""
+        },
+        {
+          "href": "/history/refs",
+          "text": "المراجع المعتمدة"
+        },
+        {
+          "href": "/history/refs",
+          "text": "المراجع المعتمدة"
+        },
+        {
+          "href": "/history",
+          "text": "تصفح الكل"
+        },
+        {
+          "href": "/history?era=1",
+          "text": "عصر النبوة"
+        },
+        {
+          "href": "/history?era=3",
+          "text": "العصر الأموي"
+        },
+        {
+          "href": "/history?era=4",
+          "text": "العصر العباسي"
+        },
+        {
+          "href": "/history?era=5",
+          "text": "عصر المماليك"
+        },
+        {
+          "href": "/history?era=6",
+          "text": "العصر العثماني"
+        },
+        {
+          "href": "/history?era=7",
+          "text": "التاريخ المعاصر"
+        },
+        {
+          "href": "https://dorar.net/history/event/2",
+          "text": ""
+        },
+        {
+          "href": "/feedback/error-report?link=https://dorar.net/history/event/2",
+          "text": ""
+        },
+        {
+          "href": "/history/event/2",
+          "text": ""
+        },
+        {
+          "href": "https://www.facebook.com/sharer/sharer.php?u=https://dorar.net/history/event/2",
+          "text": ""
+        },
+        {
+          "href": "http://twitter.com/share?url=https://dorar.net/history/event/2",
+          "text": ""
+        },
+        {
+          "href": "https://api.whatsapp.com/send?text=https://dorar.net/history/event/2",
+          "text": ""
+        },
+        {
+          "href": "https://t.me/share/url?url=https://dorar.net/history/event/2",
+          "text": ""
+        }
+      ],
+      "html_title": "الدرر السنية - الموسوعة التاريخية - حادِثةُ شَقِّ صدرِ النَّبيِّ صلَّى الله عَليهِ وسلَّم الأُولى",
+      "http_code": 200,
+      "markers": {
+        "agreement": false,
+        "brief_narrative": true,
+        "disagreement": true,
+        "event_details": true,
+        "gregorian_year": true,
+        "hadith_attribution": true,
+        "hijri_year": true,
+        "history_encyclopedia": true,
+        "lunar_month": false,
+        "no_commentary_analysis": true,
+        "prophet": true,
+        "reported_saying": false
+      },
+      "requested_url": "https://dorar.net/history/event/2",
+      "sha256": "d0a491b27c60040fdc0bb5bf7e9a3ac540f9e6fe88123da402a223212ecfb140",
+      "text_chars": 5550
+    }
+  },
+  "discovery_id": "dorar-history-live-characterization-v1",
+  "discovery_version": 1,
+  "failures": [],
+  "findings": {
+    "brief_narrative_notice_observed": true,
+    "direct_history_id_route_observed": true,
+    "event_year_details_structure_observed": true,
+    "generic_application_verification_phrase_observed": false,
+    "generic_methodology_adoption_phrase_observed": false,
+    "generic_shamela_fallback_allowed": false,
+    "global_cross_encyclopedia_review_text_is_history_evidence": false,
+    "history_event_id_route_observed": true,
+    "history_professor_qualification_count": 3,
+    "history_researcher_qualification_observed": true,
+    "history_review_section_observed": true,
+    "history_specialist_reviewers_observed": true,
+    "lexical_disagreement_marker_equals_truth_grade": false,
+    "methodology_requires_reliable_source": true,
+    "methodology_requires_scientific_editing": true,
+    "methodology_review_process_observed": true,
+    "no_commentary_analysis_notice_observed": true,
+    "per_event_machine_truth_grade_observed": false,
+    "prophetic_report_inside_history_event_observed": true,
+    "reference_catalog_is_governance_metadata": true,
+    "reference_catalog_observed": true,
+    "route_contract_frozen": false,
+    "search_is_locator_only": true,
+    "textual_disagreement_inside_event_observed": true
+  },
+  "observed_event_paths": {
+    "contemporary_event": "/history/event/6230",
+    "early_modern_event": "/history/event/3846",
+    "medieval_event": "/history/event/1571",
+    "seerah_disagreement": "/history/1",
+    "seerah_event": "/history/event/80",
+    "seerah_prophetic_report": "/history/event/2"
+  },
+  "official_domain": "seerah_history",
+  "policy_implications": [
+    "Institution-level curation is observed.",
+    "History review evidence is taken from the History-specific review subtree, not from global review text belonging to other encyclopedias.",
+    "Institution-level curation does not by itself justify fabricating a per-event numeric or categorical machine truth grade.",
+    "Explicit source-reported disagreement must survive extraction.",
+    "Prophetic reports embedded in History must route authentication to Hadith.",
+    "Both direct /history/{id} and /history/event/{id} event routes exist.",
+    "Runtime URL contract must not be frozen until canonical DOM/link behavior is probed.",
+    "Search is locator-only.",
+    "References are governance metadata, not automatic event evidence."
+  ],
+  "provider": "Dorar al-Sunniyyah",
+  "result": "PASS",
+  "runtime_admission": "PENDING_AUDIT",
+  "source_family": "DORAR_HISTORY",
+  "source_trust_passport": "NOT_ISSUED"
+}

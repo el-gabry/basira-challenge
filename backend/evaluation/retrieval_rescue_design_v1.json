@@ -1,0 +1,266 @@
+{
+  "version": "1.0",
+  "description": "Retrieval-rescue DESIGN set. This file influenced atomic-query planner design and MUST NOT be reported as an independent holdout.",
+  "cases": [
+    {
+      "id": "hidden-anchor-24-35",
+      "question": "ما معنى الآية 24:35؟",
+      "tags": [
+        "exact_anchor",
+        "arabic",
+        "quran",
+        "tafsir",
+        "rescue"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "quran",
+          "reference": "24:35"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "24:35",
+          "source_id": "surahapp-tafsir-katheer"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "24:35",
+          "source_id": "surahapp-tafsir-saadi"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "24:35",
+          "source_id": "surahapp-tafsir-mokhtasar"
+        }
+      ]
+    },
+    {
+      "id": "hidden-direct-backbiting-ar",
+      "question": "ماذا يقول القرآن والتفسير عن الغيبة؟",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "arabic_direct",
+        "tafsir",
+        "rescue",
+        "arabic"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "49:12"
+        }
+      ]
+    },
+    {
+      "id": "hidden-direct-charity-ar",
+      "question": "ماذا يقول القرآن والتفسير عن الصدقة والإنفاق؟",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "arabic_direct",
+        "tafsir",
+        "rescue",
+        "arabic"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "2:261"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "2:262"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "2:274"
+        }
+      ]
+    },
+    {
+      "id": "hidden-paraphrase-anger-ar",
+      "question": "كيف يتصرف المؤمن عندما يشتد غضبه ويقدر على الرد؟",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "arabic_paraphrase",
+        "tafsir",
+        "rescue",
+        "arabic"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "3:134"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "42:37"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "42:40"
+        }
+      ]
+    },
+    {
+      "id": "hidden-paraphrase-ease-ar",
+      "question": "هل يعطي القرآن أملا لمن يشعر أن الضيق لن ينتهي؟",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "arabic_paraphrase",
+        "tafsir",
+        "rescue",
+        "arabic"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "2:286"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "94:5"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "94:6"
+        }
+      ]
+    },
+    {
+      "id": "hidden-paraphrase-speech-ar",
+      "question": "كيف يختار المسلم كلامه عندما يختلف مع الآخرين؟",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "arabic_paraphrase",
+        "tafsir",
+        "rescue",
+        "arabic"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "2:83"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "17:53"
+        }
+      ]
+    },
+    {
+      "id": "hidden-english-charity",
+      "question": "What does the Quran teach about giving wealth to help others?",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "english_cross_lingual",
+        "tafsir",
+        "rescue",
+        "english",
+        "cross_lingual"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "2:261"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "2:262"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "2:274"
+        }
+      ]
+    },
+    {
+      "id": "hidden-english-tranquility",
+      "question": "Where does the Quran connect remembering God with peace of heart?",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "english_cross_lingual",
+        "tafsir",
+        "rescue",
+        "english",
+        "cross_lingual"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "13:28"
+        }
+      ]
+    }
+  ]
+}

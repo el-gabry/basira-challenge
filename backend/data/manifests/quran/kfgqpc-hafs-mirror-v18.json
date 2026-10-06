@@ -1,0 +1,28 @@
+{
+  "source_id": "kfgqpc-hafs-mirror-v18",
+  "source_name": "KFGQPC Hafs Data v18 - GitHub Development Mirror",
+  "domain": "quran",
+  "role": "secondary_reference",
+  "narration": "hafs",
+  "language_codes": [
+    "ar"
+  ],
+  "version": "18",
+  "edition": null,
+  "publisher": "Third-party GitHub mirror of King Fahd Quran Complex developer data",
+  "homepage_url": "https://github.com/ibnhazm/KFGQPC",
+  "download_url": null,
+  "downloaded_at": "2026-09-24T05:06:30.830041Z",
+  "official_hash": null,
+  "local_sha256": "5d8bb91726e482839d0057633cb1973031e4d706fa9604eea5e08892f20ba140",
+  "integrity_status": "review_required",
+  "status": "quarantined",
+  "license_name": null,
+  "license_url": null,
+  "local_storage_allowed": true,
+  "redistribution_allowed": false,
+  "attribution_required": true,
+  "raw_file_name": "hafsData_v18.json",
+  "raw_file_size_bytes": 3582144,
+  "notes": "Development-only Quran corpus. The upstream official KFGQPC service was unreachable when this snapshot was acquired. This mirror must not be promoted to APPROVED until independently compared with an official KFGQPC release."
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "source": "AL_JAMHARA_ISLAMIC_TERMINOLOGY",
+  "domain": "translation_terminology",
+  "status": "FROZEN",
+  "authority_scope": {
+    "allowed_after_runtime_admission": [
+      "CANONICAL_ISLAMIC_TERM_LOOKUP",
+      "LOCALIZED_TERM_LOOKUP",
+      "TERMINOLOGY_SENSITIVE_TRANSLATION_SUPPORT",
+      "TERM_EXPLANATION_FOR_TRANSLATION_CONTEXT"
+    ],
+    "prohibited_inferences": [
+      "UNIVERSAL_PRIMARY_EVIDENCE",
+      "AQEEDAH_AUTHORITY_FROM_TERMINOLOGY_ENTRY",
+      "FIQH_AUTHORITY_FROM_TERMINOLOGY_ENTRY",
+      "HADITH_AUTHENTICATION_FROM_TERMINOLOGY_ENTRY",
+      "TAFSIR_AUTHORITY_FROM_TERMINOLOGY_ENTRY",
+      "CONSENSUS_FROM_DICTIONARY_WORDING",
+      "AUTOMATIC_TARJIH",
+      "INDEPENDENT_PERSONAL_FATWA"
+    ]
+  },
+  "field_contract": {
+    "status": "FROZEN_VARIABLE_CONTENT",
+    "evidence": "data/competition/discovery/jamhara/field-census.json",
+    "mandatory_identity_fields": [
+      "word_id",
+      "language",
+      "source_url"
+    ],
+    "semantic_content_fields": [
+      "canonical_arabic_term",
+      "localized_term",
+      "category",
+      "definition",
+      "linguistic_definition",
+      "terminological_meaning",
+      "short_explanation",
+      "cross_reference"
+    ],
+    "semantic_content_field_presence": "VARIABLE",
+    "universally_mandatory_semantic_field": null,
+    "runtime_payload_rule": "AT_LEAST_ONE_NONEMPTY_GOVERNED_LEXICAL_OR_EXPLANATORY_FIELD",
+    "missing_field_policy": "PRESERVE_AS_MISSING",
+    "fabricate_missing_content": false,
+    "canonical_arabic_term": {
+      "preferred": true,
+      "universally_present_proven": false
+    }
+  },
+  "translation_policy": {
+    "approved_terminology_precedes_machine_translation": true,
+    "machine_translation_may_replace_governed_term": false,
+    "localized_view_may_be_used_as_cross_domain_primary_evidence": false
+  },
+  "runtime_admission": "DEFERRED_TO_TRUST_SHIELD",
+  "language_contract": {
+    "status": "FROZEN_FROM_CENSUS",
+    "arabic_and_english_sample_observation": "30/30",
+    "corpus_wide_arabic_guarantee": false,
+    "corpus_wide_english_guarantee": false,
+    "other_observed_languages": [
+      "bs",
+      "es",
+      "fr",
+      "id",
+      "ru",
+      "ur"
+    ],
+    "missing_language_view_policy": "TREAT_AS_UNAVAILABLE_NOT_SYNTHESIZED"
+  }
+}

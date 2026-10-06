@@ -1,0 +1,47 @@
+{
+  "policy_version": 1,
+  "role": "fiqh",
+  "source_model": {
+    "principle": "SOURCE_FAMILY_PERMISSION_IS_NOT_RUNTIME_ELIGIBILITY",
+    "allowed_families": [
+      {
+        "class": "MADHHAB_FIQH_BOOK",
+        "description": "A recognized/authoritative Fiqh book within one of the four Sunni madhhabs",
+        "madhhabs": [
+          "Hanafi",
+          "Maliki",
+          "Shafii",
+          "Hanbali"
+        ],
+        "exact_source_governance_required": true
+      },
+      {
+        "class": "DORAR_FIQH",
+        "provider": "Dorar al-Sunniyyah",
+        "description": "Dorar Fiqh Encyclopedia",
+        "exact_source_governance_required": true
+      }
+    ]
+  },
+  "runtime_eligibility": {
+    "allowed_states": [
+      "ELIGIBLE"
+    ],
+    "blocked_states": [
+      "PENDING_AUDIT",
+      "QUARANTINED",
+      "UNKNOWN"
+    ]
+  },
+  "hard_rules": {
+    "independent_personal_fatwa": false,
+    "automated_tarjih": false,
+    "majority_vote_between_positions": false,
+    "collapse_documented_disagreement": false,
+    "infer_consensus_without_evidence": false,
+    "preserve_madhhab_attribution": true,
+    "preserve_conditions": true,
+    "preserve_exceptions": true,
+    "personal_case_requires_referral": true
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "source": "AL_JAMHARA_ISLAMIC_TERMINOLOGY",
+  "domain": "translation_terminology",
+  "canonical_concept_contract": {
+    "status": "FROZEN",
+    "identity_field": "word_id",
+    "identity_semantics": "ONE_CONCEPT_ID_WITH_LOCALIZED_LANGUAGE_VIEWS",
+    "route_template": "https://islamic-content.com/dictionary/word/{word_id}/{language}",
+    "default_route_template": "https://islamic-content.com/dictionary/word/{word_id}"
+  },
+  "localized_view_contract": {
+    "status": "FROZEN",
+    "identity_fields": [
+      "word_id",
+      "language"
+    ],
+    "advertised_languages_observed": [
+      "ar",
+      "bs",
+      "en",
+      "es",
+      "fr",
+      "id",
+      "ru",
+      "ur"
+    ],
+    "language_view_is_separate_concept": false,
+    "sampled_cross_language_identity": {
+      "2704": [
+        "ar",
+        "en",
+        "fr"
+      ],
+      "4892": [
+        "ar",
+        "en"
+      ]
+    }
+  },
+  "content_field_contract": {
+    "status": "FROZEN_VARIABLE_FIELDS",
+    "evidence": "data/competition/discovery/jamhara/field-census.json",
+    "mandatory_identity_fields": [
+      "word_id",
+      "language",
+      "source_url"
+    ],
+    "semantic_fields_are_variable": true,
+    "universally_mandatory_semantic_field": null,
+    "runtime_payload_rule": "AT_LEAST_ONE_NONEMPTY_GOVERNED_LEXICAL_OR_EXPLANATORY_FIELD",
+    "canonical_arabic_term_requirement": "PREFERRED_NOT_UNIVERSALLY_PROVEN",
+    "variable_fields": [
+      "canonical_arabic_term",
+      "localized_term",
+      "category",
+      "definition",
+      "linguistic_definition",
+      "terminological_meaning",
+      "short_explanation",
+      "cross_reference"
+    ],
+    "missing_field_policy": "PRESERVE_AS_MISSING"
+  },
+  "authority_boundary": {
+    "terminology_use": "ALLOWED_AFTER_RUNTIME_ADMISSION",
+    "machine_translation_override": false,
+    "universal_primary_evidence": false,
+    "cross_domain_primary_evidence": false
+  },
+  "runtime_state": {
+    "runtime_admission": "PENDING_AUDIT",
+    "adapter": "NOT_IMPLEMENTED",
+    "source_trust_passport": "NOT_ISSUED"
+  }
+}

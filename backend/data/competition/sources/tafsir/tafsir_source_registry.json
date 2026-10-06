@@ -1,0 +1,49 @@
+{
+  "first_three_centuries_primary_use_requires": [
+    "verified_source_period",
+    "period_evidence",
+    "verified_source_identity",
+    "governed_exact_artifact",
+    "runtime_eligible_source"
+  ],
+  "invariants": {
+    "discovered_equals_authorized": false,
+    "found_in_early_source_equals_authentic_attribution": false,
+    "multiple_transmissions_equals_authentic": false,
+    "old_equals_first_three_centuries_verified": false,
+    "quran_text_inside_tafsir_equals_canonical_quran": false,
+    "ungraded_equals_weak": false
+  },
+  "purpose": "Govern sources discoverable by the future Hybrid Tafsir Agent",
+  "registry_version": 1,
+  "source_families": [
+    "first_three_centuries_islamic_source",
+    "dorar_tafsir"
+  ],
+  "sources": [
+    {
+      "adapter": "basira.competition.dorar_tafsir",
+      "admission_gate": "basira.competition.dorar_tafsir_admission",
+      "canonical_origin": "https://dorar.net",
+      "canonical_path_contract": "/tafseer/{surah}/{passage}",
+      "discovery_only_surfaces": [
+        "/tafseer",
+        "/tafseer/{surah}",
+        "/refs/tafseer",
+        "methodology"
+      ],
+      "hard_boundaries": {
+        "authenticity_from_frequency": false,
+        "direct_fiqh_ruling_from_tafsir": false,
+        "independent_isnad_grading": false,
+        "quran_text_is_canonical_quran_witness": false
+      },
+      "passport": "data/competition/passports/dorar-tafsir.json",
+      "provider": "Dorar al-Sunniyyah",
+      "runtime_eligibility": "eligible",
+      "runtime_scope": "canonical_passage_only",
+      "source_family": "dorar_tafsir",
+      "source_id": "dorar-tafsir-v1"
+    }
+  ]
+}

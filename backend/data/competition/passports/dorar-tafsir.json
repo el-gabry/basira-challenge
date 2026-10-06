@@ -1,0 +1,39 @@
+{
+  "adapter_audit_commit": "3039fb706276ab4a385ed0232fa1e797a88bc1ff",
+  "adapter_contract": "dorar-tafsir-canonical-passages-v1",
+  "adversarial_audit_result": "PASS",
+  "artifact_sha256": {
+    "data/competition/audits/tafsir/dorar-tafsir-adversarial-v1.json": "62d94f10bc58db6027c5a2944692c56c1066aef012ffdfb73f5be97ca446a585",
+    "data/competition/discovery/dorar-tafsir/discovery.json": "44c89014a2ede1e8ae3eed2216583011bf542f2b8d8a7562342d858270a02891",
+    "data/competition/manifests/tafsir/dorar-tafsir-runtime-v1.json": "8af52f441acaa8f30b1b0bc9ea01acd1401c5b6efd04adf1447436c79561c311",
+    "src/basira/competition/dorar_tafsir.py": "fcaa4a744932c8cd4a1809fe0a8ef7eed64e93c20aac0b1b2473e796b234a86f",
+    "src/basira/competition/tafsir_policy.py": "e9c4391ece46898d5bab6e525aca444c704ff0856e2ce554b37536299bc9c9c0"
+  },
+  "baseline_response_sha256": "ea8fe89d30a0b4c59de8361bb1c1d35d3800b1d2256ed2658649788163eaa852",
+  "canonical_origin": "https://dorar.net",
+  "canonical_path_contract": "/tafseer/{surah}/{passage}",
+  "characterization_commit": "7f3ae0e",
+  "characterization_result": "PASS",
+  "guardrails": {
+    "authenticity_from_frequency": false,
+    "direct_fiqh_ruling_from_tafsir": false,
+    "independent_isnad_grading": false,
+    "quran_text_as_canonical_quran_witness": false,
+    "search_result_as_evidence": false,
+    "surah_page_as_admitted_passage_evidence": false
+  },
+  "limitations": [
+    "Admission covers canonical Dorar Tafsir passage pages only.",
+    "Surah-level pages remain discovery-only until separately adapted and audited.",
+    "A Dorar citation does not independently authenticate an underlying narration.",
+    "Reported grading is preserved as attributed provenance, not recomputed by Basira.",
+    "Quran text appearing in Tafsir remains context and never replaces the governed Quran source.",
+    "The live response used for evidence must be hashed and attached to runtime provenance."
+  ],
+  "passport_id": "dorar-tafsir-v1",
+  "passport_version": 1,
+  "provider": "Dorar al-Sunniyyah",
+  "runtime_eligibility": "eligible",
+  "runtime_scope": "canonical_passage_only",
+  "source_family": "dorar_tafsir"
+}

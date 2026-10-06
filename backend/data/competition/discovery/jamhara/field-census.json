@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "census_id": "jamhara-field-structure-census-v1",
+  "source": "AL_JAMHARA_ISLAMIC_TERMINOLOGY",
+  "domain": "translation_terminology",
+  "observed_at": "2026-10-04",
+  "candidate_discovery": {
+    "seed_routes": [
+      "https://islamic-content.com/",
+      "https://islamic-content.com/dictionary/term/1",
+      "https://islamic-content.com/dictionary/term/428"
+    ],
+    "root_word_id_count": 0,
+    "term_1_word_id_count": 1239,
+    "term_428_word_id_count": 3258,
+    "deduplicated_candidate_word_id_count": 4382,
+    "candidate_construction": "SEED_DISCOVERED_UNION_CHARACTERIZED_WORD_IDS",
+    "seed_discovered_word_id_count": 4381,
+    "characterized_word_ids_added_to_candidate_set": [
+      1197,
+      2704,
+      4892
+    ],
+    "characterized_word_ids_missing_from_seed": [
+      4892
+    ]
+  },
+  "sampling": {
+    "method": "DETERMINISTIC_EVEN_SPREAD_OVER_SORTED_CANDIDATE_IDS",
+    "sample_size": 30,
+    "sample_ids": [
+      2,
+      352,
+      849,
+      1252,
+      1689,
+      2204,
+      2572,
+      3007,
+      3395,
+      3957,
+      4429,
+      4917,
+      5430,
+      5930,
+      6567,
+      6986,
+      7428,
+      7882,
+      8593,
+      9113,
+      9569,
+      10029,
+      10601,
+      11013,
+      11370,
+      11561,
+      11780,
+      12001,
+      12187,
+      12382
+    ]
+  },
+  "route_results": {
+    "arabic_http_200": "30/30",
+    "english_http_200": "30/30",
+    "same_word_id_exposes_ar_and_en_routes": "30/30",
+    "language_route_prevalence": {
+      "ar": "30/30",
+      "bs": "3/30",
+      "en": "30/30",
+      "es": "5/30",
+      "fr": "6/30",
+      "id": "7/30",
+      "ru": "6/30",
+      "ur": "6/30"
+    },
+    "corpus_wide_ar_en_guarantee_proven": false
+  },
+  "field_prevalence": {
+    "ar": {
+      "definition": "26/30",
+      "linguistic_definition": "13/30",
+      "terminological_meaning": "6/30",
+      "short_explanation": "4/30",
+      "cross_reference": "6/30",
+      "category_signal": "24/30"
+    },
+    "en": {
+      "definition": "24/30",
+      "linguistic_definition": "7/30",
+      "terminological_meaning": "7/30",
+      "short_explanation": "4/30",
+      "cross_reference": "0/30",
+      "category_signal": "0/30"
+    }
+  },
+  "known_marker_anomalies": [
+    {
+      "word_id": 2204,
+      "language": "en",
+      "reason": "NO_KNOWN_FIELD_MARKERS"
+    },
+    {
+      "word_id": 6986,
+      "language": "en",
+      "reason": "NO_KNOWN_FIELD_MARKERS"
+    },
+    {
+      "word_id": 11780,
+      "language": "en",
+      "reason": "NO_KNOWN_FIELD_MARKERS"
+    },
+    {
+      "word_id": 12001,
+      "language": "en",
+      "reason": "NO_KNOWN_FIELD_MARKERS"
+    },
+    {
+      "word_id": 12382,
+      "language": "ar",
+      "reason": "NO_KNOWN_FIELD_MARKERS"
+    },
+    {
+      "word_id": 12382,
+      "language": "en",
+      "reason": "NO_KNOWN_FIELD_MARKERS"
+    }
+  ],
+  "conclusions": {
+    "concept_identity_is_word_id": true,
+    "localized_view_identity_is_word_id_plus_language": true,
+    "semantic_content_fields_are_variable": true,
+    "any_single_semantic_content_field_universally_mandatory": false,
+    "canonical_arabic_term_universally_present_not_proven_by_this_census": true,
+    "missing_localized_payload_must_not_be_fabricated": true,
+    "census_grants_runtime_admission": false
+  },
+  "runtime_admission": "PENDING_AUDIT"
+}

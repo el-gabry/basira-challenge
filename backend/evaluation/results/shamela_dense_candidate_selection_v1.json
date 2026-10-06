@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "benchmark_sha256": "e199b37de6983c8cdad713a7382e96bda522f4a81a830c138a7cd3c3748f2791",
+  "corpus_fingerprint": "00edc4a799087fcc7fa0b83e2582604ffbc11f75dc4cfe2b90a424589a4a5a8f",
+  "split": "dev",
+  "holdout_used": false,
+  "selection_method": "Candidate must not regress against frozen FTS baseline on overall parent@10, nDCG@10, MRR, comparative, paraphrase, direct, exact phrase, or single-madhhab parent recall. Among eligible candidates, select only a unique candidate that Pareto-dominates every other eligible candidate on MRR, overall parent@10, nDCG@10, comparative, paraphrase, and direct parent@10.",
+  "token_audit": {
+    "model_id": "intfloat/multilingual-e5-small",
+    "model_revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "model_limit": 512,
+    "dense_body_window_tokens": 320,
+    "dense_overlap": 64,
+    "reconstructed_window_count": 2594,
+    "expected_window_count": 2594,
+    "max_final_passage_input_tokens": 387,
+    "max_final_passage_window_id": "shamela-span:37fa03c521f6cfb7a885975d45dc1f92bea5cebb8414d8e1a59c3696bcc85510:dense:0:320",
+    "passage_inputs_over_limit": 0,
+    "passage_over_limit_examples": [],
+    "max_query_input_tokens": 26,
+    "max_query_case_id": "dev-paraphrase-shufaa",
+    "query_inputs_over_limit": 0,
+    "query_over_limit_examples": [],
+    "safe": true
+  },
+  "metrics": {
+    "FTS_BASELINE": {
+      "mrr": 0.8225160256410257,
+      "parent_at_10": 0.78125,
+      "ndcg_at_10": 0.7191066280879943,
+      "comparative_parent_at_10": 0.7083333333333334,
+      "paraphrase_parent_at_10": 0.7,
+      "direct_parent_at_10": 0.7777777777777778,
+      "exact_parent_at_10": 1.0,
+      "single_madhhab_parent_at_10": 1.0,
+      "mean_latency_ms": 414.8344781875
+    },
+    "DENSE_ONLY": {
+      "mrr": 0.9583333333333334,
+      "parent_at_10": 1.0,
+      "ndcg_at_10": 0.9481270281096905,
+      "comparative_parent_at_10": 1.0,
+      "paraphrase_parent_at_10": 1.0,
+      "direct_parent_at_10": 1.0,
+      "exact_parent_at_10": 1.0,
+      "single_madhhab_parent_at_10": 1.0,
+      "mean_latency_ms": 17.852309875
+    },
+    "FTS_DENSE_RRF": {
+      "mrr": 0.9131944444444444,
+      "parent_at_10": 0.9375,
+      "ndcg_at_10": 0.8568694671206396,
+      "comparative_parent_at_10": 0.9166666666666666,
+      "paraphrase_parent_at_10": 0.9,
+      "direct_parent_at_10": 0.9444444444444444,
+      "exact_parent_at_10": 1.0,
+      "single_madhhab_parent_at_10": 1.0,
+      "mean_latency_ms": 212.054157625
+    }
+  },
+  "eligible": {
+    "FTS_BASELINE": true,
+    "DENSE_ONLY": true,
+    "FTS_DENSE_RRF": true
+  },
+  "dominant_candidates": [
+    "DENSE_ONLY"
+  ],
+  "selected_candidate": "DENSE_ONLY",
+  "decision": "SELECT_UNIQUE_DEV_DOMINANT",
+  "note": "Dense similarity is a retrieval/ranking signal only. This evaluation does not establish semantic entailment, religious truth, or source authority."
+}

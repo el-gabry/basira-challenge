@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+# Secrets
+.env
+.env.*
+!.env.example
+# Raw/runtime data
+/data/raw/
+/data/processed/
+/data/downloads/
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+# Downloaded ML models only at project root
+/models/
+/embeddings/
+/vector_store/
+# Documents
+*.pdf
+# IDE
+.vscode/
+.idea/
+# OS
+.DS_Store
+Thumbs.db
+# Temporary
+_tmp/
+tmp/
+# Fresh competition source artifacts.
+# Reproducibly acquired; governance metadata stays in Git.
+data/competition/raw/
+data/competition/normalized/
+
+# Temporary live Fiqh discovery captures
+data/competition/discovery/dorar-fiqh/*.html
+# Temporary canonical Dorar Fiqh article captures
+data/competition/discovery/dorar-fiqh/articles/*.html
+
+# Temporary Dorar Tafsir live captures
+data/competition/discovery/dorar-tafsir/raw/
+
+# Temporary Dorar Aqeedah live captures
+data/competition/discovery/dorar-aqeedah/raw/
+
+/data/competition/discovery/dorar-history/raw/
+
+/data/competition/discovery/bayyinat/raw/

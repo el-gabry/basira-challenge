@@ -1,0 +1,19 @@
+# New competition source files use LF.
+# Do NOT run: git add --renormalize .
+
+*.py     text eol=lf
+*.md     text eol=lf
+*.toml   text eol=lf
+*.sh     text eol=lf
+*.json   text eol=lf
+*.yaml   text eol=lf
+*.yml    text eol=lf
+
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.webp   binary
+*.pdf    binary
+*.npz    binary
+*.sqlite binary
+*.sqlite3 binary

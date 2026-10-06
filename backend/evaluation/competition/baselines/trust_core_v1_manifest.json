@@ -1,0 +1,18 @@
+{
+  "benchmark_id": "basira-trust-core-v1",
+  "case_count": 10,
+  "categories": {
+    "claim_evidence_verification": 1,
+    "comparative_fiqh": 1,
+    "disagreement": 1,
+    "failure_learning": 1,
+    "hadith_verification": 1,
+    "insufficient_evidence": 1,
+    "personal_fatwa": 1,
+    "quran_integrity": 2,
+    "source_attestation": 1
+  },
+  "frozen": true,
+  "sha256": "222c6ef8cb9a8fc115f652ae1e7fd5b4b8d9572e5bb1be6a5e85681d34853cba",
+  "version": 1
+}

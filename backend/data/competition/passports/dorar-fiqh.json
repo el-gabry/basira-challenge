@@ -1,0 +1,59 @@
+{
+  "evidence": {
+    "adversarial_audit": "data/competition/audits/fiqh/dorar-fiqh-adversarial-v1.json",
+    "official_policy": "data/competition/manifests/fiqh/official-fiqh-policy-v1.json",
+    "runtime_manifest": "data/competition/manifests/fiqh/dorar-fiqh-live-v1.json"
+  },
+  "hybrid_book_policy": {
+    "discovered_is_authorized": false,
+    "dorar_listing_proves_mutamad": false,
+    "primary_mode": "MUTAMAD_ONLY",
+    "registry": "data/competition/sources/fiqh/madhhab_book_registry.json"
+  },
+  "official_eligibility": "VERIFIED",
+  "passport_version": 1,
+  "provider": "Dorar al-Sunniyyah",
+  "role": "FIQH_EVIDENCE_SOURCE",
+  "runtime": {
+    "admission": "ELIGIBLE_LIVE_CANONICAL_ARTICLE",
+    "automated_tarjih": "PROHIBITED",
+    "canonical_article_required": true,
+    "claim_evidence_check_required": true,
+    "independent_personal_fatwa": "PROHIBITED",
+    "search_is_locator_only": true
+  },
+  "source_family": "DORAR_FIQH",
+  "source_id": "dorar:fiqh",
+  "trust": {
+    "article_boundary_isolation": "VERIFIED",
+    "canonical_article_adapter": "VERIFIED",
+    "citation_preservation": "VERIFIED",
+    "diacritic_aware_structure": "VERIFIED",
+    "disagreement_preservation": "VERIFIED",
+    "false_consensus_guard": "VERIFIED",
+    "madhhab_attribution": "VERIFIED",
+    "remote_corpus_integrity": "NOT_CLAIMED"
+  },
+  "verified_case": {
+    "citations_per_position": [
+      10,
+      9
+    ],
+    "madhhabs_by_position": {
+      "1": [
+        "hanafi",
+        "maliki"
+      ],
+      "2": [
+        "shafii",
+        "hanbali"
+      ]
+    },
+    "ordinals": [
+      1,
+      2
+    ],
+    "position_count": 2,
+    "source_id": "dorar:fiqh:424"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "discovery_id": "jamhara-terminology-live-characterization-v1",
+  "source_family": "AL_JAMHARA_ISLAMIC_TERMINOLOGY",
+  "domain": "translation_terminology",
+  "official_locator": "https://islamic-content.com/",
+  "observed_at": "2026-10-04",
+  "surface": {
+    "dictionary_word_route": "https://islamic-content.com/dictionary/word/{word_id}/{language}",
+    "dictionary_default_route": "https://islamic-content.com/dictionary/word/{word_id}",
+    "canonical_concept_identity": "word_id",
+    "localized_view_identity": [
+      "word_id",
+      "language"
+    ],
+    "sampled_word_ids": [
+      2704,
+      4892,
+      1197
+    ],
+    "advertised_language_routes": [
+      "ar",
+      "bs",
+      "en",
+      "es",
+      "fr",
+      "id",
+      "ru",
+      "ur"
+    ],
+    "route_characterization": "STRUCTURALLY_STABLE_ON_SAMPLED_ROUTES"
+  },
+  "sample_observations": [
+    {
+      "word_id": 2704,
+      "arabic_term": "التَّرْجَمَة",
+      "ar_status": 200,
+      "en_status": 200,
+      "fr_status": 200,
+      "english_rendering": "Translation",
+      "observed_fields": [
+        "linguistic_definition",
+        "terminological_meaning",
+        "short_explanation"
+      ]
+    },
+    {
+      "word_id": 4892,
+      "arabic_term": "الدَّعْوَةُ الْإِسْلَامِيَّةُ",
+      "ar_status": 200,
+      "en_status": 200,
+      "english_rendering": "Islamic advocacy",
+      "observed_fields": [
+        "definition"
+      ]
+    },
+    {
+      "word_id": 1197,
+      "en_status": 200
+    }
+  ],
+  "machine_readable_findings": {
+    "json_ld_observed": true,
+    "next_data_observed": false,
+    "nuxt_payload_observed": false,
+    "content_api_observed": false,
+    "html_is_current_extraction_surface": true
+  },
+  "source_role_findings": {
+    "terminology_authority": true,
+    "universal_primary_evidence": false,
+    "cross_domain_claims_require_primary_domain_routing": true,
+    "governed_terminology_precedes_machine_translation": true,
+    "terminology_definition_equals_primary_domain_evidence": false
+  },
+  "runtime_admission": "PENDING_AUDIT",
+  "adapter": "NOT_IMPLEMENTED",
+  "source_trust_passport": "NOT_ISSUED"
+}

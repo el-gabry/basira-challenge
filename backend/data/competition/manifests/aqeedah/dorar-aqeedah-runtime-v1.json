@@ -1,0 +1,50 @@
+{
+  "manifest_version": 1,
+  "manifest_id": "dorar-aqeedah-runtime-v1",
+  "provider": "Dorar al-Sunniyyah",
+  "source_id": "dorar-aqeeda-v1",
+  "source_family": "dorar_aqeeda",
+  "runtime_eligibility": "eligible",
+  "admission_scope": "canonical_article_only",
+  "canonical_origin": "https://dorar.net",
+  "canonical_path_regex": "^/aqeeda/[1-9][0-9]*$",
+  "adapter_contract": "dorar-aqeedah-canonical-article-v1",
+  "baseline_artifact": {
+    "url": "https://dorar.net/aqeeda/420",
+    "sha256": "0900e3c21b2e2858207847a4faf442a5974b048fe345c39616bda401d8ef5805",
+    "purpose": "adversarially audited structural baseline"
+  },
+  "required_prior_evidence": {
+    "live_characterization_result": "PASS",
+    "adversarial_audit_result": "PASS",
+    "adapter_status": "AUDITED"
+  },
+  "runtime_requirements": {
+    "https_required": true,
+    "exact_host_required": "dorar.net",
+    "query_allowed": false,
+    "fragment_allowed": false,
+    "slug_path_allowed": false,
+    "positive_numeric_article_id_required": true,
+    "exact_response_sha256_recorded": true,
+    "baseline_hash_must_match_when_baseline_url_is_used": true,
+    "canonical_root_exactly_one": true,
+    "direct_article_body_exactly_one": true,
+    "provenance_violation_count_must_be_zero": true
+  },
+  "discovery_only_surfaces": [
+    "https://dorar.net/aqeeda",
+    "https://dorar.net/aqeeda/search",
+    "https://dorar.net/refs/aqeeda",
+    "https://dorar.net/article/1987"
+  ],
+  "hard_boundaries": {
+    "quran_context_is_canonical_quran_witness": false,
+    "quran_reference_auto_pairing_allowed": false,
+    "independent_hadith_authentication_allowed": false,
+    "hadith_matn_inference_from_plain_prose_allowed": false,
+    "bibliographic_citation_promotes_aqeedah_authority": false,
+    "generic_shamela_fallback_allowed": false,
+    "early_source_period_equals_aqeedah_authority": false
+  }
+}

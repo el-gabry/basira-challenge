@@ -1,0 +1,263 @@
+{
+  "schema_version": 1,
+  "matrix_id": "official-domain-coverage-v1",
+  "global_invariants": [
+    "NO_OFFICIAL_DOMAIN_MAY_FALL_BACK_DIRECTLY_TO_GENERIC_SHAMELA_SEARCH",
+    "DISCOVERED_DOES_NOT_EQUAL_AUTHORIZED",
+    "SOURCE_FAMILY_APPROVAL_DOES_NOT_EQUAL_RUNTIME_ELIGIBILITY",
+    "EXACT_BOOK_AND_EDITION_GOVERNANCE_REQUIRED_WHEN_SHAMELA_IS_USED",
+    "PERSONAL_FATWA_IS_NOT_A_RUNTIME_KNOWLEDGE_DOMAIN",
+    "DISPUTED_MATERIAL_MUST_NOT_BE_COLLAPSED_INTO_FALSE_CONSENSUS"
+  ],
+  "out_of_scope": [
+    "independent_personal_fatwa",
+    "judgment_on_specific_people_or_groups",
+    "private_dispute_resolution",
+    "ruling_on_unverified_personal_facts"
+  ],
+  "domains": [
+    {
+      "domain": "quran",
+      "official_source_rule": "Approved canonical Quran text / King Fahd-compliant source or approved Quran source family",
+      "status": "governed_runtime",
+      "required_for_coverage_v1": true,
+      "runtime_source_ids": [
+        "quranpedia-hafs"
+      ],
+      "policy_artifacts": [],
+      "generic_shamela_fallback_allowed": false,
+      "notes": [
+        "Canonical Quran witness already governed",
+        "Tafsir or other quoted Quran text cannot replace canonical Quran evidence"
+      ]
+    },
+    {
+      "domain": "tafsir",
+      "official_source_rule": "FIRST_THREE_CENTURIES_ISLAMIC_SOURCE OR DORAR_TAFSIR",
+      "status": "governed_runtime",
+      "required_for_coverage_v1": true,
+      "runtime_source_ids": [
+        "dorar-tafsir-v1"
+      ],
+      "policy_artifacts": [
+        "src/basira/competition/tafsir_policy.py",
+        "data/competition/passports/dorar-tafsir.json"
+      ],
+      "generic_shamela_fallback_allowed": false,
+      "notes": [
+        "Dorar canonical passage scope only",
+        "First-three-centuries registry remains separately governed"
+      ]
+    },
+    {
+      "domain": "hadith",
+      "official_source_rule": "Sahih Bukhari/Muslim first; other Sunnah only after verification through approved grading/source path",
+      "status": "governed_runtime",
+      "required_for_coverage_v1": true,
+      "runtime_source_ids": [
+        "dorar-hadith"
+      ],
+      "policy_artifacts": [],
+      "generic_shamela_fallback_allowed": false,
+      "notes": [
+        "No Hadith attribution without source and reported status",
+        "Absence in one query is not historical nonexistence"
+      ]
+    },
+    {
+      "domain": "aqeedah_intro_to_islam",
+      "official_source_rule": "FIRST_THREE_CENTURIES_ISLAMIC_SOURCE OR DORAR_AQEEDA",
+      "status": "governed_runtime",
+      "required_for_coverage_v1": true,
+      "runtime_source_ids": [
+        "dorar-aqeeda-v1"
+      ],
+      "policy_artifacts": [
+        "src/basira/competition/aqeedah_policy.py",
+        "data/competition/manifests/aqeedah/official-aqeedah-policy-v1.json",
+        "data/competition/sources/aqeedah/aqeedah_source_registry.json",
+        "data/competition/sources/aqeedah/aqeedah_authority_registry.json",
+        "data/competition/manifests/aqeedah/dorar-aqeedah-runtime-v1.json",
+        "data/competition/passports/dorar-aqeeda.json",
+        "src/basira/competition/dorar_aqeedah_admission.py"
+      ],
+      "generic_shamela_fallback_allowed": false,
+      "notes": [
+        "Official source-family policy implemented",
+        "Dorar Aqeedah runtime remains PENDING_AUDIT",
+        "First-three-centuries source registry intentionally empty pending evidence",
+        "Generic Shamela fallback prohibited",
+        "Period eligibility is separate from Aqeedah authority eligibility",
+        "Early source does not become primary merely because of age",
+        "Aqeedah period rule must not propagate to Fiqh retrieval",
+        "Dorar Aqeedah canonical article runtime admitted",
+        "First-three-centuries source registry remains independently gated",
+        "Runtime admission does not convert bibliographic references into authority"
+      ]
+    },
+    {
+      "domain": "general_fiqh",
+      "official_source_rule": "MADHHAB_FIQH_BOOK from one of the four madhhabs OR DORAR_FIQH",
+      "status": "governed_runtime",
+      "required_for_coverage_v1": true,
+      "runtime_source_ids": [
+        "dorar-fiqh"
+      ],
+      "policy_artifacts": [
+        "src/basira/competition/madhhab_authority.py",
+        "data/competition/passports/dorar-fiqh.json"
+      ],
+      "generic_shamela_fallback_allowed": false,
+      "notes": [
+        "No independent personal fatwa",
+        "No automatic tarjih",
+        "Madhhab book family requires separate authority eligibility"
+      ]
+    },
+    {
+      "domain": "seerah_history",
+      "official_source_rule": "FIRST_THREE_CENTURIES_ISLAMIC_SOURCE OR DORAR_HISTORY",
+      "status": "governed_runtime",
+      "required_for_coverage_v1": true,
+      "runtime_source_ids": [
+        "dorar-history-v1"
+      ],
+      "policy_artifacts": [
+        "src/basira/competition/history_policy.py",
+        "data/competition/manifests/history/official-history-policy-v1.json",
+        "data/competition/sources/history/history_source_registry.json",
+        "src/basira/competition/history_entities.py",
+        "src/basira/competition/history_retrieval.py",
+        "data/competition/sources/history/historical_entity_registry.json",
+        "src/basira/competition/dorar_history.py",
+        "data/competition/manifests/history/dorar-history-dom-contract-v1.json",
+        "data/competition/audits/history/dorar-history-adversarial-v1.json",
+        "src/basira/competition/dorar_history_admission.py",
+        "data/competition/manifests/history/dorar-history-runtime-v1.json",
+        "data/competition/passports/dorar-history.json"
+      ],
+      "generic_shamela_fallback_allowed": false,
+      "notes": [
+        "Official History source-family policy implemented",
+        "Dorar History runtime remains PENDING_AUDIT",
+        "First-three-centuries source registry intentionally empty pending source audit",
+        "Early source does not establish historical event truth",
+        "Categorical historical claims require governed report assessment",
+        "Generic Shamela fallback prohibited",
+        "Raw historical report collections are report-only by default",
+        "Source-use mode cannot establish historical fact",
+        "Historical entity resolution is retrieval-only",
+        "Entity aliases are time-aware and ambiguity-preserving",
+        "Historical attribution must survive chunking",
+        "Numeric LLM confidence is not a historical report grade",
+        "Dorar History canonical event adapter structurally audited",
+        "Both /history/{id} and /history/event/{id} canonical route families preserved",
+        "Canonical History accordion allows exactly one event-container in its entire subtree and it must be direct",
+        "Search-form text outside #cntnt cannot contaminate event evidence",
+        "Event-specific bibliographic reference channel not established",
+        "Narrative disagreement does not become a historical truth grade",
+        "Prophetic wording does not become Hadith authentication",
+        "Dorar event adapter remains UNASSESSED until separate governed historical assessment",
+        "Runtime remains pending controlled admission",
+        "Dorar History canonical event runtime admitted",
+        "Runtime admission does not establish historical event truth",
+        "Every adapter event remains UNASSESSED by default",
+        "Categorical historical claims require separate governed report assessment",
+        "First-three-centuries source path remains independently gated",
+        "Historical entity registry remains independently governed"
+      ]
+    },
+    {
+      "cross_domain_primary_evidence": false,
+      "domain": "shubuhat_faq",
+      "generic_shamela_fallback_allowed": false,
+      "notes": [
+        "Bayyinat is governed as the primary conversational Shubuhat/FAQ source",
+        "Bayyinat does not replace Quran/Hadith/Tafsir/Aqeedah/Fiqh/History evidence ownership",
+        "Cross-domain claims require explicit claim decomposition and primary-domain routing",
+        "Bayyinat wording cannot establish consensus",
+        "Personal fatwa remains out of scope and requires referral",
+        "Hostile wording does not authorize hostile response",
+        "Generic Shamela and generic web fallback cannot replace primary domain evidence",
+        "Bayyinat canonical runtime source bayyinat-v1 is admitted for conversational Shubuhat/FAQ retrieval"
+      ],
+      "official_source_rule": "BAYYINAT_QA as official conversational misconception/FAQ source, with primary claims routed to their evidence domains",
+      "policy_artifacts": [
+        "src/basira/competition/shubuhat_policy.py",
+        "data/competition/manifests/shubuhat/official-shubuhat-policy-v1.json",
+        "data/competition/sources/shubuhat/shubuhat_source_registry.json",
+        "data/competition/manifests/shubuhat/bayyinat-runtime-v1.json",
+        "data/competition/passports/bayyinat.json",
+        "src/basira/competition/bayyinat_admission.py"
+      ],
+      "required_for_coverage_v1": true,
+      "runtime_role": "PRIMARY_CONVERSATIONAL_SOURCE",
+      "runtime_source": "BAYYINAT",
+      "runtime_source_ids": [
+        "bayyinat-v1"
+      ],
+      "status": "governed_runtime"
+    },
+    {
+      "domain": "translation_terminology",
+      "official_source_rule": "AL_JAMHARA_ISLAMIC_TERMINOLOGY before automatic translation for sensitive Islamic terminology",
+      "status": "governed_runtime",
+      "required_for_coverage_v1": true,
+      "runtime_source_ids": [
+        "jamhara-live-v1"
+      ],
+      "policy_artifacts": [
+        "data/competition/passports/jamhara.json",
+        "data/competition/manifests/terminology/jamhara-runtime-v1.json",
+        "data/competition/sources/terminology/terminology_source_registry.json"
+      ],
+      "generic_shamela_fallback_allowed": false,
+      "notes": [
+        "Approved terminology precedes machine translation",
+        "Governed live Jamhara resolver admitted; background frozen snapshot remains a separate optional hardening milestone"
+      ],
+      "runtime_source": "AL_JAMHARA_ISLAMIC_TERMINOLOGY",
+      "authority_role": "PRIMARY_TERMINOLOGY_SOURCE",
+      "cross_domain_primary_evidence": false,
+      "machine_translation_may_replace_governed_term": false,
+      "runtime_mode": "LIVE_OFFICIAL_LOOKUP_WITH_PERSISTENT_CACHE",
+      "snapshot_required_for_runtime": false
+    },
+    {
+      "domain": "dawah_general_content",
+      "official_source_rule": "Official Da'wah repository and approved Islamic-content vocabulary/content repositories",
+      "status": "approved_family_not_implemented",
+      "required_for_coverage_v1": true,
+      "runtime_source_ids": [],
+      "policy_artifacts": [],
+      "generic_shamela_fallback_allowed": false,
+      "notes": [
+        "Covers introduction to Islam, audience-sensitive Da'wah topics, countries, languages, religions and target groups"
+      ]
+    },
+    {
+      "domain": "akhlaq_values_adab",
+      "official_source_rule": "Official governed Islamic-content ecosystem; specialized Dorar ethics/adab sources require separate runtime governance",
+      "status": "approved_family_not_implemented",
+      "required_for_coverage_v1": true,
+      "runtime_source_ids": [],
+      "policy_artifacts": [],
+      "generic_shamela_fallback_allowed": false,
+      "notes": [
+        "Stable ethics and values are part of official level-A content"
+      ]
+    },
+    {
+      "domain": "religions_sects_comparative",
+      "official_source_rule": "Official Da'wah/religions content plus separately governed specialized sources; no ungoverned sect/religion comparison",
+      "status": "approved_family_not_implemented",
+      "required_for_coverage_v1": true,
+      "runtime_source_ids": [],
+      "policy_artifacts": [],
+      "generic_shamela_fallback_allowed": false,
+      "notes": [
+        "Comparative or sensitive claims require explicit source scope and disagreement handling"
+      ]
+    }
+  ]
+}

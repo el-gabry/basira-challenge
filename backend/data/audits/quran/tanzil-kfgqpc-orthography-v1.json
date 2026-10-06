@@ -1,0 +1,28 @@
+{
+  "audit_id": "tanzil-kfgqpc-orthography-v1",
+  "audit_type": "quran_cross_source_orthography",
+  "source_a": "kfgqpc-hafs-mirror-v18",
+  "source_b": "tanzil-quran-v1.1-uthmani",
+  "references_compared": 6236,
+  "missing_from_source_a": 0,
+  "missing_from_source_b": 0,
+  "sequence_results": {
+    "exact": 0,
+    "orthographically_equivalent": 6236,
+    "unresolved": 0
+  },
+  "segment_results": {
+    "diacritic_variant": 46214,
+    "exact_match": 30487,
+    "basmala_layout_variant": 112,
+    "token_boundary_variant": 3
+  },
+  "source_backed_rules": {
+    "diacritics_only": 46214,
+    "basmala_prefix_layout": 112,
+    "word_boundary_only": 3
+  },
+  "result": "PASS",
+  "integrity_status": "verified",
+  "notes": "All 6,236 Quran references are accounted for by the current segment-level Uthmani orthography verification engine. No unresolved references remain."
+}

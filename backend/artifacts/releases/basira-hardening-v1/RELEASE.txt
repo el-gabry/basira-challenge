@@ -1,0 +1,15 @@
+Basira Hardening V1
+===================
+
+Branch: feat/public-governed-runtime
+
+Trust Shield regression: 62 passed
+Self-Hardening Memory: 15 passed
+Failure certificates: 4
+Promoted constraints: 4
+Executable replay proofs: 4
+Unsafe replay results: 0
+Memory religious authority: 0
+
+Principle:
+Basira does not learn beliefs; it learns constraints.

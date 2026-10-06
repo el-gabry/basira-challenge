@@ -1,0 +1,223 @@
+{
+  "adapter_written": false,
+  "candidate_fiqh_urls": [
+    "https://dorar.net/feqhia/search?skeys=%D9%86%D9%82%D8%B6%20%D8%A7%D9%84%D9%88%D8%B6%D9%88%D8%A1%20%D8%A8%D9%84%D9%85%D8%B3%20%D8%A7%D9%84%D9%85%D8%B1%D8%A3%D8%A9",
+    "https://dorar.net/feedback/error-report?link=https://dorar.net/feqhia/search",
+    "https://dorar.net/feqhia/435",
+    "https://dorar.net/feqhia/407",
+    "https://dorar.net/feqhia/424",
+    "https://dorar.net/feqhia/394",
+    "https://dorar.net/feqhia/428",
+    "https://dorar.net/feqhia/399",
+    "https://dorar.net/feqhia/441",
+    "https://dorar.net/feqhia/432",
+    "https://dorar.net/feqhia/13083",
+    "https://dorar.net/feqhia/13896",
+    "https://dorar.net/feqhia/11998",
+    "https://dorar.net/feqhia/13043",
+    "https://dorar.net/feqhia/253",
+    "https://dorar.net/feqhia/659",
+    "https://dorar.net/feqhia/search?skeys=نقض الوضوء بلمس المرأة",
+    "https://www.facebook.com/sharer/sharer.php?u=https://dorar.net/feqhia/search?skeys=نقض الوضوء بلمس المرأة",
+    "http://twitter.com/share?url=https://dorar.net/feqhia/search?skeys=نقض الوضوء بلمس المرأة",
+    "https://api.whatsapp.com/send?text=https://dorar.net/feqhia/search?skeys=نقض الوضوء بلمس المرأة",
+    "https://t.me/share/url?url=https://dorar.net/feqhia/search?skeys=نقض الوضوء بلمس المرأة"
+  ],
+  "common_css_classes": [
+    {
+      "class": "fa",
+      "count": 151
+    },
+    {
+      "class": "d-flex",
+      "count": 85
+    },
+    {
+      "class": "align-items-center",
+      "count": 69
+    },
+    {
+      "class": "px-2",
+      "count": 54
+    },
+    {
+      "class": "justify-content-between",
+      "count": 45
+    },
+    {
+      "class": "px-1",
+      "count": 42
+    },
+    {
+      "class": "mb-0",
+      "count": 35
+    },
+    {
+      "class": "waves-effect",
+      "count": 33
+    },
+    {
+      "class": "btn-sm",
+      "count": 33
+    },
+    {
+      "class": "dropdown-item",
+      "count": 33
+    },
+    {
+      "class": "btn",
+      "count": 29
+    },
+    {
+      "class": "search-keys",
+      "count": 27
+    },
+    {
+      "class": "srch-scope",
+      "count": 26
+    },
+    {
+      "class": "collapsible-header",
+      "count": 25
+    },
+    {
+      "class": "fa-caret-left",
+      "count": 25
+    },
+    {
+      "class": "py-3",
+      "count": 25
+    },
+    {
+      "class": "nav-item",
+      "count": 24
+    },
+    {
+      "class": "default-text-color",
+      "count": 24
+    },
+    {
+      "class": "text-center",
+      "count": 23
+    },
+    {
+      "class": "px-0",
+      "count": 22
+    },
+    {
+      "class": "ustaz",
+      "count": 22
+    },
+    {
+      "class": "btn-rounded",
+      "count": 22
+    },
+    {
+      "class": "text-muted",
+      "count": 20
+    },
+    {
+      "class": "w-100",
+      "count": 19
+    },
+    {
+      "class": "collapse",
+      "count": 19
+    },
+    {
+      "class": "p-0",
+      "count": 19
+    },
+    {
+      "class": "px-3",
+      "count": 18
+    },
+    {
+      "class": "z-depth-0",
+      "count": 18
+    },
+    {
+      "class": "col-12",
+      "count": 18
+    },
+    {
+      "class": "nav-link",
+      "count": 18
+    },
+    {
+      "class": "list-group-item",
+      "count": 18
+    },
+    {
+      "class": "fa-angle-left",
+      "count": 18
+    },
+    {
+      "class": "card",
+      "count": 17
+    },
+    {
+      "class": "card-body",
+      "count": 17
+    },
+    {
+      "class": "d-xl-none",
+      "count": 15
+    },
+    {
+      "class": "pt-0",
+      "count": 15
+    },
+    {
+      "class": "card-header",
+      "count": 15
+    },
+    {
+      "class": "border-bottom",
+      "count": 15
+    },
+    {
+      "class": "py-4",
+      "count": 15
+    },
+    {
+      "class": "h5-responsive",
+      "count": 15
+    }
+  ],
+  "discovery_version": 1,
+  "fiqh_url_count": 21,
+  "madhhab_mentions": {
+    "hanafi": 1,
+    "hanbali": 0,
+    "maliki": 0,
+    "shafii": 0
+  },
+  "next_checks": [
+    "identify actual result container",
+    "identify canonical article URL",
+    "identify source citation structure",
+    "identify madhhab attribution structure",
+    "identify conditions and exceptions",
+    "identify disagreement representation",
+    "test false-consensus preservation",
+    "test personal-fatwa boundary"
+  ],
+  "page_title": "الدرر السنية - الموسوعة الفقهية - نتائج البحث",
+  "provider": "Dorar al-Sunniyyah",
+  "query": "نقض الوضوء بلمس المرأة",
+  "response": {
+    "bytes": 182820,
+    "sha256": "2c79a58224cf2a3ac0ab643ac80d9033176f2dee5457e3b5a8de1d7bf7b59259"
+  },
+  "role": "fiqh",
+  "semantic_markers": {
+    "أقوال": 0,
+    "إجماع": 0,
+    "اختلف": 2,
+    "الجمهور": 0,
+    "خلاف": 0,
+    "قول": 4
+  },
+  "status": "DISCOVERY_ONLY_NOT_ADMITTED"
+}

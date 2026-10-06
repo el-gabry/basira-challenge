@@ -1,0 +1,53 @@
+{
+  "authority_eligibility": {
+    "authority_registry": "data/competition/sources/aqeedah/aqeedah_authority_registry.json",
+    "dorar_reference_listed_equals_primary": false,
+    "early_equals_authorized": false,
+    "famous_equals_authorized": false,
+    "period_eligibility_equals_authority_eligibility": false,
+    "shamela_hosted_equals_authorized": false,
+    "verified_primary_authority_required_for_primary_early_source_use": true
+  },
+  "cross_domain_boundaries": {
+    "companion_athar_equals_prophetic_hadith": false,
+    "prophetic_report_is_independently_authenticated_here": false,
+    "quran_quote_becomes_canonical_quran_witness": false,
+    "source_count_establishes_consensus": false
+  },
+  "domain_isolation": {
+    "aqeedah_first_three_centuries_rule_applies_to_fiqh": false,
+    "fiqh_uses_its_own_madhhab_authority_policy": true
+  },
+  "dorar_runtime_manifest": "data/competition/manifests/aqeedah/dorar-aqeedah-runtime-v1.json",
+  "first_three_centuries": {
+    "author_death_year_alone_is_sufficient": false,
+    "source_or_work_period_evidence_required": true,
+    "upper_bound_ah": 300
+  },
+  "official_source_families": [
+    {
+      "class": "FIRST_THREE_CENTURIES_ISLAMIC_SOURCE",
+      "exact_artifact_governance_required": true,
+      "period_verification_required": true,
+      "source_identity_verification_required": true
+    },
+    {
+      "class": "DORAR_AQEEDA",
+      "exact_source_governance_required": true,
+      "provider": "Dorar al-Sunniyyah",
+      "runtime_admission": "PENDING_AUDIT"
+    }
+  ],
+  "policy_version": 1,
+  "role": "aqeedah_intro_to_islam",
+  "runtime_state": {
+    "dorar_aqeeda": "ELIGIBLE",
+    "first_three_centuries_registry": "EMPTY_PENDING_SOURCE_AUDIT"
+  },
+  "shamela": {
+    "domain_authority_required_before_retrieval": true,
+    "exact_governed_book_required": true,
+    "exact_governed_edition_required": true,
+    "generic_fallback_allowed": false
+  }
+}

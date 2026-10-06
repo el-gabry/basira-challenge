@@ -1,0 +1,28 @@
+{
+  "source_id": "tanzil-quran-v1.1-simple-plain",
+  "source_name": "Tanzil Quran Text v1.1 - Simple Plain",
+  "domain": "quran",
+  "role": "secondary_reference",
+  "narration": "hafs",
+  "language_codes": [
+    "ar"
+  ],
+  "version": "1.1",
+  "edition": null,
+  "publisher": "Tanzil Project",
+  "homepage_url": "https://tanzil.net/",
+  "download_url": null,
+  "downloaded_at": "2026-09-24T05:40:36.874159Z",
+  "official_hash": null,
+  "local_sha256": "085e4c65dc24436c47945c31c0b1a02220b288a012fe360f4a16d59daa50869f",
+  "integrity_status": "review_required",
+  "status": "verified",
+  "license_name": "CC BY 3.0",
+  "license_url": "https://tanzil.net/docs/Text_License",
+  "local_storage_allowed": true,
+  "redistribution_allowed": true,
+  "attribution_required": true,
+  "raw_file_name": "quran-simple-plain.txt",
+  "raw_file_size_bytes": 1346374,
+  "notes": "Official Tanzil Simple Plain Quran text used as Basira's search representation. All 6,236 verses normalize equivalently to Tanzil Simple under Basira normalization."
+}

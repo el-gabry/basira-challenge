@@ -1,0 +1,844 @@
+{
+  "version": "1.0",
+  "description": "Basira retrieval-rescue DEV set. Used to diagnose candidate generation and tune query-side retrieval improvements. Gold evidence references are never passed to retrieval.",
+  "cases": [
+    {
+      "id": "rescue-anchor-2-255",
+      "question": "ما معنى الآية 2:255؟",
+      "tags": [
+        "exact_anchor",
+        "arabic",
+        "quran",
+        "tafsir",
+        "rescue"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "quran",
+          "reference": "2:255"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "2:255",
+          "source_id": "surahapp-tafsir-katheer"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "2:255",
+          "source_id": "surahapp-tafsir-saadi"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "2:255",
+          "source_id": "surahapp-tafsir-mokhtasar"
+        }
+      ]
+    },
+    {
+      "id": "rescue-anchor-58-1",
+      "question": "ما معنى الآية 58:1؟",
+      "tags": [
+        "exact_anchor",
+        "arabic",
+        "quran",
+        "tafsir",
+        "rescue"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "quran",
+          "reference": "58:1"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "58:1",
+          "source_id": "surahapp-tafsir-katheer"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "58:1",
+          "source_id": "surahapp-tafsir-saadi"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "58:1",
+          "source_id": "surahapp-tafsir-mokhtasar"
+        }
+      ]
+    },
+    {
+      "id": "rescue-anchor-112-1",
+      "question": "ما معنى الآية 112:1؟",
+      "tags": [
+        "exact_anchor",
+        "arabic",
+        "quran",
+        "tafsir",
+        "rescue"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "quran",
+          "reference": "112:1"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "112:1",
+          "source_id": "surahapp-tafsir-katheer"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "112:1",
+          "source_id": "surahapp-tafsir-saadi"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "112:1",
+          "source_id": "surahapp-tafsir-mokhtasar"
+        }
+      ]
+    },
+    {
+      "id": "rescue-anchor-49-13",
+      "question": "ما معنى الآية 49:13؟",
+      "tags": [
+        "exact_anchor",
+        "arabic",
+        "quran",
+        "tafsir",
+        "rescue"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "quran",
+          "reference": "49:13"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "49:13",
+          "source_id": "surahapp-tafsir-katheer"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "49:13",
+          "source_id": "surahapp-tafsir-saadi"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "49:13",
+          "source_id": "surahapp-tafsir-mokhtasar"
+        }
+      ]
+    },
+    {
+      "id": "rescue-direct-patience-ar",
+      "question": "ماذا يقول الإسلام عن الصبر؟",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "arabic_direct",
+        "tafsir",
+        "rescue",
+        "arabic"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "2:153"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "2:155"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "2:156"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "2:157"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "3:200"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "16:127"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "39:10"
+        }
+      ]
+    },
+    {
+      "id": "rescue-direct-tawakkul-ar",
+      "question": "ماذا يقول القرآن والتفسير عن التوكل على الله؟",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "arabic_direct",
+        "tafsir",
+        "rescue",
+        "arabic"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "3:159"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "5:23"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "8:2"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "9:51"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "39:38"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "65:3"
+        }
+      ]
+    },
+    {
+      "id": "rescue-direct-gratitude-ar",
+      "question": "ماذا يقول القرآن والتفسير عن الشكر لله؟",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "arabic_direct",
+        "tafsir",
+        "rescue",
+        "arabic"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "2:152"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "14:7"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "16:114"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "31:12"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "39:66"
+        }
+      ]
+    },
+    {
+      "id": "rescue-direct-parents-ar",
+      "question": "ماذا يقول القرآن والتفسير عن بر الوالدين؟",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "arabic_direct",
+        "tafsir",
+        "rescue",
+        "arabic"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "17:23"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "17:24"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "31:14"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "46:15"
+        }
+      ]
+    },
+    {
+      "id": "rescue-paraphrase-patience-ar",
+      "question": "كيف يتحدث القرآن والتفسير عن الثبات عند الشدائد؟",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "arabic_paraphrase",
+        "tafsir",
+        "rescue",
+        "arabic"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "2:153"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "2:155"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "2:156"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "2:157"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "3:200"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "16:127"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "39:10"
+        }
+      ]
+    },
+    {
+      "id": "rescue-paraphrase-tawakkul-ar",
+      "question": "كيف يوجه القرآن من يخاف المستقبل ويريد أن يفوض أمره لله؟",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "arabic_paraphrase",
+        "tafsir",
+        "rescue",
+        "arabic"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "3:159"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "5:23"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "8:2"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "9:51"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "39:38"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "65:3"
+        }
+      ]
+    },
+    {
+      "id": "rescue-paraphrase-gratitude-ar",
+      "question": "كيف يتعامل المؤمن مع النعم حتى لا ينساها وينسب الفضل لربه؟",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "arabic_paraphrase",
+        "tafsir",
+        "rescue",
+        "arabic"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "2:152"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "14:7"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "16:114"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "31:12"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "39:66"
+        }
+      ]
+    },
+    {
+      "id": "rescue-paraphrase-parents-ar",
+      "question": "كيف ينبغي للإنسان أن يعامل أمه وأباه عندما يكبران؟",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "arabic_paraphrase",
+        "tafsir",
+        "rescue",
+        "arabic"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "17:23"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "17:24"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "31:14"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "46:15"
+        }
+      ]
+    },
+    {
+      "id": "rescue-paraphrase-justice-ar",
+      "question": "ماذا يفعل المسلم إذا كان قول الحق سيضر مصلحته أو مصلحة أقاربه؟",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "arabic_paraphrase",
+        "tafsir",
+        "rescue",
+        "arabic"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "4:135"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "5:8"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "16:90"
+        }
+      ]
+    },
+    {
+      "id": "rescue-paraphrase-forgiveness-ar",
+      "question": "هل يبقى باب الرجوع إلى الله مفتوحا لمن كثرت ذنوبه؟",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "arabic_paraphrase",
+        "tafsir",
+        "rescue",
+        "arabic"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "4:110"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "25:70"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "39:53"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "66:8"
+        }
+      ]
+    },
+    {
+      "id": "rescue-english-patience",
+      "question": "What does Islam teach about patience during hardship?",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "english_cross_lingual",
+        "tafsir",
+        "rescue",
+        "english",
+        "cross_lingual"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "2:153"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "2:155"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "2:156"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "2:157"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "3:200"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "16:127"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "39:10"
+        }
+      ]
+    },
+    {
+      "id": "rescue-english-tawakkul",
+      "question": "What does the Quran teach about trusting God when the future is uncertain?",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "english_cross_lingual",
+        "tafsir",
+        "rescue",
+        "english",
+        "cross_lingual"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "3:159"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "5:23"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "8:2"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "9:51"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "39:38"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "65:3"
+        }
+      ]
+    },
+    {
+      "id": "rescue-english-gratitude",
+      "question": "What does the Quran teach about being grateful for blessings?",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "english_cross_lingual",
+        "tafsir",
+        "rescue",
+        "english",
+        "cross_lingual"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "2:152"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "14:7"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "16:114"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "31:12"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "39:66"
+        }
+      ]
+    },
+    {
+      "id": "rescue-english-parents",
+      "question": "How should a person treat their parents, especially when they become old?",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "english_cross_lingual",
+        "tafsir",
+        "rescue",
+        "english",
+        "cross_lingual"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "17:23"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "17:24"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "31:14"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "46:15"
+        }
+      ]
+    },
+    {
+      "id": "rescue-english-justice",
+      "question": "What does the Quran teach about being just even when it is against your own interests?",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "english_cross_lingual",
+        "tafsir",
+        "rescue",
+        "english",
+        "cross_lingual"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "4:135"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "5:8"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "16:90"
+        }
+      ]
+    },
+    {
+      "id": "rescue-english-forgiveness",
+      "question": "Can a person who has committed many sins still return to God and be forgiven?",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "english_cross_lingual",
+        "tafsir",
+        "rescue",
+        "english",
+        "cross_lingual"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "4:110"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "25:70"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "39:53"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "66:8"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,659 @@
+{
+  "version": "1.0",
+  "description": "Frozen one-shot retrieval-rescue holdout. Created after retrieval implementation was frozen at 20e29cf. Contains exact-anchor controls, in-vocabulary concepts with unseen wording, and out-of-vocabulary concepts. Do not tune retrieval on this benchmark.",
+  "cases": [
+    {
+      "id": "holdout-anchor-24-35",
+      "question": "ما معنى الآية 24:35؟",
+      "tags": [
+        "exact_anchor",
+        "arabic",
+        "holdout"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "quran",
+          "reference": "24:35"
+        }
+      ]
+    },
+    {
+      "id": "holdout-anchor-49-10",
+      "question": "ما معنى الآية 49:10؟",
+      "tags": [
+        "exact_anchor",
+        "arabic",
+        "holdout"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "quran",
+          "reference": "49:10"
+        }
+      ]
+    },
+    {
+      "id": "holdout-direct-truth-ar",
+      "question": "ماذا يقول القرآن والتفسير عن الصدق؟",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "arabic_direct",
+        "oov_concept",
+        "holdout",
+        "tafsir",
+        "arabic"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "9:119"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "33:70"
+        }
+      ]
+    },
+    {
+      "id": "holdout-direct-extravagance-ar",
+      "question": "ماذا يقول القرآن والتفسير عن الإسراف والتبذير؟",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "arabic_direct",
+        "oov_concept",
+        "holdout",
+        "tafsir",
+        "arabic"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "7:31"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "17:26"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "17:27"
+        }
+      ]
+    },
+    {
+      "id": "holdout-iv-patience-ar",
+      "question": "ماذا يفعل المؤمن عندما تتتابع عليه المصائب ولا يريد أن يجزع؟",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "arabic_paraphrase",
+        "iv_unseen_wording",
+        "holdout",
+        "tafsir",
+        "arabic"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "2:153"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "2:155"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "2:156"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "2:157"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "3:200"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "16:127"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "39:10"
+        }
+      ]
+    },
+    {
+      "id": "holdout-iv-parents-ar",
+      "question": "ما التوجيه لمن أصبح أبواه كبيرين ويحتاجان إلى رعايته؟",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "arabic_paraphrase",
+        "iv_unseen_wording",
+        "holdout",
+        "tafsir",
+        "arabic"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "17:23"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "17:24"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "31:14"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "46:15"
+        }
+      ]
+    },
+    {
+      "id": "holdout-iv-justice-ar",
+      "question": "كيف يتصرف الإنسان إذا كان الإنصاف سيجعله يشهد ضد نفسه؟",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "arabic_paraphrase",
+        "iv_unseen_wording",
+        "holdout",
+        "tafsir",
+        "arabic"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "4:135"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "5:8"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "16:90"
+        }
+      ]
+    },
+    {
+      "id": "holdout-iv-forgiveness-ar",
+      "question": "ما الأمل لمن ندم على ذنوبه ويريد أن يبدأ من جديد مع الله؟",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "arabic_paraphrase",
+        "iv_unseen_wording",
+        "holdout",
+        "tafsir",
+        "arabic"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "4:110"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "25:70"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "39:53"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "66:8"
+        }
+      ]
+    },
+    {
+      "id": "holdout-iv-tawakkul-en",
+      "question": "How should a believer deal with uncertainty while relying on God?",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "english_cross_lingual",
+        "iv_unseen_wording",
+        "holdout",
+        "tafsir",
+        "english",
+        "cross_lingual"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "3:159"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "5:23"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "8:2"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "9:51"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "39:38"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "65:3"
+        }
+      ]
+    },
+    {
+      "id": "holdout-iv-gratitude-en",
+      "question": "How should someone respond to the blessings God has given them?",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "english_cross_lingual",
+        "iv_unseen_wording",
+        "holdout",
+        "tafsir",
+        "english",
+        "cross_lingual"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "2:152"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "14:7"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "16:114"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "31:12"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "39:66"
+        }
+      ]
+    },
+    {
+      "id": "holdout-iv-parents-en",
+      "question": "What guidance applies when caring for an aging mother and father?",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "english_cross_lingual",
+        "iv_unseen_wording",
+        "holdout",
+        "tafsir",
+        "english",
+        "cross_lingual"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "17:23"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "17:24"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "31:14"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "46:15"
+        }
+      ]
+    },
+    {
+      "id": "holdout-iv-forgiveness-en",
+      "question": "Is repentance still open after a person has committed repeated sins?",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "english_cross_lingual",
+        "iv_unseen_wording",
+        "holdout",
+        "tafsir",
+        "english",
+        "cross_lingual"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "4:110"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "25:70"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "39:53"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "66:8"
+        }
+      ]
+    },
+    {
+      "id": "holdout-oov-reconciliation-ar",
+      "question": "كيف يتصرف المؤمنون عندما يقع نزاع بين مجموعتين منهم؟",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "arabic_paraphrase",
+        "oov_concept",
+        "holdout",
+        "tafsir",
+        "arabic"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "4:114"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "49:9"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "49:10"
+        }
+      ]
+    },
+    {
+      "id": "holdout-oov-humility-ar",
+      "question": "كيف يمشي الإنسان ويتعامل مع الناس دون تكبر أو تعال؟",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "arabic_paraphrase",
+        "oov_concept",
+        "holdout",
+        "tafsir",
+        "arabic"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "25:63"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "31:18"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "31:19"
+        }
+      ]
+    },
+    {
+      "id": "holdout-oov-extravagance-ar",
+      "question": "ما التوجيه لمن ينفق ماله بلا اعتدال ويضيعه فيما لا يحتاج؟",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "arabic_paraphrase",
+        "oov_concept",
+        "holdout",
+        "tafsir",
+        "arabic"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "7:31"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "17:26"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "17:27"
+        }
+      ]
+    },
+    {
+      "id": "holdout-oov-orphans-en",
+      "question": "How should a child who has lost their parents be treated?",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "english_cross_lingual",
+        "oov_concept",
+        "holdout",
+        "tafsir",
+        "english",
+        "cross_lingual"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "2:220"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "4:10"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "93:9"
+        }
+      ]
+    },
+    {
+      "id": "holdout-oov-truth-en",
+      "question": "What guidance does the Quran give about being truthful and speaking honestly?",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "english_cross_lingual",
+        "oov_concept",
+        "holdout",
+        "tafsir",
+        "english",
+        "cross_lingual"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "9:119"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "33:70"
+        }
+      ]
+    },
+    {
+      "id": "holdout-oov-envy-en",
+      "question": "What guidance addresses envy when someone wishes another person's blessing would disappear?",
+      "relevance_mode": "any",
+      "tags": [
+        "conceptual",
+        "english_cross_lingual",
+        "oov_concept",
+        "holdout",
+        "tafsir",
+        "english",
+        "cross_lingual"
+      ],
+      "k_values": [
+        1,
+        3,
+        5,
+        10,
+        50,
+        100
+      ],
+      "expectations": [
+        {
+          "domain": "tafsir",
+          "reference": "4:54"
+        },
+        {
+          "domain": "tafsir",
+          "reference": "113:5"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "access": {
+    "immutable_full_corpus_snapshot": false,
+    "mode": "LIVE_QUERY_CAPTURED_RESPONSE",
+    "response_capture_required": true,
+    "response_sha256_required": true
+  },
+  "evidence": {
+    "adversarial_audit": "data/competition/audits/hadith/dorar-adversarial-v1.json",
+    "schema_audit": "data/competition/audits/hadith/dorar-api-smoke.json"
+  },
+  "hard_rules": {
+    "authentic_hadith_implies_claim_entailment": false,
+    "majority_vote": "PROHIBITED",
+    "missing_source_or_reference": "NOT_USABLE_AS_HADITH_EVIDENCE",
+    "multiple_gradings": "PRESERVE_ALL_ATTRIBUTED_GRADINGS",
+    "other_sunnah_without_verification": "RETRIEVE_MORE",
+    "search_frequency_implies_consensus": false,
+    "zero_search_hits": "NO_HITS_FOR_QUERY",
+    "zero_search_hits_proves_absence": false
+  },
+  "official_reference_policy": {
+    "priority": [
+      "SAHIH_AL_BUKHARI",
+      "SAHIH_MUSLIM",
+      "OTHER_SUNNAH_AFTER_VERIFICATION"
+    ],
+    "verification_paths": [
+      "DORAR_HADITH",
+      "APPROVED_SHAMELA_EDITION"
+    ]
+  },
+  "passport_version": 1,
+  "provider": "Dorar al-Sunniyyah",
+  "role": "HADITH_VERIFICATION_AND_GRADING_AUTHORITY",
+  "runtime": {
+    "admission": "ELIGIBLE_AS_VERIFICATION_AUTHORITY",
+    "fail_closed_on_missing_attribution": true,
+    "fail_closed_on_schema_break": true
+  },
+  "source_id": "dorar:hadith-api",
+  "trust": {
+    "adapter_schema": "VERIFIED",
+    "attribution_preservation": "VERIFIED",
+    "entire_remote_corpus_integrity": "NOT_CLAIMED",
+    "false_consensus_guard": "VERIFIED",
+    "no_result_fail_closed": "VERIFIED",
+    "official_eligibility": "VERIFIED",
+    "provider_role": "VERIFICATION_AUTHORITY",
+    "retrieval_ranking_quality": "NOT_YET_BENCHMARKED"
+  }
+}

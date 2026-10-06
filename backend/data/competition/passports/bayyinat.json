@@ -1,0 +1,76 @@
+{
+  "allowed_uses": [
+    "CONVERSATIONAL_SHUBUHAT_RETRIEVAL",
+    "FAQ_RETRIEVAL",
+    "EXPLANATORY_FRAMING",
+    "QUESTION_REFORMULATION_SUPPORT"
+  ],
+  "artifact": {
+    "kind": "pdf",
+    "page_count": 1259,
+    "sha256": "619b7201833419b8fbf86c463208462b9a2a7f02ad2306a2667490f3b410ad4e"
+  },
+  "authority_role": "PRIMARY_CONVERSATIONAL_SOURCE",
+  "canonical_units": {
+    "content_contract_path": "data/competition/discovery/bayyinat/content-contract.json",
+    "content_contract_sha256": "9bf9f4b4350b63d0d3367d3d158526bdb6aab98f5bc8ff86f97ba4bf545c2fb3",
+    "count": 263,
+    "snapshot_path": "data/competition/sources/shubuhat/bayyinat_units_v1.json",
+    "snapshot_sha256": "f4503ed02a3de3c4f03b8cb63d893702dea93b1e773dce2bda15c597398245ed",
+    "unit_boundary_contract": "FROZEN"
+  },
+  "citation_policy": {
+    "bayyinat_internal_lexical_citation_is_primary_evidence": false,
+    "cross_domain_claims_require_primary_domain_evidence": true
+  },
+  "competition_sufficiency": {
+    "optional_enrichment": [
+      "gist",
+      "short_answer",
+      "detailed_answer",
+      "conclusion",
+      "keywords",
+      "related_questions"
+    ],
+    "required_capabilities": [
+      "official_artifact_identity",
+      "deterministic_units",
+      "frozen_unit_boundaries",
+      "searchable_unit_text",
+      "title_question_retrieval",
+      "page_provenance",
+      "governed_reranking"
+    ],
+    "status": "PASS"
+  },
+  "cross_domain_routing": {
+    "aqeedah": "AQEEDAH_GOVERNED_SOURCE",
+    "fiqh": "FIQH_GOVERNED_SOURCE",
+    "hadith": "HADITH_GOVERNED_SOURCE",
+    "history": "HISTORY_GOVERNED_SOURCE",
+    "quran": "QURAN_GOVERNED_SOURCE",
+    "tafsir": "TAFSIR_GOVERNED_SOURCE"
+  },
+  "domain": "shubuhat_faq",
+  "official_locator": "https://dawa.center/file/7937",
+  "passport_id": "bayyinat-official-v1",
+  "prohibited_inferences": [
+    "UNIVERSAL_PRIMARY_EVIDENCE",
+    "CONSENSUS_FROM_WORDING",
+    "CONSENSUS_FROM_RETRIEVAL_COUNT",
+    "INDEPENDENT_PERSONAL_FATWA",
+    "AUTOMATED_TARJIH",
+    "GENERIC_SHAMELA_FALLBACK"
+  ],
+  "retrieval": {
+    "adapter": "src/basira/competition/bayyinat.py",
+    "multi_concept_reranking": true,
+    "page_provenance": true,
+    "search_scope": "263_GOVERNED_CANONICAL_UNITS",
+    "status": "IMPLEMENTED"
+  },
+  "runtime_admission": "GOVERNED_CONVERSATIONAL_RUNTIME",
+  "schema_version": 1,
+  "source_name": "Bayyinat — Questions and Answers about Islam",
+  "runtime_source_id": "bayyinat-v1"
+}

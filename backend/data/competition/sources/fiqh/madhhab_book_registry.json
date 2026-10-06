@@ -1,0 +1,24 @@
+{
+  "registry_version": 1,
+  "purpose": "Govern books discoverable by the Hybrid Fiqh Agent",
+  "invariants": {
+    "discovered_equals_authorized": false,
+    "famous_equals_mutamad": false,
+    "cited_equals_mutamad": false,
+    "dorar_reference_listed_equals_mutamad": false
+  },
+  "supported_madhhabs": [
+    "hanafi",
+    "maliki",
+    "shafii",
+    "hanbali"
+  ],
+  "primary_retrieval_requires": [
+    "verified_mutamad",
+    "authority_evidence",
+    "known_madhhab",
+    "governed_exact_edition",
+    "runtime_eligible_source"
+  ],
+  "books": []
+}

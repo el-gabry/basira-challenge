@@ -1,0 +1,66 @@
+{
+  "candidate_count": 5,
+  "candidates": [
+    {
+      "download": false,
+      "reasons": [
+        "document_extension"
+      ],
+      "score": 10,
+      "tag": "a",
+      "text": "فتح في نافذة جديدة",
+      "url": "https://dawa.center/storage/files/AMYj6DfmHlSnZ766Zz0VlBNwmYtdwhAl31XMETlT.pdf"
+    },
+    {
+      "download": false,
+      "reasons": [
+        "download_or_document_label"
+      ],
+      "score": 5,
+      "tag": "a",
+      "text": "PDF",
+      "url": "https://dawa.center/file/2833"
+    },
+    {
+      "download": false,
+      "reasons": [
+        "download_or_document_label"
+      ],
+      "score": 5,
+      "tag": "a",
+      "text": "PDF",
+      "url": "https://dawa.center/file/403"
+    },
+    {
+      "download": false,
+      "reasons": [
+        "download_or_document_label"
+      ],
+      "score": 5,
+      "tag": "a",
+      "text": "PDF",
+      "url": "https://dawa.center/file/8557"
+    },
+    {
+      "download": false,
+      "reasons": [
+        "embedded_document_surface"
+      ],
+      "score": 4,
+      "tag": "iframe",
+      "text": "",
+      "url": "https://dawa.center/pdf-viewer/web/viewer.html?file=%2Fstorage%2Ffiles%2FAMYj6DfmHlSnZ766Zz0VlBNwmYtdwhAl31XMETlT.pdf"
+    }
+  ],
+  "content_type": "text/html; charset=utf-8",
+  "effective_url": "https://dawa.center/file/7937",
+  "html_title": "بينات: أسئلة وأجوبة عن الإسلام",
+  "http_code": 200,
+  "locator_kind": "html",
+  "official_requested_url": "https://dawa.center/file/7937",
+  "resolution": "UNIQUE_OFFICIAL_PAGE_DOCUMENT_LINK",
+  "resolved_artifact_url": "https://dawa.center/storage/files/AMYj6DfmHlSnZ766Zz0VlBNwmYtdwhAl31XMETlT.pdf",
+  "reuse_locator_body": false,
+  "size_download": 98165,
+  "visible_chars": 45915
+}

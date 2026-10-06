@@ -1,0 +1,384 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "shamela-retrieval-v1",
+  "split": "dev",
+  "description": "Frozen structural retrieval benchmark for the governed two-book Shamela corpus. Gold identifies acceptable book/chapter locations. Chapter relevance is not semantic claim verification.",
+  "corpus_fingerprint": "00edc4a799087fcc7fa0b83e2582604ffbc11f75dc4cfe2b90a424589a4a5a8f",
+  "index_fingerprint": "08db016154199e022fad28101fda5ed51f242d1fa6828521b6386bad3cabf94b",
+  "k_values": [
+    1,
+    5,
+    10,
+    50
+  ],
+  "cases": [
+    {
+      "id": "dev-hanafi-riba-direct",
+      "question": "ما أحكام الربا؟",
+      "gold": [
+        {
+          "book_id": "1045",
+          "parent_text": "باب الربا",
+          "madhhab": "hanafi",
+          "structural_parent_id": "shamela-node:32385ec21a56c2a655dcd739c7fdd9688f9dfc207c27558d5c4bc0739713275c"
+        }
+      ],
+      "tags": [
+        "arabic",
+        "direct",
+        "single_madhhab",
+        "riba"
+      ]
+    },
+    {
+      "id": "dev-maliki-wudu-direct",
+      "question": "ما فرائض الوضوء وسننه؟",
+      "gold": [
+        {
+          "book_id": "4226",
+          "parent_text": "فصل في فرائض الوضوء وسننه وفضائله",
+          "madhhab": "maliki",
+          "structural_parent_id": "shamela-node:fb34d0cd6217382547409cc14309155ed9adf0c910852a53827e76009a3b0e0a"
+        }
+      ],
+      "tags": [
+        "arabic",
+        "direct",
+        "single_madhhab",
+        "wudu"
+      ]
+    },
+    {
+      "id": "dev-comparative-shufaa",
+      "question": "ما أحكام الشفعة عند الحنفية والمالكية؟",
+      "gold": [
+        {
+          "book_id": "1045",
+          "parent_text": "كتاب الشفعة",
+          "madhhab": "hanafi",
+          "structural_parent_id": "shamela-node:5e0992c8eacf3c4d9e17e813b7cf78dc40edd18cf05a69cdd8f32f24f3d8eaaa"
+        },
+        {
+          "book_id": "4226",
+          "parent_text": "باب في حقيقة الشفعة وأحكامها",
+          "madhhab": "maliki",
+          "structural_parent_id": "shamela-node:0f3b9fcfdf171b92acf45ebbb55a88273375fb424402f4c7bea93a4ce3e1aaaa"
+        }
+      ],
+      "tags": [
+        "arabic",
+        "direct",
+        "comparative",
+        "shufaa"
+      ]
+    },
+    {
+      "id": "dev-comparative-murabaha",
+      "question": "ما أحكام المرابحة في المذهب الحنفي والمالكي؟",
+      "gold": [
+        {
+          "book_id": "1045",
+          "parent_text": "باب المرابحة، والتولية",
+          "madhhab": "hanafi",
+          "structural_parent_id": "shamela-node:ba19f53b5ed7cb9fc591d6ad32d47ac1df3f45d977f58434b3745758edaef637"
+        },
+        {
+          "book_id": "4226",
+          "parent_text": "فصل في أحكام المرابحة",
+          "madhhab": "maliki",
+          "structural_parent_id": "shamela-node:d006d994466eb6ea35c8da378b32f25c6b15a0ca40cbe8fa6ddf8981dbcb4589"
+        }
+      ],
+      "tags": [
+        "arabic",
+        "direct",
+        "comparative",
+        "murabaha"
+      ]
+    },
+    {
+      "id": "dev-comparative-defect-option",
+      "question": "ما أحكام خيار العيب ورد المبيع؟",
+      "gold": [
+        {
+          "book_id": "1045",
+          "parent_text": "باب خيار العيب",
+          "madhhab": "hanafi",
+          "structural_parent_id": "shamela-node:a053bca725e7faf16a9141393fe5244b768efc13634ad4224d95c986027f36fb"
+        },
+        {
+          "book_id": "4226",
+          "parent_text": "خيار العيب (أي رد البيع)",
+          "madhhab": "maliki",
+          "structural_parent_id": "shamela-node:44e495d033f1d83ce2eabe39fa79c323a7eaac1e16a7b728225215d0807c3a75"
+        }
+      ],
+      "tags": [
+        "arabic",
+        "direct",
+        "comparative",
+        "sale_option"
+      ]
+    },
+    {
+      "id": "dev-comparative-rahn",
+      "question": "ما أحكام الرهن عند الحنفية والمالكية؟",
+      "gold": [
+        {
+          "book_id": "1045",
+          "parent_text": "كتاب الرهن",
+          "madhhab": "hanafi",
+          "structural_parent_id": "shamela-node:c9931feb77c5366e6d10a1cc1fd57c0ed55c57bf520e387f4a228740500a1457"
+        },
+        {
+          "book_id": "4226",
+          "parent_text": "باب في أحكام الرهن",
+          "madhhab": "maliki",
+          "structural_parent_id": "shamela-node:1143dc6248d3707db562b671f8ca8c2565928250e93fcbd3051ed89174bf5696"
+        }
+      ],
+      "tags": [
+        "arabic",
+        "direct",
+        "comparative",
+        "rahn"
+      ]
+    },
+    {
+      "id": "dev-comparative-divorce",
+      "question": "ما أحكام الطلاق عند الحنفية والمالكية؟",
+      "gold": [
+        {
+          "book_id": "1045",
+          "parent_text": "كتاب الطلاق",
+          "madhhab": "hanafi",
+          "structural_parent_id": "shamela-node:610aa5a6f2b878c1a4993aefbdd0283f10e2f15dd707a79d47556b499c370fc1"
+        },
+        {
+          "book_id": "4226",
+          "parent_text": "فصل في أركان الطلاق",
+          "madhhab": "maliki",
+          "structural_parent_id": "shamela-node:7a7d578397611390e95aab516cb946e6040b9077b56283923e337fc2c7a725f7"
+        }
+      ],
+      "tags": [
+        "arabic",
+        "direct",
+        "comparative",
+        "divorce"
+      ]
+    },
+    {
+      "id": "dev-comparative-agency",
+      "question": "ما أحكام الوكالة في المذهب الحنفي والمالكي؟",
+      "gold": [
+        {
+          "book_id": "1045",
+          "parent_text": "كتاب الوكالة",
+          "madhhab": "hanafi",
+          "structural_parent_id": "shamela-node:62d52e5ea0126d9fa34a8aaa819cd91b25cce12a039c7ccda2c00f6863bc4f70"
+        },
+        {
+          "book_id": "4226",
+          "parent_text": "باب في أحكام الوكالة",
+          "madhhab": "maliki",
+          "structural_parent_id": "shamela-node:8dd98ce28da4fbaa7b84dff06bfd0124d66686d04399cc5127791ff44e1cb275"
+        }
+      ],
+      "tags": [
+        "arabic",
+        "direct",
+        "comparative",
+        "agency"
+      ]
+    },
+    {
+      "id": "dev-paraphrase-shufaa",
+      "question": "حق الشريك في أخذ الحصة المبيعة: ما الباب الفقهي الذي يعالج هذه المسألة؟",
+      "gold": [
+        {
+          "book_id": "1045",
+          "parent_text": "كتاب الشفعة",
+          "madhhab": "hanafi",
+          "structural_parent_id": "shamela-node:5e0992c8eacf3c4d9e17e813b7cf78dc40edd18cf05a69cdd8f32f24f3d8eaaa"
+        },
+        {
+          "book_id": "4226",
+          "parent_text": "باب في حقيقة الشفعة وأحكامها",
+          "madhhab": "maliki",
+          "structural_parent_id": "shamela-node:0f3b9fcfdf171b92acf45ebbb55a88273375fb424402f4c7bea93a4ce3e1aaaa"
+        }
+      ],
+      "tags": [
+        "arabic",
+        "paraphrase",
+        "comparative",
+        "shufaa"
+      ],
+      "notes": "Human-authored conceptual paraphrase. Gold is structural chapter identity, not semantic claim support."
+    },
+    {
+      "id": "dev-paraphrase-defect-return",
+      "question": "متى يرد المشتري المبيع بسبب عيب؟",
+      "gold": [
+        {
+          "book_id": "1045",
+          "parent_text": "باب خيار العيب",
+          "madhhab": "hanafi",
+          "structural_parent_id": "shamela-node:a053bca725e7faf16a9141393fe5244b768efc13634ad4224d95c986027f36fb"
+        },
+        {
+          "book_id": "4226",
+          "parent_text": "خيار العيب (أي رد البيع)",
+          "madhhab": "maliki",
+          "structural_parent_id": "shamela-node:44e495d033f1d83ce2eabe39fa79c323a7eaac1e16a7b728225215d0807c3a75"
+        }
+      ],
+      "tags": [
+        "arabic",
+        "paraphrase",
+        "comparative",
+        "sale_option"
+      ],
+      "notes": "Human-authored paraphrase; used only for retrieval evaluation."
+    },
+    {
+      "id": "dev-paraphrase-rental",
+      "question": "أحكام استئجار الدار والأرض والكراء",
+      "gold": [
+        {
+          "book_id": "1045",
+          "parent_text": "كتاب الإجارات",
+          "madhhab": "hanafi",
+          "structural_parent_id": "shamela-node:7728a0cff2468b9543a8e3e69f5c29b4f77e3044a6f204c73aa31af4f928b2ca"
+        },
+        {
+          "book_id": "4226",
+          "parent_text": "فصل في أحكام كراء الحمام والدار والأرض وما يناسبها",
+          "madhhab": "maliki",
+          "structural_parent_id": "shamela-node:ffa60d9c124aa246e624d64d119b6b412ba50ca4c30fe7d6409a33993e27c4a0"
+        }
+      ],
+      "tags": [
+        "arabic",
+        "paraphrase",
+        "comparative",
+        "ijara"
+      ]
+    },
+    {
+      "id": "dev-comparative-tayammum",
+      "question": "ما أحكام التيمم عند الحنفية والمالكية؟",
+      "gold": [
+        {
+          "book_id": "1045",
+          "parent_text": "باب التيمم",
+          "madhhab": "hanafi",
+          "structural_parent_id": "shamela-node:eea9a46ae449efea13f46983d709b2cdca446c3ee604757ed61fd3736d998717"
+        },
+        {
+          "book_id": "4226",
+          "parent_text": "فصل في التيمم",
+          "madhhab": "maliki",
+          "structural_parent_id": "shamela-node:2e4bd6bb1b9ab93f21699bed92441d4d99e0e4a143a8412878d2dd5fdd5532f6"
+        }
+      ],
+      "tags": [
+        "arabic",
+        "direct",
+        "comparative",
+        "tayammum"
+      ]
+    },
+    {
+      "id": "dev-comparative-khuff",
+      "question": "المسح على الخفين عند الحنفية والمالكية",
+      "gold": [
+        {
+          "book_id": "1045",
+          "parent_text": "باب المسح",
+          "madhhab": "hanafi",
+          "structural_parent_id": "shamela-node:f6e4fc0aea5e90426edcfbee113ab963d1cc4ea903a1db0c5c084363ab22a5d2"
+        },
+        {
+          "book_id": "4226",
+          "parent_text": "فصل في المسح على الخف",
+          "madhhab": "maliki",
+          "structural_parent_id": "shamela-node:8eb72c288137ee4e597665f11c206cb4de6933cf8ba7eaa9c5e874283d297d48"
+        }
+      ],
+      "tags": [
+        "arabic",
+        "paraphrase",
+        "comparative",
+        "khuff"
+      ]
+    },
+    {
+      "id": "dev-zakat-gold-money",
+      "question": "زكاة الذهب والنقود",
+      "gold": [
+        {
+          "book_id": "1045",
+          "parent_text": "باب زكاة الذهب",
+          "madhhab": "hanafi",
+          "structural_parent_id": "shamela-node:dc18b25e176c23b49ecc6169da75f6b5928744c6e09b53341840d0d27bb19d9a"
+        },
+        {
+          "book_id": "4226",
+          "parent_text": "زكاة النقود وما يتعلق بها",
+          "madhhab": "maliki",
+          "structural_parent_id": "shamela-node:bc146c4819d48ec11154034b1c5799abc6888d77d67279bb01ffa647aa726d85"
+        }
+      ],
+      "tags": [
+        "arabic",
+        "paraphrase",
+        "comparative",
+        "zakat"
+      ]
+    },
+    {
+      "id": "dev-exact-hanafi-riba",
+      "question": "الربا عبارة عن الفضل المستحق من جهة البيع الخالي عن العوض",
+      "gold": [
+        {
+          "book_id": "1045",
+          "parent_text": "باب الربا",
+          "madhhab": "hanafi",
+          "passage_ids": [
+            "shamela-span:13bc4b7daa3b95df230c68258c7c92e8cfa11c5a79c1a75008aadd7a39664efb"
+          ],
+          "structural_parent_id": "shamela-node:32385ec21a56c2a655dcd739c7fdd9688f9dfc207c27558d5c4bc0739713275c"
+        }
+      ],
+      "tags": [
+        "arabic",
+        "exact_phrase",
+        "single_madhhab",
+        "riba"
+      ]
+    },
+    {
+      "id": "dev-exact-maliki-wudu",
+      "question": "فرائض الوضوء غسل ما بين الأذنين ومنابت شعر الرأس المعتاد",
+      "gold": [
+        {
+          "book_id": "4226",
+          "parent_text": "فصل في فرائض الوضوء وسننه وفضائله",
+          "madhhab": "maliki",
+          "passage_ids": [
+            "shamela-span:b36b8375178a431d07058c4e4fa60e0f5ac963a2d23fc0e2aed0729ce0e964d8"
+          ],
+          "structural_parent_id": "shamela-node:fb34d0cd6217382547409cc14309155ed9adf0c910852a53827e76009a3b0e0a"
+        }
+      ],
+      "tags": [
+        "arabic",
+        "exact_phrase",
+        "single_madhhab",
+        "wudu"
+      ]
+    }
+  ]
+}

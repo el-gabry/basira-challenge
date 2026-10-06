@@ -1,0 +1,28 @@
+{
+  "registry_version": 1,
+  "purpose": "Govern authority eligibility of first-three-centuries Aqeedah sources",
+  "authority_statuses": [
+    "verified_primary",
+    "verified_supporting",
+    "dorar_reference_listed",
+    "pending_authority_review",
+    "quarantined",
+    "unknown"
+  ],
+  "authority_bases": [
+    "official_competition_rule",
+    "dorar_governed_reference",
+    "governed_source_catalog",
+    "manual_scholarly_audit"
+  ],
+  "hard_invariants": {
+    "early_equals_authorized": false,
+    "famous_equals_authorized": false,
+    "cited_equals_primary": false,
+    "dorar_reference_listed_equals_primary": false,
+    "shamela_hosted_equals_authorized": false,
+    "source_count_equals_consensus": false,
+    "period_eligibility_equals_authority_eligibility": false
+  },
+  "sources": []
+}

@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "source": "DAWA_CENTER",
+  "domain": "dawah_general_content",
+  "status": "FROZEN_DISCOVERY_FIELD_AND_AUTHORITY_BOUNDARY",
+  "authority_scope": {
+    "allowed_after_runtime_admission": [
+      "DAWAH_GENERAL_CONTENT_RETRIEVAL",
+      "OFFICIAL_DAWAH_RESOURCE_DISCOVERY",
+      "AUDIENCE_SENSITIVE_DAWAH_CONTEXT",
+      "COUNTRY_CONTEXT_FOR_DAWAH",
+      "LANGUAGE_CONTEXT_FOR_DAWAH",
+      "RELIGION_TARGETING_CONTEXT_FOR_DAWAH",
+      "PEOPLE_GROUP_TARGETING_CONTEXT_FOR_DAWAH",
+      "ISLAMIC_CENTRE_CONTEXT_FOR_DAWAH"
+    ],
+    "prohibited_inferences": [
+      "UNIVERSAL_PRIMARY_EVIDENCE",
+      "AQEEDAH_PRIMARY_AUTHORITY_FROM_DAWAH_PAGE",
+      "FIQH_PRIMARY_AUTHORITY_FROM_DAWAH_PAGE",
+      "HADITH_AUTHENTICATION_FROM_DAWAH_PAGE",
+      "TAFSIR_PRIMARY_AUTHORITY_FROM_DAWAH_PAGE",
+      "RELIGIONS_SECTS_COMPARATIVE_AUTHORITY_FROM_DAWAH_FACET",
+      "TERMINOLOGY_AUTHORITY_FROM_DAWAH_PAGE",
+      "CONSENSUS_FROM_DAWAH_WORDING",
+      "INDEPENDENT_PERSONAL_FATWA"
+    ]
+  },
+  "entity_contract": {
+    "canonical_identity_fields": [
+      "entity_type",
+      "entity_key"
+    ],
+    "content_entity_types": [
+      "file",
+      "book"
+    ],
+    "context_entity_types": [
+      "category",
+      "language",
+      "country",
+      "people_group",
+      "religion",
+      "islamic_centre"
+    ],
+    "articles_is_listing_not_entity": true
+  },
+  "field_contract": {
+    "status": "FROZEN_FROM_CENSUS",
+    "evidence": "data/competition/discovery/dawa-center/field-census.json",
+    "sample_size": 40,
+    "mandatory_identity_fields": [
+      "entity_type",
+      "entity_key",
+      "source_url"
+    ],
+    "primary_label_candidates": [
+      "json_ld_name",
+      "title"
+    ],
+    "description_candidates": [
+      "json_ld_description",
+      "meta_description"
+    ],
+    "supplemental_fields": [
+      "h2"
+    ],
+    "unstable_optional_fields": [
+      "h1"
+    ],
+    "corpus_wide_presence_guarantee": false,
+    "universally_mandatory_semantic_field": null,
+    "runtime_payload_rule": "OFFICIAL_IDENTITY_PLUS_NONEMPTY_GOVERNED_LABEL_PLUS_NONEMPTY_GOVERNED_DESCRIPTION",
+    "missing_required_runtime_payload_policy": "FAIL_CLOSED",
+    "missing_optional_field_policy": "PRESERVE_AS_MISSING",
+    "fabricate_missing_content": false
+  },
+  "retrieval_policy": {
+    "html_public_pages_are_current_characterized_surface": true,
+    "content_api_observed": false,
+    "robots_sensitive_routes_must_not_be_used_by_runtime": true,
+    "prohibited_route_classes": [
+      "/search",
+      "/search/",
+      "*/download",
+      "*/preview",
+      "/storage/files/"
+    ]
+  },
+  "dependency_boundary": {
+    "jamhara_may_supply_governed_terminology": true,
+    "jamhara_may_supply_general_dawah_content_authority": false,
+    "dawa_center_may_replace_jamhara_terminology_authority": false
+  },
+  "runtime_admission": "DEFERRED_TO_TRUST_SHIELD",
+  "hybrid_agent_contract": {
+    "status": "FROZEN",
+    "role_map": {
+      "file": "CONTENT_EVIDENCE_CANDIDATE",
+      "book": "CONTENT_EVIDENCE_CANDIDATE",
+      "category": "ROUTING_CONTEXT",
+      "language": "ROUTING_CONTEXT",
+      "country": "ROUTING_CONTEXT",
+      "people_group": "ROUTING_CONTEXT",
+      "religion": "ROUTING_CONTEXT",
+      "islamic_centre": "ROUTING_CONTEXT"
+    },
+    "composition_rule": "ROUTING_CONTEXT_MAY_NARROW_OR_EXPAND_DAWAH_CONTENT_RETRIEVAL_BUT_MAY_NOT_REPLACE_CONTENT_EVIDENCE",
+    "relationship_link_rule": "OPTIONAL_EXPANSION_NOT_AUTHORITY",
+    "cross_domain_claim_rule": "ROUTE_TO_DOMAIN_PRIMARY_SOURCE_BEFORE_AUTHORITATIVE_ANSWER",
+    "terminology_rule": "USE_GOVERNED_JAMHARA_TERMINOLOGY_WHEN_APPLICABLE",
+    "dawa_center_may_override_jamhara_terminology": false,
+    "religion_context_may_grant_comparative_religion_authority": false,
+    "generic_shamela_fallback_allowed": false
+  }
+}

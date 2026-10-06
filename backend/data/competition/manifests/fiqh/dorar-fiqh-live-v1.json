@@ -1,0 +1,19 @@
+{
+  "manifest_version": 1,
+  "source_id": "dorar:fiqh",
+  "provider": "Dorar al-Sunniyyah",
+  "source_family": "DORAR_FIQH",
+  "role": "fiqh",
+  "access_mode": "live_search_then_canonical_article_capture",
+  "search_result_is_locator_only": true,
+  "canonical_article_required": true,
+  "response_sha256_required": true,
+  "article_body_isolation_required": true,
+  "preserve_disagreement": true,
+  "preserve_madhhab_attribution": true,
+  "preserve_citations": true,
+  "automated_tarjih": false,
+  "majority_vote": false,
+  "infer_consensus_from_counts": false,
+  "independent_personal_fatwa": false
+}

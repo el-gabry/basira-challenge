@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "passport_id": "jamhara-official-live-v1",
+  "runtime_source_id": "jamhara-live-v1",
+  "source_family": "AL_JAMHARA_ISLAMIC_TERMINOLOGY",
+  "domain": "translation_terminology",
+  "official_locator": "https://islamic-content.com/",
+  "official_origin": "https://islamic-content.com",
+  "route_template": "https://islamic-content.com/dictionary/word/{word_id}/{language}",
+  "runtime_admission": "GOVERNED_TERMINOLOGY_RUNTIME",
+  "authority_role": "PRIMARY_TERMINOLOGY_SOURCE",
+  "runtime_delivery": {
+    "mode": "LIVE_OFFICIAL_LOOKUP_WITH_PERSISTENT_CACHE",
+    "network_required_on_cache_miss": true,
+    "persistent_raw_cache_allowed": true,
+    "persistent_semantic_cache_allowed": true,
+    "cache_is_trust_anchor": false,
+    "official_origin_is_trust_anchor": true,
+    "deterministic_extractor_is_required": true,
+    "cross_origin_redirects_allowed": false
+  },
+  "implementation_integrity": {
+    "extractor": {
+      "path": "src/basira/competition/jamhara.py",
+      "sha256": "bceabcdf6cfdaf3b65b341bb7c1c64b222870397925b6a03308a0ac52cacd9ca"
+    },
+    "resolver": {
+      "path": "src/basira/competition/jamhara_resolver.py",
+      "sha256": "71103092452f12ff70c307df1f3dc1c9c04aab5e8e1539d736fbfd837fa787be"
+    },
+    "admission": {
+      "path": "src/basira/competition/jamhara_admission.py",
+      "sha256": "917d49f63fa6306893e7b99805aa6a648c195afaf88fa1e11fb13cc2f8e3383d"
+    }
+  },
+  "policy_integrity": {
+    "content_contract": {
+      "path": "data/competition/discovery/jamhara/content-contract.json",
+      "sha256": "6ce2771f1f30b3d9c8a0f9ada87892fa7322cbebc8278c2a90400f04fe3789f1"
+    },
+    "unit_structure": {
+      "path": "data/competition/discovery/jamhara/unit-structure.json",
+      "sha256": "96c55b8aee1862b5ce08b524ea6aa5291073c010b11c33b18048cb96008fda2f"
+    }
+  },
+  "translation_policy": {
+    "approved_terminology_precedes_machine_translation": true,
+    "machine_translation_may_replace_governed_term": false,
+    "unavailable_sensitive_term_may_be_silently_machine_translated": false,
+    "arabic_governed_fallback_allowed_when_available": true
+  },
+  "authority_boundary": {
+    "terminology_authority": true,
+    "universal_primary_evidence": false,
+    "cross_domain_primary_evidence": false,
+    "source_wording_equals_consensus": false,
+    "automatic_tarjih": false,
+    "independent_personal_fatwa": false
+  },
+  "prohibited_inferences": [
+    "UNIVERSAL_PRIMARY_EVIDENCE",
+    "AQEEDAH_AUTHORITY_FROM_TERMINOLOGY_ENTRY",
+    "FIQH_AUTHORITY_FROM_TERMINOLOGY_ENTRY",
+    "HADITH_AUTHENTICATION_FROM_TERMINOLOGY_ENTRY",
+    "TAFSIR_AUTHORITY_FROM_TERMINOLOGY_ENTRY",
+    "CONSENSUS_FROM_DICTIONARY_WORDING",
+    "AUTOMATIC_TARJIH",
+    "INDEPENDENT_PERSONAL_FATWA"
+  ],
+  "snapshot_policy": {
+    "required_for_runtime": false,
+    "snapshot_contract": "data/competition/discovery/jamhara/snapshot-contract.json",
+    "background_snapshot_state": "OPTIONAL_HARDENING_IN_PROGRESS",
+    "live_runtime_may_claim_snapshot_complete": false
+  },
+  "failure_policy": {
+    "empty_or_unusable_localized_view": "FAIL_CLOSED_OR_USE_GOVERNED_ARABIC_VIEW",
+    "cross_origin_response": "REJECT",
+    "unavailable_source": "RETURN_UNAVAILABLE_NOT_FABRICATED_TERM"
+  }
+}

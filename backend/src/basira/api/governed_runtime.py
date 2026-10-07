@@ -3530,6 +3530,40 @@ class PublicGovernedQueryRuntime:
 
         route = self.router.route(understanding)
 
+        # A generic Quran lookup may begin as conceptual discovery,
+        # because routing alone is not allowed to invent Quran identity.
+        #
+        # Once the governed canonical resolver has independently
+        # verified an exact Quran identity, however, the lookup is no
+        # longer conceptual discovery. The canonical Quran text is the
+        # direct grounding evidence for that verified coordinate.
+        #
+        # This does not create identity or evidence. It only aligns the
+        # reasoning mode with identity that has already been verified.
+        if (
+            understanding.primary_intent
+            is BasiraIntent.QURAN_LOOKUP
+            and _is_resolved(quran_resolution)
+            and route.frame.reasoning_mode
+            is ReasoningMode.CONCEPTUAL_GROUNDING
+        ):
+            route = replace(
+                route,
+                frame=replace(
+                    route.frame,
+                    reasoning_mode=(
+                        ReasoningMode.DIRECT_GROUNDING
+                    ),
+                ),
+                routing_reasons=(
+                    *route.routing_reasons,
+                    (
+                        "verified_quran_identity:"
+                        "direct_grounding"
+                    ),
+                ),
+            )
+
         understanding = replace(
             understanding,
             context_requirement=(route.context_requirement),

@@ -54,7 +54,7 @@ _CANONICAL_REFERENCE = re.compile(
 )
 
 _ARABIC_AYAH_NUMBER = re.compile(
-    r"(?:الاية|اية)"
+    r"(?:الاية|الايه|اية|ايه)"
     r"\s*"
     r"(?P<ayah>\d{1,3})"
 )

@@ -232,3 +232,36 @@ def test_projection_preserves_parent_provenance():
         source[start:end]
         == projected.text
     )
+
+
+def test_query_conjunction_before_definite_article_matches_source_token():
+    source = (
+        "يشترط التقابض في المجلس "
+        "في هذه الصورة."
+    )
+
+    passage = _passage(
+        source
+    )
+
+    projected = (
+        FiqhEvidenceProjector()
+        .project_passage(
+            passage,
+            query_hints=(
+                "بيع الذهب والتقابض",
+            ),
+        )
+    )
+
+    assert projected is not None
+
+    assert (
+        "التقابض"
+        in projected.text
+    )
+
+    assert (
+        projected.text
+        in source
+    )

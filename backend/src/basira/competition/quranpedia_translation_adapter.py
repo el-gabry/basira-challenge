@@ -391,6 +391,35 @@ class QuranpediaTranslationEvidenceAdapter:
 
         return records
 
+    def records(
+        self,
+    ) -> tuple[
+        tuple[int, int, str],
+        ...,
+    ]:
+        """
+        Return the admitted governed translation corpus.
+
+        This exposes only text that has already passed the
+        passport / manifest / snapshot SHA256 admission gate.
+
+        It grants no new religious authority.
+        """
+
+        return tuple(
+            (
+                surah,
+                ayah,
+                text,
+            )
+            for (
+                surah,
+                ayah,
+            ), text in sorted(
+                self._records.items()
+            )
+        )
+
     def get(
         self,
         *,

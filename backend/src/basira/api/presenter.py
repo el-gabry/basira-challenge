@@ -439,6 +439,154 @@ def _fiqh_opinion_payloads(
     return opinions
 
 
+
+def _localized_hadith_answer(
+    answer_text: str | None,
+    *,
+    language: str,
+    evidence,
+    used_ids: frozenset[str],
+) -> str | None:
+    """
+    Presentation-only localization for a published
+    Hadith answer.
+
+    This function runs AFTER governed composition.
+
+    It may translate deterministic UI framing only.
+
+    It MUST NOT:
+    - alter claim text;
+    - alter evidence text;
+    - alter Hadith identity;
+    - alter grade/authenticity;
+    - create authority;
+    - change publication decisions.
+    """
+
+    if (
+        language != "en"
+        or answer_text is None
+        or not answer_text.strip()
+    ):
+        return answer_text
+
+    used_nodes = tuple(
+        node
+        for node in evidence
+        if node.evidence_id in used_ids
+    )
+
+    if not used_nodes:
+        return answer_text
+
+    # Scope this localization strictly to answers whose
+    # published evidence is Hadith-only.
+    if any(
+        getattr(
+            getattr(
+                node,
+                "domain",
+                None,
+            ),
+            "value",
+            None,
+        )
+        != "hadith"
+        for node in used_nodes
+    ):
+        return answer_text
+
+    rendered: list[str] = []
+
+    for line in answer_text.splitlines():
+        stripped = line.strip()
+
+        if (
+            stripped
+            == "وفق الأدلة المعتمدة:"
+        ):
+            rendered.append(
+                "According to the governed evidence:"
+            )
+            continue
+
+        if (
+            stripped
+            == (
+                "وفق نص الحديث وأحكام المحدّثين "
+                "الموجودة في المصادر المعتمدة:"
+            )
+        ):
+            rendered.append(
+                "According to the governed Hadith "
+                "evidence and source verification:"
+            )
+            continue
+
+        # Composer label shape:
+        #
+        # [2] حكم المحدّث (reference): <verified claim>
+        #
+        # Only the label is localized.
+        # Everything after ":" remains byte-for-byte
+        # the verified claim text produced upstream.
+        if (
+            line.startswith("[")
+            and "] حكم " in line
+        ):
+            prefix, remainder = (
+                line.split(
+                    "] حكم ",
+                    1,
+                )
+            )
+
+            label, separator, claim = (
+                remainder.partition(":")
+            )
+
+            if separator:
+                detail = label.strip()
+
+                if detail.startswith(
+                    "المحدّث"
+                ):
+                    suffix = detail[
+                        len("المحدّث"):
+                    ].strip()
+
+                    english_label = (
+                        "Hadith status / "
+                        "source verification"
+                    )
+
+                    if suffix:
+                        english_label += (
+                            " " + suffix
+                        )
+
+                else:
+                    english_label = (
+                        "Hadith status / "
+                        "source verification"
+                        " — "
+                        + detail
+                    )
+
+                rendered.append(
+                    f"{prefix}] "
+                    f"{english_label}:"
+                    f"{claim}"
+                )
+
+                continue
+
+        rendered.append(line)
+
+    return "\n".join(rendered)
+
+
 def present_query(
     execution: QueryExecution,
     *,
@@ -728,7 +876,14 @@ def present_query(
         ),
         action=answer.action.value,
         has_answer=(answer.has_answer),
-        answer=answer.answer,
+        answer=_localized_hadith_answer(
+            answer.answer,
+            language=language,
+            evidence=(
+                execution.retrieval.evidence
+            ),
+            used_ids=used_ids,
+        ),
         limitations=list(answer.limitations),
         citations=citations,
         claims=claims,

@@ -165,6 +165,7 @@ def query(
         execution = service.execute(
             question=payload.question,
             quran_reference=(payload.quran_reference),
+            language=payload.language,
         )
     except ValueError as exc:
         raise HTTPException(
@@ -176,3 +177,9 @@ def query(
         execution,
         language=payload.language,
     )
+
+
+# BASIRA_CHAT_HISTORY_ROUTER
+from basira.api.chat_history import router as chat_history_router  # noqa: E402
+
+app.include_router(chat_history_router)

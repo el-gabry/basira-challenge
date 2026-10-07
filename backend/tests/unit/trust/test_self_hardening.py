@@ -33,6 +33,9 @@ def test_real_trust_shield_failures_are_seeded() -> None:
         FailureKind.PUBLICATION_AUTHORITY_FORGERY,
         FailureKind.SOURCE_DOMAIN_IDENTITY_SPOOFING,
         FailureKind.QURAN_VERIFICATION_INTENT_FALLTHROUGH,
+        FailureKind.QURAN_VERIFICATION_LANGUAGE_SWITCH,
+        FailureKind.TAFSIR_LANGUAGE_SWITCH_ANCHOR_DRIFT,
+        FailureKind.HADITH_LANGUAGE_SWITCH_EVIDENCE_REUSE,
     }
 
 

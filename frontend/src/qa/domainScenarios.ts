@@ -80,7 +80,7 @@ export const domainQaScenarios: DomainQaScenario[] = [
       en: "Governed Fiqh positions with disagreement preserved.",
     },
     question: {
-      ar: "ما حكم مس المرأة فرجها وهل ينقض الوضوء؟",
+      ar: "ما حكم البيع بالتقسيط؟",
       en: "Does touching the private part invalidate wudu?",
     },
     expectation: {

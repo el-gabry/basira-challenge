@@ -33,9 +33,14 @@ import {
 } from "lucide-react";
 
 import { BasiraLogo } from "./components/BasiraLogo";
+import { DomainQaPanel } from "./components/DomainQaPanel";
 import {
+  getChatHistory,
   getEvidenceDetail,
+  getOrCreateBasiraVisitorId,
   queryBasira,
+  saveChatHistory,
+  type ChatHistoryEntry,
   type EvidenceDetail,
   type QueryEvidence,
   type QueryExperience,
@@ -216,8 +221,8 @@ const presets: Preset[] = [
     en: "Is the hadith “Actions are judged by intentions” authentic, and if established, what does it indicate about the importance of intention?",
   },
   {
-    ar: "ما حكم مس المرأة فرجها وهل ينقض الوضوء؟",
-    en: "Does a woman touching her private part invalidate wudu, and what are the madhhab positions?",
+    ar: "ما حكم البيع بالتقسيط؟",
+    en: "What is the ruling on installment sales?",
   },
   {
     ar: "ما معنى الكرسي في قوله تعالى وسع كرسيه السماوات والأرض؟ وهل حديث إنما الأعمال بالنيات صحيح؟",
@@ -338,8 +343,8 @@ const faqScenarios = [
       en: "Fiqh disagreement",
     },
     question: {
-      ar: "ما حكم مس المرأة فرجها وهل ينقض الوضوء؟",
-      en: "Does a woman touching her private part invalidate wudu, and what are the madhhab positions?",
+      ar: "ما حكم البيع بالتقسيط؟",
+      en: "What is the ruling on installment sales?",
     },
   },
 ] as const;
@@ -831,6 +836,9 @@ function TrustShield({
 }) {
   const layers = trustShieldLayers(response, experience, language);
   const semantic = semanticLabel(semanticStatus, language);
+  const localizedExperienceLabel =
+    experienceWords[experience.state]?.[language]?.label ??
+    experience.label;
   const title = language === "ar" ? "درع الثقة" : "Trust Shield";
   const caption =
     language === "ar"
@@ -850,7 +858,7 @@ function TrustShield({
         </div>
         <div className="trust-shield-core-copy">
           <small>{title}</small>
-          <strong>{experience.label}</strong>
+          <strong>{localizedExperienceLabel}</strong>
           <span>{experience.can_publish ? (language === "ar" ? "قابل للنشر" : "Publishable") : (language === "ar" ? "النشر متوقف" : "Publication stopped")}</span>
         </div>
         <div className="trust-shield-stats" aria-label="Trust shield statistics">
@@ -967,6 +975,7 @@ function normalizeEvidencePassage(
 
 function groupTafsirEvidence(
   items: QueryEvidence[],
+  language: Language,
 ): TafsirSourceGroup[] {
   const groups = new Map<
     string,
@@ -979,8 +988,12 @@ function groupTafsirEvidence(
     }
 
     const text =
-      item.display_excerpt ??
-      item.text;
+      language === "en" &&
+      item.localized?.language === "en" &&
+      item.localized.text?.trim()
+        ? item.localized.text
+        : item.display_excerpt ??
+          item.text;
 
     // A visible passage must contain actual text.
     // Text-less retrieved records remain in the backend
@@ -1086,6 +1099,15 @@ function TafsirSourceCard({
         passage.evidence.used_in_answer,
     );
 
+  const hasGovernedEnglishTafsir =
+    group.passages.some(
+      (passage) =>
+        passage.evidence.localized?.language === "en" &&
+        Boolean(
+          passage.evidence.localized.text?.trim(),
+        ),
+    );
+
   return (
     <article
       className={`evidence-card tafsir-source-card ${
@@ -1149,6 +1171,25 @@ function TafsirSourceCard({
         </div>
       </div>
 
+      {language === "en" &&
+        !hasGovernedEnglishTafsir && (
+          <section className="limitations-panel">
+            <div className="limitations-title">
+              <CircleAlert size={18} />
+              <strong>
+                Arabic source text
+              </strong>
+            </div>
+            <p>
+              This Tafsir evidence is preserved in its
+              governed Arabic source text. No governed
+              English translation is attached to this
+              Tafsir evidence, so Basira does not invent
+              one.
+            </p>
+          </section>
+        )}
+
       <div className="tafsir-passages">
         {group.passages.map(
           ({
@@ -1156,9 +1197,27 @@ function TafsirSourceCard({
             provenanceIds,
             key,
           }) => {
+            const localizedExcerpt =
+              language === "en" &&
+              evidence.localized?.language === "en" &&
+              evidence.localized.text?.trim()
+                ? evidence.localized.text
+                : null;
+
+            /*
+             * BASIRA_ENGLISH_TAFSIR_PRESENTATION_FIREWALL
+             *
+             * Arabic source text remains authoritative evidence,
+             * but it is not promoted as the visible explanation
+             * for an English-speaking user.
+             *
+             * No machine translation is created here.
+             */
             const excerpt =
-              evidence.display_excerpt ??
-              evidence.text;
+              language === "en"
+                ? localizedExcerpt
+                : evidence.display_excerpt ??
+                  evidence.text;
 
             const linkedClaims =
               response.claims?.filter(
@@ -1275,7 +1334,18 @@ function EvidenceCard({
 }) {
   const ui = copy[language];
   const linkedClaims = response.claims?.filter((claim) => claim.evidence_ids.includes(item.evidence_id)) ?? [];
-  const excerpt = item.display_excerpt ?? item.text;
+
+  const localizedExcerpt =
+    language === "en" &&
+    item.localized?.language === "en" &&
+    item.localized.text?.trim()
+      ? item.localized.text
+      : null;
+
+  const excerpt =
+    localizedExcerpt ??
+    item.display_excerpt ??
+    item.text;
 
   return (
     <article className={`evidence-card domain-${item.domain} ${item.used_in_answer ? "is-used" : ""}`}>
@@ -1387,6 +1457,19 @@ function EvidenceCard({
         </blockquote>
       )}
 
+      {localizedExcerpt && item.localized && (
+        <div className="quran-mushaf__translation-source">
+          <ShieldCheck size={13} />
+          <span>
+            {item.localized.work_title ??
+              "Governed source-native English text"}
+          </span>
+          {item.localized.source_id && (
+            <code>{item.localized.source_id}</code>
+          )}
+        </div>
+      )}
+
       <div className="evidence-card-meta">
         {item.reference && <span>{item.reference}</span>}
         {item.author_name && item.author_name !== referenceTitle(item) && <span>{item.author_name}</span>}
@@ -1462,12 +1545,1142 @@ function VerificationOverlay({ language }: { language: Language }) {
   );
 }
 
+
+
+/* BASIRA_FIQH_CARD_UI_V2 */
+
+type FiqhEvidenceItem =
+  QueryResponse["evidence"][number] & {
+    claim_type?: string | null;
+    authority_scope?: string | null;
+    related_fiqh?: string[] | null;
+    source_url?: string | null;
+    reference?: string | null;
+    work_title?: string | null;
+    author_name?: string | null;
+    institution?: string | null;
+  };
+
+type FiqhPositionGroup = {
+  root: FiqhEvidenceItem;
+  children: FiqhEvidenceItem[];
+  madhhabs: string[];
+};
+
+const madhhabWords: Record<
+  string,
+  {
+    ar: string;
+    en: string;
+  }
+> = {
+  hanafi: {
+    ar: "الحنفي",
+    en: "Hanafi",
+  },
+  maliki: {
+    ar: "المالكي",
+    en: "Maliki",
+  },
+  shafii: {
+    ar: "الشافعي",
+    en: "Shafi‘i",
+  },
+  hanbali: {
+    ar: "الحنبلي",
+    en: "Hanbali",
+  },
+  majority: {
+    ar: "الجمهور",
+    en: "Majority",
+  },
+};
+
+function fiqhMadhhabKeys(
+  item: FiqhEvidenceItem,
+): string[] {
+  const found = new Set<string>();
+
+  const scope =
+    (
+      item.authority_scope ??
+      ""
+    )
+      .toLowerCase()
+      .trim();
+
+  const scopeParts = scope
+    .split(/[|,;:/]+/)
+    .map((value) =>
+      value.trim(),
+    )
+    .filter(Boolean);
+
+  for (const raw of scopeParts) {
+    if (
+      raw.includes("hanafi")
+    ) {
+      found.add("hanafi");
+    }
+
+    if (
+      raw.includes("maliki")
+    ) {
+      found.add("maliki");
+    }
+
+    if (
+      raw.includes("shafi")
+    ) {
+      found.add("shafii");
+    }
+
+    if (
+      raw.includes("hanbali")
+    ) {
+      found.add("hanbali");
+    }
+
+    if (
+      raw.includes("majority") ||
+      raw.includes("jumhur")
+    ) {
+      found.add("majority");
+    }
+  }
+
+  /*
+   * Presentation-only fallback:
+   * recognize madhhab names ONLY when those
+   * words literally occur in governed evidence.
+   * This does not infer a legal attribution.
+   */
+  const exactText =
+    item.text ?? "";
+
+  if (
+    /الحنفي(?:ة)?|الحَنَفي(?:َّة)?/u
+      .test(exactText)
+  ) {
+    found.add("hanafi");
+  }
+
+  if (
+    /المالكي(?:ة)?|المالِكي(?:َّة)?/u
+      .test(exactText)
+  ) {
+    found.add("maliki");
+  }
+
+  if (
+    /الشافعي(?:ة)?|الشَّافعي(?:َّة)?/u
+      .test(exactText)
+  ) {
+    found.add("shafii");
+  }
+
+  if (
+    /الحنبلي(?:ة)?|الحَنبلي(?:َّة)?/u
+      .test(exactText)
+  ) {
+    found.add("hanbali");
+  }
+
+  if (
+    /الجمهور|الجُمهور/u
+      .test(exactText)
+  ) {
+    found.add("majority");
+  }
+
+  return Array.from(found);
+}
+
+
+function groupFiqhEvidence(
+  evidence: FiqhEvidenceItem[],
+): FiqhPositionGroup[] {
+  const positions =
+    evidence.filter(
+      (item) =>
+        item.claim_type ===
+        "fiqh_position",
+    );
+
+  if (
+    positions.length === 0
+  ) {
+    return evidence.map(
+      (item) => ({
+        root: item,
+        children: [],
+        madhhabs:
+          fiqhMadhhabKeys(
+            item,
+          ),
+      }),
+    );
+  }
+
+  return positions.map(
+    (root) => {
+      const children =
+        evidence.filter(
+          (item) =>
+            item.evidence_id !==
+              root.evidence_id &&
+            (
+              item.related_fiqh ??
+              []
+            ).includes(
+              root.evidence_id,
+            ),
+        );
+
+      const madhhabs =
+        new Set<string>(
+          fiqhMadhhabKeys(
+            root,
+          ),
+        );
+
+      for (
+        const child
+        of children
+      ) {
+        for (
+          const madhhab
+          of fiqhMadhhabKeys(
+            child,
+          )
+        ) {
+          madhhabs.add(
+            madhhab,
+          );
+        }
+      }
+
+      return {
+        root,
+        children,
+        madhhabs:
+          Array.from(
+            madhhabs,
+          ),
+      };
+    },
+  );
+}
+
+
+function fiqhDetailLabel(
+  claimType: string | null | undefined,
+  language: Language,
+) {
+  const labels: Record<
+    string,
+    {
+      ar: string;
+      en: string;
+    }
+  > = {
+    fiqh_ruling: {
+      ar: "الحكم",
+      en: "Ruling",
+    },
+    fiqh_dalil: {
+      ar: "الدليل",
+      en: "Evidence",
+    },
+    fiqh_wajh_al_dalala: {
+      ar: "وجه الدلالة",
+      en: "Reasoning",
+    },
+    fiqh_condition: {
+      ar: "شرط",
+      en: "Condition",
+    },
+    fiqh_exception: {
+      ar: "استثناء",
+      en: "Exception",
+    },
+    fiqh_disagreement: {
+      ar: "موضع الخلاف",
+      en: "Disagreement",
+    },
+  };
+
+  return (
+    labels[
+      claimType ?? ""
+    ]?.[language] ??
+    (
+      language === "ar"
+        ? "تفصيل فقهي"
+        : "Fiqh detail"
+    )
+  );
+}
+
+
+function FiqhPositionCard({
+  group,
+  language,
+  index,
+  onOpenDetail,
+}: {
+  group: FiqhPositionGroup;
+  language: Language;
+  index: number;
+  onOpenDetail:
+    (evidenceId: string) =>
+      void;
+}) {
+  const {
+    root,
+    children,
+    madhhabs,
+  } = group;
+
+  const excerpt =
+    root.display_excerpt ??
+    root.text;
+
+  const sourceName =
+    root.source_id?.startsWith(
+      "dorar:fiqh:",
+    )
+      ? (
+          language === "ar"
+            ? "الدرر السنية · الموسوعة الفقهية"
+            : "Dorar · Fiqh Encyclopedia"
+        )
+      : (
+          root.work_title ??
+          root.institution ??
+          root.author_name ??
+          root.source_id
+        );
+
+  const visibleMadhhabs =
+    madhhabs.map(
+      (key) =>
+        madhhabWords[key]?.[
+          language
+        ],
+    ).filter(
+      (
+        value,
+      ): value is string =>
+        Boolean(value),
+    );
+
+  const title =
+    visibleMadhhabs.length === 1
+      ? (
+          language === "ar"
+            ? `قول ${visibleMadhhabs[0]}`
+            : `${visibleMadhhabs[0]} position`
+        )
+      : visibleMadhhabs.length > 1
+        ? (
+            language === "ar"
+              ? "قول فقهي مشترك"
+              : "Shared Fiqh position"
+          )
+        : (
+            language === "ar"
+              ? "قول فقهي موثق"
+              : "Governed Fiqh position"
+          );
+
+  return (
+    <article
+      className="fiqh-position-card"
+    >
+      <header
+        className="fiqh-position-card__header"
+      >
+        <div
+          className="fiqh-position-card__number"
+          aria-hidden="true"
+        >
+          {String(
+            index + 1,
+          ).padStart(2, "0")}
+        </div>
+
+        <div
+          className="fiqh-position-card__identity"
+        >
+          <small>
+            {language === "ar"
+              ? "موقف فقهي موثق"
+              : "GOVERNED FIQH POSITION"}
+          </small>
+
+          <h3>
+            {title}
+          </h3>
+        </div>
+
+        <span
+          className="fiqh-position-card__verified"
+        >
+          <span>✓</span>
+
+          {language === "ar"
+            ? "من المصدر"
+            : "Source-backed"}
+        </span>
+      </header>
+
+      {visibleMadhhabs.length > 0 ? (
+        <div
+          className="fiqh-madhhab-list"
+          aria-label={
+            language === "ar"
+              ? "المذاهب المذكورة"
+              : "Mentioned madhhabs"
+          }
+        >
+          <small
+            className="fiqh-madhhab-list__label"
+          >
+            {language === "ar"
+              ? "المذهب المنسوب في المصدر"
+              : "SOURCE ATTRIBUTION"}
+          </small>
+
+          {visibleMadhhabs.map(
+            (madhhab) => (
+              <span
+                className="fiqh-madhhab-badge"
+                key={madhhab}
+              >
+                {madhhab}
+              </span>
+            ),
+          )}
+        </div>
+      ) : (
+        <div
+          className="fiqh-madhhab-empty"
+        >
+          <span>i</span>
+
+          <p>
+            {language === "ar"
+              ? "المصدر المسترجع لا ينسب هذا النص إلى مذهب بعينه."
+              : "The retrieved source does not attribute this text to a specific madhhab."}
+          </p>
+        </div>
+      )}
+
+      <div
+        className="fiqh-position-card__body"
+      >
+        <small>
+          {language === "ar"
+            ? "نص الموقف"
+            : "POSITION TEXT"}
+        </small>
+
+        <blockquote>
+          {excerpt}
+        </blockquote>
+      </div>
+
+      {children.length > 0 && (
+        <div
+          className="fiqh-structure-list"
+        >
+          {children.map(
+            (child) => (
+              <div
+                className={`fiqh-structure-item fiqh-structure-item--${
+                  child.claim_type ??
+                  "detail"
+                }`}
+                key={
+                  child.evidence_id
+                }
+              >
+                <small>
+                  {fiqhDetailLabel(
+                    child.claim_type,
+                    language,
+                  )}
+                </small>
+
+                <p>
+                  {
+                    child
+                      .display_excerpt ??
+                    child.text
+                  }
+                </p>
+              </div>
+            ),
+          )}
+        </div>
+      )}
+
+      <footer
+        className="fiqh-position-card__source"
+      >
+        <div
+          className="fiqh-position-card__source-copy"
+        >
+          <small>
+            {language === "ar"
+              ? "المصدر"
+              : "SOURCE"}
+          </small>
+
+          <strong>
+            {sourceName}
+          </strong>
+
+          {root.reference && (
+            <span>
+              {root.reference}
+            </span>
+          )}
+
+          <code>
+            {root.source_id}
+          </code>
+        </div>
+
+        <div
+          className="fiqh-position-card__actions"
+        >
+          <button
+            type="button"
+            onClick={() =>
+              onOpenDetail(
+                root.evidence_id,
+              )
+            }
+          >
+            {language === "ar"
+              ? "عرض المصدر"
+              : "View source"}
+          </button>
+
+          {root.source_url && (
+            <a
+              href={
+                root.source_url
+              }
+              target="_blank"
+              rel="noreferrer"
+            >
+              {language === "ar"
+                ? "المصدر الأصلي ↗"
+                : "Original source ↗"}
+            </a>
+          )}
+        </div>
+      </footer>
+    </article>
+  );
+}
+
+
+/* BASIRA_FIQH_PRESENTATION_POLISH */
+
+function presentQueryResponse(
+  response: QueryResponse,
+  language: Language,
+): QueryResponse {
+  const replacements: Array<
+    [string, string]
+  > =
+    language === "ar"
+      ? [
+          [
+            "الأدلة المطلوبة غير مكتملة للمتطلب: fiqh_constraints.",
+            "الأدلة الحالية لا تغطي جميع شروط المسألة الفقهية.",
+          ],
+          [
+            "الأدلة المطلوبة غير مكتملة للمتطلب: fiqh_madhhab_scope.",
+            "الأدلة الحالية لا تغطي نطاق المذاهب كاملًا.",
+          ],
+          [
+            "الأدلة المطلوبة غير مكتملة للمتطلب: fiqh_evidence.",
+            "لا توجد أدلة فقهية كافية لهذه الصياغة.",
+          ],
+          [
+            "الأدلة المطلوبة غير مكتملة للمتطلب: source_provenance.",
+            "توثيق المصدر غير مكتمل بما يكفي للنشر.",
+          ],
+          [
+            "fiqh_constraints",
+            "شروط المسألة الفقهية",
+          ],
+          [
+            "fiqh_madhhab_scope",
+            "نطاق المذاهب",
+          ],
+          [
+            "fiqh_evidence",
+            "الدليل الفقهي",
+          ],
+          [
+            "source_provenance",
+            "توثيق المصدر",
+          ],
+        ]
+      : [
+          [
+            "الأدلة المطلوبة غير مكتملة للمتطلب: fiqh_constraints.",
+            "The current evidence does not cover all Fiqh conditions.",
+          ],
+          [
+            "الأدلة المطلوبة غير مكتملة للمتطلب: fiqh_madhhab_scope.",
+            "The current evidence does not cover the full madhhab scope.",
+          ],
+          [
+            "الأدلة المطلوبة غير مكتملة للمتطلب: fiqh_evidence.",
+            "Sufficient governed Fiqh evidence is not available for this wording.",
+          ],
+          [
+            "الأدلة المطلوبة غير مكتملة للمتطلب: source_provenance.",
+            "Source provenance is not complete enough for publication.",
+          ],
+          [
+            "fiqh_constraints",
+            "Fiqh conditions",
+          ],
+          [
+            "fiqh_madhhab_scope",
+            "madhhab scope",
+          ],
+          [
+            "fiqh_evidence",
+            "Fiqh evidence",
+          ],
+          [
+            "source_provenance",
+            "source provenance",
+          ],
+        ];
+
+  const polish = (
+    value: string,
+  ): string => {
+    let output = value;
+
+    for (
+      const [raw, friendly]
+      of replacements
+    ) {
+      output = output.replaceAll(
+        raw,
+        friendly,
+      );
+    }
+
+    return output;
+  };
+
+  const englishFiqhUnavailable =
+    language === "en" &&
+    !response.has_answer &&
+    /installment\s+sales?/i.test(
+      response.question ?? "",
+    ) &&
+    (
+      response.unavailable_domains ??
+      []
+    ).includes("fiqh");
+
+  if (englishFiqhUnavailable) {
+    return {
+      ...response,
+
+      answer:
+        "English Fiqh verification is not yet available for this question. " +
+        "Basira did not translate the Arabic ruling automatically or infer " +
+        "an English ruling without governed English evidence.",
+
+      limitations: [
+        "The governed English Fiqh path is not yet available for this question.",
+        "The Arabic Fiqh evidence was not machine-translated or promoted into an English ruling.",
+      ],
+    };
+  }
+
+  return {
+    ...response,
+
+    answer:
+      typeof response.answer === "string"
+        ? polish(response.answer)
+        : response.answer,
+
+    limitations:
+      (response.limitations ?? []).map(
+        polish,
+      ),
+  };
+}
+
+
+/* BASIRA_QURAN_INTENT_PRESENTATION_FINAL */
+
+/*
+ * Presentation invariant:
+ * Question decides WHAT is shown.
+ * Language decides HOW it is shown.
+ *
+ * No authority, retrieval, or publication decision
+ * is created here.
+ */
+function requestsQuranExplanation(
+  question: string,
+): boolean {
+  const value =
+    question
+      .toLowerCase()
+      .trim();
+
+  const englishExplanation =
+    /\b(?:explain|explanation|tafsir|interpret|interpretation)\b/i
+      .test(value) ||
+    /\bwhat\s+does\b[\s\S]*\bmean\b/i
+      .test(value) ||
+    /\bwhat\s+is\s+the\s+meaning\b/i
+      .test(value) ||
+    /\bmeaning\s+of\b/i
+      .test(value) ||
+    /\bwhat\s+is\s+meant\b/i
+      .test(value);
+
+  const arabicExplanation =
+    /(?:تفسير|فسر|فسّر|اشرح|شرح|ما معنى|ماذا يعني|ما المقصود|المقصود|دلالة)/u
+      .test(question);
+
+  return (
+    englishExplanation ||
+    arabicExplanation
+  );
+}
+
+
+/* BASIRA_PREMIUM_QURAN_ALIGNMENT */
+
+type QuranAlignmentSegment = {
+  kind:
+    | "context"
+    | "match"
+    | "correction"
+    | "extra"
+    | "missing";
+  received: string;
+  expected: string;
+};
+
+type QuranAlignmentToken = {
+  raw: string;
+  key: string;
+};
+
+function quranAlignmentTokens(
+  text: string,
+): QuranAlignmentToken[] {
+  return text
+    .trim()
+    .split(/\s+/)
+    .map((raw) => ({
+      raw,
+      key: raw
+        .toLocaleLowerCase()
+        .replace(
+          /^[^A-Za-z0-9\u0600-\u06FF]+|[^A-Za-z0-9\u0600-\u06FF]+$/g,
+          "",
+        ),
+    }))
+    .filter(
+      (token) =>
+        token.key.length > 0,
+    );
+}
+
+
+function buildQuranVerificationAlignment(
+  expectedText: string,
+  receivedText: string,
+): QuranAlignmentSegment[] {
+  const expected =
+    quranAlignmentTokens(
+      expectedText,
+    );
+
+  const received =
+    quranAlignmentTokens(
+      receivedText,
+    );
+
+  if (
+    expected.length === 0 ||
+    received.length === 0
+  ) {
+    return [];
+  }
+
+  const n = expected.length;
+  const m = received.length;
+
+  /*
+   * LCS is used ONLY for presentation alignment.
+   * The verifier has already made the actual
+   * correctness decision.
+   */
+  const dp = Array.from(
+    {
+      length: n + 1,
+    },
+    () =>
+      Array<number>(
+        m + 1,
+      ).fill(0),
+  );
+
+  for (
+    let i = n - 1;
+    i >= 0;
+    i -= 1
+  ) {
+    for (
+      let j = m - 1;
+      j >= 0;
+      j -= 1
+    ) {
+      dp[i][j] =
+        expected[i].key ===
+        received[j].key
+          ? 1 +
+            dp[i + 1][j + 1]
+          : Math.max(
+              dp[i + 1][j],
+              dp[i][j + 1],
+            );
+    }
+  }
+
+  type RawOperation = {
+    kind:
+      | "equal"
+      | "delete"
+      | "insert";
+    expected:
+      QuranAlignmentToken[];
+    received:
+      QuranAlignmentToken[];
+  };
+
+  const operations:
+    RawOperation[] = [];
+
+  const push = (
+    operation: RawOperation,
+  ) => {
+    const previous =
+      operations[
+        operations.length - 1
+      ];
+
+    if (
+      previous &&
+      previous.kind ===
+        operation.kind
+    ) {
+      previous.expected.push(
+        ...operation.expected,
+      );
+
+      previous.received.push(
+        ...operation.received,
+      );
+
+      return;
+    }
+
+    operations.push(
+      operation,
+    );
+  };
+
+  let i = 0;
+  let j = 0;
+
+  while (
+    i < n ||
+    j < m
+  ) {
+    if (
+      i < n &&
+      j < m &&
+      expected[i].key ===
+        received[j].key
+    ) {
+      push({
+        kind: "equal",
+        expected: [
+          expected[i],
+        ],
+        received: [
+          received[j],
+        ],
+      });
+
+      i += 1;
+      j += 1;
+
+      continue;
+    }
+
+    if (
+      i < n &&
+      (
+        j >= m ||
+        dp[i + 1][j] >=
+          dp[i][j + 1]
+      )
+    ) {
+      push({
+        kind: "delete",
+        expected: [
+          expected[i],
+        ],
+        received: [],
+      });
+
+      i += 1;
+
+      continue;
+    }
+
+    if (
+      j < m
+    ) {
+      push({
+        kind: "insert",
+        expected: [],
+        received: [
+          received[j],
+        ],
+      });
+
+      j += 1;
+    }
+  }
+
+  const firstEqual =
+    operations.findIndex(
+      (operation) =>
+        operation.kind ===
+        "equal",
+    );
+
+  let lastEqual = -1;
+
+  for (
+    let index =
+      operations.length - 1;
+    index >= 0;
+    index -= 1
+  ) {
+    if (
+      operations[index].kind ===
+      "equal"
+    ) {
+      lastEqual = index;
+      break;
+    }
+  }
+
+  const segments:
+    QuranAlignmentSegment[] =
+      [];
+
+  const rawText = (
+    tokens:
+      QuranAlignmentToken[],
+  ) =>
+    tokens
+      .map(
+        (token) =>
+          token.raw,
+      )
+      .join(" ");
+
+  for (
+    let index = 0;
+    index <
+    operations.length;
+    index += 1
+  ) {
+    const current =
+      operations[index];
+
+    const next =
+      operations[index + 1];
+
+    /*
+     * delete + insert
+     * or insert + delete
+     * becomes one explicit correction.
+     */
+    if (
+      (
+        current.kind ===
+          "delete" &&
+        next?.kind ===
+          "insert"
+      ) ||
+      (
+        current.kind ===
+          "insert" &&
+        next?.kind ===
+          "delete"
+      )
+    ) {
+      const deletion =
+        current.kind ===
+        "delete"
+          ? current
+          : next;
+
+      const insertion =
+        current.kind ===
+        "insert"
+          ? current
+          : next;
+
+      segments.push({
+        kind: "correction",
+        received: rawText(
+          insertion.received,
+        ),
+        expected: rawText(
+          deletion.expected,
+        ),
+      });
+
+      index += 1;
+
+      continue;
+    }
+
+    if (
+      current.kind ===
+      "equal"
+    ) {
+      segments.push({
+        kind: "match",
+        received: rawText(
+          current.received,
+        ),
+        expected: rawText(
+          current.expected,
+        ),
+      });
+
+      continue;
+    }
+
+    if (
+      current.kind ===
+      "delete"
+    ) {
+      const boundaryContext =
+        firstEqual >= 0 &&
+        (
+          index < firstEqual ||
+          index > lastEqual
+        );
+
+      segments.push({
+        kind:
+          boundaryContext
+            ? "context"
+            : "missing",
+        received: "",
+        expected: rawText(
+          current.expected,
+        ),
+      });
+
+      continue;
+    }
+
+    segments.push({
+      kind: "extra",
+      received: rawText(
+        current.received,
+      ),
+      expected: "",
+    });
+  }
+
+  return segments.filter(
+    (segment) =>
+      segment.received ||
+      segment.expected,
+  );
+}
+
 function App() {
-  const [language, setLanguage] = useState<Language>("ar");
+  const [language, setLanguage] = useState<Language>(() => {
+    const saved =
+      window.localStorage.getItem(
+        "basira-language",
+      );
+
+    if (
+      saved === "ar" ||
+      saved === "en"
+    ) {
+      return saved;
+    }
+
+    const browserLanguage =
+      navigator.languages?.[0] ??
+      navigator.language ??
+      "en";
+
+    return browserLanguage
+      .toLowerCase()
+      .startsWith("ar")
+      ? "ar"
+      : "en";
+  });
   const [theme, setTheme] = useState<Theme>("light");
   const [query, setQuery] = useState("");
   const [queryReference, setQueryReference] = useState<string | undefined>();
+  const [activeQuestionPair, setActiveQuestionPair] = useState<{
+    ar: string;
+    en: string;
+  } | null>(null);
   const [response, setResponse] = useState<QueryResponse | null>(null);
+
+  const [visitorId] = useState(
+    () => getOrCreateBasiraVisitorId(),
+  );
+
+  const [
+    conversationHistory,
+    setConversationHistory,
+  ] = useState<ChatHistoryEntry[]>([]);
+
+  const [
+    historyLoaded,
+    setHistoryLoaded,
+  ] = useState(false);
   const [queryError, setQueryError] = useState<string | null>(null);
   const [isVerifying, setIsVerifying] = useState(false);
   const [traceOpen, setTraceOpen] = useState(true);
@@ -1503,6 +2716,71 @@ function App() {
   );
 
   useEffect(() => {
+    let active = true;
+
+    getChatHistory(
+      visitorId,
+      20,
+    )
+      .then((items) => {
+        if (!active) {
+          return;
+        }
+
+        setConversationHistory(
+          items,
+        );
+
+        setHistoryLoaded(true);
+      })
+      .catch((error) => {
+        console.warn(
+          "[chat-history] load failed",
+          error,
+        );
+
+        if (active) {
+          setHistoryLoaded(true);
+        }
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [visitorId]);
+
+  useEffect(() => {
+    window.localStorage.setItem(
+      "basira-language",
+      language,
+    );
+  }, [language]);
+
+  useEffect(() => {
+    // A refresh or direct hash URL always starts
+    // from Basira Home.
+    window.history.scrollRestoration =
+      "manual";
+
+    if (window.location.hash) {
+      window.history.replaceState(
+        null,
+        "",
+        window.location.pathname +
+          window.location.search,
+      );
+    }
+
+    window.requestAnimationFrame(() => {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "auto",
+      });
+    });
+  }, []);
+
+  useEffect(() => {
     document.documentElement.style.colorScheme = theme;
   }, [theme]);
 
@@ -1529,18 +2807,19 @@ function App() {
   }, [sourceDrawerOpen]);
 
   const choosePreset = (preset: Preset) => {
+    setActiveQuestionPair({
+      ar: preset.ar,
+      en: preset.en,
+    });
     setQuery(preset[language]);
     setQueryReference(preset.quranReference);
     setQueryError(null);
   };
 
-  const toggleLanguage = () => {
-    setLanguage((current) => (current === "ar" ? "en" : "ar"));
-  };
-
   const startNewConversation = () => {
     setQuery("");
     setQueryReference(undefined);
+    setActiveQuestionPair(null);
     setResponse(null);
     setQueryError(null);
     setTraceOpen(true);
@@ -1548,9 +2827,14 @@ function App() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const submitQuestion = async (questionOverride?: string, referenceOverride?: string) => {
+  const submitQuestion = async (
+    questionOverride?: string,
+    referenceOverride?: string,
+    languageOverride?: Language,
+  ) => {
     const question = (questionOverride ?? query).trim();
     const quranReference = referenceOverride ?? queryReference;
+    const requestLanguage = languageOverride ?? language;
 
     if (!question || isVerifying) {
       return;
@@ -1569,11 +2853,85 @@ function App() {
       const result = await queryBasira({
         question,
         quran_reference: quranReference,
-        language,
+        language: requestLanguage,
       });
 
 
-      setResponse(result);
+      const presentedResult =
+        presentQueryResponse(
+          result,
+          requestLanguage,
+        );
+
+      setResponse(presentedResult);
+
+      try {
+        const savedEntry =
+          await saveChatHistory(
+            visitorId,
+            {
+              question:
+                result.question,
+              language:
+                requestLanguage,
+              response: presentedResult,
+            },
+          );
+
+        setConversationHistory(
+          (current) => [
+            savedEntry,
+            ...current.filter(
+              (item) =>
+                item.id !==
+                  savedEntry.id &&
+                !(
+                  item.question ===
+                    savedEntry.question &&
+                  item.language ===
+                    savedEntry.language
+                ),
+            ),
+          ].slice(0, 20),
+        );
+      } catch (historyError) {
+        /*
+         * Query publication must never depend on
+         * convenience chat storage.
+         */
+        console.warn(
+          "[chat-history] save failed",
+          historyError,
+        );
+
+        const fallbackEntry:
+          ChatHistoryEntry = {
+            id:
+              result.request_id,
+            question:
+              result.question,
+            language:
+              requestLanguage,
+            response: presentedResult,
+            created_at:
+              new Date().toISOString(),
+          };
+
+        setConversationHistory(
+          (current) => [
+            fallbackEntry,
+            ...current.filter(
+              (item) =>
+                !(
+                  item.question ===
+                    fallbackEntry.question &&
+                  item.language ===
+                    fallbackEntry.language
+                ),
+            ),
+          ].slice(0, 20),
+        );
+      }
       setTraceOpen(true);
 
       window.requestAnimationFrame(() => {
@@ -1592,6 +2950,238 @@ function App() {
     } finally {
       setIsVerifying(false);
     }
+  };
+
+  const toggleLanguage = () => {
+    if (isVerifying) {
+      return;
+    }
+
+    const nextLanguage: Language =
+      language === "ar"
+        ? "en"
+        : "ar";
+
+    /*
+     * Quran verification is NOT translation.
+     *
+     * Arabic verification:
+     *   canonical Arabic Quran text.
+     *
+     * English verification:
+     *   governed English Quran meaning.
+     *
+     * Switching language therefore creates a NEW
+     * verification request using the paired question.
+     */
+    const currentQuestion =
+      (
+        response?.question ??
+        query
+      ).trim();
+
+    const pairedPreset =
+      presets.find(
+        (preset) =>
+          preset.ar.trim() ===
+            currentQuestion ||
+          preset.en.trim() ===
+            currentQuestion ||
+          preset.ar.trim() ===
+            query.trim() ||
+          preset.en.trim() ===
+            query.trim(),
+      );
+
+    const recoveredPair =
+      activeQuestionPair ??
+      (
+        pairedPreset
+          ? {
+              ar:
+                pairedPreset.ar,
+              en:
+                pairedPreset.en,
+            }
+          : null
+      );
+
+    const targetQuestion =
+      recoveredPair?.[
+        nextLanguage
+      ]?.trim() ?? "";
+
+    const targetReference =
+      pairedPreset
+        ?.quranReference ??
+      queryReference;
+
+    setLanguage(
+      nextLanguage,
+    );
+
+    /*
+     * No active result:
+     * switch the prepared paired question only.
+     */
+    if (!response) {
+      if (targetQuestion) {
+        setQuery(
+          targetQuestion,
+        );
+
+        setQueryReference(
+          targetReference,
+        );
+
+        if (
+          !activeQuestionPair &&
+          recoveredPair
+        ) {
+          setActiveQuestionPair(
+            recoveredPair,
+          );
+        }
+      }
+
+      return;
+    }
+
+    /*
+     * Quran verification result:
+     * NEVER reuse the same literal under another
+     * presentation language.
+     *
+     * A known AR/EN pair -> new API verification.
+     */
+    if (
+      response.quran_verification
+    ) {
+      if (targetQuestion) {
+        setQuery(
+          targetQuestion,
+        );
+
+        setQueryReference(
+          targetReference,
+        );
+
+        setQueryError(
+          null,
+        );
+
+        if (
+          !activeQuestionPair &&
+          recoveredPair
+        ) {
+          setActiveQuestionPair(
+            recoveredPair,
+          );
+        }
+
+        void submitQuestion(
+          targetQuestion,
+          targetReference,
+          nextLanguage,
+        );
+
+        return;
+      }
+
+      /*
+       * Manual verification with no governed pair:
+       * do not machine-translate the religious query
+       * and do not reuse the previous verification.
+       */
+      setResponse(
+        null,
+      );
+
+      setQuery(
+        "",
+      );
+
+      setQueryReference(
+        undefined,
+      );
+
+      setActiveQuestionPair(
+        null,
+      );
+
+      setTraceOpen(
+        true,
+      );
+
+      setQueryError(
+        nextLanguage === "ar"
+          ? "اكتب سؤال التحقق القرآني بالعربية لإجراء تحقق جديد. لا تترجم بصيرة نتيجة التحقق السابقة تلقائيًا."
+          : "Enter the Quran verification question in English to run a new verification. Basira does not automatically translate the previous verification result.",
+      );
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+
+      return;
+    }
+
+    /*
+     * Other domains keep the existing behavior.
+     * Prefer an explicit paired question when known.
+     */
+    const nextQuestion =
+      targetQuestion ||
+      query.trim();
+
+    if (!nextQuestion) {
+      return;
+    }
+
+    if (targetQuestion) {
+      setQuery(
+        targetQuestion,
+      );
+
+      setQueryReference(
+        targetReference,
+      );
+    }
+
+    void submitQuestion(
+      nextQuestion,
+      targetReference,
+      nextLanguage,
+    );
+  };
+
+  const navigateToSection = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    sectionId: string,
+  ) => {
+    event.preventDefault();
+
+    if (response) {
+      startNewConversation();
+    }
+
+    window.history.replaceState(
+      null,
+      "",
+      `${window.location.pathname}${window.location.search}#${sectionId}`,
+    );
+
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        document
+          .getElementById(sectionId)
+          ?.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+      });
+    });
   };
 
   const openEvidenceDetail = async (evidenceId: string) => {
@@ -1647,17 +3237,130 @@ function App() {
     quranEvidence?.source_id ??
     null;
 
+  const quranVerificationUsesEnglishMeaning =
+    quranVerificationSourceId ===
+    "quranpedia:translation:en:13638";
+
   const quranVerificationSourceLabel =
     quranVerificationSourceId === "quranpedia:mushaf:1"
       ? language === "ar"
         ? "Quranpedia · المصحف المعتمد"
         : "Quranpedia · Canonical Mushaf"
-      : quranVerificationSourceId;
+      : quranVerificationUsesEnglishMeaning
+        ? language === "ar"
+          ? "Quranpedia · ترجمة Sahih International لمعاني القرآن"
+          : "Quranpedia · Sahih International Quran meaning"
+        : quranVerificationSourceId;
 
   const hasQuranEvidence = Boolean(quranDisplayText);
 
+  const quranExplanationRequested =
+    Boolean(
+      response &&
+      requestsQuranExplanation(
+        response.question ??
+          query,
+      )
+    );
+
+  /*
+   * Do not hide answers for mixed-domain questions
+   * such as Quran + Hadith.
+   *
+   * Tafsir is intentionally excluded here because
+   * an over-retrieved Tafsir result is exactly what
+   * this presentation firewall prevents from being
+   * promoted when no explanation was requested.
+   */
+  const hasOtherRequestedDomainEvidence =
+    Boolean(
+      response?.evidence.some(
+        (item) =>
+          item.domain !== "quran" &&
+          item.domain !== "tafsir",
+      )
+    );
+
+  const suppressUnrequestedQuranExplanation =
+    Boolean(
+      response &&
+      hasQuranEvidence &&
+      !quranExplanationRequested &&
+      !hasOtherRequestedDomainEvidence
+    );
+
+  const showTafsirPresentation =
+    !hasQuranEvidence ||
+    quranExplanationRequested;
+
+
+
   const quranPrimaryDifference =
     quranVerification?.differences?.[0] ?? null;
+
+
+  const quranVerificationAlignment =
+    quranVerificationUsesEnglishMeaning &&
+    quranVerification?.input_text &&
+    quranVerificationCandidate
+      ?.canonical_text
+      ? buildQuranVerificationAlignment(
+          quranVerificationCandidate
+            .canonical_text,
+          quranVerification
+            .input_text,
+        )
+      : [];
+
+  const quranMatchedSegmentCount =
+    quranVerificationAlignment.filter(
+      (segment) =>
+        segment.kind ===
+        "match",
+    ).length;
+
+  const quranCorrectionCount =
+    quranVerificationAlignment.filter(
+      (segment) =>
+        segment.kind ===
+          "correction" ||
+        segment.kind ===
+          "extra" ||
+        segment.kind ===
+          "missing",
+    ).length;
+
+
+  const quranHasLeadingContext =
+    quranVerificationAlignment[0]
+      ?.kind === "context";
+
+  const quranHasTrailingContext =
+    quranVerificationAlignment[
+      quranVerificationAlignment.length - 1
+    ]?.kind === "context";
+
+  const quranContextNote =
+    quranHasLeadingContext &&
+    quranHasTrailingContext
+      ? (
+          "Your quotation contains only part of the verse. " +
+          "The surrounding governed wording is shown as context " +
+          "and is not counted as an error."
+        )
+      : quranHasLeadingContext
+        ? (
+            "Your quotation begins partway through the verse. " +
+            "The preceding governed wording is shown as context " +
+            "and is not counted as an error."
+          )
+        : quranHasTrailingContext
+          ? (
+              "Your quotation ends before the verse is complete. " +
+              "The following governed wording is shown as context " +
+              "and is not counted as an error."
+            )
+          : null;
 
   const quranVerificationTrace =
     quranVerification
@@ -1690,11 +3393,17 @@ function App() {
                       ? ` — ${quranVerificationSourceLabel}`
                       : ""
                   }.`
-                : `The submitted wording was compared directly with the governed canonical Quran source${
-                    quranVerificationSourceLabel
-                      ? ` — ${quranVerificationSourceLabel}`
-                      : ""
-                  }.`,
+                : quranVerificationUsesEnglishMeaning
+                  ? `The submitted wording was compared directly with the governed English Quran meaning${
+                      quranVerificationSourceLabel
+                        ? ` — ${quranVerificationSourceLabel}`
+                        : ""
+                    }.`
+                  : `The submitted wording was compared directly with the governed canonical Quran source${
+                      quranVerificationSourceLabel
+                        ? ` — ${quranVerificationSourceLabel}`
+                        : ""
+                    }.`,
             value:
               quranVerificationSourceLabel ??
               (
@@ -1725,7 +3434,9 @@ function App() {
                     }.`
                 : language === "ar"
                   ? "لم يُكتشف اختلاف جوهري بين النص المُرسل والنص القرآني المعتمد."
-                  : "No substantive difference was detected between the submitted wording and the canonical Quran text.",
+                  : quranVerificationUsesEnglishMeaning
+                    ? "No substantive difference was detected between the submitted wording and the governed English Quran meaning."
+                    : "No substantive difference was detected between the submitted wording and the canonical Quran text.",
             value:
               quranVerificationAltered
                 ? language === "ar"
@@ -1771,10 +3482,16 @@ function App() {
               quranVerificationAltered
                 ? language === "ar"
                   ? "تم عرض موضع الاختلاف والنص الصحيح مباشرة من المصدر القرآني المعتمد؛ الذاكرة لم تحدد النص الصحيح."
-                  : "The wording difference and canonical correction were shown directly from the governed Quran source; memory did not determine the correct text."
+                  : quranVerificationUsesEnglishMeaning
+                    ? "The wording difference and governed English-meaning correction were shown directly from the admitted Quran translation source; memory did not determine the correct wording."
+                    : "The wording difference and canonical correction were shown directly from the governed Quran source; memory did not determine the correct text."
                 : language === "ar"
-                  ? "تم تأكيد مطابقة النص من المصدر القرآني المعتمد."
-                  : "The wording match was confirmed from the governed canonical Quran source.",
+                  ? quranVerificationUsesEnglishMeaning
+                    ? "تم تأكيد المطابقة مع ترجمة المعنى الإنجليزية المعتمدة."
+                    : "تم تأكيد مطابقة النص من المصدر القرآني المعتمد."
+                  : quranVerificationUsesEnglishMeaning
+                    ? "The wording match was confirmed from the governed English Quran meaning."
+                    : "The wording match was confirmed from the governed canonical Quran source.",
             value:
               quranVerificationAltered
                 ? language === "ar"
@@ -1802,25 +3519,80 @@ function App() {
         : response.answer
       : null;
 
+
+  const hasTafsirEvidence =
+    Boolean(
+      response?.evidence.some(
+        (item) =>
+          item.domain === "tafsir",
+      ),
+    );
+
+  const hasGovernedEnglishTafsir =
+    Boolean(
+      response?.evidence.some(
+        (item) =>
+          item.domain === "tafsir" &&
+          item.localized?.language === "en" &&
+          item.localized.text?.trim(),
+      ),
+    );
+
+  const englishTafsirUnavailable =
+    Boolean(
+      language === "en" &&
+      quranExplanationRequested &&
+      hasTafsirEvidence &&
+      !hasGovernedEnglishTafsir
+    );
+
+  const scopedAnswerDisplayText =
+    englishTafsirUnavailable
+      ? (
+          "A governed English Tafsir explanation is not yet available " +
+          "for this evidence. Basira is showing the verified Quran text " +
+          "and its trusted English meaning without translating or " +
+          "paraphrasing the Arabic Tafsir."
+        )
+      : suppressUnrequestedQuranExplanation
+        ? null
+        : answerDisplayText;
+
   const nonQuranEvidence =
     response?.evidence.filter(
       (item) => item.domain !== "quran",
     ) ?? [];
 
   const tafsirSourceGroups =
-    groupTafsirEvidence(
-      nonQuranEvidence,
+    showTafsirPresentation
+      ? groupTafsirEvidence(
+          nonQuranEvidence,
+          language,
+        )
+      : [];
+
+  const fiqhEvidence =
+    nonQuranEvidence.filter(
+      (item) => item.domain === "fiqh",
     );
 
   const nonTafsirEvidence =
     nonQuranEvidence.filter(
       (item) =>
-        item.domain !== "tafsir",
+        item.domain !== "tafsir" &&
+        item.domain !== "fiqh",
     );
 
   const visibleEvidenceCardCount =
     nonTafsirEvidence.length +
+    fiqhEvidence.length +
     tafsirSourceGroups.length;
+
+  const landingPresets =
+    presets.filter(
+      (_, index) =>
+        [0, 1, 2, 5].includes(index),
+    );
 
   const quranLocation =
     quranDisplayReference === "2:255"
@@ -1861,7 +3633,7 @@ function App() {
           <a
             className="header-brand"
             href="#home"
-            aria-label="Basira home"
+            aria-label="بصيرة · Basira home"
             onClick={(event) => {
               event.preventDefault();
 
@@ -1884,16 +3656,26 @@ function App() {
           </a>
 
           <nav className="main-navigation" aria-label="Main navigation">
-            <a href="#about">{ui.about}</a>
-            <a href="#memory" className="memory-nav-link">
+            <a href="#about" onClick={(event) => navigateToSection(event, "about")}>{ui.about}</a>
+            <a href="#memory" className="memory-nav-link" onClick={(event) => navigateToSection(event, "memory")}>
               {language === "ar"
                 ? "الحماية والتعلّم"
                 : "Trust & Learning"}
               <span className="memory-nav-dot" />
             </a>
-            <a href="#sources">{ui.sources}</a>
-            <a href="#method">{ui.method}</a>
-            <a href="#faq">{ui.faq}</a>
+            <a
+              href="#sources"
+              onClick={(event) =>
+                navigateToSection(
+                  event,
+                  "sources",
+                )
+              }
+            >
+              {ui.sources}
+            </a>
+            <a href="#method" onClick={(event) => navigateToSection(event, "method")}>{ui.method}</a>
+            <a href="#faq" onClick={(event) => navigateToSection(event, "faq")}>{ui.faq}</a>
           </nav>
 
           <div className="header-actions">
@@ -1977,6 +3759,7 @@ function App() {
                 onChange={(event) => {
                   setQuery(event.target.value);
                   setQueryReference(undefined);
+                  setActiveQuestionPair(null);
                   setQueryError(null);
                 }}
                 onKeyDown={(event) => {
@@ -2004,7 +3787,7 @@ function App() {
               <div className="suggested-questions">
                 <span>{ui.examples}</span>
                 <div>
-                  {presets.slice(0, 4).map((preset) => (
+                  {landingPresets.map((preset) => (
                     <button key={preset.ar} type="button" onClick={() => choosePreset(preset)}>
                       <Search size={13} />
                       {preset[language]}
@@ -2016,6 +3799,26 @@ function App() {
 
           </div>
         </section>
+
+        {!response && (
+          <DomainQaPanel
+            language={language}
+            disabled={isVerifying}
+            onRun={(scenario) => {
+              const pair = {
+                ar: scenario.question.ar,
+                en: scenario.question.en,
+              };
+
+              setActiveQuestionPair(pair);
+
+              void submitQuestion(
+                pair[language],
+                scenario.quranReference,
+              );
+            }}
+          />
+        )}
 
         {!response && (
           <section id="method" className="method-section">
@@ -2077,20 +3880,85 @@ function App() {
                 {ui.today}
               </div>
 
-              <button type="button" className="history-item active">
-                <span>{response.question}</span>
-              </button>
+              {conversationHistory.map(
+                (entry) => (
+                  <button
+                    className={`history-item ${
+                      entry.response.request_id ===
+                      response.request_id
+                        ? "active"
+                        : ""
+                    }`}
+                    type="button"
+                    key={entry.id}
+                    onClick={() => {
+                      setLanguage(
+                        entry.language,
+                      );
 
-              {presets.slice(0, 4).map((preset) => (
-                <button
-                  className="history-item"
-                  type="button"
-                  key={preset.ar}
-                  onClick={() => choosePreset(preset)}
-                >
-                  <span>{preset[language]}</span>
-                </button>
-              ))}
+                      setQuery(
+                        entry.question,
+                      );
+
+                      setQueryReference(
+                        undefined,
+                      );
+
+                      setActiveQuestionPair(
+                        null,
+                      );
+
+                      setResponse(
+                        presentQueryResponse(
+                          entry.response,
+                          entry.language,
+                        ),
+                      );
+
+                      setQueryError(
+                        null,
+                      );
+
+                      setTraceOpen(
+                        true,
+                      );
+
+                      setMobileHistoryOpen(
+                        false,
+                      );
+
+                      window.requestAnimationFrame(
+                        () => {
+                          document
+                            .getElementById(
+                              "result-workspace",
+                            )
+                            ?.scrollIntoView({
+                              behavior: "smooth",
+                              block: "start",
+                            });
+                        },
+                      );
+                    }}
+                  >
+                    <span>
+                      {entry.question}
+                    </span>
+                  </button>
+                ),
+              )}
+
+              {conversationHistory.length === 0 && (
+                <div className="history-empty">
+                  {!historyLoaded
+                    ? language === "ar"
+                      ? "جارٍ تحميل محادثاتك..."
+                      : "Loading your conversations..."
+                    : language === "ar"
+                      ? "لا توجد محادثات بعد. ابدأ بسؤالك الأول."
+                      : "No conversations yet. Ask your first question."}
+                </div>
+              )}
             </aside>
 
             {mobileHistoryOpen && (
@@ -2136,8 +4004,12 @@ function App() {
 
                           <span>
                             {language === "ar"
-                              ? "تحقق نصي من القرآن"
-                              : "Canonical Quran verification"}
+                              ? quranVerificationUsesEnglishMeaning
+                                ? "تحقق من ترجمة معاني القرآن"
+                                : "تحقق نصي من القرآن"
+                              : quranVerificationUsesEnglishMeaning
+                                ? "Governed Quran meaning verification"
+                                : "Canonical Quran verification"}
                           </span>
                         </div>
 
@@ -2145,20 +4017,34 @@ function App() {
                           {quranVerificationAltered
                             ? language === "ar"
                               ? "تم اكتشاف اختلاف في النص القرآني"
-                              : "A Quran wording difference was detected"
+                              : quranVerificationUsesEnglishMeaning
+                                ? "A Quran meaning wording difference was detected"
+                                : "A Quran wording difference was detected"
                             : quranVerificationMatched
                               ? language === "ar"
-                                ? "النص يطابق المصدر القرآني المعتمد"
-                                : "The quotation matches the canonical Quran text"
+                                ? quranVerificationUsesEnglishMeaning
+                                  ? "العبارة تطابق ترجمة المعنى الإنجليزية المعتمدة"
+                                  : "النص يطابق المصدر القرآني المعتمد"
+                                : quranVerificationUsesEnglishMeaning
+                                  ? "The quotation matches the governed English Quran meaning"
+                                  : "The quotation matches the canonical Quran text"
                               : language === "ar"
-                                ? "تم تنفيذ التحقق النصي"
-                                : "Quran text verification completed"}
+                                ? quranVerificationUsesEnglishMeaning
+                                  ? "تم التحقق من ترجمة المعنى"
+                                  : "تم تنفيذ التحقق النصي"
+                                : quranVerificationUsesEnglishMeaning
+                                  ? "Quran meaning verification completed"
+                                  : "Quran text verification completed"}
                         </h2>
 
                         <p>
                           {language === "ar"
-                            ? "قورِن النص مباشرة بالمصدر القرآني المعتمد؛ النتيجة لا تعتمد على إجابة مولّدة."
-                            : "The quotation was compared directly with the governed canonical Quran source; the result does not depend on generated wording."}
+                            ? quranVerificationUsesEnglishMeaning
+                              ? "قورنت العبارة مباشرة بترجمة معاني القرآن الإنجليزية المعتمدة؛ النتيجة لا تعتمد على ترجمة مولّدة."
+                              : "قورِن النص مباشرة بالمصدر القرآني المعتمد؛ النتيجة لا تعتمد على إجابة مولّدة."
+                            : quranVerificationUsesEnglishMeaning
+                              ? "The quotation was compared directly with the admitted Sahih International Quran meaning; no generated translation was used."
+                              : "The quotation was compared directly with the governed canonical Quran source; the result does not depend on generated wording."}
                         </p>
                       </>
                     ) : (
@@ -2186,8 +4072,10 @@ function App() {
                     <div className="quran-verification-card__top">
                       <div>
                         <small>
-                          {language === "ar"
-                            ? "CANONICAL TEXT CHECK"
+                          {quranVerificationUsesEnglishMeaning
+                            ? language === "ar"
+                              ? "GOVERNED ENGLISH MEANING CHECK"
+                              : "GOVERNED ENGLISH MEANING CHECK"
                             : "CANONICAL TEXT CHECK"}
                         </small>
 
@@ -2195,10 +4083,16 @@ function App() {
                           {quranVerificationAltered
                             ? language === "ar"
                               ? "النص المرسل لا يطابق النص القرآني"
-                              : "The submitted wording does not match"
+                              : quranVerificationUsesEnglishMeaning
+                                ? "The submitted wording does not match the governed English meaning"
+                                : "The submitted wording does not match"
                             : language === "ar"
-                              ? "النص المرسل مطابق"
-                              : "The submitted wording matches"}
+                              ? quranVerificationUsesEnglishMeaning
+                                ? "العبارة المرسلة مطابقة لترجمة المعنى المعتمدة"
+                                : "النص المرسل مطابق"
+                              : quranVerificationUsesEnglishMeaning
+                                ? "The submitted wording matches the governed English meaning"
+                                : "The submitted wording matches"}
                         </strong>
                       </div>
 
@@ -2207,7 +4101,199 @@ function App() {
                       </span>
                     </div>
 
-                    {quranVerification.differences.length > 0 ? (
+                    {quranVerificationUsesEnglishMeaning &&
+                        quranVerificationAlignment.length > 0 ? (
+                          <div className="quran-alignment-stack">
+                            <div className="quran-alignment-summary">
+                              <span className="is-match">
+                                ✓ {quranMatchedSegmentCount}{" "}
+                                {quranMatchedSegmentCount === 1
+                                  ? "matched section"
+                                  : "matched sections"}
+                              </span>
+
+                              {quranCorrectionCount > 0 && (
+                                <span className="is-correction">
+                                  ✕ {quranCorrectionCount}{" "}
+                                  {quranCorrectionCount === 1
+                                    ? "correction"
+                                    : "corrections"}
+                                </span>
+                              )}
+                            </div>
+
+                            {quranVerificationAlignment.map(
+                              (segment, index) => (
+                                <div
+                                  className={`quran-alignment-row is-${segment.kind}`}
+                                  key={`${segment.kind}-${index}-${segment.received}-${segment.expected}`}
+                                >
+                                  {segment.kind === "context" && (
+                                    <>
+                                      <div className="quran-alignment-status">
+                                        <span className="quran-alignment-icon is-context">
+                                          ···
+                                        </span>
+
+                                        <div>
+                                          <small>CONTEXT</small>
+                                          <strong>
+                                            {index === 0
+                                              ? "Preceding verse context"
+                                              : index ===
+                                                  quranVerificationAlignment.length - 1
+                                                ? "Following verse context"
+                                                : "Verse context"}
+                                          </strong>
+                                        </div>
+                                      </div>
+
+                                      <div className="quran-alignment-context">
+                                        {segment.expected}
+                                      </div>
+                                    </>
+                                  )}
+
+                                  {segment.kind === "match" && (
+                                    <>
+                                      <div className="quran-alignment-status">
+                                        <span className="quran-alignment-icon is-match">
+                                          ✓
+                                        </span>
+
+                                        <div>
+                                          <small>MATCHED</small>
+                                          <strong>
+                                            Your wording matches
+                                          </strong>
+                                        </div>
+                                      </div>
+
+                                      <div className="quran-alignment-match">
+                                        {segment.received}
+                                      </div>
+                                    </>
+                                  )}
+
+                                  {segment.kind === "correction" && (
+                                    <>
+                                      <div className="quran-alignment-status">
+                                        <span className="quran-alignment-icon is-correction">
+                                          !
+                                        </span>
+
+                                        <div>
+                                          <small>CORRECTION</small>
+                                          <strong>
+                                            Wording difference
+                                          </strong>
+                                        </div>
+                                      </div>
+
+                                      <div className="quran-alignment-correction">
+                                        <div className="quran-alignment-side is-received">
+                                          <small>
+                                            Your quotation
+                                          </small>
+
+                                          <strong>
+                                            {segment.received}
+                                          </strong>
+                                        </div>
+
+                                        <span className="quran-alignment-arrow">
+                                          →
+                                        </span>
+
+                                        <div className="quran-alignment-side is-expected">
+                                          <small>
+                                            Governed meaning
+                                          </small>
+
+                                          <strong>
+                                            {segment.expected}
+                                          </strong>
+                                        </div>
+                                      </div>
+                                    </>
+                                  )}
+
+                                  {segment.kind === "extra" && (
+                                    <>
+                                      <div className="quran-alignment-status">
+                                        <span className="quran-alignment-icon is-correction">
+                                          !
+                                        </span>
+
+                                        <div>
+                                          <small>EXTRA WORDING</small>
+                                          <strong>
+                                            Not present in the governed meaning
+                                          </strong>
+                                        </div>
+                                      </div>
+
+                                      <div className="quran-alignment-side is-received">
+                                        <strong>
+                                          {segment.received}
+                                        </strong>
+                                      </div>
+                                    </>
+                                  )}
+
+                                  {segment.kind === "missing" && (
+                                    <>
+                                      <div className="quran-alignment-status">
+                                        <span className="quran-alignment-icon is-missing">
+                                          !
+                                        </span>
+
+                                        <div>
+                                          <small>MISSING WORDING</small>
+                                          <strong>
+                                            Missing inside the quoted passage
+                                          </strong>
+                                        </div>
+                                      </div>
+
+                                      <div className="quran-alignment-side is-expected">
+                                        <strong>
+                                          {segment.expected}
+                                        </strong>
+                                      </div>
+                                    </>
+                                  )}
+                                </div>
+                              ),
+                            )}
+
+                            <div className="quran-alignment-full">
+                              <div>
+                                <small>
+                                  FULL GOVERNED ENGLISH MEANING
+                                </small>
+
+                                <span>
+                                  Sahih International · Quranpedia
+                                </span>
+                              </div>
+
+                              <p>
+                                {
+                                  quranVerificationCandidate
+                                    ?.canonical_text
+                                }
+                              </p>
+                            </div>
+
+                            {quranContextNote && (
+                              <p className="quran-alignment-context-note">
+                                {quranContextNote}
+                              </p>
+                            )}
+                          </div>
+                        ) : (
+                          <>{quranVerification.differences.length > 0 ? (
                       <div className="quran-verification-differences">
                         {quranVerification.differences.map(
                           (difference, index) => (
@@ -2234,8 +4320,12 @@ function App() {
                               <div>
                                 <small>
                                   {language === "ar"
-                                    ? "النص الصحيح المعتمد"
-                                    : "Canonical correction"}
+                                    ? quranVerificationUsesEnglishMeaning
+                                      ? "الصياغة المعتمدة في ترجمة المعنى"
+                                      : "النص الصحيح المعتمد"
+                                    : quranVerificationUsesEnglishMeaning
+                                      ? "Governed English meaning"
+                                      : "Canonical correction"}
                                 </small>
 
                                 <strong className="quran-word quran-word--correct">
@@ -2255,7 +4345,8 @@ function App() {
                             : "No substantive wording difference was detected."}
                         </span>
                       </div>
-                    )}
+                    )}</>
+                        )}
 
                     {quranVerificationSourceLabel && (
                       <div className="quran-verification-source">
@@ -2285,8 +4376,12 @@ function App() {
 
                     <p className="quran-verification-card__principle">
                       {language === "ar"
-                        ? "الذاكرة تحدد متى يصبح التحقق إلزاميًا؛ المصدر القرآني المعتمد وحده يحدد النص الصحيح."
-                        : "Memory decides when verification is mandatory. The canonical Quran source alone decides what is correct."}
+                        ? quranVerificationUsesEnglishMeaning
+                          ? "الذاكرة تحدد متى يصبح التحقق إلزاميًا؛ ترجمة المعنى الإنجليزية المعتمدة وحدها تحدد الصياغة المرجعية في هذا المسار."
+                          : "الذاكرة تحدد متى يصبح التحقق إلزاميًا؛ المصدر القرآني المعتمد وحده يحدد النص الصحيح."
+                        : quranVerificationUsesEnglishMeaning
+                          ? "Memory decides when verification is mandatory. The governed Quran translation source alone determines the reference English wording."
+                          : "Memory decides when verification is mandatory. The canonical Quran source alone decides what is correct."}
                     </p>
                   </section>
                 ) : (
@@ -2323,13 +4418,38 @@ function App() {
                       <span className="quran-mushaf__ornament">۞</span>
                     </div>
 
-                    <div className="quran-mushaf__frame">
-                      <p dir="rtl" lang="ar">
-                        ﴿ {quranDisplayText} ﴾
-                      </p>
-                    </div>
+                    {quranVerificationUsesEnglishMeaning ? (
+                      <div
+                        className="quran-mushaf__translation"
+                        dir="ltr"
+                        lang="en"
+                      >
+                        <small>
+                          GOVERNED ENGLISH QURAN MEANING
+                        </small>
 
-                    {language === "en" &&
+                        <p>{quranDisplayText}</p>
+
+                        <div className="quran-mushaf__translation-source">
+                          <ShieldCheck size={13} />
+                          <span>
+                            Sahih International · Quranpedia
+                          </span>
+                          <code>
+                            quranpedia:translation:en:13638
+                          </code>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="quran-mushaf__frame">
+                        <p dir="rtl" lang="ar">
+                          ﴿ {quranDisplayText} ﴾
+                        </p>
+                      </div>
+                    )}
+
+                    {!quranVerificationUsesEnglishMeaning &&
+                      language === "en" &&
                       quranLocalized?.text && (
                         <div
                           className="quran-mushaf__translation"
@@ -2386,7 +4506,7 @@ function App() {
                   </section>
                 )}
 
-                {answerDisplayText ? (
+                {scopedAnswerDisplayText ? (
                   <section className="answer-main">
                     <div className="answer-section-title">
                       <span>
@@ -2401,7 +4521,7 @@ function App() {
                     </div>
 
                     <p className="answer-copy" dir="auto">
-                      {answerDisplayText}
+                      {scopedAnswerDisplayText}
                     </p>
                   </section>
                 ) : !response.has_answer && !quranVerification ? (
@@ -2492,6 +4612,147 @@ function App() {
                     </div>
                   </section>
                 )}
+
+                {fiqhEvidence.length > 0 && (() => {
+                  const groups =
+                    groupFiqhEvidence(
+                      fiqhEvidence,
+                    );
+
+                  const sourceCount =
+                    new Set(
+                      groups.map(
+                        (group) =>
+                          group.root
+                            .source_id,
+                      ),
+                    ).size;
+
+                  const madhhabCount =
+                    new Set(
+                      groups.flatMap(
+                        (group) =>
+                          group.madhhabs,
+                      ),
+                    ).size;
+
+                  return (
+                    <section className="evidence-section fiqh-results fiqh-results-v2">
+                      <div className="section-heading-row fiqh-heading-v2">
+                        <div>
+                          <small>
+                            FIQH · GOVERNED POSITIONS
+                          </small>
+
+                          <h2>
+                            {language === "ar"
+                              ? "الآراء الفقهية الموثقة"
+                              : "Governed Fiqh positions"}
+                          </h2>
+
+                          <p>
+                            {language === "ar"
+                              ? "كل بطاقة تمثل موقفًا فقهيًا مسترجعًا من مصدره. تُعرض المذاهب والدليل والشروط والخلاف فقط عندما تكون موجودة صراحة في الدليل."
+                              : "Each card represents a source-backed Fiqh position. Madhhabs, evidence, conditions, and disagreement appear only when explicitly present in the governed evidence."}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="fiqh-overview-strip">
+                        <div>
+                          <strong>
+                            {groups.length}
+                          </strong>
+                          <span>
+                            {language === "ar"
+                              ? groups.length === 1
+                                ? " موقف فقهي"
+                                : " مواقف فقهية"
+                              : groups.length === 1
+                                ? " position"
+                                : " positions"}
+                          </span>
+                        </div>
+
+                        <div>
+                          <strong>
+                            {sourceCount}
+                          </strong>
+                          <span>
+                            {language === "ar"
+                              ? sourceCount === 1
+                                ? " مصدر"
+                                : " مصادر"
+                              : sourceCount === 1
+                                ? " source"
+                                : " sources"}
+                          </span>
+                        </div>
+
+                        {madhhabCount > 0 && (
+                          <div>
+                            <strong>
+                              {madhhabCount}
+                            </strong>
+                            <span>
+                              {language === "ar"
+                                ? " مذاهب مذكورة"
+                                : " mentioned madhhabs"}
+                            </span>
+                          </div>
+                        )}
+
+                        <div className="fiqh-overview-strip__trust">
+                          <span>
+                            ✓
+                          </span>
+
+                          {language === "ar"
+                            ? "لا ترجيح مُنشأ آليًا"
+                            : "No invented preference"}
+                        </div>
+                      </div>
+
+                      <div
+                        className={`fiqh-position-grid ${
+                          groups.length === 1
+                            ? "is-single"
+                            : ""
+                        }`}
+                      >
+                        {groups.map(
+                          (
+                            group,
+                            index,
+                          ) => (
+                            <FiqhPositionCard
+                              key={
+                                group.root
+                                  .evidence_id
+                              }
+                              group={
+                                group
+                              }
+                              index={
+                                index
+                              }
+                              language={
+                                language
+                              }
+                              onOpenDetail={(
+                                id,
+                              ) =>
+                                void openEvidenceDetail(
+                                  id,
+                                )
+                              }
+                            />
+                          ),
+                        )}
+                      </div>
+                    </section>
+                  );
+                })()}
 
                 {response.unavailable_domains.length > 0 && (
                   <section className="source-unavailable-panel">
@@ -3081,14 +5342,21 @@ function App() {
                   type="button"
                   className="faq-question"
                   disabled={isVerifying}
-                  onClick={() =>
+                  onClick={() => {
+                    const pair = {
+                      ar: item.question.ar,
+                      en: item.question.en,
+                    };
+
+                    setActiveQuestionPair(pair);
+
                     void submitQuestion(
-                      item.question[language],
+                      pair[language],
                       "quranReference" in item
                         ? item.quranReference
                         : undefined,
-                    )
-                  }
+                    );
+                  }}
                 >
                   <span className="faq-domain">
                     {item.category[language]}

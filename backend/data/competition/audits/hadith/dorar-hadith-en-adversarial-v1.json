@@ -1,0 +1,29 @@
+{
+  "audit_version": 1,
+  "audit_id": "dorar-hadith-en-adversarial-v1",
+  "source_id": "dorar:hadith:en",
+  "provider": "Dorar al-Sunniyyah",
+  "language": "en",
+  "status": "PASSED",
+  "checks": {
+    "canonical_route_isolation": "PASS",
+    "exact_artifact_sha256": "PASS",
+    "source_native_english_text": "PASS",
+    "search_result_used_as_locator_only": "PASS",
+    "canonical_detail_required": "PASS",
+    "source_authored_collection_heading": "PASS",
+    "hadith_matn_commentary_separation": "PASS",
+    "search_rank_authenticity_inference": "PROHIBITED",
+    "machine_translation_as_evidence": "PROHIBITED",
+    "synthetic_scholar_grading": "PROHIBITED",
+    "sahihain_status_from_governed_policy_only": "PASS"
+  },
+  "artifacts": [
+    {
+      "path": "data/competition/normalized/dorar/hadith/en/2026-10-07/ahadith-45.html",
+      "canonical_url": "https://dorar.net/en/ahadith/45",
+      "sha256": "e58bab26ada95f6d0661eed43a5ab17d556974d1132adae0fdc1490f95f5f5d4"
+    }
+  ],
+  "failures": []
+}

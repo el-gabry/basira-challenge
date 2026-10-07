@@ -1,0 +1,29 @@
+{
+  "manifest_version": 1,
+  "source_id": "dorar:hadith:en",
+  "provider": "Dorar al-Sunniyyah",
+  "source_family": "DORAR_HADITH",
+  "role": "hadith",
+  "language": "en",
+  "runtime_admission": "ELIGIBLE_CAPTURED_CANONICAL_ARTIFACT",
+  "canonical_path": "/en/ahadith/<article_id>",
+  "search_path": "/en/search?div=ahadith&q=<query>",
+  "search_is_locator_only": true,
+  "canonical_article_required": true,
+  "response_sha256_required": true,
+  "source_native_language_required": true,
+  "machine_translation_as_evidence": false,
+  "synthetic_scholar_grading": false,
+  "records": [
+    {
+      "canonical_url": "https://dorar.net/en/ahadith/45",
+      "article_id": "45",
+      "artifact_path": "data/competition/normalized/dorar/hadith/en/2026-10-07/ahadith-45.html",
+      "response_sha256": "e58bab26ada95f6d0661eed43a5ab17d556974d1132adae0fdc1490f95f5f5d4",
+      "source_authored_collection_heading": "Bukhari hadiths",
+      "canonical_collection": "Sahih al-Bukhari",
+      "hadith_number": "54",
+      "authenticity_basis": "canonical_sahihain_source_verification"
+    }
+  ]
+}

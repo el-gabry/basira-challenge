@@ -95,6 +95,31 @@ def _normalize_arabic(
     return "".join(chars)
 
 
+def _normalize_search_token(
+    token: str,
+) -> str:
+    """
+    Retrieval-only Arabic clitic normalization.
+
+    Bound this narrowly:
+        والتقابض -> التقابض
+
+    We only strip conjunction waw when it is
+    immediately followed by the Arabic definite
+    article "ال".
+
+    This never rewrites source evidence text.
+    """
+
+    if (
+        token.startswith("وال")
+        and len(token) > 3
+    ):
+        return token[1:]
+
+    return token
+
+
 def _tokens(
     value: str,
 ) -> tuple[str, ...]:
@@ -102,11 +127,16 @@ def _tokens(
         value.lower()
     )
 
-    return tuple(
-        token
+    tokens = (
+        _normalize_search_token(token)
         for token in _ARABIC_TOKEN_RE.findall(
             normalized
         )
+    )
+
+    return tuple(
+        token
+        for token in tokens
         if (
             len(token) > 1
             and token not in _STOPWORDS

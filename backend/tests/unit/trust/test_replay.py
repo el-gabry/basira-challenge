@@ -45,14 +45,23 @@ class FakeExecutor:
 def test_real_failure_certificates_have_replay_plans() -> None:
     plans = load_replay_plans(PLANS)
 
+    from basira.trust.self_hardening import (
+        load_failure_certificates,
+    )
+
+    certificates = load_failure_certificates(
+        Path(
+            "data/trust/self-hardening/"
+            "failure-certificates-v1.json"
+        )
+    )
+
     assert {
         plan.certificate_id
         for plan in plans
     } == {
-        "failure:typed-role-spoofing:v1",
-        "failure:role-laundering:v1",
-        "failure:publication-authority-forgery:v1",
-        "failure:source-domain-identity-spoofing:v1",
+        certificate.certificate_id
+        for certificate in certificates
     }
 
 

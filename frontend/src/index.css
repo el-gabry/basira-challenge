@@ -5232,3 +5232,2211 @@ html[dir="ltr"] .tafsir-passage__text {
   direction: rtl;
 }
 /* BASIRA_COMPETITION_FINAL_HERO_END */
+
+/* BASIRA_FINAL_BRAND_HISTORY_START */
+
+/*
+ * Keep the existing Basira logo + Arabic wordmark
+ * visually stable. Do not duplicate the wordmark.
+ */
+.header-brand {
+  flex: 0 0 auto;
+  min-width: 150px;
+}
+
+.header-brand svg,
+.header-brand img {
+  display: block;
+  flex: 0 0 auto;
+  width: 145px;
+  height: auto;
+  max-width: 100%;
+}
+
+.history-item {
+  cursor: pointer;
+}
+
+.history-item span {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.history-empty {
+  padding: 12px 10px;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  opacity: 0.55;
+}
+
+@media (max-width: 760px) {
+  .header-brand {
+    min-width: 118px;
+  }
+
+  .header-brand svg,
+  .header-brand img {
+    width: 118px;
+  }
+}
+
+/* BASIRA_FINAL_BRAND_HISTORY_END */
+
+/* BASIRA_LOGO_SIZE_CORRECTION_START */
+
+/*
+ * Restore the original Basira mark dimensions.
+ * This intentionally overrides the previous broad
+ * .header-brand svg rule.
+ */
+.header-brand {
+  min-width: 0;
+  width: max-content;
+}
+
+.header-brand .basira-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.header-brand .basira-logo-mark {
+  width: 42px !important;
+  height: 48px !important;
+  max-width: 42px !important;
+  flex: 0 0 42px;
+}
+
+.header-brand .basira-logo-copy {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 760px) {
+  .header-brand .basira-logo-mark {
+    width: 36px !important;
+    height: 42px !important;
+    max-width: 36px !important;
+    flex-basis: 36px;
+  }
+}
+
+/* BASIRA_LOGO_SIZE_CORRECTION_END */
+
+/* BASIRA_FIQH_CARD_UI_V2_START */
+
+.fiqh-results-v2 {
+  margin-top: 28px;
+}
+
+.fiqh-heading-v2 {
+  align-items: flex-end;
+  gap: 24px;
+}
+
+.fiqh-heading-v2 > div:first-child {
+  max-width: 760px;
+}
+
+.fiqh-heading-v2 small {
+  letter-spacing: 0.16em;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--emerald);
+}
+
+.fiqh-heading-v2 h2 {
+  margin-top: 6px;
+  margin-bottom: 8px;
+}
+
+.fiqh-heading-v2 p {
+  max-width: 720px;
+  margin: 0;
+  line-height: 1.8;
+  opacity: 0.72;
+}
+
+.fiqh-overview-strip {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0 20px;
+  padding: 10px;
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--emerald) 18%,
+      transparent
+    );
+  border-radius: 16px;
+  background:
+    color-mix(
+      in srgb,
+      var(--emerald) 4%,
+      var(--paper)
+    );
+}
+
+.fiqh-overview-strip > div {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 34px;
+  padding: 6px 11px;
+  border-radius: 11px;
+  background:
+    color-mix(
+      in srgb,
+      var(--paper) 88%,
+      transparent
+    );
+  font-size: 0.78rem;
+}
+
+.fiqh-overview-strip strong {
+  color: var(--emerald);
+  font-size: 0.9rem;
+}
+
+.fiqh-overview-strip__trust {
+  margin-inline-start: auto;
+  color: var(--emerald);
+  font-weight: 700;
+}
+
+.fiqh-overview-strip__trust > span {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background:
+    color-mix(
+      in srgb,
+      var(--emerald) 12%,
+      transparent
+    );
+}
+
+.fiqh-position-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(
+        min(100%, 360px),
+        1fr
+      )
+    );
+  gap: 18px;
+}
+
+.fiqh-position-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--emerald) 24%,
+      transparent
+    );
+  border-radius: 22px;
+  background:
+    linear-gradient(
+      150deg,
+      color-mix(
+        in srgb,
+        var(--paper) 98%,
+        var(--emerald) 2%
+      ),
+      color-mix(
+        in srgb,
+        var(--paper) 95%,
+        var(--emerald) 5%
+      )
+    );
+  box-shadow:
+    0 14px 36px
+    rgba(12, 67, 58, 0.055);
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.fiqh-position-card::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  height: 3px;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--emerald),
+      transparent
+    );
+  opacity: 0.7;
+}
+
+.fiqh-position-card:hover {
+  transform: translateY(-2px);
+  border-color:
+    color-mix(
+      in srgb,
+      var(--emerald) 42%,
+      transparent
+    );
+  box-shadow:
+    0 18px 44px
+    rgba(12, 67, 58, 0.085);
+}
+
+.fiqh-position-card__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.fiqh-position-card__number {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--emerald) 24%,
+      transparent
+    );
+  border-radius: 13px;
+  background:
+    color-mix(
+      in srgb,
+      var(--emerald) 7%,
+      var(--paper)
+    );
+  color: var(--emerald);
+  font-family: ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    monospace;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.fiqh-position-card__identity {
+  flex: 1;
+  min-width: 0;
+}
+
+.fiqh-position-card__identity small {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--emerald);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.fiqh-position-card__identity h3 {
+  margin: 0;
+  font-size: 1.04rem;
+  line-height: 1.4;
+}
+
+.fiqh-position-card__verified {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 9px;
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--emerald) 18%,
+      transparent
+    );
+  border-radius: 999px;
+  background:
+    color-mix(
+      in srgb,
+      var(--emerald) 7%,
+      var(--paper)
+    );
+  color: var(--emerald);
+  font-size: 0.65rem;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.fiqh-position-card__verified > span {
+  font-size: 0.76rem;
+}
+
+.fiqh-madhhab-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 15px;
+}
+
+.fiqh-madhhab-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 29px;
+  padding: 5px 10px;
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--emerald) 22%,
+      transparent
+    );
+  border-radius: 999px;
+  background:
+    color-mix(
+      in srgb,
+      var(--emerald) 8%,
+      var(--paper)
+    );
+  color: var(--emerald);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.fiqh-position-card__body {
+  margin-top: 17px;
+}
+
+.fiqh-position-card__body > small {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 0.66rem;
+  font-weight: 800;
+  opacity: 0.55;
+  letter-spacing: 0.08em;
+}
+
+.fiqh-position-card__body blockquote {
+  position: relative;
+  margin: 0;
+  padding:
+    14px
+    16px;
+  border-inline-start: 3px solid
+    color-mix(
+      in srgb,
+      var(--emerald) 65%,
+      transparent
+    );
+  border-radius: 12px;
+  background:
+    color-mix(
+      in srgb,
+      var(--emerald) 4%,
+      var(--paper)
+    );
+  font-size: 0.91rem;
+  line-height: 1.9;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6;
+  overflow: hidden;
+}
+
+.fiqh-structure-list {
+  display: grid;
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+  gap: 9px;
+  margin-top: 13px;
+}
+
+.fiqh-structure-item {
+  min-width: 0;
+  padding: 11px 12px;
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--border) 75%,
+      transparent
+    );
+  border-radius: 12px;
+  background:
+    color-mix(
+      in srgb,
+      var(--paper) 95%,
+      transparent
+    );
+}
+
+.fiqh-structure-item small {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--emerald);
+  font-size: 0.66rem;
+  font-weight: 800;
+}
+
+.fiqh-structure-item p {
+  margin: 0;
+  font-size: 0.77rem;
+  line-height: 1.65;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.fiqh-structure-item--fiqh_disagreement {
+  grid-column: 1 / -1;
+  border-color:
+    color-mix(
+      in srgb,
+      #b5761d 30%,
+      transparent
+    );
+  background:
+    color-mix(
+      in srgb,
+      #b5761d 5%,
+      var(--paper)
+    );
+}
+
+.fiqh-structure-item--fiqh_disagreement small {
+  color: #9b6519;
+}
+
+.fiqh-position-card__source {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid
+    color-mix(
+      in srgb,
+      var(--border) 70%,
+      transparent
+    );
+}
+
+.fiqh-position-card__source-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.fiqh-position-card__source-copy small {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 0.63rem;
+  font-weight: 800;
+  opacity: 0.5;
+  letter-spacing: 0.09em;
+}
+
+.fiqh-position-card__source-copy strong,
+.fiqh-position-card__source-copy span,
+.fiqh-position-card__source-copy code {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fiqh-position-card__source-copy strong {
+  font-size: 0.76rem;
+  line-height: 1.4;
+}
+
+.fiqh-position-card__source-copy span {
+  margin-top: 2px;
+  font-size: 0.68rem;
+  opacity: 0.65;
+}
+
+.fiqh-position-card__source-copy code {
+  margin-top: 5px;
+  color: var(--emerald);
+  font-size: 0.62rem;
+  white-space: nowrap;
+}
+
+.fiqh-position-card__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 7px;
+}
+
+.fiqh-position-card__actions button,
+.fiqh-position-card__actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 35px;
+  padding: 7px 11px;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.fiqh-position-card__actions button {
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--emerald) 25%,
+      transparent
+    );
+  background:
+    color-mix(
+      in srgb,
+      var(--emerald) 8%,
+      var(--paper)
+    );
+  color: var(--emerald);
+}
+
+.fiqh-position-card__actions a {
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--border) 85%,
+      transparent
+    );
+  color: inherit;
+  background: transparent;
+}
+
+.fiqh-position-card__actions button:hover,
+.fiqh-position-card__actions a:hover {
+  transform: translateY(-1px);
+}
+
+@media (max-width: 760px) {
+  .fiqh-position-grid {
+    grid-template-columns:
+      minmax(0, 1fr);
+  }
+
+  .fiqh-position-card {
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  .fiqh-position-card__header {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .fiqh-position-card__verified {
+    margin-inline-start: auto;
+  }
+
+  .fiqh-structure-list {
+    grid-template-columns:
+      minmax(0, 1fr);
+  }
+
+  .fiqh-structure-item--fiqh_disagreement {
+    grid-column: auto;
+  }
+
+  .fiqh-position-card__source {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .fiqh-position-card__actions {
+    justify-content: stretch;
+  }
+
+  .fiqh-position-card__actions button,
+  .fiqh-position-card__actions a {
+    flex: 1;
+  }
+
+  .fiqh-overview-strip__trust {
+    margin-inline-start: 0;
+    width: 100%;
+  }
+}
+
+/* BASIRA_FIQH_CARD_UI_V2_END */
+
+/* BASIRA_FIQH_V21_POLISH_START */
+
+.fiqh-results-v2 {
+  max-width: 100%;
+}
+
+.fiqh-position-grid.is-single {
+  grid-template-columns:
+    minmax(
+      0,
+      min(100%, 860px)
+    );
+  justify-content: center;
+}
+
+.fiqh-position-grid.is-single
+.fiqh-position-card {
+  width: 100%;
+}
+
+.fiqh-position-card {
+  padding: 22px 24px;
+}
+
+.fiqh-position-card__body {
+  margin-top: 15px;
+}
+
+.fiqh-position-card__body blockquote {
+  padding: 16px 18px;
+  font-size: 0.94rem;
+  line-height: 2;
+}
+
+.fiqh-madhhab-list {
+  align-items: center;
+}
+
+.fiqh-madhhab-list__label {
+  margin-inline-end: 2px;
+  font-size: 0.62rem;
+  font-weight: 800;
+  opacity: 0.55;
+}
+
+.fiqh-madhhab-empty {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 14px;
+  padding: 9px 11px;
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--border) 65%,
+      transparent
+    );
+  border-radius: 11px;
+  background:
+    color-mix(
+      in srgb,
+      var(--paper) 92%,
+      var(--emerald) 3%
+    );
+}
+
+.fiqh-madhhab-empty > span {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--emerald) 25%,
+      transparent
+    );
+  border-radius: 999px;
+  color: var(--emerald);
+  font-size: 0.68rem;
+  font-weight: 900;
+}
+
+.fiqh-madhhab-empty > p {
+  margin: 0;
+  font-size: 0.72rem;
+  line-height: 1.55;
+  opacity: 0.7;
+}
+
+.fiqh-position-card__source {
+  margin-top: 18px;
+  padding: 15px;
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--emerald) 13%,
+      transparent
+    );
+  border-radius: 14px;
+  background:
+    color-mix(
+      in srgb,
+      var(--emerald) 3%,
+      var(--paper)
+    );
+}
+
+.fiqh-position-card__source-copy strong {
+  color: var(--text);
+  font-size: 0.8rem;
+}
+
+.fiqh-position-card__actions button {
+  background:
+    color-mix(
+      in srgb,
+      var(--emerald) 10%,
+      var(--paper)
+    );
+}
+
+.fiqh-position-card__actions button,
+.fiqh-position-card__actions a {
+  min-width: 108px;
+}
+
+.fiqh-overview-strip {
+  max-width: 860px;
+  margin-inline: auto;
+}
+
+.fiqh-heading-v2 {
+  max-width: 860px;
+  margin-inline: auto;
+}
+
+@media (max-width: 760px) {
+  .fiqh-position-grid.is-single {
+    grid-template-columns:
+      minmax(0, 1fr);
+  }
+
+  .fiqh-position-card {
+    padding: 16px;
+  }
+
+  .fiqh-position-card__source {
+    padding: 12px;
+  }
+
+  .fiqh-position-card__actions button,
+  .fiqh-position-card__actions a {
+    width: 100%;
+  }
+}
+
+/* BASIRA_FIQH_V21_POLISH_END */
+
+
+
+/* BASIRA_HEADER_LAYOUT_STABILITY_V2 */
+
+:root {
+  --basira-header-height: 88px;
+  --basira-header-offset: 104px;
+  --basira-brand-logo-size: 46px;
+}
+
+html {
+  scroll-padding-top: var(--basira-header-offset);
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.basira-app,
+.app-shell,
+main,
+.main-content {
+  min-width: 0;
+}
+
+.main-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: var(--basira-header-height);
+  display: flex;
+  align-items: center;
+  background: rgba(252, 251, 246, 0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(19, 102, 86, 0.10);
+}
+
+.header-inner {
+  width: min(1280px, calc(100% - 32px));
+  min-height: var(--basira-header-height);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 18px;
+  overflow: hidden;
+}
+
+.header-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  max-width: 100%;
+  text-decoration: none;
+  flex-shrink: 1;
+}
+
+.header-brand svg,
+.header-brand img {
+  width: var(--basira-brand-logo-size);
+  height: var(--basira-brand-logo-size);
+  flex: 0 0 auto;
+}
+
+.header-brand-copy {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.05;
+  min-width: 0;
+}
+
+.header-brand-copy strong {
+  font-size: 1rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.header-brand-copy small {
+  margin-top: 3px;
+  font-size: 0.54rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  opacity: 0.72;
+  white-space: nowrap;
+}
+
+.main-navigation {
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 26px;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.main-navigation a {
+  white-space: nowrap;
+  font-size: 0.95rem;
+}
+
+.header-actions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+.header-actions > * {
+  flex-shrink: 0;
+}
+
+.language-button,
+.theme-toggle,
+.start-button,
+.start-now-button {
+  min-height: 42px;
+}
+
+.basira-app > *:not(.main-header):first-child,
+main,
+.main-content,
+.page-content,
+.hero-section {
+  scroll-margin-top: var(--basira-header-offset);
+}
+
+@media (max-width: 1100px) {
+  :root {
+    --basira-header-height: 80px;
+    --basira-header-offset: 94px;
+    --basira-brand-logo-size: 40px;
+  }
+
+  .header-inner {
+    width: min(100%, calc(100% - 24px));
+    gap: 14px;
+  }
+
+  .main-navigation {
+    gap: 18px;
+  }
+
+  .main-navigation a {
+    font-size: 0.9rem;
+  }
+
+  .header-brand-copy strong {
+    font-size: 0.94rem;
+  }
+}
+
+@media (max-width: 860px) {
+  :root {
+    --basira-header-height: 72px;
+    --basira-header-offset: 84px;
+    --basira-brand-logo-size: 34px;
+  }
+
+  .header-inner {
+    grid-template-columns: auto 1fr auto;
+    gap: 10px;
+  }
+
+  .main-navigation {
+    display: none;
+  }
+
+  .header-brand-copy small {
+    display: none;
+  }
+
+  .header-brand-copy strong {
+    font-size: 0.9rem;
+  }
+
+  .language-button,
+  .theme-toggle,
+  .start-button,
+  .start-now-button {
+    min-height: 38px;
+    padding-inline: 12px;
+  }
+}
+
+@media (max-width: 520px) {
+  :root {
+    --basira-header-height: 66px;
+    --basira-header-offset: 76px;
+    --basira-brand-logo-size: 30px;
+  }
+
+  .header-inner {
+    width: calc(100% - 16px);
+    gap: 8px;
+  }
+
+  .header-brand {
+    gap: 8px;
+  }
+
+  .header-brand-copy strong {
+    font-size: 0.82rem;
+  }
+
+  .language-button {
+    font-size: 0.82rem;
+    padding-inline: 10px;
+  }
+}
+
+/* END_BASIRA_HEADER_LAYOUT_STABILITY_V2 */
+
+
+/* BASIRA_HEADER_SCROLL_HARD_FIX_START */
+
+:root {
+  --basira-header-safe-offset: 106px;
+}
+
+/*
+ * The header must stay in document flow.
+ * Sticky gives us the premium floating-header feel
+ * without covering the result workspace.
+ */
+.basira-app > header,
+.site-header,
+.main-header,
+.app-header,
+.topbar {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1200 !important;
+
+  inset-inline: auto !important;
+
+  transform: none !important;
+  translate: none !important;
+
+  box-sizing: border-box;
+}
+
+/*
+ * Native anchor / scrollIntoView protection.
+ *
+ * This is the important part:
+ * result-workspace can no longer be positioned
+ * underneath the sticky header.
+ */
+html {
+  scroll-padding-top:
+    var(--basira-header-safe-offset) !important;
+}
+
+#result-workspace,
+#home,
+#about,
+#sources,
+#method,
+#memory,
+#faq {
+  scroll-margin-top:
+    var(--basira-header-safe-offset) !important;
+}
+
+/*
+ * Keep result content in its own normal layer.
+ * No result panel should visually climb above
+ * or behind navigation.
+ */
+.result-workspace {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+
+/*
+ * Header children must shrink safely instead
+ * of forcing the shell over page content.
+ */
+.header-brand,
+.header-brand-copy,
+.header-nav,
+.main-navigation,
+.header-actions,
+.nav-links {
+  min-width: 0;
+}
+
+.header-brand {
+  flex-shrink: 0;
+}
+
+.header-brand-copy {
+  overflow: hidden;
+}
+
+.header-brand-copy strong,
+.header-brand-copy small {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.main-navigation,
+.header-nav,
+.nav-links {
+  flex: 1 1 auto;
+}
+
+/*
+ * Current logo was visually too dominant.
+ * Keep the lockup clear but compact.
+ */
+.header-brand .basira-logo-mark {
+  width: 38px !important;
+  height: 42px !important;
+  max-width: 38px !important;
+  max-height: 42px !important;
+}
+
+.header-brand-copy strong {
+  font-size: 1rem !important;
+}
+
+.header-brand-copy small {
+  font-size: 0.52rem !important;
+  letter-spacing: 0.15em !important;
+}
+
+/*
+ * Result mode specifically gets extra protection,
+ * because this is where auto-scroll occurs.
+ */
+.hero-scene.has-result + #result-workspace,
+.hero-scene.has-result ~ #result-workspace {
+  scroll-margin-top:
+    var(--basira-header-safe-offset) !important;
+}
+
+@media (max-width: 1100px) {
+  :root {
+    --basira-header-safe-offset: 94px;
+  }
+
+  .main-navigation,
+  .header-nav,
+  .nav-links {
+    gap: 14px !important;
+  }
+
+  .main-navigation a,
+  .header-nav a,
+  .nav-links a {
+    font-size: 0.86rem !important;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 820px) {
+  :root {
+    --basira-header-safe-offset: 82px;
+  }
+
+  .main-navigation,
+  .header-nav,
+  .nav-links {
+    display: none !important;
+  }
+
+  .header-brand .basira-logo-mark {
+    width: 34px !important;
+    height: 38px !important;
+  }
+
+  .header-brand-copy small {
+    display: none !important;
+  }
+}
+
+@media (max-width: 520px) {
+  :root {
+    --basira-header-safe-offset: 76px;
+  }
+
+  .header-brand-copy strong {
+    font-size: 0.88rem !important;
+  }
+}
+
+/* BASIRA_HEADER_SCROLL_HARD_FIX_END */
+
+
+
+/* BASIRA_PREMIUM_HEADER_FINAL_START */
+
+:root {
+  --basira-header-safe-offset: 94px;
+}
+
+/* ---------------------------------------------------------
+   FLOATING HEADER SHELL
+--------------------------------------------------------- */
+
+.basira-app > header {
+  position: sticky !important;
+  top: 10px !important;
+  z-index: 1200 !important;
+
+  width:
+    min(
+      1280px,
+      calc(100% - 40px)
+    ) !important;
+
+  min-height: 70px !important;
+  height: auto !important;
+
+  margin:
+    10px auto 0 !important;
+
+  padding:
+    8px 14px !important;
+
+  box-sizing: border-box;
+
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--border) 72%,
+      transparent
+    ) !important;
+
+  border-radius: 18px !important;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--paper-strong) 92%,
+      transparent
+    ) !important;
+
+  box-shadow:
+    0 8px 28px
+      rgba(13, 55, 47, 0.075),
+    0 1px 3px
+      rgba(13, 55, 47, 0.04) !important;
+
+  backdrop-filter:
+    blur(18px)
+    saturate(125%) !important;
+
+  -webkit-backdrop-filter:
+    blur(18px)
+    saturate(125%) !important;
+}
+
+
+/* ---------------------------------------------------------
+   INTERNAL LAYOUT
+--------------------------------------------------------- */
+
+.basira-app > header > * {
+  min-height: 52px;
+}
+
+.basira-app > header,
+.basira-app > header > div {
+  align-items: center;
+}
+
+.basira-app > header > div {
+  width: 100%;
+}
+
+
+/* ---------------------------------------------------------
+   BRAND
+--------------------------------------------------------- */
+
+.header-brand {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 9px !important;
+
+  flex:
+    0 0 auto !important;
+
+  min-width: 150px;
+  text-decoration: none;
+}
+
+.header-brand .basira-logo-mark {
+  width: 36px !important;
+  height: 40px !important;
+
+  max-width: 36px !important;
+  max-height: 40px !important;
+
+  flex:
+    0 0 auto !important;
+}
+
+.header-brand-copy {
+  display: inline-flex !important;
+  flex-direction: column;
+  justify-content: center;
+
+  min-width: 0;
+  line-height: 1;
+}
+
+.header-brand-copy strong {
+  margin: 0;
+
+  font-size:
+    0.98rem !important;
+
+  font-weight: 800 !important;
+  line-height: 1.05 !important;
+}
+
+.header-brand-copy small {
+  margin-top:
+    4px !important;
+
+  font-size:
+    0.50rem !important;
+
+  font-weight: 750 !important;
+
+  letter-spacing:
+    0.14em !important;
+
+  opacity: 0.66;
+}
+
+
+/* ---------------------------------------------------------
+   CENTER NAVIGATION
+--------------------------------------------------------- */
+
+.basira-app > header nav,
+.main-navigation,
+.header-nav,
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex:
+    1 1 auto;
+
+  min-width: 0;
+
+  gap:
+    clamp(
+      16px,
+      2vw,
+      30px
+    ) !important;
+
+  margin-inline:
+    clamp(
+      18px,
+      3vw,
+      50px
+    );
+}
+
+.basira-app > header nav a,
+.main-navigation a,
+.header-nav a,
+.nav-links a {
+  position: relative;
+
+  padding:
+    8px 1px;
+
+  font-size:
+    0.84rem !important;
+
+  font-weight:
+    650 !important;
+
+  line-height: 1;
+
+  white-space: nowrap;
+
+  opacity: 0.76;
+
+  transition:
+    color 160ms ease,
+    opacity 160ms ease;
+}
+
+.basira-app > header nav a:hover,
+.main-navigation a:hover,
+.header-nav a:hover,
+.nav-links a:hover {
+  opacity: 1;
+  color: var(--emerald);
+}
+
+
+/* subtle premium underline */
+
+.basira-app > header nav a::after,
+.main-navigation a::after,
+.header-nav a::after,
+.nav-links a::after {
+  content: "";
+
+  position: absolute;
+
+  inset-inline:
+    20%;
+
+  inset-block-end:
+    1px;
+
+  height: 1.5px;
+
+  border-radius:
+    999px;
+
+  background:
+    var(--emerald);
+
+  transform:
+    scaleX(0);
+
+  transform-origin:
+    center;
+
+  transition:
+    transform 160ms ease;
+}
+
+.basira-app > header nav a:hover::after,
+.main-navigation a:hover::after,
+.header-nav a:hover::after,
+.nav-links a:hover::after {
+  transform:
+    scaleX(1);
+}
+
+
+/* ---------------------------------------------------------
+   ACTION AREA
+--------------------------------------------------------- */
+
+.header-actions,
+.basira-app > header
+button:last-child {
+  flex-shrink: 0;
+}
+
+.header-actions {
+  display: flex !important;
+  align-items: center;
+
+  gap:
+    8px !important;
+}
+
+
+/* all header controls get one visual rhythm */
+
+.basira-app > header button {
+  min-height:
+    40px !important;
+
+  border-radius:
+    11px !important;
+
+  font-size:
+    0.78rem !important;
+
+  font-weight:
+    700 !important;
+}
+
+
+/* Start now / primary CTA */
+
+.start-button,
+.start-now-button,
+.header-actions
+.primary-button {
+  min-width:
+    104px !important;
+
+  padding-inline:
+    17px !important;
+
+  box-shadow:
+    0 5px 14px
+    rgba(
+      7,
+      91,
+      74,
+      0.16
+    ) !important;
+}
+
+
+/* Theme + language become compact secondary controls */
+
+.theme-toggle,
+.language-button {
+  min-width:
+    40px !important;
+
+  height:
+    40px !important;
+
+  padding:
+    0 11px !important;
+
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--border) 82%,
+      transparent
+    ) !important;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--paper) 86%,
+      transparent
+    ) !important;
+
+  box-shadow:
+    none !important;
+}
+
+
+/* Language needs a little more room */
+
+.language-button {
+  min-width:
+    72px !important;
+}
+
+
+/* ---------------------------------------------------------
+   DARK MODE
+--------------------------------------------------------- */
+
+.theme-dark
+.basira-app > header {
+  background:
+    color-mix(
+      in srgb,
+      #092c26 91%,
+      transparent
+    ) !important;
+
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.10
+    ) !important;
+
+  box-shadow:
+    0 10px 30px
+    rgba(
+      0,
+      0,
+      0,
+      0.25
+    ) !important;
+}
+
+
+/* ---------------------------------------------------------
+   SCROLL SAFETY — KEEP PREVIOUS FIX
+--------------------------------------------------------- */
+
+html {
+  scroll-padding-top:
+    var(--basira-header-safe-offset) !important;
+}
+
+#result-workspace,
+#home,
+#about,
+#sources,
+#method,
+#memory,
+#faq {
+  scroll-margin-top:
+    var(--basira-header-safe-offset) !important;
+}
+
+
+/* ---------------------------------------------------------
+   TABLET
+--------------------------------------------------------- */
+
+@media (
+  max-width: 1050px
+) {
+
+  :root {
+    --basira-header-safe-offset:
+      88px;
+  }
+
+  .basira-app > header {
+    width:
+      calc(
+        100% - 24px
+      ) !important;
+
+    padding:
+      7px 12px !important;
+  }
+
+  .header-brand {
+    min-width:
+      auto;
+  }
+
+  .basira-app > header nav,
+  .main-navigation,
+  .header-nav,
+  .nav-links {
+    gap:
+      14px !important;
+
+    margin-inline:
+      18px;
+  }
+
+  .basira-app > header nav a,
+  .main-navigation a,
+  .header-nav a,
+  .nav-links a {
+    font-size:
+      0.77rem !important;
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+--------------------------------------------------------- */
+
+@media (
+  max-width: 820px
+) {
+
+  :root {
+    --basira-header-safe-offset:
+      80px;
+  }
+
+  .basira-app > header {
+    top:
+      6px !important;
+
+    min-height:
+      62px !important;
+
+    margin-top:
+      6px !important;
+
+    border-radius:
+      15px !important;
+  }
+
+  .basira-app > header nav,
+  .main-navigation,
+  .header-nav,
+  .nav-links {
+    display:
+      none !important;
+  }
+
+  .header-brand
+  .basira-logo-mark {
+    width:
+      32px !important;
+
+    height:
+      36px !important;
+  }
+
+  .header-brand-copy strong {
+    font-size:
+      0.9rem !important;
+  }
+
+  .header-brand-copy small {
+    display:
+      none !important;
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   SMALL MOBILE
+--------------------------------------------------------- */
+
+@media (
+  max-width: 520px
+) {
+
+  .basira-app > header {
+    width:
+      calc(
+        100% - 14px
+      ) !important;
+
+    padding:
+      6px 9px !important;
+  }
+
+  .header-brand {
+    gap:
+      6px !important;
+  }
+
+  .header-brand-copy strong {
+    font-size:
+      0.84rem !important;
+  }
+
+  .language-button {
+    min-width:
+      58px !important;
+
+    padding-inline:
+      8px !important;
+  }
+
+  .start-button,
+  .start-now-button {
+    min-width:
+      auto !important;
+
+    padding-inline:
+      11px !important;
+  }
+
+}
+
+/* BASIRA_PREMIUM_HEADER_FINAL_END */
+
+
+/* BASIRA_RESULT_HISTORY_PREMIUM_START */
+
+@media (min-width: 821px) {
+  .result-workspace {
+    align-items: start;
+  }
+
+  .history-panel {
+    position: sticky !important;
+
+    top:
+      calc(
+        var(
+          --basira-header-safe-offset,
+          94px
+        )
+        + 12px
+      ) !important;
+
+    align-self:
+      start !important;
+
+    max-height:
+      calc(
+        100vh
+        - var(
+            --basira-header-safe-offset,
+            94px
+          )
+        - 26px
+      );
+
+    overflow-y:
+      auto;
+
+    overscroll-behavior:
+      contain;
+
+    scrollbar-width:
+      thin;
+  }
+
+  .conversation-panel {
+    min-width: 0;
+  }
+}
+
+/* BASIRA_RESULT_HISTORY_PREMIUM_END */
+
+
+/* BASIRA_PREMIUM_QURAN_ALIGNMENT_CSS_START */
+
+.quran-alignment-stack {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.quran-alignment-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.quran-alignment-summary > span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 29px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.quran-alignment-summary .is-match {
+  color: var(--emerald);
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--emerald) 24%,
+      transparent
+    );
+  background:
+    color-mix(
+      in srgb,
+      var(--emerald) 7%,
+      var(--paper)
+    );
+}
+
+.quran-alignment-summary .is-correction {
+  color: var(--danger);
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--danger) 24%,
+      transparent
+    );
+  background:
+    color-mix(
+      in srgb,
+      var(--danger-soft) 70%,
+      var(--paper)
+    );
+}
+
+.quran-alignment-row {
+  display: grid;
+  gap: 11px;
+  padding: 13px 14px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background:
+    color-mix(
+      in srgb,
+      var(--paper-strong) 92%,
+      transparent
+    );
+}
+
+.quran-alignment-row.is-match {
+  border-color:
+    color-mix(
+      in srgb,
+      var(--emerald) 20%,
+      var(--border)
+    );
+}
+
+.quran-alignment-row.is-correction,
+.quran-alignment-row.is-extra {
+  border-color:
+    color-mix(
+      in srgb,
+      var(--danger) 28%,
+      var(--border)
+    );
+}
+
+.quran-alignment-row.is-context {
+  background:
+    color-mix(
+      in srgb,
+      var(--bg) 42%,
+      var(--paper)
+    );
+}
+
+.quran-alignment-status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.quran-alignment-status > div {
+  display: grid;
+  gap: 2px;
+}
+
+.quran-alignment-status small {
+  font-size: 0.58rem;
+  font-weight: 900;
+  letter-spacing: 0.11em;
+  opacity: 0.55;
+}
+
+.quran-alignment-status strong {
+  font-size: 0.72rem;
+}
+
+.quran-alignment-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 27px;
+  height: 27px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+.quran-alignment-icon.is-match {
+  color: var(--emerald);
+  background:
+    color-mix(
+      in srgb,
+      var(--emerald) 10%,
+      var(--paper)
+    );
+}
+
+.quran-alignment-icon.is-context {
+  color: var(--muted);
+  background:
+    color-mix(
+      in srgb,
+      var(--bg) 70%,
+      var(--paper)
+    );
+}
+
+.quran-alignment-icon.is-correction,
+.quran-alignment-icon.is-missing {
+  color: var(--danger);
+  background:
+    var(--danger-soft);
+}
+
+.quran-alignment-match {
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: var(--emerald);
+  background:
+    color-mix(
+      in srgb,
+      var(--emerald) 7%,
+      var(--paper)
+    );
+  font-size: 0.88rem;
+  font-weight: 750;
+  line-height: 1.65;
+}
+
+.quran-alignment-context {
+  padding: 9px 12px;
+  border-radius: 10px;
+  color: var(--muted);
+  background:
+    color-mix(
+      in srgb,
+      var(--bg) 52%,
+      var(--paper)
+    );
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.quran-alignment-correction {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    30px
+    minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+}
+
+.quran-alignment-side {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  padding: 11px 13px;
+  border-radius: 11px;
+}
+
+.quran-alignment-side small {
+  font-size: 0.59rem;
+  font-weight: 850;
+  letter-spacing: 0.07em;
+}
+
+.quran-alignment-side strong {
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+  font-size: 1.18rem;
+  line-height: 1.35;
+}
+
+.quran-alignment-side.is-received {
+  color: var(--danger);
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--danger) 28%,
+      transparent
+    );
+  background:
+    var(--danger-soft);
+}
+
+.quran-alignment-side.is-received strong {
+  text-decoration:
+    line-through;
+  text-decoration-thickness:
+    1.5px;
+}
+
+.quran-alignment-side.is-expected {
+  color: var(--emerald);
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--emerald) 25%,
+      transparent
+    );
+  background:
+    color-mix(
+      in srgb,
+      var(--emerald) 8%,
+      var(--paper)
+    );
+}
+
+.quran-alignment-arrow {
+  text-align: center;
+  color: var(--emerald);
+  font-size: 1.05rem;
+  font-weight: 900;
+}
+
+.quran-alignment-full {
+  margin-top: 2px;
+  padding: 14px 15px;
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--emerald) 22%,
+      var(--border)
+    );
+  border-radius: 14px;
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(
+        in srgb,
+        var(--emerald) 5%,
+        var(--paper)
+      ),
+      var(--paper)
+    );
+}
+
+.quran-alignment-full > div {
+  display: flex;
+  align-items: center;
+  justify-content:
+    space-between;
+  flex-wrap: wrap;
+  gap: 5px 12px;
+}
+
+.quran-alignment-full small {
+  color: var(--emerald);
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+.quran-alignment-full span {
+  font-size: 0.65rem;
+  opacity: 0.6;
+}
+
+.quran-alignment-full p {
+  margin:
+    10px 0 0;
+  font-size: 0.84rem;
+  line-height: 1.75;
+}
+
+.quran-alignment-context-note {
+  margin: 0;
+  padding-inline: 4px;
+  font-size: 0.68rem;
+  line-height: 1.55;
+  opacity: 0.62;
+}
+
+@media (max-width: 680px) {
+  .quran-alignment-correction {
+    grid-template-columns:
+      minmax(0, 1fr);
+  }
+
+  .quran-alignment-arrow {
+    transform:
+      rotate(90deg);
+  }
+}
+
+/* BASIRA_PREMIUM_QURAN_ALIGNMENT_CSS_END */
+
+
+/* BASIRA_QURAN_ALIGNMENT_FINAL_POLISH_START */
+
+.quran-alignment-row.is-context {
+  padding-block: 11px;
+
+  border-style: dashed;
+
+  border-color:
+    color-mix(
+      in srgb,
+      var(--border) 78%,
+      transparent
+    );
+}
+
+.quran-alignment-row.is-context
+.quran-alignment-status strong {
+  color:
+    color-mix(
+      in srgb,
+      var(--text) 72%,
+      transparent
+    );
+}
+
+.quran-alignment-context-note {
+  display: flex;
+  align-items: center;
+  min-height: 34px;
+
+  margin-top: 1px;
+
+  padding:
+    8px 11px;
+
+  border-radius: 9px;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--bg) 48%,
+      transparent
+    );
+
+  font-size: 0.67rem;
+  line-height: 1.55;
+  opacity: 0.72;
+}
+
+/* BASIRA_QURAN_ALIGNMENT_FINAL_POLISH_END */

@@ -35,6 +35,17 @@ class FailureKind(StrEnum):
     )
 
 
+    QURAN_VERIFICATION_LANGUAGE_SWITCH = (
+        "quran_verification_language_switch"
+    )
+    TAFSIR_LANGUAGE_SWITCH_ANCHOR_DRIFT = (
+        "tafsir_language_switch_anchor_drift"
+    )
+    HADITH_LANGUAGE_SWITCH_EVIDENCE_REUSE = (
+        "hadith_language_switch_evidence_reuse"
+    )
+
+
 class FailureDisposition(StrEnum):
     REPAIRABLE_SYSTEM_FAILURE = (
         "repairable_system_failure"

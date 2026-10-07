@@ -586,8 +586,32 @@ class _CanonicalArticleBodyParser(HTMLParser):
                 )
             )
 
-            if normalized == self.target_heading:
+            heading_matches = (
+                normalized
+                == self.target_heading
+                or normalized.startswith(
+                    self.target_heading
+                    + " "
+                )
+            )
+
+            if heading_matches:
                 self.capture = True
+
+                # Some canonical Dorar pages place
+                # source-authored article text in the
+                # same H1 after the canonical heading.
+                #
+                # Keep that visible source text rather
+                # than rejecting the document merely
+                # because the H1 is longer than <title>.
+                if (
+                    normalized
+                    != self.target_heading
+                ):
+                    self.body_parts.append(
+                        heading
+                    )
 
             self.heading_tag = None
             self.heading_parts = []
@@ -648,6 +672,49 @@ def _normalize_article_heading(
     ).strip()
 
 
+_DORAR_FIQH_BODY_PREFIX_NOISE = (
+    "محتويات الصفحة",
+    "انظر أيضا",
+    "الرابط المختصر",
+    "عرض الهوامش",
+    "السابق",
+    "التالي",
+    "إضافة تعليق",
+    "حفظ",
+    "غلق",
+    "انشر المادة",
+    "نسخ الرابط المختصر",
+)
+
+
+def _trim_dorar_fiqh_body_prefix_noise(
+    value: str,
+) -> str:
+    """
+    Remove known Dorar presentation chrome from the
+    beginning of an already-isolated canonical article body.
+
+    This is source-boundary cleanup only.
+    It never rewrites religious content.
+    """
+
+    text = clean_text(value)
+
+    changed = True
+
+    while changed:
+        changed = False
+
+        for marker in _DORAR_FIQH_BODY_PREFIX_NOISE:
+            if text.startswith(marker):
+                text = clean_text(
+                    text[len(marker):]
+                )
+                changed = True
+
+    return text
+
+
 def extract_primary_article_text(
     *,
     html: str,
@@ -687,6 +754,10 @@ def extract_primary_article_text(
         " ".join(
             parser.body_parts
         )
+    )
+
+    body = _trim_dorar_fiqh_body_prefix_noise(
+        body
     )
 
     faq_marker = (

@@ -248,3 +248,133 @@ export async function getEvidenceDetail(
 
   return (await response.json()) as EvidenceDetail;
 }
+
+/* ============================================================
+ * BASIRA VISITOR CHAT HISTORY
+ *
+ * Presentation history only.
+ * Never evidence. Never a religious authority.
+ * ============================================================ */
+
+export type ChatHistoryEntry = {
+  id: string;
+  question: string;
+  language: "ar" | "en";
+  response: QueryResponse;
+  created_at: string;
+};
+
+export type ChatHistoryResponse = {
+  items: ChatHistoryEntry[];
+};
+
+const BASIRA_VISITOR_STORAGE_KEY =
+  "basira-visitor-id";
+
+export function getOrCreateBasiraVisitorId(): string {
+  const existing =
+    window.localStorage.getItem(
+      BASIRA_VISITOR_STORAGE_KEY,
+    );
+
+  if (
+    existing &&
+    /^[A-Za-z0-9_-]{16,128}$/.test(
+      existing,
+    )
+  ) {
+    return existing;
+  }
+
+  const generated =
+    typeof crypto !== "undefined" &&
+    typeof crypto.randomUUID === "function"
+      ? `visitor_${crypto.randomUUID()}`
+      : `visitor_${Date.now()}_${Math.random()
+          .toString(36)
+          .slice(2)}`;
+
+  window.localStorage.setItem(
+    BASIRA_VISITOR_STORAGE_KEY,
+    generated,
+  );
+
+  return generated;
+}
+
+export async function getChatHistory(
+  visitorId: string,
+  limit = 20,
+): Promise<ChatHistoryEntry[]> {
+  const response = await fetch(
+    `${API_BASE_URL}/api/v1/chat/history?limit=${limit}`,
+    {
+      headers: {
+        Accept: "application/json",
+        "X-Basira-Visitor": visitorId,
+      },
+    },
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      `Chat history request failed (${response.status})`,
+    );
+  }
+
+  const payload =
+    (await response.json()) as ChatHistoryResponse;
+
+  return payload.items;
+}
+
+export async function saveChatHistory(
+  visitorId: string,
+  payload: {
+    question: string;
+    language: "ar" | "en";
+    response: QueryResponse;
+  },
+): Promise<ChatHistoryEntry> {
+  const response = await fetch(
+    `${API_BASE_URL}/api/v1/chat/history`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "X-Basira-Visitor": visitorId,
+      },
+      body: JSON.stringify(payload),
+    },
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      `Chat history save failed (${response.status})`,
+    );
+  }
+
+  return (await response.json()) as ChatHistoryEntry;
+}
+
+export async function clearChatHistory(
+  visitorId: string,
+): Promise<void> {
+  const response = await fetch(
+    `${API_BASE_URL}/api/v1/chat/history`,
+    {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "X-Basira-Visitor": visitorId,
+      },
+    },
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      `Chat history clear failed (${response.status})`,
+    );
+  }
+}

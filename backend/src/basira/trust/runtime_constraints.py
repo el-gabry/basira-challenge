@@ -30,6 +30,25 @@ QURAN_VERIFICATION_INTENT_CONSTRAINT_ID = (
 )
 
 
+QURAN_VERIFICATION_LANGUAGE_SWITCH_CONSTRAINT_ID = (
+    "constraint:"
+    "failure:quran-verification-language-switch-"
+    "requires-new-verification:v1"
+)
+
+TAFSIR_LANGUAGE_SWITCH_ANCHOR_CONSTRAINT_ID = (
+    "constraint:"
+    "failure:tafsir-language-switch-"
+    "preserves-canonical-anchor:v1"
+)
+
+HADITH_LANGUAGE_SWITCH_RETRIEVAL_CONSTRAINT_ID = (
+    "constraint:"
+    "failure:hadith-language-switch-"
+    "requires-target-language-governed-retrieval:v1"
+)
+
+
 def _constraints_path() -> Path:
     configured = os.getenv(
         "BASIRA_PROMOTED_CONSTRAINTS_PATH"
@@ -127,12 +146,26 @@ def is_quran_verification_request(
     ):
         return False
 
-    surfaces = (
-        original_text,
-        intent_text,
+    # Learned behavior must generalize across presentation
+    # language. This memory still has ZERO religious authority:
+    # it decides only that verification is mandatory.
+    #
+    # The downstream verifier remains responsible for choosing
+    # the correct governed evidence surface:
+    # - Arabic Quran literal -> canonical Mushaf verification
+    # - English meaning/quotation -> governed translation lane
+    surfaces = tuple(
+        " ".join(
+            value.casefold().split()
+        )
+        for value in (
+            original_text,
+            intent_text,
+        )
     )
 
     quran_cues = (
+        # Arabic
         "آية",
         "اية",
         "القرآن",
@@ -141,9 +174,21 @@ def is_quran_verification_request(
         "قراني",
         "من القرآن",
         "من القران",
+
+        # English
+        "quran",
+        "qur'an",
+        "koran",
+        "quran quotation",
+        "quran quote",
+        "quranic quotation",
+        "quranic quote",
+        "ayah",
+        "verse",
     )
 
     verification_cues = (
+        # Arabic
         "صحيح",
         "صحيحة",
         "صح",
@@ -159,6 +204,21 @@ def is_quran_verification_request(
         "تغير",
         "تأكد",
         "تحقق",
+
+        # English — deliberately bounded verification phrases.
+        "quotation correct",
+        "quote correct",
+        "quoted correctly",
+        "quotation accurate",
+        "quote accurate",
+        "verify this quotation",
+        "verify this quote",
+        "check this quotation",
+        "check this quote",
+        "misquoted",
+        "misquote",
+        "altered quotation",
+        "altered quote",
     )
 
     mentions_quran = any(

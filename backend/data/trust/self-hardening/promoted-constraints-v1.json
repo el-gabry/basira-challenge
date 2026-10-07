@@ -47,6 +47,41 @@
         "tests/unit/trust/test_runtime_learned_quran_verification.py::test_promoted_constraint_routes_quran_correctness_to_quote_verification"
       ],
       "religious_evidence_authority": 0
+    },
+    {
+      "constraint_id": "constraint:failure:quran-verification-language-switch-requires-new-verification:v1",
+      "source_certificate_id": "failure:quran-verification-language-switch-requires-new-verification:v1",
+      "rule": "A Quran verification language switch requires fresh target-language governed verification. Reuse, relabeling, or generated translation as proof is forbidden; unavailable governed evidence must fail closed.",
+      "replay_test_ids": [
+        "tests/unit/trust/test_runtime_language_switch_causal_guards.py::test_quran_language_switch_guard_is_memory_causal",
+        "tests/unit/verification/test_quran_translation_verifier.py"
+      ],
+      "religious_evidence_authority": 0
+    },
+    {
+      "constraint_id": "constraint:failure:tafsir-language-switch-preserves-canonical-anchor:v1",
+      "source_certificate_id": "failure:tafsir-language-switch-preserves-canonical-anchor:v1",
+      "rule": "A Tafsir language switch must preserve the verified canonical Quran anchor and use exact governed target evidence; otherwise fail closed.",
+      "replay_test_ids": [
+        "tests/unit/trust/test_runtime_language_switch_causal_guards.py::test_tafsir_anchor_guard_is_memory_causal",
+        "tests/unit/trust/test_online_quran_tafsir_regressions.py",
+        "tests/unit/retrieval/test_query_understanding.py::test_quran_tafsir_wording_routes_to_meaning",
+        "tests/unit/retrieval/test_english_query_understanding.py::test_explicit_english_tafsir_is_understood",
+        "tests/unit/reasoning/test_routing.py::test_quran_meaning_requires_tafsir_context",
+        "tests/unit/retrieval/test_retrieval_plan.py::test_quran_meaning_routes_to_quran_and_tafsir",
+        "tests/unit/answer/test_quran_meaning_composite.py::test_quran_meaning_publishes_canonical_and_focused_tafsir"
+      ],
+      "religious_evidence_authority": 0
+    },
+    {
+      "constraint_id": "constraint:failure:hadith-language-switch-requires-target-language-governed-retrieval:v1",
+      "source_certificate_id": "failure:hadith-language-switch-requires-target-language-governed-retrieval:v1",
+      "rule": "A Hadith language switch requires fresh target-language governed retrieval. Fuzzy cross-language identity joins, generated translation, and synthetic grades are forbidden.",
+      "replay_test_ids": [
+        "tests/unit/trust/test_runtime_language_switch_causal_guards.py::test_hadith_language_switch_guard_is_memory_causal",
+        "tests/unit/competition/test_dorar_hadith_english_adapter.py"
+      ],
+      "religious_evidence_authority": 0
     }
   ]
 }

@@ -1,0 +1,25 @@
+{
+  "passport_version": 1,
+  "source_id": "dorar:hadith:en",
+  "provider": "Dorar al-Sunniyyah",
+  "source_family": "DORAR_HADITH",
+  "role": "HADITH_PRIMARY_SOURCE_AND_PRESENTATION",
+  "language": "en",
+  "official_eligibility": "VERIFIED",
+  "runtime": {
+    "admission": "ELIGIBLE_CAPTURED_CANONICAL_ARTIFACT",
+    "canonical_article_required": true,
+    "exact_artifact_hash_required": true,
+    "source_native_language_required": true,
+    "machine_translation_as_evidence": false,
+    "search_result_is_evidence": false,
+    "search_rank_establishes_authenticity": false,
+    "synthetic_scholar_grading": false,
+    "sahihain_source_verification_only": true
+  },
+  "evidence": {
+    "runtime_manifest": "data/competition/manifests/hadith/dorar-hadith-en-captured-v1.json",
+    "adversarial_audit": "data/competition/audits/hadith/dorar-hadith-en-adversarial-v1.json",
+    "official_policy": "data/competition/manifests/hadith/official-hadith-policy-v1.json"
+  }
+}

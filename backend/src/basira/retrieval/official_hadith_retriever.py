@@ -79,6 +79,33 @@ _AUTHENTICITY_STOPWORDS = _HADITH_QUERY_SCAFFOLDING | {
     "انها",
     "ولا",
     "ايه",
+
+    # English query scaffolding.
+    #
+    # These tokens describe the verification request,
+    # not the Hadith identity itself. Without this set,
+    # an English authenticity question is unfairly
+    # penalized by the identity-overlap firewall.
+    "a",
+    "an",
+    "are",
+    "authentic",
+    "authenticity",
+    "by",
+    "correct",
+    "hadith",
+    "is",
+    "it",
+    "judged",
+    "narration",
+    "report",
+    "sahih",
+    "saying",
+    "the",
+    "this",
+    "true",
+    "was",
+    "were",
 }
 
 _NUMBER_WORDS = {

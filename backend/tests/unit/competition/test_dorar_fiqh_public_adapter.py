@@ -46,11 +46,13 @@ def _document(
         "https://dorar.net/feqhia/424"
     ),
 ) -> DorarFiqhSourceDocument:
+    # Test-only, source-derived structural fixture.
+    # Runtime discovery captures are intentionally ignored
+    # and are never required to run the unit suite.
     body = (
         ROOT
-        / "data/competition/discovery/"
-        "dorar-fiqh/articles/"
-        "comparative.html"
+        / "tests/fixtures/dorar_fiqh/"
+        "feqhia-424.html"
     ).read_bytes()
 
     return DorarFiqhSourceDocument(

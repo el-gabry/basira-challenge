@@ -25,18 +25,15 @@ export function DomainQaPanel({ language, disabled = false, onRun }: Props) {
       <div className="domain-qa-heading">
         <span className="domain-qa-icon"><FlaskConical size={17} /></span>
         <div>
-          <small>UI QA · REAL API</small>
-          <strong>{language === "ar" ? "جرّب المجالات الثلاثة على الواجهة الجديدة" : "Try the three live domains on the new UI"}</strong>
-          <p>
-            {language === "ar"
-              ? "كل زر يرسل السؤال الحقيقي إلى /api/v1/query ثم يعرض نفس استجابة الـ backend في واجهة النتيجة الجديدة. لا توجد mock data هنا."
-              : "Each button sends a real request to /api/v1/query and renders the backend response in the new result UI. No mock data is used."}
-          </p>
+          <small>TRUST SHIELD · LIVE</small>
+          <strong>{language === "ar" ? "أقسام التحقق" : "Verification sections"}</strong>
         </div>
       </div>
 
       <div className="domain-qa-grid">
-        {domainQaScenarios.map((scenario) => {
+        {domainQaScenarios
+          .filter((scenario) => language === "ar" || scenario.id !== "fiqh")
+          .map((scenario) => {
           const Icon = iconByDomain[scenario.id];
           return (
             <article className={`domain-qa-card domain-qa-${scenario.id}`} key={scenario.id}>
@@ -48,7 +45,7 @@ export function DomainQaPanel({ language, disabled = false, onRun }: Props) {
               <code dir={language === "ar" ? "rtl" : "ltr"}>{scenario.question[language]}</code>
               <small>{scenario.expectation[language]}</small>
               <button type="button" disabled={disabled} onClick={() => onRun(scenario)}>
-                {language === "ar" ? "جرّب على الواجهة" : "Run in new UI"}
+                {language === "ar" ? "تحقق" : "Verify"}
               </button>
             </article>
           );

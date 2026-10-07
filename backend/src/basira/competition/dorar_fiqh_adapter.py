@@ -28,9 +28,25 @@ from basira.competition.retrieval_bridge import (
     CompetitionRetrievalRequest,
     CompetitionSourceUnavailable,
 )
+from basira.evidence.fiqh_structural_adapter import (
+    FiqhStructuralEvidenceAdapter,
+)
+from basira.evidence.fiqh_units import (
+    FiqhStructuralUnitBuilder,
+)
 from basira.evidence.models import (
     EvidenceDomain,
     EvidenceNode,
+)
+from basira.models.scholarly import (
+    ScholarlyDomain,
+    ScholarlyPassage,
+)
+from basira.retrieval.fiqh_discovery_query_planner import (
+    FiqhDiscoveryQueryPlanner,
+)
+from basira.retrieval.fiqh_evidence_projector import (
+    FiqhEvidenceProjector,
 )
 
 _GENERIC_FIQH_RELEVANCE_TERMS = frozenset(
@@ -276,6 +292,140 @@ def _explicit_disagreement_marker(
     return None
 
 
+def _project_single_article_structurally(
+    *,
+    query: str,
+    article: DorarFiqhArticle,
+    admission: DorarFiqhRuntimeAdmission,
+) -> tuple[
+    EvidenceNode,
+    ...,
+]:
+    """
+    General Fiqh fallback for a canonical admitted
+    Dorar article that has no explicit
+    "القول الأول / القول الثاني" position structure.
+
+    Important invariants:
+    - the Dorar document is already runtime-admitted;
+    - retrieval narrows to an exact source slice;
+    - no ruling is inferred;
+    - no madhhab is invented;
+    - no disagreement is invented;
+    - the existing structural adapter remains the
+      only EvidenceNode construction path here.
+
+    The resulting root `fiqh_position` means:
+      source-faithful Fiqh evidence unit
+
+    It does NOT mean:
+      system-created legal opinion.
+    """
+
+    title = (
+        article.article_title
+        or "Dorar Fiqh"
+    )
+
+    parent = ScholarlyPassage(
+        passage_id=(
+            article.source_id
+            + ":canonical"
+        ),
+        source_id=(
+            article.source_id
+        ),
+        domain=(
+            ScholarlyDomain.FIQH
+        ),
+        work_id="dorar-fiqh",
+        work_title=title,
+        text=(
+            article.full_text
+        ),
+        source_version=(
+            admission.response_sha256
+        ),
+        section_title=title,
+        source_url=(
+            article.canonical_url
+        ),
+        institution=(
+            admission.provider
+        ),
+        publisher=(
+            admission.provider
+        ),
+        metadata={
+            "source_family":
+                "DORAR_FIQH",
+            "canonical_article":
+                "true",
+        },
+    )
+
+    projected = (
+        FiqhEvidenceProjector()
+        .project_passage(
+            parent,
+            query_hints=(
+                query,
+            ),
+        )
+    )
+
+    if projected is None:
+        return ()
+
+    matched_terms = tuple(
+        value
+        for value in (
+            projected.metadata.get(
+                "projection_matched_terms",
+                "",
+            )
+            .split("|")
+        )
+        if value
+    )
+
+    substantive_query_terms = set(
+        _relevance_terms(
+            query
+        )
+    )
+
+    required_matches = min(
+        3,
+        max(
+            1,
+            len(
+                substantive_query_terms
+            ),
+        ),
+    )
+
+    if (
+        len(set(matched_terms))
+        < required_matches
+    ):
+        return ()
+
+    unit = (
+        FiqhStructuralUnitBuilder()
+        .from_projected_passage(
+            projected
+        )
+    )
+
+    return (
+        FiqhStructuralEvidenceAdapter()
+        .from_unit(
+            unit
+        )
+    )
+
+
 class DorarFiqhEvidenceAdapter:
     """
     Governed Dorar Fiqh evidence lane.
@@ -326,18 +476,66 @@ class DorarFiqhEvidenceAdapter:
         if not query or request.limit <= 0:
             return ()
 
-        try:
-            result = self.client.search(
+        discovery_plan = (
+            FiqhDiscoveryQueryPlanner()
+            .plan(
                 query,
-                limit=request.limit,
+                max_queries=3,
             )
-        except (
-            DorarFiqhSourceError,
-            DorarTransportError,
-        ) as exc:
-            raise CompetitionSourceUnavailable(
-                "dorar_fiqh"
-            ) from exc
+        )
+
+        evidence_query = (
+            discovery_plan.evidence_query
+        )
+
+        documents = []
+
+        seen_document_urls: set[
+            str
+        ] = set()
+
+        for query_index, discovery_query in enumerate(
+            discovery_plan.queries
+        ):
+            try:
+                result = self.client.search(
+                    discovery_query,
+                    limit=request.limit,
+                )
+            except (
+                DorarFiqhSourceError,
+                DorarTransportError,
+            ) as exc:
+                # The exact user query is mandatory.
+                # Supplemental discovery variants are
+                # optional and may fail narrow.
+                if query_index == 0:
+                    raise (
+                        CompetitionSourceUnavailable(
+                            "dorar_fiqh"
+                        )
+                    ) from exc
+
+                continue
+
+            for document in documents:
+                canonical_url = (
+                    document.canonical_url
+                )
+
+                if (
+                    canonical_url
+                    in seen_document_urls
+                ):
+                    continue
+
+                seen_document_urls.add(
+                    canonical_url
+                )
+
+                documents.append(
+                    document
+                )
 
         parsed_candidates: list[
             tuple[
@@ -387,12 +585,27 @@ class DorarFiqhEvidenceAdapter:
 
             relevance_score = (
                 _article_relevance_score(
-                    query=query,
+                    query=evidence_query,
                     article=article,
                 )
             )
 
-            if relevance_score <= 0:
+            query_terms = set(
+                _relevance_terms(
+                    evidence_query
+                )
+            )
+
+            minimum_relevance = (
+                2
+                if len(query_terms) >= 2
+                else 1
+            )
+
+            if (
+                relevance_score
+                < minimum_relevance
+            ):
                 continue
 
             parsed_candidates.append(
@@ -434,6 +647,7 @@ class DorarFiqhEvidenceAdapter:
                 continue
 
             nodes = self._article_nodes(
+                query=evidence_query,
                 article=article,
                 admission=admission,
             )
@@ -458,20 +672,33 @@ class DorarFiqhEvidenceAdapter:
     @staticmethod
     def _article_nodes(
         *,
+        query: str,
         article: DorarFiqhArticle,
         admission: DorarFiqhRuntimeAdmission,
     ) -> tuple[
         EvidenceNode,
         ...,
     ]:
-        # Important:
-        # An article without source-authored position
-        # boundaries stays unavailable as Fiqh evidence.
+        # Comparative pages retain their explicit
+        # source-authored position graph.
         #
-        # We do NOT promote the whole article body merely
-        # because it was retrieved.
+        # A valid single-ruling/general Fiqh page must
+        # NOT be discarded merely because Dorar does
+        # not format it as:
+        #
+        #   القول الأول / القول الثاني
+        #
+        # Instead, reuse Basira's existing exact-slice
+        # structural lane. This does not promote the
+        # whole page and does not infer a ruling.
         if not article.positions:
-            return ()
+            return (
+                _project_single_article_structurally(
+                    query=query,
+                    article=article,
+                    admission=admission,
+                )
+            )
 
         nodes: list[
             EvidenceNode

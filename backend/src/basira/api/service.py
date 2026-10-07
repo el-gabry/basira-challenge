@@ -33,6 +33,10 @@ from basira.competition.dorar_fiqh_source import (
 from basira.competition.dorar_hadith_adapter import (
     DorarHadithEvidenceAdapter,
 )
+from basira.competition.dorar_hadith_english_adapter import (
+    DorarEnglishHadithEvidenceAdapter,
+    LanguageAwareHadithEvidenceAdapter,
+)
 from basira.competition.dorar_hadith_retrieval import (
     DorarHadithRetriever,
 )
@@ -45,6 +49,10 @@ from basira.competition.general_material_runtime import (
 )
 from basira.competition.quranpedia_adapter import (
     QuranpediaEvidenceAdapter,
+)
+from basira.competition.quranpedia_translation_adapter import (
+    QuranpediaTranslationAdmissionError,
+    QuranpediaTranslationEvidenceAdapter,
 )
 from basira.competition.retrieval_adapters import (
     build_live_dorar_tafsir_adapter,
@@ -160,9 +168,15 @@ from basira.sources.snapshot_validation import (
     validate_source_snapshot,
 )
 from basira.trust.runtime_constraints import (
+    HADITH_LANGUAGE_SWITCH_RETRIEVAL_CONSTRAINT_ID,
     QURAN_VERIFICATION_INTENT_CONSTRAINT_ID,
+    QURAN_VERIFICATION_LANGUAGE_SWITCH_CONSTRAINT_ID,
+    TAFSIR_LANGUAGE_SWITCH_ANCHOR_CONSTRAINT_ID,
     extract_quran_verification_text,
     learned_constraint_enabled,
+)
+from basira.verification.quran_translation_verifier import (
+    QuranTranslationQuoteVerifier,
 )
 from basira.verification.quran_verifier import (
     QuranQuoteResult,
@@ -207,6 +221,265 @@ class QueryExecution:
     general_material: GeneralMaterialResult | None = None
 
     hybrid_plan: HybridAgentPlan | None = None
+
+
+def _is_english_quran_verification_surface(
+    value: str,
+) -> bool:
+    """
+    Select the governed English-meaning verification surface
+    from the literal itself, never from UI presentation state.
+
+    Mixed / Arabic-script input remains on canonical Mushaf
+    verification.
+    """
+
+    has_arabic = any(
+        "\u0600" <= char <= "\u06ff"
+        for char in value
+    )
+
+    has_latin = any(
+        (
+            "a" <= char.casefold() <= "z"
+        )
+        for char in value
+    )
+
+    return (
+        has_latin
+        and not has_arabic
+    )
+
+
+
+_QURAN_INTERPRETATION_INTENTS = frozenset(
+    {
+        BasiraIntent.QURAN_MEANING,
+        BasiraIntent.TAFSIR_CONTEXT,
+    }
+)
+
+
+_HADITH_LANGUAGE_INTENTS = frozenset(
+    {
+        BasiraIntent.HADITH_LOOKUP,
+        BasiraIntent.HADITH_AUTHENTICITY,
+        BasiraIntent.HADITH_EXPLANATION,
+    }
+)
+
+
+def _query_script_language(
+    value: str,
+) -> str | None:
+    """
+    Determine only the input script surface.
+
+    This supplies no religious identity or evidence.
+    Mixed Arabic/Latin input remains conservatively Arabic.
+    """
+
+    has_arabic = any(
+        "\u0600" <= char <= "\u06ff"
+        for char in value
+    )
+
+    has_latin = any(
+        "a" <= char.casefold() <= "z"
+        for char in value
+    )
+
+    if has_arabic:
+        return "ar"
+
+    if has_latin:
+        return "en"
+
+    return None
+
+
+def _result_quran_references(
+    result: object,
+) -> tuple[str, ...]:
+    """
+    Read references already present in the governed plan.
+
+    Never creates Quran identity.
+    """
+
+    retrieval = getattr(
+        result,
+        "retrieval",
+        None,
+    )
+
+    plan = getattr(
+        retrieval,
+        "plan",
+        None,
+    )
+
+    references: list[str] = []
+
+    for target in (
+        getattr(
+            plan,
+            "targets",
+            (),
+        )
+        or ()
+    ):
+        for reference in (
+            getattr(
+                target,
+                "references",
+                (),
+            )
+            or ()
+        ):
+            value = str(reference).strip()
+
+            if (
+                value
+                and value not in references
+            ):
+                references.append(value)
+
+    return tuple(references)
+
+
+def _is_canonical_quran_reference(
+    value: str,
+) -> bool:
+    parts = value.split(":", 1)
+
+    return (
+        len(parts) == 2
+        and parts[0].isdigit()
+        and parts[1].isdigit()
+        and int(parts[0]) > 0
+        and int(parts[1]) > 0
+    )
+
+
+def _enforce_promoted_language_constraints(
+    *,
+    result: object,
+    question: str,
+    requested_language: str | None,
+) -> None:
+    """
+    Runtime consumer for promoted Self-Hardening constraints.
+
+    Memory decides only which safety invariant is mandatory.
+    It supplies no Quran text, Hadith text, Tafsir content,
+    translation, grading, ruling, or religious authority.
+    """
+
+    if requested_language not in {
+        "ar",
+        "en",
+    }:
+        return
+
+    understanding = getattr(
+        result,
+        "understanding",
+        None,
+    )
+
+    intent = getattr(
+        understanding,
+        "primary_intent",
+        None,
+    )
+
+    # Quran verification:
+    # presentation-language changes may not relabel the
+    # previously verified religious surface.
+    if (
+        intent is BasiraIntent.QUOTE_VERIFICATION
+        and learned_constraint_enabled(
+            QURAN_VERIFICATION_LANGUAGE_SWITCH_CONSTRAINT_ID
+        )
+    ):
+        verification_text = (
+            extract_quran_verification_text(
+                question
+            )
+        )
+
+        surface = _query_script_language(
+            verification_text
+        )
+
+        if (
+            surface is not None
+            and surface != requested_language
+        ):
+            raise ValueError(
+                "learned_guard:"
+                "quran_target_language_"
+                "verification_required"
+            )
+
+    # Hadith:
+    # retrieval query must itself be on the target-language
+    # governed surface. Presentation cannot relabel evidence.
+    if (
+        intent in _HADITH_LANGUAGE_INTENTS
+        and learned_constraint_enabled(
+            HADITH_LANGUAGE_SWITCH_RETRIEVAL_CONSTRAINT_ID
+        )
+    ):
+        surface = _query_script_language(
+            question
+        )
+
+        if (
+            surface is not None
+            and surface != requested_language
+        ):
+            raise ValueError(
+                "learned_guard:"
+                "hadith_target_language_"
+                "governed_retrieval_required"
+            )
+
+    # Quran interpretation / Tafsir:
+    #
+    # Publication is issue-complete:
+    # canonical Quran identity + governed Tafsir.
+    #
+    # The invariant is deliberately NOT bound only to
+    # TAFSIR_CONTEXT. Normal tafsir/exegesis wording is routed
+    # as QURAN_MEANING and still requires Quran + Tafsir.
+    #
+    # Presentation language and intent labels must never
+    # become a bypass around the canonical Quran anchor.
+    if (
+        intent in _QURAN_INTERPRETATION_INTENTS
+        and learned_constraint_enabled(
+            TAFSIR_LANGUAGE_SWITCH_ANCHOR_CONSTRAINT_ID
+        )
+    ):
+        references = (
+            _result_quran_references(
+                result
+            )
+        )
+
+        if not any(
+            _is_canonical_quran_reference(
+                reference
+            )
+            for reference in references
+        ):
+            raise ValueError(
+                "learned_guard:"
+                "tafsir_canonical_anchor_required"
+            )
 
 
 class HybridAgentBlockedError(ValueError):
@@ -295,6 +568,17 @@ class BasiraQueryService:
             QuranQuoteVerifier(quran_repository)
             if quran_repository is not None
             else None
+        )
+
+        # Same governed Quranpedia English source already used
+        # by the public presenter. This verifier adds no source
+        # authority and performs no machine translation.
+        self.quran_translation_quote_verifier = (
+            QuranTranslationQuoteVerifier(
+                QuranpediaTranslationEvidenceAdapter(
+                    repo_root=PROJECT_ROOT,
+                )
+            )
         )
 
         self.governed_runtime = PublicGovernedQueryRuntime(
@@ -409,6 +693,7 @@ class BasiraQueryService:
         *,
         question: str,
         quran_reference: str | None = None,
+        language: str | None = None,
     ) -> QueryExecution:
         hybrid_plan = (
             self.hybrid_agent.plan(
@@ -448,6 +733,12 @@ class BasiraQueryService:
             quran_reference=effective_quran_reference,
         )
 
+        _enforce_promoted_language_constraints(
+            result=result,
+            question=question,
+            requested_language=language,
+        )
+
         governed_core_intents = {
             BasiraIntent.QURAN_LOOKUP,
             BasiraIntent.QURAN_MEANING,
@@ -480,27 +771,60 @@ class BasiraQueryService:
 
         quran_verification = None
 
-        if self.quran_quote_verifier is not None:
-            verification_text = question
+        verification_text = question
 
-            if (
-                result.understanding.primary_intent is BasiraIntent.QUOTE_VERIFICATION
-                and learned_constraint_enabled(QURAN_VERIFICATION_INTENT_CONSTRAINT_ID)
+        is_memory_routed_verification = (
+            result.understanding.primary_intent
+            is BasiraIntent.QUOTE_VERIFICATION
+            and learned_constraint_enabled(
+                QURAN_VERIFICATION_INTENT_CONSTRAINT_ID
+            )
+        )
+
+        if is_memory_routed_verification:
+            verification_text = (
+                extract_quran_verification_text(
+                    question
+                )
+            )
+
+        quote_result = None
+
+        if (
+            is_memory_routed_verification
+            and _is_english_quran_verification_surface(
+                verification_text
+            )
+        ):
+            try:
+                quote_result = (
+                    self.quran_translation_quote_verifier
+                    .verify(
+                        verification_text
+                    )
+                )
+            except (
+                QuranpediaTranslationAdmissionError
             ):
-                verification_text = extract_quran_verification_text(question)
+                # Governed English translation unavailable:
+                # fail closed, never fall back to generated text.
+                quote_result = None
 
-            quote_result = self.quran_quote_verifier.verify(verification_text)
+        elif self.quran_quote_verifier is not None:
+            quote_result = (
+                self.quran_quote_verifier.verify(
+                    verification_text
+                )
+            )
 
-            # Do not attach meaningless NOT_FOUND metadata
-            # to ordinary non-Quran questions.
-            #
-            # Exact, normalized, partial, altered and
-            # ambiguous Quran candidates remain visible.
-            if (
-                quote_result.status is not QuranQuoteStatus.NOT_FOUND
-                and quote_result.candidates
-            ):
-                quran_verification = quote_result
+        # Do not attach meaningless NOT_FOUND metadata.
+        if (
+            quote_result is not None
+            and quote_result.status
+            is not QuranQuoteStatus.NOT_FOUND
+            and quote_result.candidates
+        ):
+            quran_verification = quote_result
 
         # General material is intentionally
         # downstream/parallel to the governed answer.
@@ -803,10 +1127,27 @@ def build_public_official_retriever(
         publication_ledger=(publication_ledger),
     )
 
-    hadith_adapter = DorarHadithEvidenceAdapter(
+    hadith_arabic_adapter = DorarHadithEvidenceAdapter(
         retriever=DorarHadithRetriever(
             transport=DorarHttpTransport(),
         ),
+    )
+
+    hadith_english_adapter = (
+        DorarEnglishHadithEvidenceAdapter(
+            repo_root=root,
+        )
+    )
+
+    hadith_adapter = (
+        LanguageAwareHadithEvidenceAdapter(
+            arabic_adapter=(
+                hadith_arabic_adapter
+            ),
+            english_adapter=(
+                hadith_english_adapter
+            ),
+        )
     )
 
     hadith = OfficialHadithDomainRetriever(

@@ -1,8 +1,11 @@
 from __future__ import annotations
 
+import json
+import os
 from dataclasses import dataclass
 from enum import StrEnum
 from hashlib import sha256
+from pathlib import Path
 from typing import Protocol
 from urllib.parse import urljoin, urlsplit
 
@@ -174,6 +177,7 @@ class DorarHttpTransport:
         client: httpx.Client | None = None,
         timeout_seconds: float = 12.0,
         max_response_bytes: int = (2 * 1024 * 1024),
+        cache_root: Path | str | None = None,
     ) -> None:
         if timeout_seconds <= 0:
             raise ValueError("timeout_seconds must be positive")
@@ -190,6 +194,18 @@ class DorarHttpTransport:
         )
 
         self._max_response_bytes = max_response_bytes
+
+        configured_cache_root = (
+            cache_root
+            if cache_root is not None
+            else os.getenv("BASIRA_DORAR_CACHE_ROOT")
+        )
+
+        self._cache_root = (
+            Path(configured_cache_root).expanduser().resolve()
+            if configured_cache_root
+            else None
+        )
 
     def close(
         self,
@@ -216,24 +232,170 @@ class DorarHttpTransport:
 
         self.close()
 
-    def resolve_redirect_target(
+    def _cached_redirect_target(
         self,
-        url: str,
+        requested_url: str,
+    ) -> str | None:
+        """
+        Return one exact cached redirect mapping.
+
+        Security invariants:
+        - exact requested URL match only;
+        - exactly one mapping;
+        - target must still be a valid Dorar URL;
+        - target string is SHA256-bound;
+        - no heuristic redirect reconstruction.
+        """
+
+        requested_url = (
+            _validated_dorar_url(
+                requested_url
+            )
+        )
+
+        root = self._cache_root
+
+        if root is None:
+            return None
+
+        manifest_path = (
+            root / "manifest.json"
+        )
+
+        try:
+            import json
+
+            manifest = json.loads(
+                manifest_path.read_text(
+                    encoding="utf-8"
+                )
+            )
+
+        except FileNotFoundError:
+            return None
+
+        except Exception as exc:
+            raise DorarTransportBlocked(
+                "cache_manifest_invalid"
+            ) from exc
+
+        if not isinstance(
+            manifest,
+            dict,
+        ):
+            raise DorarTransportBlocked(
+                "cache_manifest_invalid"
+            )
+
+        redirects = manifest.get(
+            "redirects",
+            [],
+        )
+
+        if not isinstance(
+            redirects,
+            list,
+        ):
+            raise DorarTransportBlocked(
+                "cache_redirects_invalid"
+            )
+
+        matches = []
+
+        for entry in redirects:
+            if not isinstance(
+                entry,
+                dict,
+            ):
+                raise DorarTransportBlocked(
+                    "cache_redirect_entry_invalid"
+                )
+
+            if (
+                entry.get(
+                    "requested_url"
+                )
+                == requested_url
+            ):
+                matches.append(
+                    entry
+                )
+
+        if not matches:
+            return None
+
+        if len(matches) != 1:
+            raise DorarTransportBlocked(
+                "cache_redirect_ambiguous"
+            )
+
+        entry = matches[0]
+
+        raw_target = entry.get(
+            "target_url"
+        )
+
+        if not isinstance(
+            raw_target,
+            str,
+        ):
+            raise DorarTransportBlocked(
+                "cache_redirect_target_invalid"
+            )
+
+        target = (
+            _validated_dorar_url(
+                raw_target
+            )
+        )
+
+        expected_sha256 = entry.get(
+            "target_sha256"
+        )
+
+        if (
+            not isinstance(
+                expected_sha256,
+                str,
+            )
+            or len(
+                expected_sha256
+            )
+            != 64
+        ):
+            raise DorarTransportBlocked(
+                "cache_redirect_sha256_invalid"
+            )
+
+        digest = sha256(
+            target.encode(
+                "utf-8"
+            )
+        ).hexdigest()
+
+        if digest != expected_sha256:
+            raise DorarTransportBlocked(
+                "cache_redirect_hash_mismatch"
+            )
+
+        return target
+
+    def _resolve_redirect_target_live(
+        self,
+        requested_url: str,
     ) -> str:
         """
-        Resolve exactly one redirect target without
-        following it.
+        Probe exactly one live redirect.
 
-        This remains authority-neutral:
-        - source URL is validated;
-        - redirect is NOT followed;
-        - Location is resolved;
-        - target URL is validated again;
-        - caller still owns domain/canonical-route
-          validation.
+        Availability failures may later use an exact
+        cached mapping. Protocol/security failures may not.
         """
 
-        requested_url = _validated_dorar_url(url)
+        requested_url = (
+            _validated_dorar_url(
+                requested_url
+            )
+        )
 
         try:
             with self._client.stream(
@@ -241,28 +403,108 @@ class DorarHttpTransport:
                 requested_url,
                 follow_redirects=False,
             ) as response:
-                if not response.is_redirect:
-                    raise DorarTransportBlocked("redirect_expected")
+                if response.is_redirect:
+                    location = (
+                        response.headers.get(
+                            "location"
+                        )
+                    )
 
-                location = response.headers.get("location")
+                    if not location:
+                        raise (
+                            DorarTransportBlocked(
+                                "redirect_location_missing"
+                            )
+                        )
 
-                if not location:
-                    raise DorarTransportBlocked("redirect_location_missing")
+                    target = urljoin(
+                        str(
+                            response.url
+                        ),
+                        location,
+                    )
 
-                target = urljoin(
-                    str(response.url),
-                    location,
+                    return (
+                        _validated_dorar_url(
+                            target
+                        )
+                    )
+
+                # Cloudflare / network-side
+                # availability responses.
+                if response.status_code in {
+                    403,
+                    408,
+                    429,
+                    500,
+                    502,
+                    503,
+                    504,
+                }:
+                    raise (
+                        DorarTransportUnavailable(
+                            "http_status:"
+                            + str(
+                                response.status_code
+                            )
+                        )
+                    )
+
+                # A successful non-redirect response
+                # violates the short-URL contract.
+                raise DorarTransportBlocked(
+                    "redirect_expected"
                 )
-
-                return _validated_dorar_url(target)
 
         except DorarTransportError:
             raise
 
         except httpx.HTTPError as exc:
-            raise (DorarTransportUnavailable("network_error")) from exc
+            raise (
+                DorarTransportUnavailable(
+                    "network_error"
+                )
+            ) from exc
 
-    def fetch(
+    def resolve_redirect_target(
+        self,
+        url: str,
+    ) -> str:
+        """
+        Prefer the live redirect probe.
+
+        Only an availability failure may use an exact,
+        manifest-bound, SHA256-checked redirect mapping.
+        """
+
+        requested_url = (
+            _validated_dorar_url(
+                url
+            )
+        )
+
+        try:
+            return (
+                self
+                ._resolve_redirect_target_live(
+                    requested_url
+                )
+            )
+
+        except DorarTransportUnavailable:
+            cached = (
+                self
+                ._cached_redirect_target(
+                    requested_url
+                )
+            )
+
+            if cached is None:
+                raise
+
+            return cached
+
+    def _fetch_live(
         self,
         url: str,
         *,
@@ -320,3 +562,237 @@ class DorarHttpTransport:
             body=body,
             response_sha256=digest,
         )
+
+    def _cached_response(
+        self,
+        requested_url: str,
+        *,
+        purpose: DorarFetchPurpose,
+    ) -> DorarFetchedResponse | None:
+        """
+        Read one exact, hash-bound official response.
+
+        The cache is transport continuity only.
+        It grants no religious authority and cannot
+        admit an URL or purpose absent from its manifest.
+        """
+
+        root = self._cache_root
+
+        if root is None:
+            return None
+
+        manifest_path = root / "manifest.json"
+
+        try:
+            raw_manifest = json.loads(
+                manifest_path.read_text(
+                    encoding="utf-8",
+                )
+            )
+        except (
+            OSError,
+            json.JSONDecodeError,
+        ) as exc:
+            raise DorarTransportBlocked(
+                "cache_manifest_invalid"
+            ) from exc
+
+        if not isinstance(raw_manifest, dict):
+            raise DorarTransportBlocked(
+                "cache_manifest_not_object"
+            )
+
+        fetches = raw_manifest.get("fetches")
+
+        if not isinstance(fetches, list):
+            raise DorarTransportBlocked(
+                "cache_fetches_invalid"
+            )
+
+        matches = [
+            item
+            for item in fetches
+            if (
+                isinstance(item, dict)
+                and item.get("requested_url")
+                == requested_url
+                and item.get("purpose")
+                == purpose.value
+            )
+        ]
+
+        if not matches:
+            return None
+
+        if len(matches) != 1:
+            raise DorarTransportBlocked(
+                "cache_entry_ambiguous"
+            )
+
+        entry = matches[0]
+
+        if entry.get("status_code") != 200:
+            raise DorarTransportBlocked(
+                "cache_status_not_200"
+            )
+
+        raw_final_url = entry.get("final_url")
+
+        if not isinstance(
+            raw_final_url,
+            str,
+        ):
+            raise DorarTransportBlocked(
+                "cache_final_url_invalid"
+            )
+
+        final_url = _validated_dorar_url(
+            raw_final_url
+        )
+
+        # fetch() never follows redirects.
+        # Cached responses must preserve that invariant.
+        if final_url != requested_url:
+            raise DorarTransportBlocked(
+                "cache_final_url_mismatch"
+            )
+
+        raw_content_type = entry.get(
+            "content_type"
+        )
+
+        if not isinstance(
+            raw_content_type,
+            str,
+        ):
+            raise DorarTransportBlocked(
+                "cache_content_type_invalid"
+            )
+
+        content_type = _normalized_content_type(
+            raw_content_type
+        )
+
+        raw_body_path = entry.get(
+            "body_path"
+        )
+
+        if (
+            not isinstance(
+                raw_body_path,
+                str,
+            )
+            or not raw_body_path.strip()
+        ):
+            raise DorarTransportBlocked(
+                "cache_body_path_invalid"
+            )
+
+        body_path = (
+            root
+            / raw_body_path
+        ).resolve()
+
+        try:
+            body_path.relative_to(root)
+        except ValueError as exc:
+            raise DorarTransportBlocked(
+                "cache_body_path_escape"
+            ) from exc
+
+        try:
+            body = body_path.read_bytes()
+        except OSError as exc:
+            raise DorarTransportBlocked(
+                "cache_body_unavailable"
+            ) from exc
+
+        if len(body) > self._max_response_bytes:
+            raise DorarTransportBlocked(
+                "response_too_large"
+            )
+
+        expected_bytes = entry.get(
+            "response_bytes"
+        )
+
+        if (
+            not isinstance(
+                expected_bytes,
+                int,
+            )
+            or expected_bytes != len(body)
+        ):
+            raise DorarTransportBlocked(
+                "cache_response_size_mismatch"
+            )
+
+        expected_sha256 = entry.get(
+            "response_sha256"
+        )
+
+        if (
+            not isinstance(
+                expected_sha256,
+                str,
+            )
+            or len(expected_sha256) != 64
+        ):
+            raise DorarTransportBlocked(
+                "cache_sha256_invalid"
+            )
+
+        digest = sha256(body).hexdigest()
+
+        if digest != expected_sha256:
+            raise DorarTransportBlocked(
+                "cache_hash_mismatch"
+            )
+
+        return DorarFetchedResponse(
+            requested_url=requested_url,
+            final_url=final_url,
+            purpose=purpose,
+            status_code=200,
+            content_type=content_type,
+            body=body,
+            response_sha256=digest,
+        )
+
+    def fetch(
+        self,
+        url: str,
+        *,
+        purpose: DorarFetchPurpose,
+    ) -> DorarFetchedResponse:
+        """
+        Prefer live Dorar.
+
+        An explicitly configured cache may provide an
+        exact SHA256-bound official response only when
+        the live source is unavailable.
+
+        Policy/admission remains downstream and unchanged.
+        """
+
+        requested_url = _validated_dorar_url(
+            url
+        )
+
+        try:
+            return self._fetch_live(
+                requested_url,
+                purpose=purpose,
+            )
+
+        except DorarTransportUnavailable:
+            cached = self._cached_response(
+                requested_url,
+                purpose=purpose,
+            )
+
+            if cached is None:
+                raise
+
+            return cached

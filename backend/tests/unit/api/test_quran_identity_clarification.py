@@ -144,3 +144,37 @@ def test_query_response_schema_exposes_clarification():
         "clarification"
         in schema["properties"]
     )
+
+
+def test_clarification_is_terminal_before_promoted_language_guards(
+    monkeypatch,
+):
+    def fail_if_called(**_kwargs):
+        raise AssertionError(
+            "promoted language guard must not run "
+            "after Quran identity became clarification"
+        )
+
+    monkeypatch.setattr(
+        "basira.api.service."
+        "_enforce_promoted_language_constraints",
+        fail_if_called,
+    )
+
+    service = build_default_query_service()
+
+    execution = service.execute(
+        question="ما معنى قل هو؟",
+        language="ar",
+    )
+
+    response = present_query(
+        execution,
+        language="ar",
+    )
+
+    assert response.action == "clarify"
+    assert response.has_answer is False
+    assert response.clarification is not None
+    assert response.requirements == []
+    assert response.evidence == []

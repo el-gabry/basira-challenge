@@ -740,12 +740,6 @@ class BasiraQueryService:
             quran_reference=effective_quran_reference,
         )
 
-        _enforce_promoted_language_constraints(
-            result=result,
-            question=question,
-            requested_language=language,
-        )
-
         if (
             result.answer.action.value
             == "clarify"
@@ -775,6 +769,16 @@ class BasiraQueryService:
                 quran_verification=None,
                 general_material=None,
             )
+
+        # A clarification is a terminal identity decision.
+        # No publication or evidence claim is being made, so
+        # publication-time language/anchor guards must not turn
+        # unresolved identity into an evidence failure.
+        _enforce_promoted_language_constraints(
+            result=result,
+            question=question,
+            requested_language=language,
+        )
 
         governed_core_intents = {
             BasiraIntent.QURAN_LOOKUP,

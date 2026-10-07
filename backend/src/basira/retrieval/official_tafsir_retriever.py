@@ -23,6 +23,9 @@ from basira.normalization.quran import (
 from basira.retrieval.query_understanding import (
     BasiraQueryUnderstanding,
 )
+from basira.retrieval.quran_canonical_resolver import (
+    resolve_canonical_quran_point,
+)
 from basira.retrieval.retrieval_plan import (
     RetrievalTarget,
 )
@@ -165,6 +168,23 @@ def _anchored_discovery_phrase(
         hint = _VERIFIED_TAFSIR_DISCOVERY_HINTS.get(reference)
 
         if hint is None:
+            # The Quran anchor is already hard identity.
+            # A literal Quran phrase may therefore be used
+            # solely to locate candidate Tafsir pages.
+            #
+            # Publication still requires the candidate to
+            # prove coverage of target.references.
+            canonical_verse = normalize_quran_search_text(
+                verse.text_search
+            )
+
+            tokens = canonical_verse.split()
+
+            if len(tokens) >= 3:
+                return " ".join(
+                    tokens[:8]
+                )
+
             continue
 
         canonical_hint = normalize_quran_search_text(hint)
@@ -174,7 +194,19 @@ def _anchored_discovery_phrase(
         if canonical_hint and canonical_hint in canonical_verse:
             return canonical_hint
 
+        # A configured hint that fails validation never gains
+        # authority. Fall back only to literal words from the
+        # canonically resolved Quran verse for discovery.
+        tokens = canonical_verse.split()
+
+        if len(tokens) >= 3:
+            return " ".join(
+                tokens[:8]
+            )
+
     return None
+
+
 
 
 def _fallback_discovery_query(
@@ -243,14 +275,37 @@ class OfficialTafsirDomainRetriever:
             dict.fromkeys(value.strip() for value in target.references if value.strip())
         )
 
+        # If the retrieval plan did not already carry a
+        # canonical Quran anchor, resolve one deterministically
+        # from the user's wording.
+        #
+        # This does NOT grant Tafsir authority. It only fixes
+        # the Quran identity used by governed Tafsir retrieval.
+        if not references:
+            resolved_point = resolve_canonical_quran_point(
+                question=understanding.query.original_text,
+                repository=self.quran_repository,
+            )
+
+            if resolved_point is not None:
+                references = (
+                    resolved_point.reference,
+                )
+
         if references:
             query = _anchored_discovery_phrase(
                 understanding=understanding,
                 references=references,
-                repository=(self.quran_repository),
-            ) or _fallback_discovery_query(understanding)
+                repository=(
+                    self.quran_repository
+                ),
+            ) or _fallback_discovery_query(
+                understanding
+            )
         else:
-            query = _fallback_discovery_query(understanding)
+            query = _fallback_discovery_query(
+                understanding
+            )
 
         if not query:
             return ()
@@ -258,20 +313,30 @@ class OfficialTafsirDomainRetriever:
         try:
             nodes = self.adapter.retrieve(
                 CompetitionRetrievalRequest(
-                    official_domain=(OfficialDomain.TAFSIR),
+                    official_domain=(
+                        OfficialDomain.TAFSIR
+                    ),
                     query=query,
-                    # One accepted passage.
+                    # One admitted canonical passage.
                     #
-                    # Dorar source acquisition itself
-                    # may inspect up to three search
-                    # candidates before returning the
-                    # first structurally-valid passage.
-                    limit=(1 if references else limit),
+                    # If lexical discovery cannot locate
+                    # the hard Quran anchor, the Dorar
+                    # retriever may use source-native
+                    # structural navigation internally.
+                    limit=(
+                        1
+                        if references
+                        else limit
+                    ),
                     references=references,
                 )
             )
         except CompetitionRetrievalError as exc:
-            raise (DomainRetrievalUnavailableError(EvidenceDomain.TAFSIR)) from exc
+            raise (
+                DomainRetrievalUnavailableError(
+                    EvidenceDomain.TAFSIR
+                )
+            ) from exc
 
         accepted: list[EvidenceNode] = []
 

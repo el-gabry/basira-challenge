@@ -172,3 +172,136 @@ def test_planner_inference_is_not_part_of_verified_resolution():
     assert all(
         anchor.origin is not AnchorOrigin.PLANNER_INFERENCE for anchor in result.anchors
     )
+
+
+
+def _named_surah_repository() -> QuranRepository:
+    return QuranRepository(
+        (
+            QuranVerse(
+                source_id="quran:test",
+                surah_number=2,
+                ayah_number=255,
+                text_uthmani=(
+                    "الله لا إله إلا هو الحي القيوم "
+                    "وسع كرسيه السماوات والأرض"
+                ),
+                text_search=(
+                    "الله لا اله الا هو الحي القيوم "
+                    "وسع كرسيه السماوات والارض"
+                ),
+                surah_name_ar="البقرة",
+                surah_name_en="Al-Baqarah",
+            ),
+            QuranVerse(
+                source_id="quran:test",
+                surah_number=49,
+                ayah_number=1,
+                text_uthmani="يا أيها الذين آمنوا",
+                text_search="يا ايها الذين امنوا",
+                surah_name_ar="الحجرات",
+                surah_name_en="Al-Hujurat",
+            ),
+            QuranVerse(
+                source_id="quran:test",
+                surah_number=49,
+                ayah_number=10,
+                text_uthmani="إنما المؤمنون إخوة",
+                text_search="انما المؤمنون اخوة",
+                surah_name_ar="الحجرات",
+                surah_name_en="Al-Hujurat",
+            ),
+            QuranVerse(
+                source_id="quran:test",
+                surah_number=67,
+                ayah_number=1,
+                text_uthmani=(
+                    "تبارك الذي بيده الملك"
+                ),
+                text_search=(
+                    "تبارك الذي بيده الملك"
+                ),
+                surah_name_ar="الملك",
+                surah_name_en="Al-Mulk",
+            ),
+            QuranVerse(
+                source_id="quran:test",
+                surah_number=67,
+                ayah_number=5,
+                text_uthmani=(
+                    "ولقد زينا السماء الدنيا بمصابيح"
+                ),
+                text_search=(
+                    "ولقد زينا السماء الدنيا بمصابيح"
+                ),
+                surah_name_ar="الملك",
+                surah_name_en="Al-Mulk",
+            ),
+        )
+    )
+
+
+def test_named_surah_and_ayah_becomes_verified_canonical_anchor():
+    result = QuranCanonicalAnchorResolver(
+        repository=_named_surah_repository(),
+    ).resolve(
+        understand(
+            "ما نص الآية 5 من سورة الملك؟"
+        )
+    )
+
+    assert (
+        result.disposition
+        is AnchorResolutionDisposition.RESOLVED
+    )
+
+    assert result.anchors[0].reference == "67:5"
+
+    assert (
+        result.anchors[0].origin
+        is AnchorOrigin.EXPLICIT_REFERENCE
+    )
+
+    assert (
+        result.reason
+        == "verified_explicit_quran_reference"
+    )
+
+
+def test_named_surah_prefix_collision_resolves_exact_surah():
+    result = QuranCanonicalAnchorResolver(
+        repository=_named_surah_repository(),
+    ).resolve(
+        understand(
+            "ما نص الآية 10 من سورة الحجرات؟"
+        )
+    )
+
+    assert (
+        result.disposition
+        is AnchorResolutionDisposition.RESOLVED
+    )
+
+    assert result.anchors[0].reference == "49:10"
+
+
+def test_named_surah_conflicting_with_canonical_quote_asks_user():
+    result = QuranCanonicalAnchorResolver(
+        repository=_named_surah_repository(),
+    ).resolve(
+        understand(
+            "ما نص الآية 5 من سورة الملك "
+            "في قوله تعالى "
+            "وسع كرسيه السماوات والأرض؟"
+        )
+    )
+
+    assert (
+        result.disposition
+        is AnchorResolutionDisposition.ASK_USER
+    )
+
+    assert result.anchors == ()
+
+    assert "67:5" in result.candidate_references
+    assert "2:255" in result.candidate_references

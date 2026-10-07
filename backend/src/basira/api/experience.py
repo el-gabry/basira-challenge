@@ -10,6 +10,7 @@ class ExperienceState(StrEnum):
     GROUNDED = "grounded"
     LIMITED = "limited"
     CONFLICT = "conflict"
+    NEEDS_CLARIFICATION = "needs_clarification"
     NEEDS_MORE_EVIDENCE = "needs_more_evidence"
     REGENERATE = "regenerate"
     BLOCKED = "blocked"
@@ -91,6 +92,15 @@ _LABELS: dict[
         "تم الحفاظ على الخلاف بدل إخفائه",
         ("المصادر تحتوي على تعارض أو اختلاف معتبر؛ لا تختار بصيرة رأيًا تلقائيًا."),
     ),
+    ExperienceState.NEEDS_CLARIFICATION: (
+        "نحتاج تحديد الآية",
+        "يلزم تحديد الآية المقصودة",
+        (
+            "تعذر تثبيت هوية آية واحدة بشكل قاطع. "
+            "هذه ليست حالة نقص في الأدلة؛ "
+            "يلزم تحديد الموضع المقصود قبل متابعة التفسير."
+        ),
+    ),
     ExperienceState.NEEDS_MORE_EVIDENCE: (
         "الأدلة غير كافية",
         "يلزم استرجاع أدلة إضافية",
@@ -148,6 +158,9 @@ def _experience_state(
     if action == "escalate_to_expert":
         return ExperienceState.EXPERT_REVIEW
 
+    if action == "clarify":
+        return ExperienceState.NEEDS_CLARIFICATION
+
     if action == "retrieve_more":
         return ExperienceState.NEEDS_MORE_EVIDENCE
 
@@ -181,6 +194,7 @@ def _severity(
     if state in {
         ExperienceState.LIMITED,
         ExperienceState.CONFLICT,
+        ExperienceState.NEEDS_CLARIFICATION,
         ExperienceState.NEEDS_MORE_EVIDENCE,
         ExperienceState.REGENERATE,
         ExperienceState.EXPERT_REVIEW,
@@ -199,6 +213,7 @@ def _publication_status(
         return TraceStepStatus.COMPLETE
 
     if state in {
+        ExperienceState.NEEDS_CLARIFICATION,
         ExperienceState.NEEDS_MORE_EVIDENCE,
         ExperienceState.REGENERATE,
         ExperienceState.EXPERT_REVIEW,
@@ -247,6 +262,7 @@ def build_competition_experience(
         has_answer
         and state
         not in {
+            ExperienceState.NEEDS_CLARIFICATION,
             ExperienceState.NEEDS_MORE_EVIDENCE,
             ExperienceState.REGENERATE,
             ExperienceState.BLOCKED,

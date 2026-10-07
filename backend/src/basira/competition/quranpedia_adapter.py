@@ -56,17 +56,45 @@ def _collect_ayah_records(
     value: Any,
 ) -> tuple[dict[str, Any], ...]:
     """
-    Extract Quran ayah records without depending on
-    presentation nesting inside the governed snapshot.
+    Extract Quran ayah records while preserving canonical
+    parent-surah identity metadata from the same governed
+    snapshot.
 
-    A record is recognized only by the exact structural
-    fields needed to construct Quran evidence.
+    Parent metadata grants no Quran-text authority. It is
+    carried only so natural-language references such as
+    "سورة الملك" can resolve to the same canonical coordinate
+    that is later fetched through the governed evidence path.
     """
 
     records: list[dict[str, Any]] = []
 
-    def visit(node: Any) -> None:
+    def visit(
+        node: Any,
+        *,
+        parent_surah_id: int | None = None,
+        parent_surah_name_ar: str | None = None,
+    ) -> None:
         if isinstance(node, dict):
+            next_surah_id = parent_surah_id
+            next_surah_name_ar = parent_surah_name_ar
+
+            ayahs = node.get("ayahs")
+
+            if isinstance(ayahs, list):
+                raw_id = node.get("id")
+                raw_name = node.get("name")
+
+                try:
+                    next_surah_id = int(raw_id)
+                except (TypeError, ValueError):
+                    next_surah_id = None
+
+                if isinstance(raw_name, str):
+                    cleaned_name = raw_name.strip()
+
+                    if cleaned_name:
+                        next_surah_name_ar = cleaned_name
+
             required = {
                 "surah",
                 "number",
@@ -74,15 +102,39 @@ def _collect_ayah_records(
             }
 
             if required.issubset(node):
-                records.append(node)
+                record = dict(node)
+
+                if next_surah_id is not None:
+                    record["_parent_surah_id"] = (
+                        next_surah_id
+                    )
+
+                if next_surah_name_ar is not None:
+                    record["_parent_surah_name_ar"] = (
+                        next_surah_name_ar
+                    )
+
+                records.append(record)
                 return
 
             for child in node.values():
-                visit(child)
+                visit(
+                    child,
+                    parent_surah_id=next_surah_id,
+                    parent_surah_name_ar=(
+                        next_surah_name_ar
+                    ),
+                )
 
         elif isinstance(node, list):
             for child in node:
-                visit(child)
+                visit(
+                    child,
+                    parent_surah_id=parent_surah_id,
+                    parent_surah_name_ar=(
+                        parent_surah_name_ar
+                    ),
+                )
 
     visit(value)
 
@@ -113,6 +165,27 @@ def _optional_int(
         raise QuranpediaAdmissionError("invalid_integer_metadata") from exc
 
 
+def _clean_surah_name_ar(
+    value: Any,
+) -> str | None:
+    if not isinstance(value, str):
+        return None
+
+    name = " ".join(
+        value.strip().split()
+    )
+
+    if not name:
+        return None
+
+    prefix = "سورة "
+
+    if name.startswith(prefix):
+        name = name[len(prefix):].strip()
+
+    return name or None
+
+
 def _record_to_verse(
     record: dict[str, Any],
     *,
@@ -139,12 +212,29 @@ def _record_to_verse(
         if hafs_number != ayah:
             raise QuranpediaAdmissionError("number_in_hafs_mismatch")
 
+    parent_surah_id = _optional_int(
+        record.get("_parent_surah_id")
+    )
+
+    if (
+        parent_surah_id is not None
+        and parent_surah_id != surah
+    ):
+        raise QuranpediaAdmissionError(
+            "parent_surah_identity_mismatch"
+        )
+
+    surah_name_ar = _clean_surah_name_ar(
+        record.get("_parent_surah_name_ar")
+    )
+
     text = _clean_quran_text(record["text"])
 
     return QuranVerse(
         source_id=source_id,
         surah_number=surah,
         ayah_number=ayah,
+        surah_name_ar=surah_name_ar,
         text_uthmani=text,
         text_search=text,
         narration=narration,

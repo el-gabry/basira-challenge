@@ -31,6 +31,7 @@ from basira.api.schemas import (
     LocalizedEvidenceResponse,
     QueryEntityResponse,
     QueryResponse,
+    QuranClarificationResponse,
     QuranDifferenceResponse,
     QuranVerificationCandidateResponse,
     QuranVerificationResponse,
@@ -598,6 +599,11 @@ def present_query(
     answer = execution.answer
     bundle = execution.outcome.bundle
 
+    is_clarification = (
+        answer.action.value
+        == "clarify"
+    )
+
     used_ids = frozenset(answer.used_evidence_ids)
 
     conflict_ids = frozenset(
@@ -721,14 +727,21 @@ def present_query(
         semantic_verification_issues=list(report.semantic_verification_issues),
     )
 
-    requirements = [
-        RequirementResponse(
-            need=assessment.need.value,
-            state=assessment.state.value,
-            evidence_ids=list(assessment.evidence_ids),
-        )
-        for assessment in bundle.required_assessments
-    ]
+    requirements = (
+        []
+        if is_clarification
+        else [
+            RequirementResponse(
+                need=assessment.need.value,
+                state=assessment.state.value,
+                evidence_ids=list(
+                    assessment.evidence_ids
+                ),
+            )
+            for assessment
+            in bundle.required_assessments
+        ]
+    )
 
     conflicts = [
         ConflictResponse(
@@ -752,7 +765,13 @@ def present_query(
         confidence=(understanding.confidence),
         evidence=tuple(execution.retrieval.evidence),
         used_evidence_ids=tuple(answer.used_evidence_ids),
-        requirements=tuple(bundle.required_assessments),
+        requirements=(
+            ()
+            if is_clarification
+            else tuple(
+                bundle.required_assessments
+            )
+        ),
         conflicts=tuple(bundle.conflicts),
         limitations=tuple(answer.limitations),
         unavailable_domains=frozenset(execution.retrieval.unavailable_domains),
@@ -845,6 +864,36 @@ def present_query(
             ],
         )
 
+    clarification = None
+
+    if is_clarification:
+        clarification = QuranClarificationResponse(
+            reason=(
+                execution.clarification_reason
+                or "unresolved_quran_identity"
+            ),
+            prompt=(
+                "تعذر تحديد آية واحدة بشكل قاطع. "
+                "اختر الآية أو اكتب جزءًا أطول "
+                "من النص قبل متابعة التفسير."
+                if language == "ar"
+                else (
+                    "The Quran passage is ambiguous. "
+                    "Please select the intended verse "
+                    "or provide a longer quotation "
+                    "before continuing."
+                )
+            ),
+            # Keep the public branch bounded even when a
+            # very short fragment occurs many times.
+            candidate_references=list(
+                execution
+                .clarification_candidates[
+                    :12
+                ]
+            ),
+        )
+
     return QueryResponse(
         language=language,
         request_id=str(uuid4()),
@@ -876,6 +925,7 @@ def present_query(
         ),
         action=answer.action.value,
         has_answer=(answer.has_answer),
+        clarification=clarification,
         answer=_localized_hadith_answer(
             answer.answer,
             language=language,

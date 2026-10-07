@@ -19,7 +19,15 @@ from basira.competition.dorar_transport import (
 
 DORAR_TAFSIR_SEARCH_URL = "https://dorar.net/site/search"
 
+
 _CANONICAL_PATH = re.compile(r"^/tafseer/\d+/\d+/?$")
+
+# Structural fallback is used only after an anchored lexical
+# search returns no admitted passage.
+#
+# The bound prevents an unexpected source navigation cycle or
+# shape change from becoming an unbounded network traversal.
+_MAX_STRUCTURAL_TAFSIR_HOPS = 128
 
 
 class DorarTafsirRetrievalError(RuntimeError):
@@ -114,6 +122,231 @@ class _LinkCollector(HTMLParser):
             if key.lower() == "href" and value:
                 self.hrefs.append(value)
 
+
+
+class _NavigationLinkCollector(HTMLParser):
+    """
+    Collect anchor href + visible text for source-native
+    Tafsir passage navigation.
+
+    Navigation metadata is discovery structure only.
+    It never grants evidence authority.
+    """
+
+    def __init__(
+        self,
+    ) -> None:
+        super().__init__(
+            convert_charrefs=True
+        )
+
+        self._href: str | None = None
+        self._text: list[str] = []
+
+        self.links: list[
+            tuple[
+                str,
+                str,
+            ]
+        ] = []
+
+    def handle_starttag(
+        self,
+        tag: str,
+        attrs,
+    ) -> None:
+        if tag.lower() != "a":
+            return
+
+        href = None
+
+        for key, value in attrs:
+            if (
+                key
+                and key.lower() == "href"
+                and value
+            ):
+                href = value
+                break
+
+        self._href = href
+        self._text = []
+
+    def handle_data(
+        self,
+        data: str,
+    ) -> None:
+        if self._href is not None:
+            self._text.append(data)
+
+    def handle_endtag(
+        self,
+        tag: str,
+    ) -> None:
+        if (
+            tag.lower() != "a"
+            or self._href is None
+        ):
+            return
+
+        self.links.append(
+            (
+                self._href,
+                " ".join(
+                    " ".join(
+                        self._text
+                    ).split()
+                ),
+            )
+        )
+
+        self._href = None
+        self._text = []
+
+
+def _required_single_surah(
+    references: tuple[str, ...],
+) -> int | None:
+    """
+    Structural fallback is safe only when every hard Quran
+    reference is canonical numeric identity and all references
+    belong to one Surah.
+    """
+
+    surahs: set[int] = set()
+
+    for reference in references:
+        match = re.fullmatch(
+            r"([1-9]\d*):([1-9]\d*)",
+            reference,
+        )
+
+        if match is None:
+            return None
+
+        surah = int(
+            match.group(1)
+        )
+
+        if not (
+            1 <= surah <= 114
+        ):
+            return None
+
+        surahs.add(surah)
+
+    if len(surahs) != 1:
+        return None
+
+    return next(
+        iter(surahs)
+    )
+
+
+def _passage_number_for_surah(
+    url: str,
+    *,
+    surah: int,
+) -> int | None:
+    """
+    Accept only exact canonical Dorar passage URLs belonging
+    to the required Surah.
+    """
+
+    parsed = urlsplit(url)
+
+    if (
+        parsed.scheme != "https"
+        or parsed.hostname != "dorar.net"
+        or parsed.query
+        or parsed.fragment
+    ):
+        return None
+
+    parts = tuple(
+        part
+        for part in parsed.path.split("/")
+        if part
+    )
+
+    if (
+        len(parts) != 3
+        or parts[0] != "tafseer"
+        or parts[1] != str(surah)
+        or not parts[2].isdigit()
+    ):
+        return None
+
+    return int(
+        parts[2]
+    )
+
+
+def _next_structural_tafsir_url(
+    *,
+    html: str,
+    base_url: str,
+    surah: int,
+    current_passage: int,
+) -> str | None:
+    """
+    Resolve Dorar's explicit Arabic "التالي" navigation link.
+
+    No passage number is guessed or synthesized.
+    """
+
+    parser = _NavigationLinkCollector()
+    parser.feed(html)
+
+    candidates: list[
+        tuple[
+            int,
+            str,
+        ]
+    ] = []
+
+    for href, text in parser.links:
+        if "التالي" not in text:
+            continue
+
+        absolute = urljoin(
+            base_url,
+            href,
+        )
+
+        passage_number = (
+            _passage_number_for_surah(
+                absolute,
+                surah=surah,
+            )
+        )
+
+        if (
+            passage_number is None
+            or passage_number <= current_passage
+        ):
+            continue
+
+        candidates.append(
+            (
+                passage_number,
+                absolute,
+            )
+        )
+
+    if not candidates:
+        return None
+
+    # Deterministic if the source unexpectedly exposes more
+    # than one forward navigation link.
+    candidates.sort(
+        key=lambda item: (
+            item[0],
+            item[1],
+        )
+    )
+
+    return candidates[0][1]
 
 def _clean_query(
     query: str,
@@ -511,6 +744,239 @@ class DorarTafsirRetriever:
         self._gate = gate
         self._max_candidates = max_candidates
 
+
+    def _structural_passage_for_required(
+        self,
+        required: tuple[str, ...],
+    ) -> DorarTafsirRetrievedPassage | None:
+        """
+        Resolve a hard Quran anchor through Dorar's own
+        Surah/passage navigation structure.
+
+        Authority invariants:
+        - collection/navigation links are discovery only;
+        - every passage is admitted by the existing gate
+          BEFORE Quran coverage is inspected;
+        - only a passage covering every hard reference may
+          leave this method;
+        - no passage id is inferred from an ayah number.
+        """
+
+        surah = _required_single_surah(
+            required
+        )
+
+        if surah is None:
+            return None
+
+        collection_url = (
+            f"https://dorar.net/tafseer/{surah}"
+        )
+
+        collection = self._transport.fetch(
+            collection_url,
+            purpose=DorarFetchPurpose.DISCOVERY,
+        )
+
+        try:
+            collection_html = (
+                collection.body.decode(
+                    "utf-8-sig"
+                )
+            )
+        except UnicodeDecodeError as exc:
+            raise DorarTafsirPayloadError(
+                "Dorar Tafsir Surah collection "
+                "response is not valid UTF-8."
+            ) from exc
+
+        discovered_children = (
+            extract_canonical_tafsir_urls(
+                collection_html,
+                base_url=(
+                    collection.final_url
+                ),
+            )
+        )
+
+        structural_children: list[
+            tuple[
+                int,
+                str,
+            ]
+        ] = []
+
+        for candidate in discovered_children:
+            passage_number = (
+                _passage_number_for_surah(
+                    candidate,
+                    surah=surah,
+                )
+            )
+
+            if passage_number is None:
+                continue
+
+            structural_children.append(
+                (
+                    passage_number,
+                    candidate,
+                )
+            )
+
+        if not structural_children:
+            return None
+
+        structural_children.sort(
+            key=lambda item: (
+                item[0],
+                item[1],
+            )
+        )
+
+        current_url = (
+            structural_children[0][1]
+        )
+
+        visited: set[str] = set()
+
+        structural_failures: list[
+            Exception
+        ] = []
+
+        structurally_readable = False
+
+        for _hop in range(
+            _MAX_STRUCTURAL_TAFSIR_HOPS
+        ):
+            if current_url in visited:
+                raise DorarTafsirPayloadError(
+                    "Dorar Tafsir structural "
+                    "navigation loop detected."
+                )
+
+            visited.add(
+                current_url
+            )
+
+            response = self._transport.fetch(
+                current_url,
+                purpose=DorarFetchPurpose.EVIDENCE,
+            )
+
+            # CRITICAL:
+            # authority admission remains BEFORE Quran
+            # coverage enrichment.
+            runtime_evidence = self._gate.admit(
+                html=response.body,
+                canonical_url=current_url,
+            )
+
+            try:
+                evidence_html = (
+                    response.body.decode(
+                        "utf-8-sig"
+                    )
+                )
+            except UnicodeDecodeError as exc:
+                raise DorarTafsirPayloadError(
+                    "Canonical Dorar Tafsir response "
+                    "is not valid UTF-8."
+                ) from exc
+
+            try:
+                quran_references = (
+                    extract_quran_references(
+                        html=evidence_html,
+                        canonical_url=current_url,
+                    )
+                )
+            except (
+                DorarTafsirCoverageUnavailable,
+                DorarTafsirPayloadError,
+            ) as exc:
+                # Candidate-local structural failure.
+                # The already-admitted page grants no Quran
+                # relationship without extractable coverage.
+                structural_failures.append(
+                    exc
+                )
+
+                quran_references = ()
+            else:
+                structurally_readable = True
+
+                coverage = set(
+                    quran_references
+                )
+
+                if all(
+                    reference in coverage
+                    for reference in required
+                ):
+                    return (
+                        DorarTafsirRetrievedPassage(
+                            canonical_url=(
+                                current_url
+                            ),
+                            response_sha256=(
+                                response.response_sha256
+                            ),
+                            admitted=(
+                                runtime_evidence
+                            ),
+                            quran_references=(
+                                quran_references
+                            ),
+                        )
+                    )
+
+            current_passage = (
+                _passage_number_for_surah(
+                    current_url,
+                    surah=surah,
+                )
+            )
+
+            if current_passage is None:
+                raise DorarTafsirPayloadError(
+                    "Structural Tafsir traversal "
+                    "lost canonical passage identity."
+                )
+
+            next_url = (
+                _next_structural_tafsir_url(
+                    html=evidence_html,
+                    base_url=(
+                        response.final_url
+                    ),
+                    surah=surah,
+                    current_passage=(
+                        current_passage
+                    ),
+                )
+            )
+
+            if next_url is None:
+                if (
+                    structural_failures
+                    and not structurally_readable
+                ):
+                    raise (
+                        structural_failures[-1]
+                    )
+
+                return None
+
+            current_url = next_url
+
+        # The bound is a safety boundary, not evidence that
+        # the requested passage does not exist.
+        raise DorarTafsirCoverageUnavailable(
+            "Dorar Tafsir structural traversal "
+            "exceeded the safety bound."
+        )
+
     def search(
         self,
         query: str,
@@ -656,6 +1122,18 @@ class DorarTafsirRetriever:
             # transport/structural layer. Do not turn
             # source unavailability into "zero hits".
             raise candidate_failures[-1]
+
+        if anchored and not admitted:
+            structural_passage = (
+                self._structural_passage_for_required(
+                    required
+                )
+            )
+
+            if structural_passage is not None:
+                admitted.append(
+                    structural_passage
+                )
 
         return DorarTafsirSearchResult(
             query=normalized,

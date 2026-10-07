@@ -365,6 +365,20 @@ class GeneralMaterialResponse(BaseModel):
     materials: list[GeneralMaterialItemResponse] = Field(default_factory=list)
 
 
+class QuranClarificationResponse(BaseModel):
+    kind: str = "quran_identity"
+
+    reason: str
+
+    prompt: str
+
+    candidate_references: list[
+        str
+    ] = Field(
+        default_factory=list
+    )
+
+
 class QueryResponse(BaseModel):
     request_id: str
 
@@ -378,6 +392,8 @@ class QueryResponse(BaseModel):
     has_answer: bool
 
     answer: str | None = None
+
+    clarification: QuranClarificationResponse | None = None
 
     limitations: list[str] = Field(default_factory=list)
 

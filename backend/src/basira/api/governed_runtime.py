@@ -1524,6 +1524,30 @@ class GovernedRuntimeResult:
     sufficiency: ClaimSufficiencyAssessment | None
     dependency: ClaimResolution | None
 
+    clarification_reason: str | None = None
+
+    clarification_candidates: tuple[
+        str,
+        ...,
+    ] = ()
+
+
+class _QuranIdentityClarificationRequired(
+    RuntimeError
+):
+    def __init__(
+        self,
+        *,
+        understanding: BasiraQueryUnderstanding,
+        resolution: QuranAnchorResolution,
+    ) -> None:
+        super().__init__(
+            resolution.reason
+        )
+
+        self.understanding = understanding
+        self.resolution = resolution
+
 
 def _quran_repository(
     retriever: BasiraUnifiedRetriever,
@@ -1735,6 +1759,32 @@ def _is_resolved(
     )
 
 
+_QURAN_CLARIFICATION_INTENTS = frozenset(
+    {
+        BasiraIntent.QURAN_LOOKUP,
+        BasiraIntent.QURAN_MEANING,
+        BasiraIntent.TAFSIR_CONTEXT,
+    }
+)
+
+
+def _needs_quran_identity_clarification(
+    *,
+    understanding: BasiraQueryUnderstanding,
+    resolution: QuranAnchorResolution | None,
+) -> bool:
+    return bool(
+        resolution is not None
+        and resolution.disposition
+        in {
+            AnchorResolutionDisposition.ASK_USER,
+            AnchorResolutionDisposition.BOUNDED_BRANCH,
+        }
+        and understanding.primary_intent
+        in _QURAN_CLARIFICATION_INTENTS
+    )
+
+
 def _canonical_resolution(
     *,
     understanding: BasiraQueryUnderstanding,
@@ -1744,10 +1794,30 @@ def _canonical_resolution(
 ) -> QuranAnchorResolution | None:
     resolver = _resolver(retriever)
 
-    if resolver is not None:
-        resolution = resolver.resolve(understanding)
+    resolution = None
 
-        if _is_resolved(resolution):
+    if resolver is not None:
+        resolution = resolver.resolve(
+            understanding
+        )
+
+        if _is_resolved(
+            resolution
+        ):
+            return resolution
+
+        if (
+            resolution.disposition
+            is AnchorResolutionDisposition.BOUNDED_BRANCH
+        ):
+            return resolution
+
+        if (
+            resolution.disposition
+            is AnchorResolutionDisposition.ASK_USER
+            and resolution.reason
+            != "anchor_requested_but_not_canonically_resolved"
+        ):
             return resolution
 
     # Canonical text match has priority over a contradictory manual hint.
@@ -1784,7 +1854,7 @@ def _canonical_resolution(
             retriever=retriever,
         )
 
-    return None
+    return resolution
 
 
 
@@ -1891,36 +1961,70 @@ def _promote_quran_meaning(
     question: str,
     resolution: QuranAnchorResolution | None,
 ) -> BasiraQueryUnderstanding:
-    if not _is_resolved(resolution):
+    if resolution is None:
         return understanding
 
-    if understanding.primary_intent is not BasiraIntent.GENERAL_ISLAMIC_QUESTION:
+    if (
+        understanding.primary_intent
+        is not BasiraIntent.GENERAL_ISLAMIC_QUESTION
+    ):
         return understanding
 
-    normalized = normalize_semantic_text(question)
+    normalized = normalize_semantic_text(
+        question
+    )
 
-    if any(normalize_semantic_text(cue) in normalized for cue in _MEANING_CUES):
+    has_meaning_cue = any(
+        normalize_semantic_text(
+            cue
+        )
+        in normalized
+        for cue in _MEANING_CUES
+    )
+
+    if (
+        has_meaning_cue
+        and resolution.disposition
+        in {
+            AnchorResolutionDisposition.RESOLVED,
+            AnchorResolutionDisposition.ASK_USER,
+            AnchorResolutionDisposition.BOUNDED_BRANCH,
+        }
+    ):
         return replace(
             understanding,
-            primary_intent=BasiraIntent.QURAN_MEANING,
+            primary_intent=(
+                BasiraIntent.QURAN_MEANING
+            ),
             confidence=max(
                 understanding.confidence,
                 0.95,
             ),
         )
 
+    if not _is_resolved(
+        resolution
+    ):
+        return understanding
+
     if (
-        resolution is not None
-        and resolution.reason == "validated_named_quran_reference"
+        resolution.reason
+        == "validated_named_quran_reference"
     ):
         named_lookup_forms = {
-            normalize_semantic_text(alias) for alias in _NAMED_QURAN_REFERENCES
+            normalize_semantic_text(
+                alias
+            )
+            for alias
+            in _NAMED_QURAN_REFERENCES
         }
 
         if normalized in named_lookup_forms:
             return replace(
                 understanding,
-                primary_intent=BasiraIntent.QURAN_LOOKUP,
+                primary_intent=(
+                    BasiraIntent.QURAN_LOOKUP
+                ),
                 confidence=max(
                     understanding.confidence,
                     0.95,
@@ -1928,6 +2032,7 @@ def _promote_quran_meaning(
             )
 
     return understanding
+
 
 
 def _support_domains(
@@ -2339,6 +2444,41 @@ class PublicGovernedQueryRuntime:
             raise ValueError(
                 "graph execution requires multiple claims"
             )
+
+        # Identity must be complete before any claim in
+        # the graph is allowed to retrieve religious evidence.
+        #
+        # One ambiguous Quran claim blocks the graph from
+        # silently degrading into "missing evidence".
+        for task in plan.tasks:
+            (
+                prepared_understanding,
+                prepared_resolution,
+                _prepared_domains,
+            ) = prepared[
+                task.task_id
+            ]
+
+            if (
+                _needs_quran_identity_clarification(
+                    understanding=(
+                        prepared_understanding
+                    ),
+                    resolution=(
+                        prepared_resolution
+                    ),
+                )
+            ):
+                raise (
+                    _QuranIdentityClarificationRequired(
+                        understanding=(
+                            prepared_understanding
+                        ),
+                        resolution=(
+                            prepared_resolution
+                        ),
+                    )
+                )
 
         contracts = []
         sufficiency_contracts = []
@@ -3108,6 +3248,23 @@ class PublicGovernedQueryRuntime:
                 )
             )
         except (
+            _QuranIdentityClarificationRequired
+        ) as exc:
+            return self._clarify_quran_identity(
+                question=question,
+                understanding=(
+                    exc.understanding
+                ),
+                context_requirement=(
+                    exc.understanding
+                    .context_requirement
+                ),
+                resolution=(
+                    exc.resolution
+                ),
+            )
+
+        except (
             UnresolvedEvidenceIdentityError,
             CapabilityExecutionError,
         ):
@@ -3123,6 +3280,60 @@ class PublicGovernedQueryRuntime:
         return self._aggregate_public_claim_graph(
             question=question,
             execution=execution,
+        )
+
+    def _clarify_quran_identity(
+        self,
+        *,
+        question: str,
+        understanding: BasiraQueryUnderstanding,
+        context_requirement,
+        resolution: QuranAnchorResolution,
+    ) -> GovernedRuntimeResult:
+        """
+        Stop before religious evidence retrieval.
+
+        Identity uncertainty is not evidence
+        insufficiency.
+        """
+        base = self._fail_closed(
+            question=question,
+            understanding=understanding,
+            context_requirement=(
+                context_requirement
+            ),
+        )
+
+        outcome = replace(
+            base.outcome,
+            decision=EvidenceDecision(
+                action=(
+                    EvidenceDecisionAction.CLARIFY
+                ),
+                reasons=(
+                    EvidenceDecisionReason
+                    .UNRESOLVED_QURAN_IDENTITY,
+                ),
+                unresolved_needs=(),
+            ),
+        )
+
+        answer = self.composer.compose(
+            question=question,
+            outcome=outcome,
+        )
+
+        return replace(
+            base,
+            outcome=outcome,
+            answer=answer,
+            clarification_reason=(
+                resolution.reason
+            ),
+            clarification_candidates=(
+                resolution
+                .candidate_references
+            ),
         )
 
     def _fail_closed(
@@ -3181,6 +3392,7 @@ class PublicGovernedQueryRuntime:
         # continues to pass its ClaimResolution explicitly.
         if outcome.decision.action in {
             EvidenceDecisionAction.ABSTAIN,
+            EvidenceDecisionAction.CLARIFY,
             EvidenceDecisionAction.ESCALATE_TO_EXPERT,
         }:
             return outcome
@@ -3322,6 +3534,21 @@ class PublicGovernedQueryRuntime:
             understanding,
             context_requirement=(route.context_requirement),
         )
+
+        if (
+            _needs_quran_identity_clarification(
+                understanding=understanding,
+                resolution=quran_resolution,
+            )
+        ):
+            return self._clarify_quran_identity(
+                question=display_question,
+                understanding=understanding,
+                context_requirement=(
+                    route.context_requirement
+                ),
+                resolution=quran_resolution,
+            )
 
         task = ClaimTask(
             task_id=f"public-claim-{uuid4()}",

@@ -28,6 +28,8 @@ class EvidenceDecisionAction(StrEnum):
 
     RETRIEVE_MORE = "retrieve_more"
 
+    CLARIFY = "clarify"
+
     ABSTAIN = "abstain"
 
     ESCALATE_TO_EXPERT = "escalate_to_expert"
@@ -39,6 +41,8 @@ class EvidenceDecisionReason(StrEnum):
     RESOLVED_ABSENCE = "resolved_absence"
 
     MISSING_REQUIRED_EVIDENCE = "missing_required_evidence"
+
+    UNRESOLVED_QURAN_IDENTITY = "unresolved_quran_identity"
 
     UNAVAILABLE_REQUIRED_DOMAIN = "unavailable_required_domain"
 

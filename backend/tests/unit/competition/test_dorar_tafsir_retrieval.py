@@ -372,3 +372,254 @@ def test_anchored_search_skips_bad_candidate_and_keeps_first_matching():
     assert passage.canonical_url == matching
 
     assert "2:255" in passage.quran_references
+
+
+
+def test_anchored_zero_lexical_hits_uses_structural_surah_fallback():
+    query = "قل هو الله أحد"
+
+    search_url = (
+        build_dorar_tafsir_search_url(
+            query
+        )
+    )
+
+    collection = (
+        "https://dorar.net/tafseer/112"
+    )
+
+    passage = (
+        "https://dorar.net/tafseer/112/1"
+    )
+
+    passage_body = (
+        "<h6>الآيات (1-4)</h6>"
+    ).encode()
+
+    transport = FakeTransport(
+        {
+            search_url: b"<html></html>",
+            collection: (
+                b'<a href="/tafseer/112/1">'
+                b"first"
+                b"</a>"
+            ),
+            passage: passage_body,
+        }
+    )
+
+    gate = FakeGate()
+
+    result = DorarTafsirRetriever(
+        transport=transport,
+        gate=gate,
+    ).search(
+        query,
+        limit=1,
+        required_quran_references=(
+            "112:1",
+        ),
+    )
+
+    assert len(result.passages) == 1
+
+    assert (
+        result.passages[0].canonical_url
+        == passage
+    )
+
+    assert (
+        "112:1"
+        in result.passages[0].quran_references
+    )
+
+    # The lexical search itself had zero canonical hits.
+    assert result.discovered_urls == ()
+
+    assert transport.calls == [
+        (
+            search_url,
+            DorarFetchPurpose.DISCOVERY,
+        ),
+        (
+            collection,
+            DorarFetchPurpose.DISCOVERY,
+        ),
+        (
+            passage,
+            DorarFetchPurpose.EVIDENCE,
+        ),
+    ]
+
+    assert gate.calls == [
+        (
+            passage_body,
+            passage,
+        )
+    ]
+
+
+def test_structural_fallback_follows_source_native_next_until_anchor():
+    query = "unseen anchored tafsir"
+
+    search_url = (
+        build_dorar_tafsir_search_url(
+            query
+        )
+    )
+
+    collection = (
+        "https://dorar.net/tafseer/2"
+    )
+
+    first = (
+        "https://dorar.net/tafseer/2/1"
+    )
+
+    second = (
+        "https://dorar.net/tafseer/2/2"
+    )
+
+    first_body = (
+        '<h6>الآيات (1-5)</h6>'
+        '<a href="/tafseer/2/2">'
+        'التالي'
+        '</a>'
+    ).encode()
+
+    second_body = (
+        "<h6>الآيات (6-7)</h6>"
+    ).encode()
+
+    transport = FakeTransport(
+        {
+            search_url: b"<html></html>",
+            collection: (
+                b'<a href="/tafseer/2/1">'
+                b"first"
+                b"</a>"
+            ),
+            first: first_body,
+            second: second_body,
+        }
+    )
+
+    gate = FakeGate()
+
+    result = DorarTafsirRetriever(
+        transport=transport,
+        gate=gate,
+    ).search(
+        query,
+        limit=1,
+        required_quran_references=(
+            "2:6",
+        ),
+    )
+
+    assert len(result.passages) == 1
+
+    assert (
+        result.passages[0].canonical_url
+        == second
+    )
+
+    assert (
+        "2:6"
+        in result.passages[0].quran_references
+    )
+
+    assert gate.calls == [
+        (
+            first_body,
+            first,
+        ),
+        (
+            second_body,
+            second,
+        ),
+    ]
+
+    assert transport.calls == [
+        (
+            search_url,
+            DorarFetchPurpose.DISCOVERY,
+        ),
+        (
+            collection,
+            DorarFetchPurpose.DISCOVERY,
+        ),
+        (
+            first,
+            DorarFetchPurpose.EVIDENCE,
+        ),
+        (
+            second,
+            DorarFetchPurpose.EVIDENCE,
+        ),
+    ]
+
+
+def test_structural_fallback_never_crosses_surah_boundary():
+    query = "anchored no cross surah"
+
+    search_url = (
+        build_dorar_tafsir_search_url(
+            query
+        )
+    )
+
+    collection = (
+        "https://dorar.net/tafseer/2"
+    )
+
+    first = (
+        "https://dorar.net/tafseer/2/1"
+    )
+
+    first_body = (
+        '<h6>الآيات (1-5)</h6>'
+        '<a href="/tafseer/3/1">'
+        'التالي'
+        '</a>'
+    ).encode()
+
+    transport = FakeTransport(
+        {
+            search_url: b"<html></html>",
+            collection: (
+                b'<a href="/tafseer/2/1">'
+                b"first"
+                b"</a>"
+            ),
+            first: first_body,
+        }
+    )
+
+    result = DorarTafsirRetriever(
+        transport=transport,
+        gate=FakeGate(),
+    ).search(
+        query,
+        limit=1,
+        required_quran_references=(
+            "2:6",
+        ),
+    )
+
+    assert result.passages == ()
+
+    assert transport.calls == [
+        (
+            search_url,
+            DorarFetchPurpose.DISCOVERY,
+        ),
+        (
+            collection,
+            DorarFetchPurpose.DISCOVERY,
+        ),
+        (
+            first,
+            DorarFetchPurpose.EVIDENCE,
+        ),
+    ]

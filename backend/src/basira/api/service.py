@@ -215,6 +215,13 @@ class QueryExecution:
 
     answer: GroundedAnswer
 
+    clarification_reason: str | None = None
+
+    clarification_candidates: tuple[
+        str,
+        ...,
+    ] = ()
+
     quran_verification: QuranQuoteResult | None = None
 
     # Display-only general content. Never EvidenceNode.
@@ -739,6 +746,36 @@ class BasiraQueryService:
             requested_language=language,
         )
 
+        if (
+            result.answer.action.value
+            == "clarify"
+        ):
+            # Clarification is terminal for this request.
+            # Do not attach quote-verification metadata,
+            # display-only general material, or any other
+            # parallel enrichment that could look like an
+            # answer to an unresolved Quran identity.
+            return QueryExecution(
+                question=result.question,
+                hybrid_plan=hybrid_plan,
+                understanding=(
+                    result.understanding
+                ),
+                retrieval=result.retrieval,
+                outcome=result.outcome,
+                answer=result.answer,
+                clarification_reason=(
+                    result
+                    .clarification_reason
+                ),
+                clarification_candidates=(
+                    result
+                    .clarification_candidates
+                ),
+                quran_verification=None,
+                general_material=None,
+            )
+
         governed_core_intents = {
             BasiraIntent.QURAN_LOOKUP,
             BasiraIntent.QURAN_MEANING,
@@ -852,6 +889,12 @@ class BasiraQueryService:
             retrieval=result.retrieval,
             outcome=result.outcome,
             answer=result.answer,
+            clarification_reason=(
+                result.clarification_reason
+            ),
+            clarification_candidates=(
+                result.clarification_candidates
+            ),
             quran_verification=quran_verification,
             general_material=general_material,
         )

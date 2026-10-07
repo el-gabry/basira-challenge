@@ -23,6 +23,9 @@ from basira.normalization.quran import (
 from basira.retrieval.query_understanding import (
     BasiraQueryUnderstanding,
 )
+from basira.retrieval.quran_canonical_resolver import (
+    resolve_canonical_quran_point,
+)
 from basira.retrieval.quran_reference import (
     expand_quran_reference,
     normalize_quran_reference,
@@ -550,6 +553,22 @@ class OfficialQuranDomainRetriever:
                         return tuple(evidence)
 
             return tuple(evidence)
+
+        # Natural-language Quran identity resolution.
+        #
+        # This grants identity only. The resolved coordinate
+        # is fetched again through the existing governed
+        # exact-point adapter before it can become evidence.
+        resolved_point = resolve_canonical_quran_point(
+            question=understanding.query.original_text,
+            repository=self.repository,
+        )
+
+        if resolved_point is not None:
+            return self._retrieve_exact_point(
+                surah=resolved_point.surah,
+                ayah=resolved_point.ayah,
+            )
 
         # ------------------------------------------------
         # No hard anchor: deterministic discovery only.

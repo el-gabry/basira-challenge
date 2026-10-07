@@ -143,6 +143,19 @@ class GroundedAnswerComposer:
                 limitations=limitations,
             )
 
+        if action is EvidenceDecisionAction.CLARIFY:
+            limitations.append(
+                "نحتاج إلى تحديد الآية المقصودة قبل متابعة التفسير؛ "
+                "هذه حالة عدم حسم للهوية وليست نقصًا في الأدلة."
+            )
+
+            return self._without_answer(
+                question=cleaned_question,
+                action=action,
+                outcome=outcome,
+                limitations=limitations,
+            )
+
         if action is EvidenceDecisionAction.RETRIEVE_MORE:
             limitations.append(
                 "الأدلة الحالية غير كافية؛ يلزم استرجاع أدلة إضافية قبل إنشاء إجابة."
